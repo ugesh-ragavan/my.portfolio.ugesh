@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ugesh Ragavan — Interactive OS Desktop & Creative Portfolio. Big Data Engineer, Frontend Developer, Acrylic Artist.">
+  <meta name="author" content="Ugesh Ragavan">
+  <title>UGESH OS // CREATIVE DESKTOP PORTFOLIO & CHROME DINO</title>
+  <link rel="shortcut icon" href="images/fav.png" type="image/vnd.microsoft.icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&family=Press+Start+2P&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       UGESH OS // MACINTOSH DESKTOP & CREATIVE PORTFOLIO (Parinaz Inspired)
+       ═══════════════════════════════════════════════════════════ */
+    :root {
+      --os-bg: #1e1e24;
+      --os-wallpaper: radial-gradient(circle at 50% 50%, #2a2a36 0%, #181820 100%);
+      --os-bar-bg: rgba(240, 238, 233, 0.92);
+      --os-bar-text: #1a1a1a;
+      --os-window-bg: #f9f8f6;
+      --os-window-border: #2b2b2b;
+      --os-header-bg: linear-gradient(180deg, #e6e4df 0%, #d8d5ce 100%);
+      --os-header-text: #1c1c1c;
+      --os-accent: #3a86ff;
+      --os-accent-pink: #ff007f;
+      --os-shadow: 0 16px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,0,0,0.8);
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'Fira Code', monospace;
+      --font-pixel: 'Press Start 2P', monospace;
+      --font-serif: 'Playfair Display', serif;
+    }
+
+    /* Theme Variants */
+    body.theme-cyber {
+      --os-bg: #090c10;
+      --os-wallpaper: radial-gradient(circle at 50% 50%, #131d2a 0%, #080b10 100%);
+      --os-bar-bg: rgba(13, 17, 23, 0.95);
+      --os-bar-text: #58a6ff;
+      --os-window-bg: #0d1117;
+      --os-window-border: #30363d;
+      --os-header-bg: linear-gradient(180deg, #21262d 0%, #161b22 100%);
+      --os-header-text: #f0f6fc;
+      --os-accent: #58a6ff;
+      --os-shadow: 0 16px 40px rgba(0,0,0,0.8), 0 0 0 1px #30363d;
+    }
+
+    body.theme-purple {
+      --os-bg: #1a0933;
+      --os-wallpaper: radial-gradient(circle at 50% 50%, #2e1254 0%, #120524 100%);
+      --os-bar-bg: rgba(24, 11, 46, 0.95);
+      --os-bar-text: #d4a5ff;
+      --os-window-bg: #180b2d;
+      --os-window-border: #4d2b7a;
+      --os-header-bg: linear-gradient(180deg, #371861 0%, #250d45 100%);
+      --os-header-text: #f3e8ff;
+      --os-accent: #ff007f;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: var(--font-sans);
+      background: var(--os-bg);
+      color: #222;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* ── Desktop Environment ── */
+    #desktop {
+      position: absolute;
+      inset: 0;
+      top: 32px;
+      bottom: 68px;
+      background-color: #f7f6f2;
+      background-image: 
+        url('images/Ugesh/ug-cartoon-wallpaper.png'),
+        radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
+      background-repeat: no-repeat, repeat;
+      background-position: right bottom, center;
+      background-size: contain, 24px 24px;
+      overflow: hidden;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      gap: 20px;
+    }
+
+    /* ── Top OS Menu Bar ── */
+    #top-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 32px;
+      background: var(--os-bar-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      z-index: 10000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--os-bar-text);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .bar-left, .bar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .apple-logo {
+      font-size: 1.1rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .menu-item {
+      cursor: pointer;
+      padding: 3px 8px;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .menu-item:hover { background: rgba(0,0,0,0.1); }
+
+    .theme-swatch-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 8px;
+    }
+    .theme-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1.5px solid rgba(0,0,0,0.3);
+      transition: transform 0.15s;
+    }
+    .theme-dot:hover { transform: scale(1.25); }
+
+    .btn-top-quick {
+      background: var(--os-accent);
+      color: #fff;
+      border: none;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: transform 0.15s, filter 0.15s;
+    }
+    .btn-top-quick:hover { transform: translateY(-1px); filter: brightness(1.1); }
+
+    /* ── Desktop Icons ── */
+    .desktop-icon {
+      width: 90px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: background 0.15s;
+      color: #1a1a1a;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.9);
+      text-align: center;
+    }
+    body.theme-cyber .desktop-icon,
+    body.theme-purple .desktop-icon {
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    }
+    .desktop-icon:hover {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(4px);
+    }
+    .desktop-icon:active {
+      transform: scale(0.95);
+    }
+    .icon-img-box {
+      width: 52px; height: 52px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 12px;
+      border: 1.5px solid rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .icon-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    /* ── OS Floating Windows ── */
+    .os-window {
+      position: absolute;
+      background: var(--os-window-bg);
+      border: 1px solid var(--os-window-border);
+      border-radius: 10px;
+      box-shadow: var(--os-shadow);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 320px;
+      min-height: 220px;
+      z-index: 100;
+      transition: opacity 0.2s cubic-bezier(0.1, 0.9, 0.2, 1), transform 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+    }
+    .os-window.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.92) translateY(20px);
+    }
+    .os-window.maximized {
+      top: 32px !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: calc(100vh - 100px) !important;
+      border-radius: 0;
+    }
+
+    .window-header {
+      height: 36px;
+      background: var(--os-header-bg);
+      color: var(--os-header-text);
+      border-bottom: 1px solid rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      cursor: move;
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+
+    .window-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+    .dot-close { background: #ff5f56; }
+    .dot-min { background: #ffbd2e; }
+    .dot-max { background: #27c93f; }
+
+    .window-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    .window-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      color: #222;
+      user-select: text;
+      -webkit-user-select: text;
+    }
+
+    body.theme-cyber .window-body,
+    body.theme-purple .window-body {
+      color: #e0e0e0;
+    }
+
+    /* ── Chrome Dino Window ── */
+    #dino-game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #f7f7f7;
+      padding: 16px;
+      border-radius: 8px;
+      border: 2px solid #333;
+    }
+    #dinoCanvas {
+      background: #fff;
+      border: 1px solid #ccc;
+      width: 100%;
+      max-width: 600px;
+      height: 180px;
+      display: block;
+    }
+    .dino-controls-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+      margin-top: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: #333;
+    }
+    .btn-dino-start {
+      background: #3a86ff;
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #1d5ec4;
+    }
+    .btn-dino-start:active { transform: translateY(2px); box-shadow: none; }
+
+    /* ── About Profile Window ── */
+    .profile-hero {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .profile-avatar {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--os-accent);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .profile-info h2 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .profile-tagline {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #ff007f;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .gallery-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .art-card {
+      border: 1.5px solid rgba(0,0,0,0.2);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .art-card:hover { transform: translateY(-4px); box-shadow: 0 8px 18px rgba(0,0,0,0.25); }
+    .art-img {
+      width: 100%; height: 140px;
+      object-fit: cover;
+      display: block;
+    }
+    .art-caption {
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #333;
+    }
+
+    /* ── Bottom Taskbar / Tech Stack Dock ── */
+    #taskbar {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 56px;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 28px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 10000;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+    }
+
+    .dock-item {
+      position: relative;
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .dock-item:hover {
+      transform: scale(1.3) translateY(-8px);
+    }
+
+    .dock-tooltip {
+      position: absolute;
+      bottom: 54px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .dock-item:hover .dock-tooltip { opacity: 1; }
+
+    .dock-indicator {
+      position: absolute;
+      bottom: -4px;
+      width: 4px; height: 4px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    .dock-divider {
+      width: 1px; height: 28px;
+      background: rgba(255,255,255,0.4);
+      margin: 0 4px;
+    }
+
+    /* ── Lightbox Modal ── */
+    #lightbox {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 20000;
+      display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s; padding: 20px;
+    }
+    #lightbox.open { opacity: 1; pointer-events: auto; }
+    .lightbox-content {
+      background: #fff; border-radius: 12px; padding: 20px; max-width: 750px; width: 100%; text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .lightbox-img { max-width: 100%; max-height: 65vh; border-radius: 8px; display: block; margin: 0 auto 12px; }
+
+    @media (max-width: 768px) {
+      #taskbar { gap: 6px; padding: 0 10px; height: 48px; }
+      .dock-item { width: 34px; height: 34px; font-size: 1.1rem; }
+      .profile-hero { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body class="theme-default">
+
+  <!-- ── Top OS Menu Bar ── -->
+  <div id="top-bar">
+    <div class="bar-left">
+      <span class="apple-logo" onclick="openWindow('win-about')"></span>
+      <span class="menu-item" style="font-weight:800;" onclick="openWindow('win-about')">Ugesh OS</span>
+      <span class="menu-item" onclick="openWindow('win-dino')">🦖 Dino Game</span>
+      <span class="menu-item" onclick="openWindow('win-gallery')">🎨 Art Gallery</span>
+      <span class="menu-item" onclick="openWindow('win-contact')">✉ Contact</span>
+      <div class="theme-swatch-group">
+        <span style="font-size:0.7rem; color:#666;">THEME:</span>
+        <div class="theme-dot" style="background:#e6e4df" onclick="setTheme('default')" title="Classic Mac"></div>
+        <div class="theme-dot" style="background:#131d2a" onclick="setTheme('cyber')" title="Cyber Dark"></div>
+        <div class="theme-dot" style="background:#2e1254" onclick="setTheme('purple')" title="Synthwave Purple"></div>
+      </div>
+    </div>
+
+    <div class="bar-right">
+      <button class="btn-top-quick" onclick="toggleSFX()" id="sfxBtn">♪ SFX ON</button>
+      <a href="weekday.html" class="btn-top-quick" style="background:#2a9d8f">💼 WEEKDAY PRO</a>
+      <a href="index.html" class="btn-top-quick" style="background:#e76f51">🍃 GHIBLI HUB</a>
+      <span id="clockDisplay" style="font-family:var(--font-mono); font-size:0.78rem;">12:00 PM</span>
+    </div>
+  </div>
+
+  <!-- ── Main Desktop Workspace ── -->
+  <div id="desktop">
+
+    <!-- Desktop Icons -->
+    <div class="desktop-icon" onclick="openWindow('win-dino')">
+      <div class="icon-img-box">🦖</div>
+      <div class="icon-label">Chrome Dino.app</div>
+    </div>
+
+    <div class="desktop-icon" onclick="openWindow('win-about')">
+      <div class="icon-img-box">👨‍💻</div>
+      <div class="icon-label">About Ugesh.app</div>
+    </div>
+
+    <div class="desktop-icon" onclick="openWindow('win-gallery')">
+      <div class="icon-img-box">🎨</div>
+      <div class="icon-label">Canvas Art.app</div>
+    </div>
+
+    <div class="desktop-icon" onclick="openWindow('win-videos')">
+      <div class="icon-img-box">🎬</div>
+      <div class="icon-label">Media Edits.app</div>
+    </div>
+
+    <div class="desktop-icon" onclick="openWindow('win-contact')">
+      <div class="icon-img-box">✉️</div>
+      <div class="icon-label">Contact.app</div>
+    </div>
+
+    <!-- ══ OS WINDOW 1: CHROME DINO GAME ══ -->
+    <div class="os-window" id="win-dino" style="top:50px; left:80px; width:660px; height:360px;">
+      <div class="window-header" onmousedown="startDrag(event, 'win-dino')">
+        <div class="window-dots">
+          <div class="dot dot-close" onclick="closeWindow('win-dino')"></div>
+          <div class="dot dot-min" onclick="closeWindow('win-dino')"></div>
+          <div class="dot dot-max" onclick="toggleMaximize('win-dino')"></div>
+        </div>
+        <div class="window-title">🦖 Chrome Dino Runner — Playable Game</div>
+        <div></div>
+      </div>
+      <div class="window-body" style="background:#f4f4f4;">
+        <div id="dino-game-container">
+          <canvas id="dinoCanvas" width="600" height="180"></canvas>
+          <div class="dino-controls-bar">
+            <div>PRESS <b>SPACE / UP</b> TO JUMP & START</div>
+            <div>SCORE: <span id="dinoScore" style="color:#ff007f; font-weight:800;">00000</span> | HI: <span id="dinoHiScore">00000</span></div>
+            <button class="btn-dino-start" onclick="resetDinoGame()">RESTART GAME</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ OS WINDOW 2: ABOUT UGESH ══ -->
+    <div class="os-window" id="win-about" style="top:70px; left:220px; width:640px; height:460px;">
+      <div class="window-header" onmousedown="startDrag(event, 'win-about')">
+        <div class="window-dots">
+          <div class="dot dot-close" onclick="closeWindow('win-about')"></div>
+          <div class="dot dot-min" onclick="closeWindow('win-about')"></div>
+          <div class="dot dot-max" onclick="toggleMaximize('win-about')"></div>
+        </div>
+        <div class="window-title">👨‍💻 About Ugesh Ragavan</div>
+        <div></div>
+      </div>
+      <div class="window-body">
+        <div class="profile-hero">
+          <img src="images/Ugesh/ugesh_working.jpg" alt="Ugesh Ragavan Working" class="profile-avatar">
+          <div class="profile-info">
+            <h2>Ugesh Ragavan</h2>
+            <div class="profile-tagline">⚡ Big Data & Analytics Engineer // Frontend Developer</div>
+            <p style="font-size:0.88rem; line-height:1.5;">Based in Coimbatore, India. Over 2.5+ years of engineering enterprise data pipelines at Zoho Corporation & crafting interactive web applications.</p>
+          </div>
+        </div>
+
+        <h4 style="font-family:var(--font-mono); margin-bottom:10px;">📸 Behind The Scenes & Life:</h4>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+          <img src="images/Ugesh/Ugesh_chilling.jpg" style="width:100%; height:140px; object-fit:cover; border-radius:8px; border:1px solid #ccc;" alt="Ugesh Chilling">
+          <img src="images/Ugesh/Ug_writer.jpg" style="width:100%; height:140px; object-fit:cover; border-radius:8px; border:1px solid #ccc;" alt="Ugesh Writer">
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ OS WINDOW 3: ACRYLIC ART GALLERY ══ -->
+    <div class="os-window" id="win-gallery" style="top:100px; left:340px; width:680px; height:480px;">
+      <div class="window-header" onmousedown="startDrag(event, 'win-gallery')">
+        <div class="window-dots">
+          <div class="dot dot-close" onclick="closeWindow('win-gallery')"></div>
+          <div class="dot dot-min" onclick="closeWindow('win-gallery')"></div>
+          <div class="dot dot-max" onclick="toggleMaximize('win-gallery')"></div>
+        </div>
+        <div class="window-title">🎨 Acrylic Canvas Fine Art Gallery</div>
+        <div></div>
+      </div>
+      <div class="window-body">
+        <p style="font-size:0.85rem; color:#666; margin-bottom:12px;">Original Acrylic Canvases painted by Ugesh Ragavan. Click any artwork to inspect in detail.</p>
+        
+        <div class="gallery-photo-grid">
+          <div class="art-card" onclick="openLightbox('img/Painting/dear.jpg', 'Dear in Dusk — Original Acrylic Canvas')">
+            <img src="img/Painting/dear.jpg" class="art-img" alt="Dear in Dusk">
+            <div class="art-caption">Dear in Dusk</div>
+          </div>
+          <div class="art-card" onclick="openLightbox('img/Painting/ship.jpg', 'Dawn Dark Pirates — Original Acrylic Canvas')">
+            <img src="img/Painting/ship.jpg" class="art-img" alt="Dawn Dark Pirates">
+            <div class="art-caption">Dawn Dark Pirates</div>
+          </div>
+          <div class="art-card" onclick="openLightbox('img/Painting/yas ka wedding gift.jpg', 'Village in Eve — Original Acrylic Canvas')">
+            <img src="img/Painting/yas ka wedding gift.jpg" class="art-img" alt="Village in Eve">
+            <div class="art-caption">Village in Eve</div>
+          </div>
+          <div class="art-card" onclick="openLightbox('img/Painting/1.jpg', 'Eve Study I — Knife Brushwork Canvas')">
+            <img src="img/Painting/1.jpg" class="art-img" alt="Eve Study 1">
+            <div class="art-caption">Eve Study I</div>
+          </div>
+          <div class="art-card" onclick="openLightbox('img/Painting/2.jpg', 'Eve Study II — Color Harmony Canvas')">
+            <img src="img/Painting/2.jpg" class="art-img" alt="Eve Study 2">
+            <div class="art-caption">Eve Study II</div>
+          </div>
+          <div class="art-card" onclick="openLightbox('img/Painting/3.jpg', 'Pop Expressions — High Contrast Pop Art')">
+            <img src="img/Painting/3.jpg" class="art-img" alt="Pop Expressions">
+            <div class="art-caption">Pop Expressions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ OS WINDOW 4: MEDIA EDITS ══ -->
+    <div class="os-window hidden" id="win-videos" style="top:120px; left:180px; width:580px; height:420px;">
+      <div class="window-header" onmousedown="startDrag(event, 'win-videos')">
+        <div class="window-dots">
+          <div class="dot dot-close" onclick="closeWindow('win-videos')"></div>
+          <div class="dot dot-min" onclick="closeWindow('win-videos')"></div>
+          <div class="dot dot-max" onclick="toggleMaximize('win-videos')"></div>
+        </div>
+        <div class="window-title">🎬 Video Production & Teaser Edits</div>
+        <div></div>
+      </div>
+      <div class="window-body">
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="border:1px solid #ccc; padding:12px; border-radius:8px; display:flex; gap:12px; align-items:center; background:#fff;">
+            <img src="img/portfolio/VideoE/letit.jpg" style="width:120px; height:75px; object-fit:cover; border-radius:6px;" alt="Aswin Edit">
+            <div>
+              <h4 style="font-size:0.95rem; margin-bottom:4px;">Aswin King Kong Edit</h4>
+              <p style="font-size:0.78rem; color:#666; margin-bottom:8px;">Hobby video composition with visual effect overlays.</p>
+              <a href="https://www.youtube.com/watch?v=HfOlTCbAmtQ" target="_blank" class="btn-top-quick">Watch on YouTube ↗</a>
+            </div>
+          </div>
+
+          <div style="border:1px solid #ccc; padding:12px; border-radius:8px; display:flex; gap:12px; align-items:center; background:#fff;">
+            <img src="img/portfolio/VideoE/chellama.jpg" style="width:120px; height:75px; object-fit:cover; border-radius:6px;" alt="Chellama Edit">
+            <div>
+              <h4 style="font-size:0.95rem; margin-bottom:4px;">Chellama Cover Edit</h4>
+              <p style="font-size:0.78rem; color:#666; margin-bottom:8px;">Cinematic teaser cover song edit with rhythmic cuts.</p>
+              <a href="https://www.youtube.com/watch?v=6xRAZUJjNRg" target="_blank" class="btn-top-quick" style="background:#ff007f;">Watch on YouTube ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ OS WINDOW 5: CONTACT ══ -->
+    <div class="os-window hidden" id="win-contact" style="top:140px; left:260px; width:480px; height:380px;">
+      <div class="window-header" onmousedown="startDrag(event, 'win-contact')">
+        <div class="window-dots">
+          <div class="dot dot-close" onclick="closeWindow('win-contact')"></div>
+          <div class="dot dot-min" onclick="closeWindow('win-contact')"></div>
+          <div class="dot dot-max" onclick="toggleMaximize('win-contact')"></div>
+        </div>
+        <div class="window-title">✉ Dispatch Message to Ugesh</div>
+        <div></div>
+      </div>
+      <div class="window-body">
+        <form action="https://formspree.io/f/xvoldvoz" method="POST" style="display:flex; flex-direction:column; gap:12px;">
+          <input type="text" name="name" placeholder="YOUR NAME" required style="padding:10px; border:1px solid #ccc; border-radius:6px; font-family:var(--font-mono);">
+          <input type="email" name="email" placeholder="YOUR EMAIL" required style="padding:10px; border:1px solid #ccc; border-radius:6px; font-family:var(--font-mono);">
+          <textarea name="message" rows="4" placeholder="ENTER MESSAGE OR JOB INQUIRY..." required style="padding:10px; border:1px solid #ccc; border-radius:6px; font-family:var(--font-mono);"></textarea>
+          <button type="submit" class="btn-top-quick" style="padding:10px; justify-content:center; background:#3a86ff;">SEND TRANSMISSION ▶</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Bottom Taskbar / Tech Stack Dock ── -->
+  <div id="taskbar">
+    <div class="dock-item" onclick="openWindow('win-dino')">
+      🦖
+      <div class="dock-tooltip">Chrome Dino Game</div>
+      <div class="dock-indicator"></div>
+    </div>
+
+    <div class="dock-item" onclick="openWindow('win-about')">
+      🐍
+      <div class="dock-tooltip">Python & PySpark</div>
+      <div class="dock-indicator"></div>
+    </div>
+
+    <div class="dock-item" onclick="openWindow('win-about')">
+      ⚛️
+      <div class="dock-tooltip">React Frontend</div>
+      <div class="dock-indicator"></div>
+    </div>
+
+    <div class="dock-item" onclick="openWindow('win-about')">
+      🐘
+      <div class="dock-tooltip">PostgreSQL & Kafka</div>
+      <div class="dock-indicator"></div>
+    </div>
+
+    <div class="dock-divider"></div>
+
+    <div class="dock-item" onclick="openWindow('win-gallery')">
+      🎨
+      <div class="dock-tooltip">Acrylic Painting</div>
+      <div class="dock-indicator"></div>
+    </div>
+
+    <div class="dock-item" onclick="openWindow('win-videos')">
+      🎬
+      <div class="dock-tooltip">Video Editing</div>
+      <div class="dock-indicator"></div>
+    </div>
+
+    <div class="dock-item" onclick="openWindow('win-contact')">
+      ✉️
+      <div class="dock-tooltip">Contact Ugesh</div>
+      <div class="dock-indicator"></div>
+    </div>
+
+    <div class="dock-divider"></div>
+
+    <a href="weekday.html" class="dock-item" style="text-decoration:none;">
+      💼
+      <div class="dock-tooltip">Weekday Pro Resume</div>
+    </a>
+  </div>
+
+  <!-- ── Lightbox Modal ── -->
+  <div id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <img src="" id="lightboxImg" class="lightbox-img" alt="Artwork Detail">
+      <div id="lightboxCaption" style="font-weight:700; font-size:1.1rem; margin-bottom:12px;"></div>
+      <button class="btn-top-quick" onclick="closeLightbox()" style="background:#ff5f56;">CLOSE EXHIBITION ✕</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       JAVASCRIPT: OS DESKTOP ENGINE & CHROME DINO RUNNER
+       ═══════════════════════════════════════════════════════ -->
+  <script>
+    // ── Live OS Clock ──
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('clockDisplay').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // ── Audio SFX ──
+    let sfxEnabled = true, audioCtx = null;
+    function getAudioCtx() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return audioCtx; }
+    function toggleSFX() {
+      sfxEnabled = !sfxEnabled;
+      document.getElementById('sfxBtn').textContent = sfxEnabled ? '♪ SFX ON' : '✕ SFX OFF';
+    }
+    function tone(freq, type='sine', dur=0.1) {
+      if (!sfxEnabled) return;
+      try {
+        const ctx = getAudioCtx(); const osc = ctx.createOscillator(); const g = ctx.createGain();
+        osc.type = type; osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        g.gain.setValueAtTime(0.08, ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+        osc.connect(g); g.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + dur);
+      } catch(e){}
+    }
+
+    // ── Theme Switcher ──
+    function setTheme(themeName) {
+      document.body.className = themeName === 'default' ? 'theme-default' : 'theme-' + themeName;
+      tone(520, 'sine', 0.15);
+    }
+
+    // ── Window Management & Drag Engine ──
+    let zIndexCounter = 100;
+    let activeDragWin = null, dragOffsetX = 0, dragOffsetY = 0;
+
+    function openWindow(id) {
+      const win = document.getElementById(id);
+      if (!win) return;
+      win.classList.remove('hidden');
+      bringToFront(win);
+      tone(440, 'sine', 0.1);
+    }
+
+    function closeWindow(id) {
+      const win = document.getElementById(id);
+      if (win) {
+        win.classList.add('hidden');
+        tone(300, 'sine', 0.1);
+      }
+    }
+
+    function toggleMaximize(id) {
+      const win = document.getElementById(id);
+      if (win) {
+        win.classList.toggle('maximized');
+        tone(580, 'sine', 0.1);
+      }
+    }
+
+    function bringToFront(win) {
+      zIndexCounter++;
+      win.style.zIndex = zIndexCounter;
+    }
+
+    document.querySelectorAll('.os-window').forEach(win => {
+      win.addEventListener('mousedown', () => bringToFront(win));
+    });
+
+    function startDrag(e, id) {
+      activeDragWin = document.getElementById(id);
+      bringToFront(activeDragWin);
+      dragOffsetX = e.clientX - activeDragWin.offsetLeft;
+      dragOffsetY = e.clientY - activeDragWin.offsetTop;
+    }
+
+    document.addEventListener('mousemove', e => {
+      if (!activeDragWin || activeDragWin.classList.contains('maximized')) return;
+      activeDragWin.style.left = (e.clientX - dragOffsetX) + 'px';
+      activeDragWin.style.top = (e.clientY - dragOffsetY) + 'px';
+    });
+
+    document.addEventListener('mouseup', () => { activeDragWin = null; });
+
+    // ── Lightbox ──
+    function openLightbox(src, caption) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxCaption').textContent = caption;
+      document.getElementById('lightbox').classList.add('open');
+      tone(600, 'square', 0.08);
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+
+    // ═══════════════════════════════════════════════════════
+    //  CHROME DINO RUNNER GAME ENGINE
+    // ═══════════════════════════════════════════════════════
+    const canvas = document.getElementById('dinoCanvas');
+    const ctx = canvas.getContext('2d');
+    const dinoScoreEl = document.getElementById('dinoScore');
+    const dinoHiScoreEl = document.getElementById('dinoHiScore');
+
+    let dino = { x: 50, y: 130, w: 24, h: 32, vy: 0, jumping: false };
+    let obstacles = [];
+    let dinoFrame = 0, dinoScore = 0, dinoHiScore = 0;
+    let dinoGameRunning = false, dinoGameOver = false;
+
+    function resetDinoGame() {
+      dino = { x: 50, y: 130, w: 24, h: 32, vy: 0, jumping: false };
+      obstacles = [];
+      dinoScore = 0;
+      dinoFrame = 0;
+      dinoGameOver = false;
+      dinoGameRunning = true;
+      tone(500, 'sine', 0.15);
+    }
+
+    function jumpDino() {
+      if (!dinoGameRunning && !dinoGameOver) resetDinoGame();
+      if (dinoGameOver) resetDinoGame();
+      if (!dino.jumping) {
+        dino.vy = -10;
+        dino.jumping = true;
+        tone(750, 'sine', 0.1);
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.code === 'Space' || e.code === 'ArrowUp') {
+        const dinoWin = document.getElementById('win-dino');
+        if (!dinoWin.classList.contains('hidden')) {
+          e.preventDefault();
+          jumpDino();
+        }
+      }
+    });
+
+    function updateDino() {
+      if (!dinoGameRunning || dinoGameOver) return;
+
+      dinoFrame++;
+      dinoScore = Math.floor(dinoFrame / 4);
+      dinoScoreEl.textContent = String(dinoScore).padStart(5, '0');
+      if (dinoScore > dinoHiScore) {
+        dinoHiScore = dinoScore;
+        dinoHiScoreEl.textContent = String(dinoHiScore).padStart(5, '0');
+      }
+
+      // Physics
+      dino.vy += 0.55;
+      dino.y += dino.vy;
+      if (dino.y >= 130) {
+        dino.y = 130;
+        dino.vy = 0;
+        dino.jumping = false;
+      }
+
+      // Spawn obstacles
+      if (dinoFrame % 90 === 0) {
+        obstacles.push({ x: 600, y: 134, w: 16, h: 28 });
+      }
+
+      // Move obstacles & collision
+      for (let i = 0; i < obstacles.length; i++) {
+        const obs = obstacles[i];
+        obs.x -= 5.5;
+
+        // Collision check
+        if (
+          dino.x < obs.x + obs.w &&
+          dino.x + dino.w > obs.x &&
+          dino.y < obs.y + obs.h &&
+          dino.y + dino.h > obs.y
+        ) {
+          dinoGameOver = true;
+          dinoGameRunning = false;
+          tone(180, 'sawtooth', 0.3);
+        }
+      }
+      obstacles = obstacles.filter(o => o.x + o.w > 0);
+    }
+
+    function drawDino() {
+      ctx.clearRect(0, 0, 600, 180);
+
+      // Ground Line
+      ctx.strokeStyle = '#555';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, 160);
+      ctx.lineTo(600, 160);
+      ctx.stroke();
+
+      // Draw Dino (Pixel T-Rex / Traveler shape)
+      ctx.fillStyle = '#333';
+      ctx.fillRect(dino.x, dino.y, dino.w, dino.h);
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(dino.x + 14, dino.y + 4, 4, 4); // Eye
+
+      // Draw Cacti Obstacles
+      ctx.fillStyle = '#2a9d8f';
+      obstacles.forEach(obs => {
+        ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
+      });
+
+      if (dinoGameOver) {
+        ctx.font = "bold 16px 'Fira Code', monospace";
+        ctx.fillStyle = '#ff007f';
+        ctx.fillText("GAME OVER — PRESS SPACE TO RESTART", 140, 90);
+      } else if (!dinoGameRunning) {
+        ctx.font = "bold 14px 'Fira Code', monospace";
+        ctx.fillStyle = '#555';
+        ctx.fillText("PRESS SPACE OR RESTART TO PLAY CHROME DINO", 110, 90);
+      }
+    }
+
+    function dinoLoop() {
+      updateDino();
+      drawDino();
+      requestAnimationFrame(dinoLoop);
+    }
+    dinoLoop();
+  </script>
+</body>
+</html>

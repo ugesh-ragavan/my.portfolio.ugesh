@@ -1,0 +1,948 @@
+/* Modern-portfolio retro gamified style sheet */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Lexend:wght@400;700;900&family=Inter:wght@400;500;700&display=swap');
+
+:root {
+  /* Default: Weekday [PRO_CAMPAIGN] Shard (Dark Cyber-RPG) */
+  --bg-color: #0b0c10;
+  --panel-bg: rgba(26, 28, 44, 0.85);
+  --border-thick: 2px solid #00d2ff;
+  --border-radius: 4px;
+  --neon-color: #00d2ff;
+  --neon-accent: #39ff14; /* Lime green */
+  --glow-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+  --text-color: #e2e8f0;
+  --text-dark: #0f172a;
+  
+  --font-game: 'Press Start 2P', monospace;
+  --font-hud: 'Lexend', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* Weekend [CREATIVE_SANDBOX] Shard (Neo-Brutalism Theme) */
+body.theme-weekend {
+  --bg-color: #f7f4eb;
+  --panel-bg: #ffffff;
+  --border-thick: 4px solid #000000;
+  --border-radius: 0px; /* Neo-brutalism is blocky */
+  --neon-color: #ffb703; /* Pastel Orange */
+  --neon-accent: #fb8500;
+  --glow-shadow: 6px 6px 0px #000000; /* Flat shadow drop */
+  --text-color: #000000;
+  --text-dark: #000000;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  cursor: none !important; /* Hide native cursor for gaming retro crosshair */
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Custom gaming crosshair cursor */
+.game-cursor {
+  width: 24px;
+  height: 24px;
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}
+.game-cursor::before, .game-cursor::after {
+  content: '';
+  position: absolute;
+  background-color: var(--neon-color);
+}
+/* Crosshair horizontal line */
+.game-cursor::before {
+  width: 100%;
+  height: 2px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  box-shadow: var(--glow-shadow);
+}
+/* Crosshair vertical line */
+.game-cursor::after {
+  width: 2px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  box-shadow: var(--glow-shadow);
+}
+
+/* ----------------------------------------------------
+   HUD Player Console Header
+   ---------------------------------------------------- */
+.hud-header {
+  background: var(--panel-bg);
+  border-bottom: var(--border-thick);
+  box-shadow: var(--glow-shadow);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.hud-player-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hud-player-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--neon-color);
+  overflow: hidden;
+  box-shadow: var(--glow-shadow);
+}
+.hud-player-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hud-player-info h2 {
+  font-family: var(--font-game);
+  font-size: 0.85rem;
+  color: var(--neon-color);
+  text-shadow: 0 0 5px rgba(0, 210, 255, 0.4);
+  margin-bottom: 4px;
+}
+
+.hud-player-class {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--neon-accent);
+}
+
+/* Game Status Bars (HP, MP, XP) */
+.hud-stats-bars {
+  display: flex;
+  gap: 25px;
+  flex-grow: 1;
+  max-width: 600px;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .hud-stats-bars {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
+
+.hud-bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 130px;
+  flex-grow: 1;
+}
+
+.hud-bar-label {
+  font-family: var(--font-game);
+  font-size: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hud-bar-outer {
+  height: 14px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hud-bar-inner {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+.hud-bar-inner.hp {
+  background: #ef4444; /* Red */
+  box-shadow: 0 0 8px #ef4444;
+}
+.hud-bar-inner.mp {
+  background: #3b82f6; /* Blue */
+  box-shadow: 0 0 8px #3b82f6;
+}
+.hud-bar-inner.xp {
+  background: var(--neon-accent);
+  box-shadow: 0 0 8px var(--neon-accent);
+}
+
+.level-badge {
+  font-family: var(--font-game);
+  font-size: 0.8rem;
+  background: var(--neon-color);
+  color: var(--text-dark);
+  padding: 6px 12px;
+  border-radius: 3px;
+  box-shadow: var(--glow-shadow);
+  border: 1px solid #000;
+}
+
+/* ----------------------------------------------------
+   Game Viewport & Layout Frames
+   ---------------------------------------------------- */
+.game-viewport {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 30px;
+}
+
+@media (max-width: 992px) {
+  .game-viewport {
+    grid-template-columns: 1fr;
+  }
+}
+
+.game-card {
+  background: var(--panel-bg);
+  border: var(--border-thick);
+  border-radius: var(--border-radius);
+  box-shadow: var(--glow-shadow);
+  padding: 25px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.game-card-title {
+  font-family: var(--font-game);
+  font-size: 0.8rem;
+  color: var(--neon-color);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* Game Level Shard Swapper tab menu */
+.game-tabs {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  margin-bottom: 25px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.game-tab-btn {
+  background: var(--panel-bg);
+  border: var(--border-thick);
+  border-radius: var(--border-radius);
+  box-shadow: var(--glow-shadow);
+  color: var(--text-color);
+  font-family: var(--font-game);
+  font-size: 0.65rem;
+  padding: 12px 18px;
+  transition: all 0.2s;
+}
+
+.game-tab-btn.active, .game-tab-btn:hover {
+  background: var(--neon-color);
+  color: var(--text-dark);
+}
+
+.game-tab-content {
+  display: none;
+  animation: tabFadeIn 0.3s ease-out forwards;
+}
+.game-tab-content.active {
+  display: block;
+}
+
+@keyframes tabFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ----------------------------------------------------
+   RPG Character Sheet Stats (Skills)
+   ---------------------------------------------------- */
+.rpg-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 576px) {
+  .rpg-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat-box {
+  border: 1px dashed rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.3);
+  padding: 15px;
+  border-radius: var(--border-radius);
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.stat-abbrev {
+  font-family: var(--font-game);
+  font-size: 0.75rem;
+  color: var(--neon-color);
+}
+
+.stat-name {
+  font-size: 0.82rem;
+  color: var(--text-color);
+}
+
+.stat-val {
+  font-family: var(--font-game);
+  font-size: 0.8rem;
+  color: var(--neon-accent);
+}
+
+.stat-description {
+  font-size: 0.78rem;
+  color: var(--text-color);
+  opacity: 0.75;
+  margin-top: 10px;
+}
+
+/* ----------------------------------------------------
+   Interactive 3D CSS Mascot ("Cuby")
+   ---------------------------------------------------- */
+.mascot-deck-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 100px;
+}
+
+.mascot-speech-bubble {
+  background: #ffffff;
+  color: #000000;
+  border: 3px solid #000000;
+  border-radius: 8px;
+  padding: 15px;
+  width: 100%;
+  max-width: 320px;
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  position: relative;
+  margin-bottom: 25px;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.25);
+  animation: floatBubble 4s ease-in-out infinite alternate;
+}
+
+.mascot-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 15px solid #ffffff;
+  z-index: 2;
+}
+
+.mascot-speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -19px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 17px solid #000000;
+  z-index: 1;
+}
+
+@keyframes floatBubble {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-8px); }
+}
+
+/* 3D CSS Cube geometry viewport */
+.mascot-3d-viewport {
+  width: 140px;
+  height: 140px;
+  perspective: 600px;
+  margin: 10px 0 30px;
+}
+
+/* The actual 3D Cube container */
+.mascot-3d-cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(-20deg) rotateY(35deg);
+  transition: transform 0.5s ease-out;
+}
+
+/* Each Face of the Cube */
+.cube-face {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border: 3px solid #000000;
+  background: var(--neon-color);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Position faces in 3D Space */
+.cube-face.front  { transform: rotateY(  0deg) translateZ(70px); }
+.cube-face.back   { transform: rotateY(180deg) translateZ(70px); background: var(--neon-accent); }
+.cube-face.left   { transform: rotateY(-90deg) translateZ(70px); }
+.cube-face.right  { transform: rotateY( 90deg) translateZ(70px); }
+.cube-face.top    { transform: rotateX( 90deg) translateZ(70px); }
+.cube-face.bottom { transform: rotateX(-90deg) translateZ(70px); }
+
+/* Pixel Face designs on front face */
+.mascot-pixel-face {
+  width: 90px;
+  height: 45px;
+  position: relative;
+}
+
+.mascot-eyes {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 15px;
+}
+
+.mascot-eye {
+  width: 15px;
+  height: 15px;
+  background-color: #000000;
+  border-radius: 2px;
+  position: relative;
+}
+
+/* Blinking animations */
+.mascot-eye.blink {
+  animation: pixelBlink 4s infinite linear;
+}
+
+@keyframes pixelBlink {
+  0%, 94%, 100% { height: 15px; transform: scaleY(1); }
+  95%, 98% { height: 3px; transform: scaleY(0.2); }
+}
+
+.mascot-mouth {
+  width: 30px;
+  height: 6px;
+  background-color: #000000;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 1px;
+  transition: all 0.3s;
+}
+
+/* Mascot custom expressions */
+.mascot-3d-cube.happy .mascot-mouth {
+  height: 15px;
+  border-radius: 0 0 15px 15px;
+}
+.mascot-3d-cube.dizzy .mascot-mouth {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: transparent;
+  border: 3px solid #000000;
+}
+.mascot-3d-cube.dizzy .mascot-eye {
+  border-radius: 50%;
+  background: transparent;
+  border: 3px solid #000000;
+  width: 15px;
+  height: 15px;
+}
+
+/* ----------------------------------------------------
+   Quest Log (History Timeline)
+   ---------------------------------------------------- */
+.quest-tree {
+  position: relative;
+  padding-left: 20px;
+}
+
+.quest-node {
+  border-left: 2px dashed var(--neon-color);
+  padding-left: 25px;
+  position: relative;
+  padding-bottom: 25px;
+}
+
+.quest-node::before {
+  content: '★';
+  position: absolute;
+  left: -9px;
+  top: 0px;
+  width: 18px;
+  height: 18px;
+  background: var(--bg-color);
+  border: 1px solid var(--neon-color);
+  color: var(--neon-accent);
+  font-size: 0.65rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.quest-node-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.quest-org {
+  font-family: var(--font-hud);
+  font-weight: 700;
+  color: var(--neon-color);
+}
+
+.quest-meta {
+  font-size: 0.72rem;
+  color: var(--neon-accent);
+}
+
+.quest-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-bottom: 8px;
+}
+
+.quest-desc {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* ----------------------------------------------------
+   Quest Cards (Projects grid)
+   ---------------------------------------------------- */
+.quest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.quest-card {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.quest-card:hover {
+  border-color: var(--neon-color);
+  box-shadow: var(--glow-shadow);
+  transform: translateY(-3px);
+}
+
+.quest-thumbnail {
+  height: 130px;
+  background-size: cover;
+  background-position: center;
+  background-color: #0b0c10;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.quest-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--neon-color);
+  color: var(--text-dark);
+  font-family: var(--font-game);
+  font-size: 0.5rem;
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+
+.quest-content {
+  padding: 15px;
+}
+
+.quest-card-title {
+  font-family: var(--font-hud);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.quest-reward {
+  font-family: var(--font-game);
+  font-size: 0.55rem;
+  color: var(--neon-accent);
+}
+
+/* ----------------------------------------------------
+   Gateway Menu Lobby specifics
+   ---------------------------------------------------- */
+.lobby-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.lobby-title {
+  font-family: var(--font-game);
+  font-size: 1.4rem;
+  color: var(--neon-color);
+  text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+  margin-bottom: 40px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.lobby-grid {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  max-width: 780px;
+}
+
+@media (max-width: 768px) {
+  .lobby-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.lobby-btn {
+  flex: 1;
+  background: var(--panel-bg);
+  border: var(--border-thick);
+  border-radius: var(--border-radius);
+  box-shadow: var(--glow-shadow);
+  padding: 30px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: all 0.3s;
+}
+
+.lobby-btn:hover {
+  background: var(--neon-color);
+  color: var(--text-dark);
+  transform: translateY(-3px);
+}
+
+.lobby-btn h3 {
+  font-family: var(--font-game);
+  font-size: 0.88rem;
+  margin-bottom: 12px;
+  letter-spacing: 0.1em;
+}
+
+.lobby-btn p {
+  font-size: 0.82rem;
+  opacity: 0.85;
+}
+
+/* ----------------------------------------------------
+   Water Alert Banner
+   ---------------------------------------------------- */
+.water-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #3b82f6;
+  color: #ffffff;
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  padding: 15px 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1000;
+  transform: translateY(150%);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.water-notification.open {
+  transform: translateY(0);
+}
+
+.water-close-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: var(--font-game);
+  font-size: 0.6rem;
+  margin-left: 10px;
+}
+
+/* ----------------------------------------------------
+   Level Up Announcement Screen Overlay
+   ---------------------------------------------------- */
+.level-up-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.level-up-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.level-up-box {
+  text-align: center;
+  animation: boxZoom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes boxZoom {
+  from { transform: scale(0.6); }
+  to { transform: scale(1); }
+}
+
+.level-up-title {
+  font-family: var(--font-game);
+  font-size: 2rem;
+  color: var(--neon-accent);
+  text-shadow: 0 0 15px var(--neon-accent);
+  margin-bottom: 20px;
+  animation: titlePulse 1s infinite alternate;
+}
+
+@keyframes titlePulse {
+  0% { transform: scale(1); text-shadow: 0 0 15px var(--neon-accent); }
+  100% { transform: scale(1.05); text-shadow: 0 0 25px var(--neon-accent), 0 0 5px #fff; }
+}
+
+.level-up-desc {
+  font-family: var(--font-hud);
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.level-up-ok-btn {
+  background: var(--neon-accent);
+  color: #000;
+  border: 2px solid #000;
+  padding: 12px 25px;
+  font-family: var(--font-game);
+  font-size: 0.8rem;
+  border-radius: 4px;
+}
+
+/* ----------------------------------------------------
+   Form inputs and contact console
+   ---------------------------------------------------- */
+.gamified-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+@media (max-width: 576px) {
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+.form-group {
+  flex: 1;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  font-family: var(--font-game);
+  font-size: 0.55rem;
+  margin-bottom: 8px;
+  color: var(--neon-color);
+}
+
+.form-input {
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  border: var(--border-thick);
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  padding: 12px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--neon-accent);
+  box-shadow: 0 0 10px var(--neon-accent);
+}
+
+.form-submit-btn {
+  background: var(--neon-color);
+  color: var(--text-dark);
+  font-family: var(--font-game);
+  font-size: 0.75rem;
+  padding: 15px 25px;
+  border: var(--border-thick);
+  border-radius: var(--border-radius);
+  transition: all 0.2s;
+}
+
+.form-submit-btn:hover {
+  background: var(--neon-accent);
+  color: var(--text-dark);
+  box-shadow: var(--glow-shadow);
+}
+
+/* ----------------------------------------------------
+   Quest Decrypter modal popups
+   ---------------------------------------------------- */
+.game-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.game-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.game-modal-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px;
+}
+
+.modal-media {
+  width: 100%;
+  height: 280px;
+  background-color: #000;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+
+.modal-media img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.modal-media iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.modal-desc {
+  font-size: 0.88rem;
+  opacity: 0.9;
+  margin-bottom: 25px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.modal-btn {
+  background: transparent;
+  border: var(--border-thick);
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  padding: 8px 16px;
+  font-family: var(--font-game);
+  font-size: 0.6rem;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.modal-btn.close {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+.modal-btn.close:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+.modal-btn.visit {
+  border-color: var(--neon-color);
+  color: var(--neon-color);
+}
+.modal-btn.visit:hover {
+  background: var(--neon-color);
+  color: var(--text-dark);
+}
