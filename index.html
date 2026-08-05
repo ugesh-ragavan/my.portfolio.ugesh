@@ -1,588 +1,828 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ugesh Ragavan — Robby Leonardi Inspired High Definition Interactive Game Portfolio.">
+  <meta name="description"
+    content="Ugesh Ragavan — Official Bio Links & Portfolio Gateway. Big Data Engineer, Frontend Developer, & Creative Artist.">
   <meta name="author" content="Ugesh Ragavan">
-  <title>UGESH RAGAVAN // INTERACTIVE GAME PORTAL</title>
-  <link rel="shortcut icon" href="images/fav.png">
+  <title>Ugesh Ragavan // Official Bio & Links</title>
+  <link rel="shortcut icon" href="images/fav.png" type="image/vnd.microsoft.icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Fira+Code:wght@700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;600&family=Press+Start+2P&display=swap"
+    rel="stylesheet">
+
   <style>
     /* ═══════════════════════════════════════════════════════════
-       ROBBY LEONARDI INSPIRED HIGH-DEFINITION GAME PORTAL
+       BIO.SITES & LINKTREE STYLE ULTRA-MODERN HUB SYSTEM
        ═══════════════════════════════════════════════════════════ */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      width: 100%; height: 100%;
-      overflow: hidden;
-      background: #00a8ff;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      user-select: none;
-      -webkit-user-select: none;
+    :root {
+      --bg: #090c15;
+      --bg-card: rgba(18, 24, 38, 0.7);
+      --bg-card-hover: rgba(30, 41, 59, 0.85);
+      --border: rgba(255, 255, 255, 0.1);
+      --border-glow: rgba(0, 210, 255, 0.4);
+      --accent-cyan: #00d2ff;
+      --accent-lime: #39ff14;
+      --accent-pink: #ff007f;
+      --accent-purple: #8b5cf6;
+      --accent-gold: #ffb703;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --font-main: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'Fira Code', monospace;
+      --font-pixel: 'Press Start 2P', monospace;
     }
 
-    #gameCanvas {
-      display: block;
-      width: 100%; height: 100%;
-      cursor: grab;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    #gameCanvas:active { cursor: grabbing; }
 
-    /* ── Top Ribbon Navigation ── */
-    #top-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 30;
+    html {
+      scroll-behavior: smooth;
+      color-scheme: dark;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-main);
+      min-height: 100vh;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      padding: 12px 28px;
-      background: rgba(0, 24, 48, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-      color: #fff;
+      padding: 40px 20px 60px;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .brand-title {
-      font-size: clamp(0.8rem, 1.2vw, 1.15rem);
+    /* Ambient Background Canvas / Grid */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-glow-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    .orb-1 {
+      width: 450px;
+      height: 450px;
+      top: -100px;
+      left: -100px;
+      background: radial-gradient(circle, var(--accent-cyan), transparent);
+    }
+
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      bottom: -150px;
+      right: -150px;
+      background: radial-gradient(circle, var(--accent-pink), transparent);
+    }
+
+    /* Main Content Container */
+    .bio-container {
+      width: 100%;
+      max-width: 680px;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    /* Profile Header */
+    .profile-card {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .avatar-img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 30px rgba(0, 210, 255, 0.3);
+      background: #1e293b;
+    }
+
+    .status-badge {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      background: #0f172a;
+      border: 2px solid var(--accent-lime);
+      color: var(--accent-lime);
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 700;
+      box-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-lime);
+      animation: pulse-dot 1.5s infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(1.3);
+      }
+    }
+
+    .profile-name {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
       font-weight: 900;
-      letter-spacing: 0.05em;
-      color: #ffd166;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .verified-icon {
+      color: var(--accent-cyan);
+      display: inline-flex;
+    }
+
+    .profile-tagline {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      max-width: 500px;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .profile-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .tag-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    /* Action Bar (Share / Contact) */
+    .profile-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .action-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-main);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .action-btn:hover {
+      background: rgba(0, 210, 255, 0.15);
+      border-color: var(--accent-cyan);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+    }
+
+    /* Link Sections */
+    .section-title {
+      width: 100%;
+      text-align: left;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-dim);
+      margin-top: 10px;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .nav-btn-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .section-title::after {
+      content: '';
+      flex-grow: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
     }
 
-    .btn-portal {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 800;
-      font-size: 0.82rem;
-      padding: 8px 18px;
-      border-radius: 20px;
-      border: none;
-      color: #fff;
+    /* Links Cards */
+    .link-card {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       text-decoration: none;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
-      transition: transform 0.15s, filter 0.15s;
-      display: inline-flex;
+      color: var(--text);
+      backdrop-filter: blur(12px);
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--accent-cyan);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .link-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-glow);
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 210, 255, 0.15);
+    }
+
+    .link-card:hover::before {
+      opacity: 1;
+    }
+
+    .link-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .link-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .link-card:hover .link-icon-box {
+      transform: scale(1.1) rotate(-4deg);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .link-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .link-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
       align-items: center;
       gap: 6px;
     }
-    .btn-portal.weekday { background: linear-gradient(135deg, #00b4d8, #0077b6); }
-    .btn-portal.weekend { background: linear-gradient(135deg, #ff007f, #d90429); }
-    .btn-portal:hover { transform: translateY(-2px); filter: brightness(1.15); }
 
-    /* ── Controls Overlay ── */
-    #controls-hint {
-      position: fixed;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 20;
-      font-size: clamp(0.72rem, 0.95vw, 0.88rem);
-      font-weight: 800;
-      color: #fff;
-      background: rgba(0, 24, 48, 0.88);
-      border: 1.5px solid rgba(255, 255, 255, 0.3);
-      padding: 10px 24px;
-      border-radius: 30px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      pointer-events: none;
-      text-align: center;
-      white-space: nowrap;
-      backdrop-filter: blur(8px);
+    .link-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 2px;
     }
 
-    #fadeOverlay {
-      position: fixed; inset: 0;
-      background: #001830;
-      z-index: 100;
+    .link-arrow {
+      color: var(--text-dim);
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .link-card:hover .link-arrow {
+      transform: translateX(4px);
+      color: var(--accent-cyan);
+    }
+
+    /* FEATURED HERO PORTFOLIO CARD */
+    .link-card.hero-portfolio {
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(99, 102, 241, 0.25) 50%, rgba(236, 72, 153, 0.25) 100%);
+      border: 2px solid var(--accent-cyan);
+      box-shadow: 0 0 30px rgba(0, 210, 255, 0.3);
+      padding: 20px 24px;
+    }
+
+    .link-card.hero-portfolio::before {
+      background: linear-gradient(180deg, var(--accent-cyan), var(--accent-pink));
+      opacity: 1;
+    }
+
+    .link-card.hero-portfolio .link-title {
+      font-size: 1.2rem;
+      color: #ffffff;
+      background: linear-gradient(90deg, #ffffff, #00d2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .badge-hero {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      background: linear-gradient(135deg, #ff007f 0%, #7928ca 100%);
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      box-shadow: 0 0 12px rgba(255, 0, 127, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      vertical-align: middle;
+      margin-left: 6px;
+    }
+
+    /* Mini Games Grid */
+    .games-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+    }
+
+    .game-mini-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 10px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .game-mini-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-gold);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(255, 183, 3, 0.2);
+    }
+
+    .game-mini-icon {
+      font-size: 2rem;
+      transition: transform 0.25s ease;
+    }
+
+    .game-mini-card:hover .game-mini-icon {
+      transform: scale(1.2);
+    }
+
+    .game-mini-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      background: #0f172a;
+      border: 1px solid var(--accent-cyan);
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      z-index: 1000;
       opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
       pointer-events: none;
-      transition: opacity 0.2s ease-out;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 30px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-align: center;
+      font-family: var(--font-mono);
+    }
+
+    @media (max-width: 500px) {
+      body {
+        padding: 30px 14px;
+      }
+
+      .link-card {
+        padding: 14px 16px;
+      }
+
+      .link-icon-box {
+        width: 38px;
+        height: 38px;
+        font-size: 1.2rem;
+      }
+
+      .link-title {
+        font-size: 0.98rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- ── TOP NAVIGATION RIBBON ── -->
-  <div id="top-nav">
-    <div class="brand-title">
-      <span>★ UGESH RAGAVAN</span>
-      <span style="font-size:0.75rem; color:#fff; font-weight:700; opacity:0.8;">// INTERACTIVE RESUME</span>
+  <!-- Ambient Effects -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="bg-grid"></div>
+  <div class="bg-glow-orb orb-1"></div>
+  <div class="bg-glow-orb orb-2"></div>
+
+  <main class="bio-container">
+
+    <!-- Profile Header Card -->
+    <header class="profile-card">
+      <div class="avatar-wrapper">
+        <img src="images/fav_icon.jpg" alt="Ugesh Ragavan" class="avatar-img"
+          onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'">
+        <div class="status-badge">
+          <span class="status-dot"></span> OPEN FOR HIRE
+        </div>
+      </div>
+
+      <h1 class="profile-name">
+        Ugesh Ragavan
+        <span class="verified-icon" title="Verified Professional">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+          </svg>
+        </span>
+      </h1>
+
+      <p class="profile-tagline">
+        Driven by an <strong>Engineer's Brain 🧠</strong> & a <strong>Creative Heart 🎨</strong><br>3+ Years Experienced
+        Data Engineer scaling data systems, filming & creating cool stuff in off hours.
+      </p>
+
+      <div class="profile-pills">
+        <span class="tag-pill">📍 Bangalore, IN</span>
+        <span class="tag-pill">⚡ 3+ Yrs Exp</span>
+        <span class="tag-pill">🚀 Apache Spark & PySpark</span>
+      </div>
+
+      <div class="profile-actions">
+        <button class="action-btn" onclick="copyProfileLink()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          Share Link
+        </button>
+        <a href="mailto:ugeshragavan@gmail.com" class="action-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          Contact Me
+        </a>
+      </div>
+    </header>
+
+    <!-- 1. FEATURED PORTFOLIO ENTRY LINK -->
+    <div class="section-title">✨ Featured Portfolio</div>
+
+    <a href="Portfolio/main.html" class="link-card hero-portfolio">
+      <div class="link-left">
+        <div class="link-icon-box" style="background: rgba(0, 210, 255, 0.2);">🚀</div>
+        <div class="link-info">
+          <div class="link-title">
+            Portfolio
+            <span class="badge-hero">MUST SEE</span>
+          </div>
+          <div class="link-subtitle">Know more about me...</div>
+        </div>
+      </div>
+      <div class="link-arrow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </div>
+    </a>
+
+    <!-- 2. SOCIAL & MEDIA CHANNELS -->
+    <div class="section-title">🌐 Social & Creative Channels</div>
+
+    <!-- Spotify Podcast -->
+    <a href="https://open.spotify.com/show/7iYB5dgIRD7hOorXV3nFjW" target="_blank" rel="noopener" class="link-card">
+      <div class="link-left">
+        <div class="link-icon-box" style="padding:0; overflow:hidden; border: 1px solid rgba(255,255,255,0.2);">
+          <img src="images/8wba.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Spotify Podcast Cover">
+        </div>
+        <div class="link-info">
+          <div class="link-title">Spotify Podcast 🎙️</div>
+          <div class="link-subtitle">Listen to Tamil podcast episodes on Spotify</div>
+        </div>
+      </div>
+      <div class="link-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </div>
+    </a>
+
+    <!-- the.ugiverse (Instagram) -->
+    <a href="https://www.instagram.com/the.ugiverse" target="_blank" rel="noopener" class="link-card">
+      <div class="link-left">
+        <div class="link-icon-box" style="color: #e1306c;">📸</div>
+        <div class="link-info">
+          <div class="link-title">the.ugiverse</div>
+          <div class="link-subtitle">Instagram — Creative Tech, Projects & Lifestyle</div>
+        </div>
+      </div>
+      <div class="link-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </div>
+    </a>
+
+    <!-- the.0g.ug (Instagram Art) -->
+    <a href="https://www.instagram.com/the.0g.ug" target="_blank" rel="noopener" class="link-card">
+      <div class="link-left">
+        <div class="link-icon-box" style="color: #ff007f;">🎨</div>
+        <div class="link-info">
+          <div class="link-title">the.0g.ug</div>
+          <div class="link-subtitle">Instagram — Visual Canvas & Acrylic Artworks</div>
+        </div>
+      </div>
+      <div class="link-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </div>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/ugeshragavan" target="_blank" rel="noopener" class="link-card">
+      <div class="link-left">
+        <div class="link-icon-box" style="color: #0a66c2;">💼</div>
+        <div class="link-info">
+          <div class="link-title">LinkedIn</div>
+          <div class="link-subtitle">Professional Experience, Engineering & Hiring</div>
+        </div>
+      </div>
+      <div class="link-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </div>
+    </a>
+
+    <!-- Threads -->
+    <a href="https://www.threads.com/@the.ugiverse" target="_blank" rel="noopener" class="link-card">
+      <div class="link-left">
+        <div class="link-icon-box" style="color: #ffffff;">🧵</div>
+        <div class="link-info">
+          <div class="link-title">Threads</div>
+          <div class="link-subtitle">Threads by Instagram for my poems and kavithaigal ✍️</div>
+        </div>
+      </div>
+      <div class="link-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </div>
+    </a>
+
+    <!-- YouTube -->
+    <a href="https://www.youtube.com/@Ugesh.Ragavan" target="_blank" rel="noopener" class="link-card">
+      <div class="link-left">
+        <div class="link-icon-box" style="color: #ff0000;">📺</div>
+        <div class="link-info">
+          <div class="link-title">YouTube Channel</div>
+          <div class="link-subtitle">Tech Tutorials, Creative Vlogs & Demos</div>
+        </div>
+      </div>
+      <div class="link-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </div>
+    </a>
+
+    <!-- GitHub -->
+    <a href="https://github.com/ugesh-ragavan" target="_blank" rel="noopener" class="link-card">
+      <div class="link-left">
+        <div class="link-icon-box" style="color: #333;">🐙</div>
+        <div class="link-info">
+          <div class="link-title">GitHub Repository</div>
+          <div class="link-subtitle">Open Source Projects, ETL Pipelines & Code</div>
+        </div>
+      </div>
+      <div class="link-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </div>
+    </a>
+
+    <!-- 3. INTERACTIVE ARCADE & MINI-GAMES -->
+    <div class="section-title">🕹️ Arcade Lab (Play Online)</div>
+
+    <div class="games-grid">
+      <a href="game/lion/lion.html" class="game-mini-card">
+        <div class="game-mini-icon">🦁</div>
+        <div class="game-mini-name">Chill Lion</div>
+      </a>
+      <a href="game/Cube/cube.html" class="game-mini-card">
+        <div class="game-mini-icon">🧊</div>
+        <div class="game-mini-name">The Cube</div>
+      </a>
+      <a href="game/Run/run.html" class="game-mini-card">
+        <div class="game-mini-icon">🏃</div>
+        <div class="game-mini-name">Endless Run</div>
+      </a>
+      <a href="game/ninja/ninja.html" class="game-mini-card">
+        <div class="game-mini-icon">🥷</div>
+        <div class="game-mini-name">Stick Ninja</div>
+      </a>
     </div>
 
-    <div class="nav-btn-group">
-      <a href="weekday.html" class="btn-portal weekday">💼 WEEKDAY PRO</a>
-      <a href="weekend.html" class="btn-portal weekend">💻 WEEKEND OS</a>
-      <button class="btn-portal" style="background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3);" onclick="toggleMute()" id="muteBtn">♪ SFX ON</button>
-    </div>
-  </div>
+    <!-- 4. RESOURCES & RESUME -->
+    <div class="section-title">📄 Documents</div>
 
-  <!-- ── CONTROLS HINT ── -->
-  <div id="controls-hint">🎮 SCROLL DOWN OR USE ← → / WASD TO RUN &nbsp;|&nbsp; SPACE TO JUMP &nbsp;|&nbsp; 🖱️ DRAG UGESH INTO WARP PIPES!</div>
+    <a href="img/Ugesh Resume 2021_A4.png" target="_blank" class="link-card">
+      <div class="link-left">
+        <div class="link-icon-box" style="color: #39ff14;">📄</div>
+        <div class="link-info">
+          <div class="link-title">Download Official Resume / CV</div>
+          <div class="link-subtitle">Big Data Engineering & Frontend Development credentials</div>
+        </div>
+      </div>
+      <div class="link-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+      </div>
+    </a>
 
-  <canvas id="gameCanvas"></canvas>
-  <div id="fadeOverlay"></div>
+    <footer>
+      © 2026 Ugesh Ragavan. Built with HTML, CSS & JavaScript.
+    </footer>
 
+  </main>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast">Link copied to clipboard! 🚀</div>
+
+  <!-- Background Particle Animation Script -->
   <script>
-    // ═══════════════════════════════════════════════════════════
-    //  ROBBY LEONARDI INSPIRED HIGH DEFINITION VECTOR GAME ENGINE
-    // ═══════════════════════════════════════════════════════════
-    const canvas = document.getElementById('gameCanvas');
+    const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
-    const fadeOverlay = document.getElementById('fadeOverlay');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
 
-    let W, H, GY;
-    const WORLD_WIDTH = 3400;
-
-    function resizeCanvas() {
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-      GY = Math.floor(H * 0.78);
-    }
-    resizeCanvas();
-    window.addEventListener('resize', () => { resizeCanvas(); initGame(); });
-
-    // ── Web Audio Synth SFX ──
-    let audioCtx = null, muted = false;
-    function getAudioCtx() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return audioCtx; }
-    function toggleMute() {
-      muted = !muted;
-      document.getElementById('muteBtn').textContent = muted ? '✕ MUTED' : '♪ SFX ON';
-    }
-    function playTone(freq, type='sine', dur=0.15, vol=0.08, ramp=null) {
-      if (muted) return;
-      try {
-        const a = getAudioCtx(); const o = a.createOscillator(); const g = a.createGain();
-        o.type = type;
-        if (ramp) {
-          o.frequency.setValueAtTime(freq, a.currentTime);
-          o.frequency.exponentialRampToValueAtTime(ramp, a.currentTime + dur * 0.85);
-        } else o.frequency.value = freq;
-        g.gain.setValueAtTime(vol, a.currentTime);
-        g.gain.exponentialRampToValueAtTime(0.001, a.currentTime + dur);
-        o.connect(g); g.connect(a.destination); o.start(); o.stop(a.currentTime + dur);
-      } catch (e) {}
-    }
-
-    function sfxJump() { playTone(350, 'sine', 0.2, 0.1, 750); }
-    function sfxWarp() { playTone(550, 'sine', 0.5, 0.12, 120); }
-
-    // ── Controls & Drag System ──
-    const keys = {};
-    let isDragging = false, dragOffsetX = 0, dragOffsetY = 0;
-
-    document.addEventListener('keydown', e => {
-      if (!audioCtx) getAudioCtx();
-      keys[e.code] = true;
-      if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','KeyW','KeyS','KeyA','KeyD'].includes(e.code)) e.preventDefault();
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
     });
-    document.addEventListener('keyup', e => { keys[e.code] = false; });
 
-    // Robby Leonardi Mouse Wheel Scroll-to-Move Mechanic
-    window.addEventListener('wheel', e => {
-      if (!G || G.player.warpTarget) return;
-      G.player.vx += e.deltaY * 0.08;
-      G.player.vx = Math.max(-G.speed, Math.min(G.speed, G.player.vx));
-    }, { passive: true });
+    const particles = Array.from({ length: 45 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      radius: Math.random() * 2 + 1,
+      alpha: Math.random() * 0.5 + 0.2
+    }));
 
-    function getPointerWorldPos(e) {
-      const rect = canvas.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      return { x: clientX - rect.left + camX, y: clientY - rect.top };
-    }
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
 
-    function handlePointerDown(e) {
-      if (!audioCtx) getAudioCtx();
-      const pos = getPointerWorldPos(e);
-      const p = G.player;
-
-      G.pipes.forEach(pipe => {
-        if (pos.x >= pipe.x - 20 && pos.x <= pipe.x + pipe.w + 20 && pos.y >= pipe.top && pos.y <= GY) {
-          enterPipe(pipe); return;
-        }
-      });
-
-      const pad = 40;
-      if (pos.x >= p.x - pad && pos.x <= p.x + p.w + pad && pos.y >= p.y - pad && pos.y <= p.y + p.h + pad) {
-        isDragging = true;
-        dragOffsetX = pos.x - p.x; dragOffsetY = pos.y - p.y;
-        p.vx = 0; p.vy = 0; p.isDragged = true;
-      }
-    }
-
-    function handlePointerMove(e) {
-      if (!isDragging || !G) return;
-      const pos = getPointerWorldPos(e);
-      G.player.x = pos.x - dragOffsetX;
-      G.player.y = pos.y - dragOffsetY;
-      G.player.vx = 0; G.player.vy = 0;
-    }
-
-    function handlePointerUp() {
-      if (!isDragging || !G) return;
-      isDragging = false;
-      const p = G.player; p.isDragged = false;
-
-      G.pipes.forEach(pipe => {
-        const pCX = p.x + p.w / 2, pCY = p.y + p.h / 2;
-        if (pCX >= pipe.x - 30 && pCX <= pipe.x + pipe.w + 30 && pCY >= pipe.top - 50 && pCY <= pipe.top + pipe.h + 50) {
-          p.x = pipe.x + pipe.w / 2 - p.w / 2; p.y = pipe.top - 10;
-          enterPipe(pipe);
-        }
-      });
-    }
-
-    canvas.addEventListener('mousedown', handlePointerDown);
-    window.addEventListener('mousemove', handlePointerMove);
-    window.addEventListener('mouseup', handlePointerUp);
-    canvas.addEventListener('touchstart', handlePointerDown, {passive:false});
-    window.addEventListener('touchmove', handlePointerMove, {passive:false});
-    window.addEventListener('touchend', handlePointerUp, {passive:false});
-
-    // ── Game Data ──
-    let G, frame = 0, warping = false, camX = 0;
-
-    function initGame() {
-      const pW = 96, pH = 170;
-
-      G = {
-        player: { x: 120, y: GY - 80, w: 48, h: 80, vx: 0, vy: 0, onGround: true, dir: 1, walkFrame: 0, state: 'idle', jumpBuffer: 0, coyoteTime: 0, warpTimer: 0, warpTarget: '', isDragged: false },
-        pipes: [
-          { x: 2100, top: GY - pH, w: pW, h: pH, label: ['WEEKDAY PRO', 'RESUME PORTAL'], link: 'weekday.html', color: '#00b4d8', accent: '#90e0ef' },
-          { x: 2850, top: GY - pH, w: pW, h: pH, label: ['WEEKEND OS', 'DESKTOP PORTAL'], link: 'weekend.html', color: '#ff007f', accent: '#ff85a1' }
-        ],
-        signposts: [
-          { x: 380, y: GY - 120, title: "WELCOME TO UGESH'S REALM", desc: "Run right to choose your experience portal!" },
-          { x: 1400, y: GY - 120, title: "WARP ZONE AHEAD", desc: "Jump or drop into pipes to launch pages!" }
-        ],
-        clouds: Array.from({length: 12}, (_, i) => ({ x: i * 320 + Math.random() * 100, y: H * (0.05 + Math.random() * 0.22), w: 140 + Math.random() * 80, speed: 0.2 + Math.random() * 0.3 })),
-        particles: [],
-        gravity: 0.62, jumpPower: -15.5, speed: 6.2
-      };
-      warping = false; fadeOverlay.style.opacity = 0;
-    }
-
-    // ── Game Update Loop ──
-    function update() {
-      if (!G || warping) return;
-      frame++;
-      const p = G.player;
-
-      if (p.warpTarget) {
-        p.warpTimer++; p.y += 2.4;
-        fadeOverlay.style.opacity = Math.min(1, p.warpTimer / 32);
-        if (p.warpTimer > 38) {
-          warping = true; sfxWarp();
-          setTimeout(() => { window.location.href = p.warpTarget; }, 450);
-        }
-        return;
-      }
-
-      if (p.isDragged) { p.state = 'drag'; return; }
-
-      let ax = 0;
-      if (keys.ArrowLeft || keys.KeyA) { ax = -1; p.dir = -1; }
-      if (keys.ArrowRight || keys.KeyD) { ax = 1; p.dir = 1; }
-      if (ax) { p.vx = Math.max(-G.speed, Math.min(G.speed, p.vx + ax * 1.2)); }
-      else { p.vx *= 0.78; if (Math.abs(p.vx) < 0.08) p.vx = 0; }
-
-      if (p.onGround) p.coyoteTime = 8; else if (p.coyoteTime > 0) p.coyoteTime--;
-      if (keys.ArrowUp || keys.Space || keys.KeyW) p.jumpBuffer = 8;
-      if (p.jumpBuffer > 0) p.jumpBuffer--;
-
-      if (p.jumpBuffer > 0 && p.coyoteTime > 0) {
-        p.vy = G.jumpPower; p.onGround = false; p.coyoteTime = 0; p.jumpBuffer = 0; sfxJump();
-      }
-      if (!(keys.ArrowUp || keys.Space || keys.KeyW) && p.vy < -4) p.vy += 0.65;
-
-      p.vy = Math.min(p.vy + G.gravity, 16);
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0) p.x = 0; if (p.x + p.w > WORLD_WIDTH) p.x = WORLD_WIDTH - p.w;
-
-      p.onGround = false;
-      if (p.y + p.h >= GY) { p.y = GY - p.h; p.vy = 0; p.onGround = true; }
-
-      // Pipe Collisions
-      G.pipes.forEach(pipe => {
-        const cEdge = pipe.w * 0.15, cHead = Math.max(22, pipe.h * 0.12);
-        const pR = p.x + p.w, pB = p.y + p.h;
-
-        if (pR > pipe.x - cEdge && p.x < pipe.x + pipe.w + cEdge && pB >= pipe.top && p.y < pipe.top + cHead && p.vy >= 0) {
-          if (pB - p.vy <= pipe.top + 10) {
-            p.y = pipe.top - p.h; p.vy = 0; p.onGround = true;
-            if (keys.ArrowDown || keys.KeyS) enterPipe(pipe);
-          }
-        }
-        if (pR > pipe.x && p.x < pipe.x + pipe.w && pB > pipe.top + cHead && p.y < GY) {
-          if (p.vx > 0 && p.x < pipe.x) { p.x = pipe.x - p.w; p.vx = 0; }
-          if (p.vx < 0 && pR > pipe.x + pipe.w) { p.x = pipe.x + pipe.w; p.vx = 0; }
-        }
-      });
-
-      // Clouds Floating
-      G.clouds.forEach(c => {
-        c.x -= c.speed;
-        if (c.x + c.w < 0) c.x = WORLD_WIDTH + 50;
-      });
-
-      // Camera Tracking
-      const targetCamX = p.x - W * 0.35;
-      camX += (targetCamX - camX) * 0.14;
-      if (camX < 0) camX = 0;
-      if (camX > WORLD_WIDTH - W) camX = WORLD_WIDTH - W;
-
-      // Particles
-      G.particles = G.particles.filter(pt => pt.life > 0);
-      G.particles.forEach(pt => { pt.x += pt.vx; pt.y += pt.vy; pt.vy += 0.2; pt.life -= 0.03; });
-
-      if (!p.onGround) p.state = 'jump';
-      else if (Math.abs(p.vx) > 0.3) { p.state = 'walk'; if (frame % 6 === 0) p.walkFrame = (p.walkFrame + 1) % 4; }
-      else p.state = 'idle';
-    }
-
-    function enterPipe(p) {
-      if (G.player.warpTarget) return;
-      G.player.warpTarget = p.link; G.player.vx = 0;
-      spawnParticles(p.x + p.w / 2, p.top, p.color, 35);
-    }
-
-    function spawnParticles(x, y, color, n) {
-      for (let i = 0; i < n; i++) {
-        G.particles.push({ x, y, vx: (Math.random() - 0.5) * 8, vy: Math.random() * -8 - 2, life: 1, color, r: 4 + Math.random() * 5 });
-      }
-    }
-
-    // ── Render Robby Leonardi Aesthetic Graphics ──
-    function draw() {
-      if (!G) return;
-      ctx.clearRect(0, 0, W, H);
-
-      ctx.save();
-      ctx.translate(-camX, 0);
-
-      // Layer 1: Robby Leonardi Vibrant Sky Blue Gradient
-      const skyGrad = ctx.createLinearGradient(0, 0, 0, GY);
-      skyGrad.addColorStop(0, '#00b4d8');
-      skyGrad.addColorStop(0.65, '#48cae4');
-      skyGrad.addColorStop(1, '#90e0ef');
-      ctx.fillStyle = skyGrad;
-      ctx.fillRect(0, 0, WORLD_WIDTH, GY);
-
-      // Layer 2: Robby Leonardi 3D Extruded Logo ("UGESH RAGAVAN")
-      draw3DLogo(450, H * 0.24);
-
-      // Layer 3: Fluffy Vector Clouds
-      G.clouds.forEach(c => {
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
         ctx.beginPath();
-        ctx.arc(c.x + 30, c.y + 20, 24, 0, Math.PI * 2);
-        ctx.arc(c.x + 60, c.y + 10, 32, 0, Math.PI * 2);
-        ctx.arc(c.x + 95, c.y + 20, 24, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 210, 255, ${p.alpha})`;
         ctx.fill();
       });
-
-      // Layer 4: Smooth Rounded Background Trees & Hills
-      for (let x = 100; x < WORLD_WIDTH; x += 480) {
-        // Tree Trunk
-        ctx.fillStyle = '#8b5a2b';
-        ctx.fillRect(x + 55, GY - 110, 20, 110);
-        // Tree Crown
-        ctx.fillStyle = '#2a9d8f';
-        ctx.beginPath();
-        ctx.arc(x + 65, GY - 130, 60, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = '#e9c46a';
-        ctx.beginPath();
-        ctx.arc(x + 45, GY - 145, 12, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // Layer 5: Signposts
-      G.signposts.forEach(s => {
-        ctx.fillStyle = '#6b4226'; ctx.fillRect(s.x + 85, s.y + 40, 14, 80);
-        ctx.fillStyle = '#fff'; ctx.fillRect(s.x, s.y, 184, 52);
-        ctx.strokeStyle = '#2b1e16'; ctx.lineWidth = 3; ctx.strokeRect(s.x, s.y, 184, 52);
-        ctx.font = "bold 10px 'Plus Jakarta Sans', sans-serif"; ctx.fillStyle = '#2b1e16'; ctx.textAlign = 'center';
-        ctx.fillText(s.title, s.x + 92, s.y + 22);
-        ctx.font = "8px 'Plus Jakarta Sans', sans-serif"; ctx.fillStyle = '#555';
-        ctx.fillText(s.desc, s.x + 92, s.y + 38);
-      });
-
-      // Layer 6: Robby Leonardi Layered ZigZag Earth Ground
-      // Top Green Grass Strip
-      ctx.fillStyle = '#70e000'; ctx.fillRect(0, GY, WORLD_WIDTH, 16);
-      ctx.fillStyle = '#38b000'; ctx.fillRect(0, GY + 16, WORLD_WIDTH, 6);
-
-      // Earth Body
-      const earthGrad = ctx.createLinearGradient(0, GY + 22, 0, H);
-      earthGrad.addColorStop(0, '#9c6644');
-      earthGrad.addColorStop(1, '#7f5539');
-      ctx.fillStyle = earthGrad;
-      ctx.fillRect(0, GY + 22, WORLD_WIDTH, H - GY - 22);
-
-      // ZigZag Pattern Lines
-      ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.lineWidth = 4;
-      ctx.beginPath();
-      for (let x = 0; x < WORLD_WIDTH; x += 40) {
-        ctx.moveTo(x, GY + 36); ctx.lineTo(x + 20, GY + 56); ctx.lineTo(x + 40, GY + 36);
-      }
-      ctx.stroke();
-
-      // Layer 7: Glossy Robby Leonardi Warp Pipes
-      G.pipes.forEach(p => {
-        const headH = 36, bodyH = GY - p.top - headH;
-        // Pipe Body
-        ctx.fillStyle = p.color; ctx.fillRect(p.x, p.top + headH, p.w, bodyH);
-        // Pipe Head Rim
-        ctx.fillRect(p.x - 12, p.top, p.w + 24, headH);
-        ctx.strokeStyle = '#001830'; ctx.lineWidth = 4;
-        ctx.strokeRect(p.x - 12, p.top, p.w + 24, headH);
-        ctx.strokeRect(p.x, p.top + headH, p.w, bodyH);
-
-        // Glossy Highlight Line
-        ctx.fillStyle = p.accent; ctx.fillRect(p.x + 10, p.top + 4, 12, GY - p.top - 8);
-
-        // Pipe Proximity Glow Indicator
-        const dist = Math.abs((G.player.x + G.player.w/2) - (p.x + p.w/2));
-        if (dist < 160) {
-          ctx.font = "900 13px 'Plus Jakarta Sans', sans-serif";
-          ctx.fillStyle = '#fff'; ctx.textAlign = 'center';
-          const bounce = Math.sin(frame * 0.15) * 6;
-          ctx.fillText("▼ ENTER PORTAL", p.x + p.w / 2, p.top - 70 + bounce);
-        }
-
-        // Pipe Labels
-        ctx.save();
-        ctx.font = "900 12px 'Plus Jakarta Sans', sans-serif"; ctx.textAlign = 'center';
-        p.label.forEach((line, i) => {
-          const ly = p.top - 40 + i * 16;
-          ctx.fillStyle = '#000'; ctx.fillText(line, p.x + p.w / 2 + 2, ly + 2);
-          ctx.fillStyle = '#ffd166'; ctx.fillText(line, p.x + p.w / 2, ly);
-        });
-        ctx.restore();
-      });
-
-      // Layer 8: Ugesh Mascot (Exact Render of Gemini_Generated_Image_esxb9sesxb9sesxb.png)
-      drawUgeshMascot(G.player);
-
-      // Layer 9: Particles
-      G.particles.forEach(pt => {
-        ctx.save(); ctx.globalAlpha = pt.life; ctx.fillStyle = pt.color;
-        ctx.beginPath(); ctx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-      });
-
-      ctx.restore();
+      requestAnimationFrame(animate);
     }
+    animate();
 
-    // ── Robby Leonardi 3D Extruded Block Logo ──
-    function draw3DLogo(x, y) {
-      ctx.save();
-      const text = "UGESH RAGAVAN";
-      ctx.font = "900 64px 'Plus Jakarta Sans', sans-serif";
-      ctx.textAlign = 'left';
-
-      // 3D Shadow Extrusion Steps
-      for (let i = 24; i > 0; i--) {
-        ctx.fillStyle = i > 12 ? '#4a0e17' : '#7209b7';
-        ctx.fillText(text, x + i * 1.5, y + i * 1.5);
-      }
-
-      // Main Front Face
-      ctx.fillStyle = '#f8961e';
-      ctx.fillText(text, x, y);
-      ctx.strokeStyle = '#fff'; ctx.lineWidth = 3;
-      ctx.strokeText(text, x, y);
-      ctx.restore();
+    function copyProfileLink() {
+      navigator.clipboard.writeText(window.location.href);
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
     }
-
-    // ── UGESH MASCOT RENDERER (Based on Gemini_Generated_Image_esxb9sesxb9sesxb.png) ──
-    function drawUgeshMascot(p) {
-      ctx.save();
-      ctx.translate(p.x + p.w / 2, p.y + p.h / 2);
-      if (p.dir === -1) ctx.scale(-1, 1);
-
-      if (p.warpTarget) {
-        const s = Math.max(0.05, 1 - p.warpTimer / 32);
-        ctx.scale(s, s);
-      }
-
-      ctx.translate(-p.w / 2, -p.h / 2);
-
-      // Colors from reference image:
-      const HAIR = '#1f1a17', SKIN = '#b8825c', SHIRT = '#36648b', PANTS = '#3b3f47', SNEAKERS = '#ffffff', GLASSES = '#444444';
-
-      // Head / Hair (Curly Afro Volume)
-      ctx.fillStyle = HAIR;
-      ctx.beginPath();
-      ctx.arc(24, 16, 20, 0, Math.PI * 2);
-      ctx.arc(16, 12, 16, 0, Math.PI * 2);
-      ctx.arc(32, 12, 16, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Face
-      ctx.fillStyle = SKIN;
-      ctx.fillRect(12, 18, 24, 18);
-      ctx.beginPath(); ctx.arc(24, 34, 12, 0, Math.PI); ctx.fill(); // Chin
-
-      // Glasses
-      ctx.strokeStyle = GLASSES; ctx.lineWidth = 3.5;
-      ctx.strokeRect(13, 22, 9, 7); ctx.strokeRect(26, 22, 9, 7);
-      ctx.beginPath(); ctx.moveTo(22, 25); ctx.lineTo(26, 25); ctx.stroke();
-
-      // Beard & Smile
-      ctx.fillStyle = HAIR;
-      ctx.fillRect(14, 30, 20, 6);
-      ctx.fillStyle = '#fff'; ctx.fillRect(18, 31, 12, 3); // White Smile
-
-      // Blue Cotton Tee Shirt
-      ctx.fillStyle = SHIRT;
-      ctx.fillRect(10, 36, 28, 22);
-      // Arms
-      if (p.state === 'jump') {
-        ctx.fillRect(4, 30, 7, 18); ctx.fillRect(37, 30, 7, 18);
-      } else {
-        ctx.fillRect(4, 38, 7, 18); ctx.fillRect(37, 38, 7, 18);
-      }
-
-      // Athletic Grey Track Pants
-      ctx.fillStyle = PANTS;
-      if (p.state === 'walk') {
-        const offset = [0, 4, 0, -4][p.walkFrame];
-        ctx.fillRect(11 + offset, 58, 12, 18);
-        ctx.fillRect(25 - offset, 58, 12, 18);
-
-        // White Sneakers
-        ctx.fillStyle = SNEAKERS;
-        ctx.fillRect(9 + offset, 74, 15, 6);
-        ctx.fillRect(24 - offset, 74, 15, 6);
-      } else {
-        ctx.fillRect(12, 58, 11, 18);
-        ctx.fillRect(25, 58, 11, 18);
-
-        // White Sneakers
-        ctx.fillStyle = SNEAKERS;
-        ctx.fillRect(10, 74, 14, 6);
-        ctx.fillRect(24, 74, 14, 6);
-      }
-
-      ctx.restore();
-    }
-
-    function gameLoop() { update(); draw(); requestAnimationFrame(gameLoop); }
-    initGame(); gameLoop();
   </script>
 </body>
+
 </html>

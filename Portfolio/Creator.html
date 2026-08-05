@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ugesh Ragavan — Interactive OS Desktop & Creative Portfolio. Big Data Engineer, Frontend Developer, Acrylic Artist.">
+  <meta name="author" content="Ugesh Ragavan">
+  <title>UGESH OS // CREATIVE DESKTOP PORTFOLIO & CHROME DINO</title>
+  <link rel="shortcut icon" href="../images/fav.png" type="image/vnd.microsoft.icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&family=Press+Start+2P&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       UGESH OS // MACINTOSH DESKTOP & CREATIVE PORTFOLIO (Parinaz Inspired)
+       ═══════════════════════════════════════════════════════════ */
+    :root {
+      --os-bg: #1e1e24;
+      --os-wallpaper: radial-gradient(circle at 50% 50%, #2a2a36 0%, #181820 100%);
+      --os-bar-bg: rgba(240, 238, 233, 0.92);
+      --os-bar-text: #1a1a1a;
+      --os-window-bg: #f9f8f6;
+      --os-window-border: #2b2b2b;
+      --os-header-bg: linear-gradient(180deg, #e6e4df 0%, #d8d5ce 100%);
+      --os-header-text: #1c1c1c;
+      --os-accent: #3a86ff;
+      --os-accent-pink: #ff007f;
+      --os-shadow: 0 16px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,0,0,0.8);
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'Fira Code', monospace;
+      --font-pixel: 'Press Start 2P', monospace;
+      --font-serif: 'Playfair Display', serif;
+    }
+
+    /* Theme Variants */
+    body.theme-cyber {
+      --os-bg: #090c10;
+      --os-wallpaper: radial-gradient(circle at 50% 50%, #131d2a 0%, #080b10 100%);
+      --os-bar-bg: rgba(13, 17, 23, 0.95);
+      --os-bar-text: #58a6ff;
+      --os-window-bg: #0d1117;
+      --os-window-border: #30363d;
+      --os-header-bg: linear-gradient(180deg, #21262d 0%, #161b22 100%);
+      --os-header-text: #f0f6fc;
+      --os-accent: #58a6ff;
+      --os-shadow: 0 16px 40px rgba(0,0,0,0.8), 0 0 0 1px #30363d;
+    }
+
+    body.theme-purple {
+      --os-bg: #1a0933;
+      --os-wallpaper: radial-gradient(circle at 50% 50%, #2e1254 0%, #120524 100%);
+      --os-bar-bg: rgba(24, 11, 46, 0.95);
+      --os-bar-text: #d4a5ff;
+      --os-window-bg: #180b2d;
+      --os-window-border: #4d2b7a;
+      --os-header-bg: linear-gradient(180deg, #371861 0%, #250d45 100%);
+      --os-header-text: #f3e8ff;
+      --os-accent: #ff007f;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: var(--font-sans);
+      background: var(--os-bg);
+      color: #222;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* ── Desktop Environment ── */
+    #desktop {
+      position: absolute;
+      inset: 0;
+      top: 32px;
+      bottom: 68px;
+      background-color: #f7f6f2;
+      background-image: 
+        url('images/Ugesh/ug-cartoon-wallpaper.png'),
+        radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
+      background-repeat: no-repeat, repeat;
+      background-position: right bottom, center;
+      background-size: contain, 24px 24px;
+      overflow: hidden;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      gap: 20px;
+    }
+
+    /* ── Top OS Menu Bar ── */
+    #top-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 32px;
+      background: var(--os-bar-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      z-index: 10000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--os-bar-text);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .bar-left, .bar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .apple-logo {
+      font-size: 1.1rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .menu-item {
+      cursor: pointer;
+      padding: 3px 8px;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .menu-item:hover { background: rgba(0,0,0,0.1); }
+
+    .theme-swatch-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 8px;
+    }
+    .theme-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1.5px solid rgba(0,0,0,0.3);
+      transition: transform 0.15s;
+    }
+    .theme-dot:hover { transform: scale(1.25); }
+
+    .btn-top-quick {
+      background: var(--os-accent);
+      color: #fff;
+      border: none;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: transform 0.15s, filter 0.15s;
+    }
+    .btn-top-quick:hover { transform: translateY(-1px); filter: brightness(1.1); }
+
+    /* ── Desktop Icons ── */
+    .desktop-icon {
+      width: 90px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: background 0.15s;
+      color: #1a1a1a;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.9);
+      text-align: center;
+    }
+    body.theme-cyber .desktop-icon,
+    body.theme-purple .desktop-icon {
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    }
+    .desktop-icon:hover {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(4px);
+    }
+    .desktop-icon:active {
+      transform: scale(0.95);
+    }
+    .icon-img-box {
+      width: 52px; height: 52px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 12px;
+      border: 1.5px solid rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .icon-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    /* ── OS Floating Windows ── */
+    .os-window {
+      position: absolute;
+      background: var(--os-window-bg);
+      border: 1px solid var(--os-window-border);
+      border-radius: 10px;
+      box-shadow: var(--os-shadow);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 320px;
+      min-height: 220px;
+      z-index: 100;
+      transition: opacity 0.2s cubic-bezier(0.1, 0.9, 0.2, 1), transform 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+    }
+    .os-window.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.92) translateY(20px);
+    }
+    .os-window.maximized {
+      top: 32px !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: calc(100vh - 100px) !important;
+      border-radius: 0;
+    }
+
+    .window-header {
+      height: 36px;
+      background: var(--os-header-bg);
+      color: var(--os-header-text);
+      border-bottom: 1px solid rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      cursor: move;
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+
+    .window-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+    .dot-close { background: #ff5f56; }
+    .dot-min { background: #ffbd2e; }
+    .dot-max { background: #27c93f; }
+
+    .window-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    .window-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      color: #222;
+      user-select: text;
+      -webkit-user-select: text;
+    }
+
+    body.theme-cyber .window-body,
+    body.theme-purple .window-body {
+      color: #e0e0e0;
+    }
+
+    /* ── Chrome Dino Window ── */
+    #dino-game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #f7f7f7;
+      padding: 16px;
+      border-radius: 8px;
+      border: 2px solid #333;
+    }
+    #dinoCanvas {
+      background: #fff;
+      border: 1px solid #ccc;
+      width: 100%;
+      max-width: 600px;
+      height: 180px;
+      display: block;
+    }
+    .dino-controls-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+      margin-top: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: #333;
+    }
+    .btn-dino-start {
+      background: #3a86ff;
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #1d5ec4;
+    }
+    .btn-dino-start:active { transform: translateY(2px); box-shadow: none; }
+
+    /* ── About Profile Window ── */
+    .profile-hero {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .profile-avatar {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--os-accent);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .profile-info h2 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .profile-tagline {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #ff007f;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .gallery-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .art-card {
+      border: 1.5px solid rgba(0,0,0,0.15);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .art-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+      border-color: #ff007f;
+    }
+    .art-img {
+      width: 100%;
+      height: 165px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .art-card:hover .art-img {
+      transform: scale(1.05);
+    }
+    .art-caption {
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #333;
+    }
+
+    /* ── Multi-Tab Gallery Styles ── */
+    .gallery-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+      border-bottom: 1.5px solid rgba(0,0,0,0.08);
+      scrollbar-width: thin;
+    }
+    .gallery-tab-btn {
+      background: rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #444;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .gallery-tab-btn:hover {
+      background: rgba(255, 0, 127, 0.1);
+      color: #ff007f;
+      border-color: #ff007f;
+    }
+    .gallery-tab-btn.active {
+      background: #ff007f;
+      color: #fff;
+      border-color: #ff007f;
+      box-shadow: 0 4px 12px rgba(255, 0, 127, 0.3);
+    }
+    .creative-link-card {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: #fff;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .creative-link-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+      border-color: #ff007f;
+    }
+    .creative-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    /* ── Bottom Taskbar / Tech Stack Dock ── */
+    #taskbar {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 56px;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 28px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 10000;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+    }
+
+    .dock-item {
+      position: relative;
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .dock-item:hover {
+      transform: scale(1.3) translateY(-8px);
+    }
+
+    .dock-tooltip {
+      position: absolute;
+      bottom: 54px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .dock-item:hover .dock-tooltip { opacity: 1; }
+
+    .dock-indicator {
+      position: absolute;
+      bottom: -4px;
+      width: 4px; height: 4px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    .dock-divider {
+      width: 1px; height: 28px;
+      background: rgba(255,255,255,0.4);
+      margin: 0 4px;
+    }
+
+    /* ── Lightbox Modal ── */
+    #lightbox {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 20000;
+      display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s; padding: 20px;
+    }
+    #lightbox.open { opacity: 1; pointer-events: auto; }
+    .lightbox-content {
+      background: #fff; border-radius: 12px; padding: 20px; max-width: 750px; width: 100%; text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .lightbox-img { max-width: 100%; max-height: 65vh; border-radius: 8px; display: block; margin: 0 auto 12px; }
+
+    @media (max-width: 768px) {
+      #taskbar { gap: 6px; padding: 0 10px; height: 48px; }
+      .dock-item { width: 34px; height: 34px; font-size: 1.1rem; }
+      .profile-hero { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body class="theme-default">
+
+  <!-- ── Top OS Menu Bar ── -->
+  <div id="top-bar">
+    <div class="bar-left">
+      <span class="apple-logo" onclick="openWindow('win-about')"></span>
+      <span class="menu-item" style="font-weight:800;" onclick="openWindow('win-about')">Ugesh OS</span>
+      <span class="menu-item" onclick="openWindow('win-gallery')">🎨 Art Gallery</span>
+      <span class="menu-item" onclick="openWindow('win-contact')">✉ Contact</span>
+      <div class="theme-swatch-group">
+        <span style="font-size:0.7rem; color:#666;">THEME:</span>
+        <div class="theme-dot" style="background:#e6e4df" onclick="setTheme('default')" title="Classic Mac"></div>
+        <div class="theme-dot" style="background:#131d2a" onclick="setTheme('cyber')" title="Cyber Dark"></div>
+        <div class="theme-dot" style="background:#2e1254" onclick="setTheme('purple')" title="Synthwave Purple"></div>
+      </div>
+    </div>
+
+    <div class="bar-right">
+      <button class="btn-top-quick" onclick="toggleSFX()" id="sfxBtn">♪ SFX ON</button>
+      <a href="Engineer.html" class="btn-top-quick" style="background:#2a9d8f">💻 ENGINEER MODE</a>
+      <a href="main.html" class="btn-top-quick" style="background:#3a86ff">🕹️ CLASS SELECT</a>
+      <a href="../index.html" class="btn-top-quick" style="background:#e76f51">🔗 BIO LINKS</a>
+      <span id="clockDisplay" style="font-family:var(--font-mono); font-size:0.78rem;">12:00 PM</span>
+    </div>
+  </div>
+
+  <!-- ── Main Desktop Workspace ── -->
+  <div id="desktop">
+
+    <!-- Desktop Icons -->
+    <div class="desktop-icon" onclick="openWindow('win-about')">
+      <div class="icon-img-box">👨‍💻</div>
+      <div class="icon-label">About Ugesh.app</div>
+    </div>
+
+    <div class="desktop-icon" onclick="openWindow('win-gallery')">
+      <div class="icon-img-box">🎨</div>
+      <div class="icon-label">Canvas Art.app</div>
+    </div>
+
+    <div class="desktop-icon" onclick="openWindow('win-videos')">
+      <div class="icon-img-box">🎬</div>
+      <div class="icon-label">Media Edits.app</div>
+    </div>
+
+    <div class="desktop-icon" onclick="openWindow('win-contact')">
+      <div class="icon-img-box">✉️</div>
+      <div class="icon-label">Contact.app</div>
+    </div>
+
+    <!-- Social & Poems Desktop Icons -->
+    <a href="https://www.instagram.com/the.ugiverse" target="_blank" class="desktop-icon" style="text-decoration:none;">
+      <div class="icon-img-box" style="background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color:#fff; font-size:1.6rem;">📸</div>
+      <div class="icon-label">the.ugiverse.app</div>
+    </a>
+
+    <a href="https://www.instagram.com/the.0g.ug" target="_blank" class="desktop-icon" style="text-decoration:none;">
+      <div class="icon-img-box" style="background: linear-gradient(135deg, #ff007f, #e1306c); color:#fff; font-size:1.6rem;">🎨</div>
+      <div class="icon-label">the.0g.ug (Art).app</div>
+    </a>
+
+    <a href="https://www.threads.com/@the.ugiverse" target="_blank" class="desktop-icon" style="text-decoration:none;">
+      <div class="icon-img-box" style="background: #000; color:#fff; border: 1.5px solid rgba(255,255,255,0.4); font-size:1.6rem;">🧵</div>
+      <div class="icon-label">Poems & Kavithaigal.app</div>
+    </a>
+
+    <a href="https://open.spotify.com/show/7iYB5dgIRD7hOorXV3nFjW" target="_blank" class="desktop-icon" style="text-decoration:none;">
+      <div class="icon-img-box" style="padding:0; overflow:hidden; border: 1.5px solid rgba(255,255,255,0.4); background:#1db954;">
+        <img src="../images/8wba.jpg" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" alt="Spotify Podcast">
+      </div>
+      <div class="icon-label">Spotify Podcast.app</div>
+    </a>
+
+    <!-- ══ OS WINDOW: ABOUT UGESH ══ -->
+    <div class="os-window" id="win-about" style="top:60px; left:40px; width:620px; height:560px;">
+      <div class="window-header" onmousedown="startDrag(event, 'win-about')">
+        <div class="window-dots">
+          <div class="dot dot-close" onclick="closeWindow('win-about')"></div>
+          <div class="dot dot-min" onclick="closeWindow('win-about')"></div>
+          <div class="dot dot-max" onclick="toggleMaximize('win-about')"></div>
+        </div>
+        <div class="window-title">👨‍💻 About Ugesh Ragavan — Creator Persona</div>
+        <div></div>
+      </div>
+      <div class="window-body">
+        <div class="profile-hero">
+          <img src="../images/Ugesh/ugesh_working.jpg" alt="Ugesh Ragavan Working" class="profile-avatar">
+          <div class="profile-info">
+            <h2>Ugesh Ragavan</h2>
+            <div class="profile-tagline">🧠 Engineer Brain // 🎨 Creative Heart</div>
+            <p style="font-size:0.88rem; line-height:1.5;">3+ Years Experienced Big Data Engineer at Zoho Corporation by day, and a multidisciplinary Creator by night — filming, painting original acrylic canvases, publishing books, writing Tamil Kavithaigal, hosting podcasts & producing music.</p>
+          </div>
+        </div>
+
+        <!-- Creator Persona Badges -->
+        <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;">
+          <span class="creative-badge" style="background:rgba(255,0,127,0.12); color:#ff007f; border:1px solid rgba(255,0,127,0.3);">🎨 Acrylic Painting</span>
+          <span class="creative-badge" style="background:rgba(59,130,246,0.12); color:#3b82f6; border:1px solid rgba(59,130,246,0.3);">📖 Published Author</span>
+          <span class="creative-badge" style="background:rgba(16,185,129,0.12); color:#10b981; border:1px solid rgba(16,185,129,0.3);">🎙️ Podcast Host</span>
+          <span class="creative-badge" style="background:rgba(168,85,247,0.12); color:#a855f7; border:1px solid rgba(168,85,247,0.3);">✍️ Tamil Poetry & Kavithaigal</span>
+          <span class="creative-badge" style="background:rgba(239,68,68,0.12); color:#ef4444; border:1px solid rgba(239,68,68,0.3);">🎬 Video Directing & VFX</span>
+          <span class="creative-badge" style="background:rgba(245,158,11,0.12); color:#f59e0b; border:1px solid rgba(245,158,11,0.3);">🎵 Vocals & Music Production</span>
+        </div>
+
+        <!-- Quick Access Shortcuts to Creative Hub -->
+        <div style="background:linear-gradient(135deg, rgba(255,0,127,0.06), rgba(59,130,246,0.06)); border:1.5px solid rgba(255,0,127,0.2); border-radius:10px; padding:12px; margin-bottom:16px;">
+          <h4 style="font-size:0.82rem; font-family:var(--font-mono); margin-bottom:8px; color:#111;">🚀 EXPLORE CREATIVE SHOWCASE & WORKS:</h4>
+          <div style="display:flex; flex-wrap:wrap; gap:6px;">
+            <button class="btn-top-quick" onclick="openWindow('win-gallery'); switchGalleryTab('paintings', document.querySelectorAll('.gallery-tab-btn')[0]);" style="background:#ff007f; font-size:0.72rem; padding:5px 10px;">🎨 Paintings & Canvases</button>
+            <button class="btn-top-quick" onclick="openWindow('win-gallery'); switchGalleryTab('poems', document.querySelectorAll('.gallery-tab-btn')[1]);" style="background:#8b5cf6; font-size:0.72rem; padding:5px 10px;">📖 Book & Kavithaigal</button>
+            <button class="btn-top-quick" onclick="openWindow('win-gallery'); switchGalleryTab('music', document.querySelectorAll('.gallery-tab-btn')[2]);" style="background:#10b981; font-size:0.72rem; padding:5px 10px;">🎵 Music & Songs</button>
+            <button class="btn-top-quick" onclick="openWindow('win-gallery'); switchGalleryTab('photography', document.querySelectorAll('.gallery-tab-btn')[3]);" style="background:#ec4899; font-size:0.72rem; padding:5px 10px;">📸 Photography</button>
+            <button class="btn-top-quick" onclick="openWindow('win-gallery'); switchGalleryTab('videos', document.querySelectorAll('.gallery-tab-btn')[4]);" style="background:#ef4444; font-size:0.72rem; padding:5px 10px;">🎬 Videos & YouTube</button>
+          </div>
+        </div>
+
+        <h4 style="font-family:var(--font-mono); margin-bottom:10px;">📸 Behind The Scenes & Life:</h4>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px;">
+          <div style="background: rgba(0,0,0,0.05); border: 1.5px solid rgba(0,0,0,0.12); border-radius: 10px; padding: 6px; text-align: center; cursor: pointer;" onclick="openLightbox('../images/Ugesh/Ugesh_chilling.jpg', 'Ugesh — Chilling')">
+            <img src="../images/Ugesh/Ugesh_chilling.jpg" style="width:100%; height:180px; object-fit:contain; border-radius:6px; display:block;" alt="Ugesh Chilling">
+            <span style="font-size:0.75rem; font-family:var(--font-mono); color:#555; display:block; margin-top:4px; font-weight:600;">Chilling & Off Hours</span>
+          </div>
+          <div style="background: rgba(0,0,0,0.05); border: 1.5px solid rgba(0,0,0,0.12); border-radius: 10px; padding: 6px; text-align: center; cursor: pointer;" onclick="openLightbox('../images/Ugesh/Ug_writer.jpg', 'Ugesh — Writing & Poetry')">
+            <img src="../images/Ugesh/Ug_writer.jpg" style="width:100%; height:180px; object-fit:contain; border-radius:6px; display:block;" alt="Ugesh Writer">
+            <span style="font-size:0.75rem; font-family:var(--font-mono); color:#555; display:block; margin-top:4px; font-weight:600;">Writing & Kavithaigal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ OS WINDOW: CREATIVE SHOWCASE & FINE ART GALLERY (HIDDEN BY DEFAULT) ══ -->
+    <div class="os-window hidden" id="win-gallery" style="top:75px; left:280px; width:740px; height:550px;">
+      <div class="window-header" onmousedown="startDrag(event, 'win-gallery')">
+        <div class="window-dots">
+          <div class="dot dot-close" onclick="closeWindow('win-gallery')"></div>
+          <div class="dot dot-min" onclick="closeWindow('win-gallery')"></div>
+          <div class="dot dot-max" onclick="toggleMaximize('win-gallery')"></div>
+        </div>
+        <div class="window-title">🎨 Ugesh's Creative Showcase & Fine Art Gallery</div>
+        <div></div>
+      </div>
+      <div class="window-body">
+        
+        <!-- Category Filter Tabs -->
+        <div class="gallery-tabs">
+          <button class="gallery-tab-btn active" onclick="switchGalleryTab('paintings', this)">🎨 Paintings & Art</button>
+          <button class="gallery-tab-btn" onclick="switchGalleryTab('poems', this)">📖 Book & Poems</button>
+          <button class="gallery-tab-btn" onclick="switchGalleryTab('music', this)">🎵 Music & Songs</button>
+          <button class="gallery-tab-btn" onclick="switchGalleryTab('photography', this)">📸 Photography</button>
+          <button class="gallery-tab-btn" onclick="switchGalleryTab('videos', this)">🎬 Videos & YouTube</button>
+        </div>
+
+        <!-- Tab 1: Paintings & Art -->
+        <div class="gallery-tab-content" id="tab-paintings">
+          <p style="font-size:0.82rem; color:#666; margin-bottom:12px;">Original Acrylic Canvases painted by Ugesh Ragavan. Click any artwork to inspect in high definition.</p>
+          <div class="gallery-photo-grid">
+            <div class="art-card" onclick="openLightbox('../img/Painting/dear.jpg', 'Dear in Dusk — Original Acrylic Canvas')">
+              <img src="../img/Painting/dear.jpg" class="art-img" alt="Dear in Dusk">
+              <div class="art-caption">Dear in Dusk</div>
+            </div>
+            <div class="art-card" onclick="openLightbox('../img/Painting/ship.jpg', 'Dawn Dark Pirates — Original Acrylic Canvas')">
+              <img src="../img/Painting/ship.jpg" class="art-img" alt="Dawn Dark Pirates">
+              <div class="art-caption">Dawn Dark Pirates</div>
+            </div>
+            <div class="art-card" onclick="openLightbox('../img/Painting/yas ka wedding gift.jpg', 'Village in Eve — Original Acrylic Canvas')">
+              <img src="../img/Painting/yas ka wedding gift.jpg" class="art-img" alt="Village in Eve">
+              <div class="art-caption">Village in Eve</div>
+            </div>
+            <div class="art-card" onclick="openLightbox('../img/Painting/1.jpg', 'Eve Study I — Knife Brushwork Canvas')">
+              <img src="../img/Painting/1.jpg" class="art-img" alt="Eve Study 1">
+              <div class="art-caption">Eve Study I</div>
+            </div>
+            <div class="art-card" onclick="openLightbox('../img/Painting/2.jpg', 'Eve Study II — Color Harmony Canvas')">
+              <img src="../img/Painting/2.jpg" class="art-img" alt="Eve Study 2">
+              <div class="art-caption">Eve Study II</div>
+            </div>
+            <div class="art-card" onclick="openLightbox('../img/Painting/3.jpg', 'Pop Expressions — High Contrast Pop Art')">
+              <img src="../img/Painting/3.jpg" class="art-img" alt="Pop Expressions">
+              <div class="art-caption">Pop Expressions</div>
+            </div>
+            <a href="https://www.instagram.com/p/C1WOS_dLZMk/" target="_blank" class="art-card" style="text-decoration:none; display:flex; flex-direction:column; justify-content:center; align-items:center; background:#fafafa; padding:14px; text-align:center;">
+              <div style="font-size:2.2rem; margin-bottom:8px;">🎨</div>
+              <div style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Featured Canvas Art</div>
+              <span style="font-size:0.72rem; color:#ff007f; font-weight:700;">View on Instagram ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tab 2: Book & Poems -->
+        <div class="gallery-tab-content" id="tab-poems" style="display:none;">
+          <p style="font-size:0.82rem; color:#666; margin-bottom:12px;">Published book works, original poetry, and Tamil Kavithaigal by Ugesh Ragavan.</p>
+          
+          <a href="https://www.instagram.com/p/DJ1uSwMSdjY6YN-uzDclMOpIICnMv8MohuSGE00/?img_index=1" target="_blank" class="creative-link-card" style="margin-bottom:14px; background: linear-gradient(135deg, #fff5f8, #ffffff); border-color:#ff007f;">
+            <div style="font-size:1.8rem; background:#ff007f; color:#fff; width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">📘</div>
+            <div style="flex:1;">
+              <span class="creative-badge" style="background:#ff007f; color:#fff;">PUBLISHED BOOK</span>
+              <h4 style="font-size:0.92rem; margin-bottom:2px; color:#111;">The Book I Wrote</h4>
+              <p style="font-size:0.76rem; color:#666;">Explore the book written & published by Ugesh on Instagram.</p>
+            </div>
+            <span class="btn-top-quick" style="background:#ff007f; flex-shrink:0; font-size:0.75rem; padding:6px 12px;">Read Book ↗</span>
+          </a>
+
+          <div class="gallery-photo-grid">
+            <a href="https://www.threads.com/share/GTv4oZuQf/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
+              <div style="font-size:1.8rem; margin-bottom:8px;">✍️</div>
+              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Threads Poem #1</h5>
+              <p style="font-size:0.75rem; color:#666;">Tamil Kavithai & Verse on Threads</p>
+              <span style="font-size:0.72rem; color:#ff007f; font-weight:700; display:inline-block; margin-top:8px;">Read Poem ↗</span>
+            </a>
+            <a href="https://www.threads.com/share/FGTyXXV0z/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
+              <div style="font-size:1.8rem; margin-bottom:8px;">📜</div>
+              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Threads Poem #2</h5>
+              <p style="font-size:0.75rem; color:#666;">Poetic Reflections & Thoughts</p>
+              <span style="font-size:0.72rem; color:#ff007f; font-weight:700; display:inline-block; margin-top:8px;">Read Poem ↗</span>
+            </a>
+            <a href="https://www.threads.com/share/F1wJzqf8B/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
+              <div style="font-size:1.8rem; margin-bottom:8px;">💫</div>
+              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Threads Poem #3</h5>
+              <p style="font-size:0.75rem; color:#666;">Original Kavithaigal Collection</p>
+              <span style="font-size:0.72rem; color:#ff007f; font-weight:700; display:inline-block; margin-top:8px;">Read Poem ↗</span>
+            </a>
+            <a href="https://www.threads.com/share/GdewOsk0F/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
+              <div style="font-size:1.8rem; margin-bottom:8px;">✒️</div>
+              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Threads Poem #4</h5>
+              <p style="font-size:0.75rem; color:#666;">Heartfelt Tamil Stanza</p>
+              <span style="font-size:0.72rem; color:#ff007f; font-weight:700; display:inline-block; margin-top:8px;">Read Poem ↗</span>
+            </a>
+            <a href="https://www.threads.com/share/FdcFw8G-n/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
+              <div style="font-size:1.8rem; margin-bottom:8px;">📖</div>
+              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Threads Poem #5</h5>
+              <p style="font-size:0.75rem; color:#666;">Poetry & Expressive Lines</p>
+              <span style="font-size:0.72rem; color:#ff007f; font-weight:700; display:inline-block; margin-top:8px;">Read Poem ↗</span>
+            </a>
+            <a href="https://www.instagram.com/p/DXzZuX2NDO4qX2T7LqOGl4eoGo_pmZNGaJa2Lg0/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
+              <div style="font-size:1.8rem; margin-bottom:8px;">📸</div>
+              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Instagram Poem Post</h5>
+              <p style="font-size:0.75rem; color:#666;">Visual Poetry & Artwork Reel</p>
+              <span style="font-size:0.72rem; color:#e1306c; font-weight:700; display:inline-block; margin-top:8px;">View Post ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tab 3: Music & Songs -->
+        <div class="gallery-tab-content" id="tab-music" style="display:none;">
+          <p style="font-size:0.82rem; color:#666; margin-bottom:12px;">Listen to original debut song releases, Spotify podcasts, and singing session shorts below.</p>
+          
+          <!-- Embedded Spotify Podcast Player -->
+          <div style="margin-bottom:14px; border-radius:12px; overflow:hidden; border:1.5px solid rgba(22,163,74,0.3); box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+            <iframe style="border-radius:12px; display:block;" src="https://open.spotify.com/embed/show/7iYB5dgIRD7hOorXV3nFjW?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          </div>
+
+          <!-- Featured 1st Ever Song Card -->
+          <a href="https://www.instagram.com/p/DbOdkI2y5R07tSsaT4FCTEt2G8_AUxNKc7XFgU0/" target="_blank" class="creative-link-card" style="margin-bottom:14px; background: linear-gradient(135deg, #f0fdf4, #ffffff); border-color:#16a34a;">
+            <div style="font-size:1.8rem; background:#16a34a; color:#fff; width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🎵</div>
+            <div style="flex:1;">
+              <span class="creative-badge" style="background:#16a34a; color:#fff;">MY 1ST EVER SONG</span>
+              <h4 style="font-size:0.92rem; margin-bottom:2px; color:#111;">Original Debut Song Release</h4>
+              <p style="font-size:0.76rem; color:#666;">Listen to Ugesh's 1st ever original musical composition on Instagram.</p>
+            </div>
+            <span class="btn-top-quick" style="background:#16a34a; flex-shrink:0; font-size:0.75rem; padding:6px 12px;">Open Post ↗</span>
+          </a>
+
+          <div class="gallery-photo-grid">
+            <div class="art-card" style="overflow:hidden;">
+              <a href="https://www.youtube.com/shorts/KkWU21wQtvc" target="_blank" style="text-decoration:none; display:block; position:relative;">
+                <img src="https://img.youtube.com/vi/KkWU21wQtvc/hqdefault.jpg" class="art-img" alt="Singing Short #1">
+                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center;">
+                  <div style="background:#ff0000; color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 15px rgba(0,0,0,0.5);">▶</div>
+                </div>
+              </a>
+              <div class="art-caption" style="display:flex; justify-content:space-between; align-items:center;">
+                <span>Singing Short #1 🎤</span>
+                <a href="https://www.youtube.com/shorts/KkWU21wQtvc" target="_blank" style="font-size:0.7rem; color:#ff0000; font-weight:700; text-decoration:none;">Play ↗</a>
+              </div>
+            </div>
+
+            <div class="art-card" style="overflow:hidden;">
+              <a href="https://www.youtube.com/shorts/kwSUk6-xKl8" target="_blank" style="text-decoration:none; display:block; position:relative;">
+                <img src="https://img.youtube.com/vi/kwSUk6-xKl8/hqdefault.jpg" class="art-img" alt="Singing Short #2">
+                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center;">
+                  <div style="background:#ff0000; color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 15px rgba(0,0,0,0.5);">▶</div>
+                </div>
+              </a>
+              <div class="art-caption" style="display:flex; justify-content:space-between; align-items:center;">
+                <span>Singing Short #2 🎶</span>
+                <a href="https://www.youtube.com/shorts/kwSUk6-xKl8" target="_blank" style="font-size:0.7rem; color:#ff0000; font-weight:700; text-decoration:none;">Play ↗</a>
+              </div>
+            </div>
+
+            <a href="https://www.instagram.com/p/DX0zAi3xoPFuALnbnkQrWrlUKebZdusAVKl8tE0/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+              <div style="font-size:1.8rem; margin-bottom:8px;">🎙️</div>
+              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Instagram Singing Reel</h5>
+              <p style="font-size:0.75rem; color:#666;">Live vocal performance reel</p>
+              <span style="font-size:0.72rem; color:#e1306c; font-weight:700; display:inline-block; margin-top:8px;">Watch Reel ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tab 4: Photography -->
+        <div class="gallery-tab-content" id="tab-photography" style="display:none;">
+          <p style="font-size:0.82rem; color:#666; margin-bottom:12px;">Visual photography compositions & life frames captured by Ugesh.</p>
+          <div class="gallery-photo-grid">
+            <a href="https://www.instagram.com/p/BxrO9_npbzTY7KjKKcIqYFCBQDcHKSPo5XSyOE0/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
+              <div style="font-size:1.8rem; margin-bottom:8px;">📷</div>
+              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Photo Collection I</h5>
+              <p style="font-size:0.75rem; color:#666;">Cinematic composition & framing</p>
+              <span style="font-size:0.72rem; color:#e1306c; font-weight:700; display:inline-block; margin-top:8px;">View Photo ↗</span>
+            </a>
+            <a href="https://www.instagram.com/p/B_IIK2XJ5nmlMKOY12gcfrwfLcHwC-aUeYZcEI0/?img_index=1" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
+              <div style="font-size:1.8rem; margin-bottom:8px;">🌇</div>
+              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Photo Collection II</h5>
+              <p style="font-size:0.75rem; color:#666;">Landscape & Ambient Lighting</p>
+              <span style="font-size:0.72rem; color:#e1306c; font-weight:700; display:inline-block; margin-top:8px;">View Photo ↗</span>
+            </a>
+            <a href="https://www.instagram.com/p/B0-2j3SJYMKpbSiNWSEnYlu66bPz4qoMndG5wo0/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
+              <div style="font-size:1.8rem; margin-bottom:8px;">🍃</div>
+              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Photo Collection III</h5>
+              <p style="font-size:0.75rem; color:#666;">Nature & Street Mood Frames</p>
+              <span style="font-size:0.72rem; color:#e1306c; font-weight:700; display:inline-block; margin-top:8px;">View Photo ↗</span>
+            </a>
+            <a href="https://www.instagram.com/p/CHuFzOZs9CoobHBiFIyjJ4bz21QYeXeZSXJ4NM0/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
+              <div style="font-size:1.8rem; margin-bottom:8px;">✨</div>
+              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Photo Collection IV</h5>
+              <p style="font-size:0.75rem; color:#666;">Creative Perspective Shots</p>
+              <span style="font-size:0.72rem; color:#e1306c; font-weight:700; display:inline-block; margin-top:8px;">View Photo ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tab 5: Videos & YouTube -->
+        <div class="gallery-tab-content" id="tab-videos" style="display:none;">
+          <p style="font-size:0.82rem; color:#666; margin-bottom:12px;">Watch video productions, short films & teaser edits below.</p>
+
+          <a href="https://www.youtube.com/@Ugesh.Ragavan" target="_blank" class="creative-link-card" style="margin-bottom:14px; background: linear-gradient(135deg, #fff5f5, #ffffff); border-color:#ff0000;">
+            <div style="font-size:1.8rem; background:#ff0000; color:#fff; width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">📺</div>
+            <div style="flex:1;">
+              <span class="creative-badge" style="background:#ff0000; color:#fff;">YOUTUBE CHANNEL</span>
+              <h4 style="font-size:0.92rem; margin-bottom:2px; color:#111;">Ugesh Ragavan Official Channel</h4>
+              <p style="font-size:0.76rem; color:#666;">Subscribe & watch full-length videos, short films & video edits.</p>
+            </div>
+            <span class="btn-top-quick" style="background:#ff0000; flex-shrink:0; font-size:0.75rem; padding:6px 12px;">Visit Channel ↗</span>
+          </a>
+
+          <div class="gallery-photo-grid">
+            <div class="art-card" style="overflow:hidden;">
+              <a href="https://www.youtube.com/watch?v=8oITc7uocn4" target="_blank" style="text-decoration:none; display:block; position:relative;">
+                <img src="https://img.youtube.com/vi/8oITc7uocn4/hqdefault.jpg" class="art-img" alt="Featured Video #1">
+                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center;">
+                  <div style="background:#ff0000; color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 15px rgba(0,0,0,0.5);">▶</div>
+                </div>
+              </a>
+              <div class="art-caption" style="display:flex; justify-content:space-between; align-items:center;">
+                <span>Featured Video #1 🎬</span>
+                <a href="https://www.youtube.com/watch?v=8oITc7uocn4" target="_blank" style="font-size:0.7rem; color:#ff0000; font-weight:700; text-decoration:none;">Watch ↗</a>
+              </div>
+            </div>
+
+            <div class="art-card" style="overflow:hidden;">
+              <a href="https://www.youtube.com/watch?v=OsYYRuHM1Nw" target="_blank" style="text-decoration:none; display:block; position:relative;">
+                <img src="https://img.youtube.com/vi/OsYYRuHM1Nw/hqdefault.jpg" class="art-img" alt="Featured Video #2">
+                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center;">
+                  <div style="background:#ff0000; color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 15px rgba(0,0,0,0.5);">▶</div>
+                </div>
+              </a>
+              <div class="art-caption" style="display:flex; justify-content:space-between; align-items:center;">
+                <span>Featured Video #2 📽️</span>
+                <a href="https://www.youtube.com/watch?v=OsYYRuHM1Nw" target="_blank" style="font-size:0.7rem; color:#ff0000; font-weight:700; text-decoration:none;">Watch ↗</a>
+              </div>
+            </div>
+
+            <div class="art-card" style="overflow:hidden;">
+              <a href="https://youtu.be/Rz8FALxoOis" target="_blank" style="text-decoration:none; display:block; position:relative;">
+                <img src="https://img.youtube.com/vi/Rz8FALxoOis/hqdefault.jpg" class="art-img" alt="Featured YouTube Video">
+                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center;">
+                  <div style="background:#ff0000; color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 15px rgba(0,0,0,0.5);">▶</div>
+                </div>
+              </a>
+              <div class="art-caption" style="display:flex; justify-content:space-between; align-items:center;">
+                <span>Featured Video 🎥</span>
+                <a href="https://youtu.be/Rz8FALxoOis" target="_blank" style="font-size:0.7rem; color:#ff0000; font-weight:700; text-decoration:none;">Watch ↗</a>
+              </div>
+            </div>
+
+            <div class="art-card" style="overflow:hidden;">
+              <a href="https://www.youtube.com/shorts/Sf9K_tj7dPU" target="_blank" style="text-decoration:none; display:block; position:relative;">
+                <img src="https://img.youtube.com/vi/Sf9K_tj7dPU/hqdefault.jpg" class="art-img" alt="YouTube Short #1">
+                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center;">
+                  <div style="background:#ff0000; color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 15px rgba(0,0,0,0.5);">▶</div>
+                </div>
+              </a>
+              <div class="art-caption" style="display:flex; justify-content:space-between; align-items:center;">
+                <span>YouTube Short #1 ⚡</span>
+                <a href="https://www.youtube.com/shorts/Sf9K_tj7dPU" target="_blank" style="font-size:0.7rem; color:#ff0000; font-weight:700; text-decoration:none;">Play ↗</a>
+              </div>
+            </div>
+
+            <div class="art-card" style="overflow:hidden;">
+              <a href="https://www.youtube.com/shorts/GTXYbigedqo" target="_blank" style="text-decoration:none; display:block; position:relative;">
+                <img src="https://img.youtube.com/vi/GTXYbigedqo/hqdefault.jpg" class="art-img" alt="YouTube Short #2">
+                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center;">
+                  <div style="background:#ff0000; color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 15px rgba(0,0,0,0.5);">▶</div>
+                </div>
+              </a>
+              <div class="art-caption" style="display:flex; justify-content:space-between; align-items:center;">
+                <span>YouTube Short #2 🔥</span>
+                <a href="https://www.youtube.com/shorts/GTXYbigedqo" target="_blank" style="font-size:0.7rem; color:#ff0000; font-weight:700; text-decoration:none;">Play ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ OS WINDOW 5: CONTACT ══ -->
+    <div class="os-window hidden" id="win-contact" style="top:140px; left:260px; width:480px; height:380px;">
+      <div class="window-header" onmousedown="startDrag(event, 'win-contact')">
+        <div class="window-dots">
+          <div class="dot dot-close" onclick="closeWindow('win-contact')"></div>
+          <div class="dot dot-min" onclick="closeWindow('win-contact')"></div>
+          <div class="dot dot-max" onclick="toggleMaximize('win-contact')"></div>
+        </div>
+        <div class="window-title">✉ Dispatch Message to Ugesh</div>
+        <div></div>
+      </div>
+      <div class="window-body">
+        <form action="https://formspree.io/f/xvoldvoz" method="POST" style="display:flex; flex-direction:column; gap:12px;">
+          <input type="text" name="name" placeholder="YOUR NAME" required style="padding:10px; border:1px solid #ccc; border-radius:6px; font-family:var(--font-mono);">
+          <input type="email" name="email" placeholder="YOUR EMAIL" required style="padding:10px; border:1px solid #ccc; border-radius:6px; font-family:var(--font-mono);">
+          <textarea name="message" rows="4" placeholder="ENTER MESSAGE OR JOB INQUIRY..." required style="padding:10px; border:1px solid #ccc; border-radius:6px; font-family:var(--font-mono);"></textarea>
+          <button type="submit" class="btn-top-quick" style="padding:10px; justify-content:center; background:#3a86ff;">SEND TRANSMISSION ▶</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Bottom Taskbar / Tech Stack Dock ── -->
+  <div id="taskbar">
+    <div class="dock-item" onclick="openWindow('win-dino')">
+      🦖
+      <div class="dock-tooltip">Chrome Dino Game</div>
+      <div class="dock-indicator"></div>
+    </div>
+
+    <div class="dock-item" onclick="openWindow('win-about')">
+      🐍
+      <div class="dock-tooltip">Python & PySpark</div>
+      <div class="dock-indicator"></div>
+    </div>
+
+    <div class="dock-item" onclick="openWindow('win-about')">
+      ⚛️
+      <div class="dock-tooltip">React Frontend</div>
+      <div class="dock-indicator"></div>
+    </div>
+
+    <div class="dock-item" onclick="openWindow('win-about')">
+      🐘
+      <div class="dock-tooltip">PostgreSQL & Kafka</div>
+      <div class="dock-indicator"></div>
+    </div>
+
+    <div class="dock-divider"></div>
+
+    <div class="dock-item" onclick="openWindow('win-gallery')">
+      🎨
+      <div class="dock-tooltip">Acrylic Painting</div>
+      <div class="dock-indicator"></div>
+    </div>
+
+    <div class="dock-item" onclick="openWindow('win-videos')">
+      🎬
+      <div class="dock-tooltip">Video Editing</div>
+      <div class="dock-indicator"></div>
+    </div>
+
+    <div class="dock-item" onclick="openWindow('win-contact')">
+      ✉️
+      <div class="dock-tooltip">Contact Ugesh</div>
+      <div class="dock-indicator"></div>
+    </div>
+
+    <div class="dock-divider"></div>
+
+    <a href="Engineer.html" class="dock-item" style="text-decoration:none;">
+      💼
+      <div class="dock-tooltip">Engineer Mode Resume</div>
+    </a>
+  </div>
+
+  <!-- ── Lightbox Modal ── -->
+  <div id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <img src="" id="lightboxImg" class="lightbox-img" alt="Artwork Detail">
+      <div id="lightboxCaption" style="font-weight:700; font-size:1.1rem; margin-bottom:12px;"></div>
+      <button class="btn-top-quick" onclick="closeLightbox()" style="background:#ff5f56;">CLOSE EXHIBITION ✕</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       JAVASCRIPT: OS DESKTOP ENGINE
+       ═══════════════════════════════════════════════════════ -->
+  <script>
+    // ── Gallery Multi-Tab Switcher ──
+    function switchGalleryTab(tabId, btn) {
+      tone(600, 'sine', 0.05);
+      document.querySelectorAll('.gallery-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.gallery-tab-content').forEach(c => c.style.display = 'none');
+      btn.classList.add('active');
+      const target = document.getElementById('tab-' + tabId);
+      if (target) target.style.display = 'block';
+    }
+
+    // ── Live OS Clock ──
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('clockDisplay').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // ── Audio SFX ──
+    let sfxEnabled = true, audioCtx = null;
+    function getAudioCtx() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return audioCtx; }
+    function toggleSFX() {
+      sfxEnabled = !sfxEnabled;
+      document.getElementById('sfxBtn').textContent = sfxEnabled ? '♪ SFX ON' : '✕ SFX OFF';
+    }
+    function tone(freq, type='sine', dur=0.1) {
+      if (!sfxEnabled) return;
+      try {
+        const ctx = getAudioCtx(); const osc = ctx.createOscillator(); const g = ctx.createGain();
+        osc.type = type; osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        g.gain.setValueAtTime(0.08, ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+        osc.connect(g); g.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + dur);
+      } catch(e){}
+    }
+
+    // ── Theme Switcher ──
+    function setTheme(themeName) {
+      document.body.className = themeName === 'default' ? 'theme-default' : 'theme-' + themeName;
+      tone(520, 'sine', 0.15);
+    }
+
+    // ── Window Management & Drag Engine ──
+    let zIndexCounter = 100;
+    let activeDragWin = null, dragOffsetX = 0, dragOffsetY = 0;
+
+    function openWindow(id) {
+      const win = document.getElementById(id);
+      if (!win) return;
+      win.classList.remove('hidden');
+      bringToFront(win);
+      tone(440, 'sine', 0.1);
+    }
+
+    function closeWindow(id) {
+      const win = document.getElementById(id);
+      if (win) {
+        win.classList.add('hidden');
+        tone(300, 'sine', 0.1);
+      }
+    }
+
+    function toggleMaximize(id) {
+      const win = document.getElementById(id);
+      if (win) {
+        win.classList.toggle('maximized');
+        tone(580, 'sine', 0.1);
+      }
+    }
+
+    function bringToFront(win) {
+      zIndexCounter++;
+      win.style.zIndex = zIndexCounter;
+    }
+
+    document.querySelectorAll('.os-window').forEach(win => {
+      win.addEventListener('mousedown', () => bringToFront(win));
+    });
+
+    function startDrag(e, id) {
+      activeDragWin = document.getElementById(id);
+      bringToFront(activeDragWin);
+      dragOffsetX = e.clientX - activeDragWin.offsetLeft;
+      dragOffsetY = e.clientY - activeDragWin.offsetTop;
+    }
+
+    document.addEventListener('mousemove', e => {
+      if (!activeDragWin || activeDragWin.classList.contains('maximized')) return;
+      activeDragWin.style.left = (e.clientX - dragOffsetX) + 'px';
+      activeDragWin.style.top = (e.clientY - dragOffsetY) + 'px';
+    });
+
+    document.addEventListener('mouseup', () => { activeDragWin = null; });
+
+    // ── Lightbox ──
+    function openLightbox(src, caption) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxCaption').textContent = caption;
+      document.getElementById('lightbox').classList.add('open');
+      tone(600, 'square', 0.08);
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+
+    // ═══════════════════════════════════════════════════════
+    //  CHROME DINO RUNNER GAME ENGINE
+    // ═══════════════════════════════════════════════════════
+    const canvas = document.getElementById('dinoCanvas');
+    const ctx = canvas.getContext('2d');
+    const dinoScoreEl = document.getElementById('dinoScore');
+    const dinoHiScoreEl = document.getElementById('dinoHiScore');
+
+    let dino = { x: 50, y: 130, w: 24, h: 32, vy: 0, jumping: false };
+    let obstacles = [];
+    let dinoFrame = 0, dinoScore = 0, dinoHiScore = 0;
+    let dinoGameRunning = false, dinoGameOver = false;
+
+    function resetDinoGame() {
+      dino = { x: 50, y: 130, w: 24, h: 32, vy: 0, jumping: false };
+      obstacles = [];
+      dinoScore = 0;
+      dinoFrame = 0;
+      dinoGameOver = false;
+      dinoGameRunning = true;
+      tone(500, 'sine', 0.15);
+    }
+
+    function jumpDino() {
+      if (!dinoGameRunning && !dinoGameOver) resetDinoGame();
+      if (dinoGameOver) resetDinoGame();
+      if (!dino.jumping) {
+        dino.vy = -10;
+        dino.jumping = true;
+        tone(750, 'sine', 0.1);
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.code === 'Space' || e.code === 'ArrowUp') {
+        const dinoWin = document.getElementById('win-dino');
+        if (!dinoWin.classList.contains('hidden')) {
+          e.preventDefault();
+          jumpDino();
+        }
+      }
+    });
+
+    function updateDino() {
+      if (!dinoGameRunning || dinoGameOver) return;
+
+      dinoFrame++;
+      dinoScore = Math.floor(dinoFrame / 4);
+      dinoScoreEl.textContent = String(dinoScore).padStart(5, '0');
+      if (dinoScore > dinoHiScore) {
+        dinoHiScore = dinoScore;
+        dinoHiScoreEl.textContent = String(dinoHiScore).padStart(5, '0');
+      }
+
+      // Physics
+      dino.vy += 0.55;
+      dino.y += dino.vy;
+      if (dino.y >= 130) {
+        dino.y = 130;
+        dino.vy = 0;
+        dino.jumping = false;
+      }
+
+      // Spawn obstacles
+      if (dinoFrame % 90 === 0) {
+        obstacles.push({ x: 600, y: 134, w: 16, h: 28 });
+      }
+
+      // Move obstacles & collision
+      for (let i = 0; i < obstacles.length; i++) {
+        const obs = obstacles[i];
+        obs.x -= 5.5;
+
+        // Collision check
+        if (
+          dino.x < obs.x + obs.w &&
+          dino.x + dino.w > obs.x &&
+          dino.y < obs.y + obs.h &&
+          dino.y + dino.h > obs.y
+        ) {
+          dinoGameOver = true;
+          dinoGameRunning = false;
+          tone(180, 'sawtooth', 0.3);
+        }
+      }
+      obstacles = obstacles.filter(o => o.x + o.w > 0);
+    }
+
+    function drawDino() {
+      ctx.clearRect(0, 0, 600, 180);
+
+      // Ground Line
+      ctx.strokeStyle = '#555';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, 160);
+      ctx.lineTo(600, 160);
+      ctx.stroke();
+
+      // Draw Dino (Pixel T-Rex / Traveler shape)
+      ctx.fillStyle = '#333';
+      ctx.fillRect(dino.x, dino.y, dino.w, dino.h);
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(dino.x + 14, dino.y + 4, 4, 4); // Eye
+
+      // Draw Cacti Obstacles
+      ctx.fillStyle = '#2a9d8f';
+      obstacles.forEach(obs => {
+        ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
+      });
+
+      if (dinoGameOver) {
+        ctx.font = "bold 16px 'Fira Code', monospace";
+        ctx.fillStyle = '#ff007f';
+        ctx.fillText("GAME OVER — PRESS SPACE TO RESTART", 140, 90);
+      } else if (!dinoGameRunning) {
+        ctx.font = "bold 14px 'Fira Code', monospace";
+        ctx.fillStyle = '#555';
+        ctx.fillText("PRESS SPACE OR RESTART TO PLAY CHROME DINO", 110, 90);
+      }
+    }
+
+    function dinoLoop() {
+      updateDino();
+      drawDino();
+      requestAnimationFrame(dinoLoop);
+    }
+    dinoLoop();
+  </script>
+</body>
+</html>

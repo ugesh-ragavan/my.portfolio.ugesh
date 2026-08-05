@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chill the Lion – Interactive Wind Animation</title>
+  <meta name="description" content="Interactive 3D lion animation built with Three.js. Press and drag to make wind – the lion will surely appreciate it." />
+  <link rel="stylesheet" href="lion.css" />
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <div style="position:fixed; top:15px; left:50%; transform:translateX(-50%); width:min(92%, 1000px); padding:10px 20px; background:rgba(15, 23, 42, 0.75); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(255, 255, 255, 0.15); border-radius:16px; display:flex; justify-content:space-between; align-items:center; z-index:9999; box-shadow:0 10px 30px rgba(0,0,0,0.5); font-family:sans-serif; color:#fff;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span style="font-size:1.5rem;">🦁</span>
+      <div style="font-size:1.1rem; font-weight:900; letter-spacing:1px;">CHILL LION <span style="font-size:0.68rem; font-family:monospace; color:#00d2ff; display:block; margin-top:2px;">3D WIND SIMULATION</span></div>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <a href="../../Portfolio/main.html" style="padding:8px 16px; font-family:monospace; font-size:0.78rem; font-weight:700; color:#e2e8f0; background:rgba(255, 255, 255, 0.08); border:1px solid rgba(255, 255, 255, 0.15); border-radius:10px; text-decoration:none;">🕹️ Class Select</a>
+      <a href="../../index.html" style="padding:8px 16px; font-family:monospace; font-size:0.78rem; font-weight:700; color:#fff; background:linear-gradient(135deg, #00d2ff, #3a86ff); border-radius:10px; text-decoration:none;">⬅ Back to Bio Links</a>
+    </div>
+  </div>
+
+  <div id="world"></div>
+  <div id="instructions">
+    Press and drag to make wind<br />
+    <span class="lightInstructions">the lion will surely appreciate</span>
+  </div>
+
+  <!-- Three.js r71 (matches the API used in lion.js: PlaneBufferGeometry, CylinderGeometry, etc.) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js"></script>
+  <!-- OrbitControls (optional, commented out in lion.js) -->
+  <script src="https://cdn.rawgit.com/mrdoob/three.js/r71/examples/js/controls/OrbitControls.js"></script>
+
+  <script src="lion.js"></script>
+</body>
+</html>

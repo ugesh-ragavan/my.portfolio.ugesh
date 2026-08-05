@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Cube – Rubik's Cube Puzzle Game</title>
+  <meta name="description" content="A fully interactive Rubik's Cube puzzle game. Double tap to start a scrambled solve attempt and track your best times." />
+  <link rel="stylesheet" href="cube.css" />
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="cube-top-nav">
+    <div class="nav-brand">
+      <span class="brand-icon">🧊</span>
+      <div class="brand-title">
+        THE CUBE
+        <span>3D RUBIK'S SOLVER</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <button class="nav-btn" onclick="if(window.game) window.game.prefs(true);" style="cursor:pointer; background:rgba(0, 210, 255, 0.25); border:1.5px solid #00d2ff; color:#fff;">⚙️ Settings</button>
+      <a href="../../Portfolio/main.html" class="nav-btn">🕹️ Class Select</a>
+      <a href="../../index.html" class="nav-btn primary-btn">⬅ Back to Bio Links</a>
+    </div>
+  </header>
+
+  <div class="ui">
+
+    <div class="ui__background"></div>
+
+    <div class="ui__game"></div>
+
+    <div class="ui__texts">
+      <h1 class="text text--title">
+        <span>THE</span>
+        <span>CUBE</span>
+      </h1>
+      <div class="text text--note" onclick="if(window.game && window.game.game) window.game.game(true);">
+        👆 DOUBLE TAP OR CLICK HERE TO START
+      </div>
+      <div class="text text--timer">
+        0:00
+      </div>
+      <div class="text text--complete">
+        <span>Complete!</span>
+      </div>
+      <div class="text text--best-time">
+        <icon trophy></icon>
+        <span>Best Time!</span>
+      </div>
+    </div>
+
+    <div class="ui__prefs">
+      <range name="size" title="Cube Size" list="2,3,4,5"></range>
+      <range name="flip" title="Flip Type" list="Swift&nbsp;,Smooth,Bounce"></range>
+      <range name="scramble" title="Scramble Length" list="20,25,30"></range>
+      <range name="fov" title="Camera Angle" list="Ortographic,Perspective"></range>
+      <range name="theme" title="Color Scheme" list="Cube,Erno,Dust,Camo,Rain"></range>
+    </div>
+
+    <div class="ui__theme">
+      <range name="hue" title="Hue" color></range>
+      <range name="saturation" title="Saturation" color></range>
+      <range name="lightness" title="Lightness" color></range>
+    </div>
+
+    <div class="ui__stats">
+      <div class="stats" name="cube-size">
+        <i>Cube:</i><b>3x3x3</b>
+      </div>
+      <div class="stats" name="total-solves">
+        <i>Total solves:</i><b>-</b>
+      </div>
+      <div class="stats" name="best-time">
+        <i>Best time:</i><b>-</b>
+      </div>
+      <div class="stats" name="worst-time">
+        <i>Worst time:</i><b>-</b>
+      </div>
+      <div class="stats" name="average-5">
+        <i>Average of 5:</i><b>-</b>
+      </div>
+      <div class="stats" name="average-12">
+        <i>Average of 12:</i><b>-</b>
+      </div>
+      <div class="stats" name="average-25">
+        <i>Average of 25:</i><b>-</b>
+      </div>
+    </div>
+
+    <div class="ui__buttons">
+      <button class="btn btn--bl btn--stats" title="Trophy & Best Times">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0 0 11 15.9V18H8v2h8v-2h-3v-2.1a5.01 5.01 0 0 0 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></svg>
+      </button>
+      <button class="btn btn--br btn--prefs" title="Game Settings">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+      </button>
+      <button class="btn btn--bl btn--back" title="Back">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      </button>
+      <button class="btn btn--br btn--theme" title="Color Themes">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.25 19.55 10.58 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+      </button>
+      <button class="btn btn--br btn--reset" title="Reset Theme">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Three.js r121 (required by cube.js) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+
+  <script src="cube.js"></script>
+
+</body>
+</html>

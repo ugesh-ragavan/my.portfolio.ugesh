@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ugesh Ragavan — Big Data Engineer, Frontend Developer & Creative Designer. 2.5+ years experience. Open for hire.">
+  <meta name="description"
+    content="Ugesh Ragavan — Big Data Engineer & Creator. 3+ years experience scaling high-throughput data systems.">
   <meta name="author" content="Ugesh Ragavan">
-  <title>Ugesh Ragavan — Engineer & Frontend Developer</title>
-  <link rel="shortcut icon" href="images/fav.png" type="image/vnd.microsoft.icon">
+  <title>Ugesh Ragavan — Big Data Engineer & Creator</title>
+  <link rel="shortcut icon" href="../images/fav.png" type="image/vnd.microsoft.icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
   <style>
     /* ═══════════════════════════════════════════════════════════
        WEEKDAY PRO — SLEEK MODERN DESIGN SYSTEM (Omnira / Majd Inspired)
@@ -20,7 +24,8 @@
       --bg-card-hover: rgba(22, 28, 42, 0.85);
       --border: rgba(255, 255, 255, 0.08);
       --border-focus: rgba(99, 102, 241, 0.5);
-      --accent: #6366f1; /* Electric Indigo */
+      --accent: #6366f1;
+      /* Electric Indigo */
       --accent-glow: rgba(99, 102, 241, 0.35);
       --accent-cyan: #06b6d4;
       --accent-green: #10b981;
@@ -32,9 +37,18 @@
       --font-code: 'Fira Code', monospace;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html { scroll-behavior: smooth; color-scheme: dark; }
+    html {
+      scroll-behavior: smooth;
+      color-scheme: dark;
+    }
 
     body {
       background-color: var(--bg);
@@ -49,7 +63,7 @@
     .bg-grid {
       position: fixed;
       inset: 0;
-      background-image: 
+      background-image:
         linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
       background-size: 60px 60px;
@@ -136,7 +150,11 @@
       margin-left: 6px;
     }
 
-    nav { display: flex; align-items: center; gap: 28px; }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
 
     nav a {
       color: var(--text-muted);
@@ -147,7 +165,10 @@
       position: relative;
     }
 
-    nav a:hover, nav a.active { color: var(--text); }
+    nav a:hover,
+    nav a.active {
+      color: var(--text);
+    }
 
     nav a.active::after {
       content: '';
@@ -160,7 +181,11 @@
       border-radius: 2px;
     }
 
-    .nav-actions { display: flex; align-items: center; gap: 14px; }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
     .btn-shard {
       display: inline-flex;
@@ -203,9 +228,17 @@
     }
 
     /* ── Main Layout Container ── */
-    main { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    main {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-    section { padding: 100px 0 60px; }
+    section {
+      padding: 100px 0 60px;
+    }
 
     .section-header {
       margin-bottom: 50px;
@@ -270,7 +303,19 @@
       animation: pulse 1.8s infinite;
     }
 
-    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.8);
+      }
+    }
 
     .hero-name {
       font-size: clamp(2.8rem, 5vw, 4.5rem);
@@ -356,7 +401,7 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     .stat-badge-num {
@@ -441,7 +486,10 @@
       transition: all 0.2s;
     }
 
-    .copy-btn:hover { background: rgba(6, 182, 212, 0.1); border-color: var(--accent-cyan); }
+    .copy-btn:hover {
+      background: rgba(6, 182, 212, 0.1);
+      border-color: var(--accent-cyan);
+    }
 
     /* ── Skills Sphere Universe Section (Abdul Momin Inspired) ── */
     .skills-wrapper {
@@ -467,7 +515,9 @@
       cursor: grab;
     }
 
-    .skills-sphere-container:active { cursor: grabbing; }
+    .skills-sphere-container:active {
+      cursor: grabbing;
+    }
 
     #skillsCanvas {
       width: 100%;
@@ -483,7 +533,7 @@
       font-family: var(--font-code);
       font-size: 0.75rem;
       color: var(--text-dim);
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       padding: 4px 12px;
       border-radius: 20px;
       border: 1px solid var(--border);
@@ -672,7 +722,7 @@
       position: absolute;
       top: 14px;
       right: 14px;
-      background: rgba(0,0,0,0.75);
+      background: rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(8px);
       border: 1px solid var(--border);
       color: var(--accent-cyan);
@@ -835,7 +885,7 @@
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0, 0, 0, 0.85);
       backdrop-filter: blur(12px);
       z-index: 1000;
       display: flex;
@@ -847,7 +897,10 @@
       padding: 20px;
     }
 
-    .modal-overlay.open { opacity: 1; pointer-events: auto; }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
 
     .modal-card {
       background: #0f141f;
@@ -871,14 +924,33 @@
     }
 
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 110px; }
-      .hero-desc { margin: 0 auto 36px; }
-      .hero-ctas { justify-content: center; }
-      .about-grid, .skills-wrapper, .contact-wrapper { grid-template-columns: 1fr; }
-      nav { display: none; }
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 110px;
+      }
+
+      .hero-desc {
+        margin: 0 auto 36px;
+      }
+
+      .hero-ctas {
+        justify-content: center;
+      }
+
+      .about-grid,
+      .skills-wrapper,
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        display: none;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <div class="bg-grid"></div>
@@ -899,8 +971,11 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="nav-actions">
-      <a href="weekend.html" class="btn-shard">⚡ WEEKEND MODE</a>
-      <a href="img/Ugesh Resume 2021_A4.png" target="_blank" class="btn-primary">Resume ↓</a>
+      <a href="Creator.html" class="btn-shard">🎨 CREATOR MODE</a>
+      <a href="https://github.com/ugesh-ragavan" target="_blank" class="btn-shard" style="background: rgba(255,255,255,0.08);">🐙 GITHUB</a>
+      <a href="main.html" class="btn-shard" style="background: rgba(255,255,255,0.08);">🕹️ CLASS SELECT</a>
+      <a href="../index.html" class="btn-shard" style="background: rgba(255,255,255,0.08);">🔗 BIO LINKS</a>
+      <a href="../img/Ugesh Resume 2021_A4.png" target="_blank" class="btn-primary">Resume ↓</a>
     </div>
   </header>
 
@@ -916,20 +991,22 @@
           <span>//</span> <span id="typewriter">Big Data Engineer</span>
         </div>
         <p class="hero-desc">
-          Crafting high-throughput Big Data ETL pipelines & building high-performance modern web experiences. 2.5+ years of production experience scaling data & frontend solutions.
+          Crafting high-throughput Big Data ETL pipelines & distributed data processing systems. 3+ years of production
+          experience scaling enterprise data solutions & filming creative projects.
         </p>
         <div class="hero-ctas">
           <a href="#projects" class="btn-primary">View Featured Work →</a>
+          <a href="https://github.com/ugesh-ragavan" target="_blank" class="btn-secondary" style="display:inline-flex; align-items:center; gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub ↗</a>
           <a href="#contact" class="btn-secondary">Get In Touch</a>
         </div>
       </div>
 
       <div class="hero-avatar-wrap">
         <div class="hero-avatar-card">
-          <img src="images/Ugesh/ugesh_working.jpg" alt="Ugesh Ragavan" class="hero-avatar-img">
+          <img src="../images/Ugesh/ugesh_working.jpg" alt="Ugesh Ragavan" class="hero-avatar-img">
           <div class="hero-stat-badge">
-            <div class="stat-badge-num">2.5+</div>
-            <div class="stat-badge-lbl">Years Industry<br>Experience</div>
+            <div class="stat-badge-num">3+</div>
+            <div class="stat-badge-lbl">Years Data<br>Engineering</div>
           </div>
         </div>
       </div>
@@ -945,7 +1022,9 @@
       <div class="about-grid">
         <div class="about-card">
           <p class="bio-text">
-            Based in Coimbatore, India, I specialize in combining systems engineering rigor with creative frontend craft. Experienced in maintaining enterprise Hadoop/HBase clusters at Cognizant, alongside building production web & mobile platforms.
+            Based in Coimbatore, India, I specialize in combining systems engineering rigor with creative frontend
+            craft. Experienced in maintaining enterprise Hadoop/HBase clusters at Cognizant, alongside building
+            production web & mobile platforms.
           </p>
           <div class="biometrics-table">
             <div class="bio-item">
@@ -1111,7 +1190,8 @@
             </div>
             <div class="timeline-role">B.E. Computer Science & Engineering (8.2 CGPA)</div>
             <ul class="timeline-ul">
-              <li>Graduated with Distinction in CSE. Focused on algorithms, OOP, database systems & web engineering.</li>
+              <li>Graduated with Distinction in CSE. Focused on algorithms, OOP, database systems & web engineering.
+              </li>
             </ul>
           </div>
         </div>
@@ -1127,13 +1207,15 @@
 
       <div class="projects-grid">
         <!-- Project 1 -->
-        <div class="project-card" onclick="openModal('TMT Wholesale Mart', 'Full-stack wholesale commercial mart web application featuring responsive product catalog, customer database, and admin dashboard.', 'https://tirumurugantraderss.com/')">
+        <div class="project-card"
+          onclick="openModal('TMT Wholesale Mart', 'Full-stack wholesale commercial mart web application featuring responsive product catalog, customer database, and admin dashboard.', 'https://tirumurugantraderss.com/')">
           <div class="project-img-box" style="background-image: url('img/portfolio/Websites/food1.png');">
             <span class="project-badge">WEB APP</span>
           </div>
           <div class="project-body">
             <h3 class="project-title">TMT Wholesale Mart</h3>
-            <p class="project-desc">Commercial wholesale portal engineered for seamless product cataloging and responsive client navigation.</p>
+            <p class="project-desc">Commercial wholesale portal engineered for seamless product cataloging and
+              responsive client navigation.</p>
             <div class="project-footer">
               <div class="project-stack">
                 <span class="stack-pill">HTML/CSS</span>
@@ -1145,13 +1227,15 @@
         </div>
 
         <!-- Project 2 -->
-        <div class="project-card" onclick="openModal('AA Industries Portal', 'Corporate industrial portal showcasing precision mechanical specs, die designs, and manufacturing indices.', 'https://its-me-ugesh.github.io/aaindus/')">
+        <div class="project-card"
+          onclick="openModal('AA Industries Portal', 'Corporate industrial portal showcasing precision mechanical specs, die designs, and manufacturing indices.', 'https://its-me-ugesh.github.io/aaindus/')">
           <div class="project-img-box" style="background-image: url('img/portfolio/Websites/aa.png');">
             <span class="project-badge">WEB PORTAL</span>
           </div>
           <div class="project-body">
             <h3 class="project-title">AA Industries Portal</h3>
-            <p class="project-desc">Clean corporate web presence designed for high-density spec sheets and industrial machinery presentation.</p>
+            <p class="project-desc">Clean corporate web presence designed for high-density spec sheets and industrial
+              machinery presentation.</p>
             <div class="project-footer">
               <div class="project-stack">
                 <span class="stack-pill">HTML/CSS</span>
@@ -1163,7 +1247,8 @@
         </div>
 
         <!-- Project 3 -->
-        <div class="project-card" onclick="openModal('HP Omen Laptop Promo', 'Cinematic product showcase B-roll featuring custom motion graphics, sound design, and sharp video edits.', 'https://www.youtube.com/watch?v=K8WUKFCo07Q')">
+        <div class="project-card"
+          onclick="openModal('HP Omen Laptop Promo', 'Cinematic product showcase B-roll featuring custom motion graphics, sound design, and sharp video edits.', 'https://www.youtube.com/watch?v=K8WUKFCo07Q')">
           <div class="project-img-box" style="background-image: url('img/portfolio/VideoE/omen.jpg');">
             <span class="project-badge">VIDEO REEL</span>
           </div>
@@ -1181,7 +1266,8 @@
         </div>
 
         <!-- Project 4 -->
-        <div class="project-card" onclick="openModal('Texperia Cyber Teaser', 'Tech expo event teaser video with synthesized audio sync, frame-accurate cuts, and glitch aesthetic.', 'https://www.youtube.com/watch?v=Lx_7EKrbp48')">
+        <div class="project-card"
+          onclick="openModal('Texperia Cyber Teaser', 'Tech expo event teaser video with synthesized audio sync, frame-accurate cuts, and glitch aesthetic.', 'https://www.youtube.com/watch?v=Lx_7EKrbp48')">
           <div class="project-img-box" style="background-image: url('img/portfolio/VideoE/cyb.jpg');">
             <span class="project-badge">EVENT REEL</span>
           </div>
@@ -1198,7 +1284,8 @@
         </div>
 
         <!-- Project 5 -->
-        <div class="project-card" onclick="openModal('Foam Kraft Brand Suite', 'Complete brand visual identity design system including corporate collateral, vectors, and color sheets.', 'img/portfolio/GraphicDesign/fc2.jpg')">
+        <div class="project-card"
+          onclick="openModal('Foam Kraft Brand Suite', 'Complete brand visual identity design system including corporate collateral, vectors, and color sheets.', 'img/portfolio/GraphicDesign/fc2.jpg')">
           <div class="project-img-box" style="background-image: url('img/portfolio/GraphicDesign/fc2.jpg');">
             <span class="project-badge">BRAND DESIGN</span>
           </div>
@@ -1249,9 +1336,11 @@
           </div>
           <div class="form-group">
             <label>Message</label>
-            <textarea name="message" rows="4" class="form-control" placeholder="Hello Ugesh, we'd love to talk about..." required></textarea>
+            <textarea name="message" rows="4" class="form-control" placeholder="Hello Ugesh, we'd love to talk about..."
+              required></textarea>
           </div>
-          <button type="submit" class="btn-primary" style="align-self:flex-start; padding:12px 28px;">Send Message →</button>
+          <button type="submit" class="btn-primary" style="align-self:flex-start; padding:12px 28px;">Send Message
+            →</button>
         </form>
       </div>
     </section>
@@ -1341,7 +1430,7 @@
     window.addEventListener('resize', resizeCanvas);
 
     const skillsList = [
-      'HTML5', 'CSS3', 'JavaScript', 'React Native', 'Flutter', 
+      'HTML5', 'CSS3', 'JavaScript', 'React Native', 'Flutter',
       'Hadoop', 'HDFS', 'HBase', 'Sqoop', 'MapReduce',
       'Python', 'SQL', 'Linux', 'Git',
       'Photoshop', 'Illustrator', 'Premiere Pro', 'After Effects'
@@ -1428,4 +1517,5 @@
     renderSphere();
   </script>
 </body>
+
 </html>

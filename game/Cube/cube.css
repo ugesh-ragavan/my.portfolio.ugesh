@@ -1,0 +1,438 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;900&family=Fira+Code:wght@600;700&display=swap');
+
+*, *::before, *::after {
+  user-select: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  text-transform: uppercase;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  line-height: 1;
+  cursor: default;
+  overflow: hidden;
+  height: 100%;
+  font-size: 16px;
+  background: #090c15;
+  color: #fff;
+}
+
+/* Top Navigation Bar */
+.cube-top-nav {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(95%, 1100px);
+  padding: 14px 28px;
+  background: rgba(9, 12, 21, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(0, 210, 255, 0.4);
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 210, 255, 0.2);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  font-size: 2rem;
+}
+
+.brand-title {
+  font-size: 1.45rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+.brand-title span {
+  font-size: 0.9rem;
+  font-family: 'Fira Code', monospace;
+  color: #00d2ff;
+  display: block;
+  margin-top: 3px;
+  font-weight: 800;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  font-family: 'Fira Code', monospace;
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(0, 210, 255, 0.3);
+  border-color: #00d2ff;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+}
+
+.nav-btn.primary-btn {
+  background: linear-gradient(135deg, #00d2ff, #3a86ff);
+  color: #fff;
+  border: none;
+}
+
+.nav-btn.primary-btn:hover {
+  box-shadow: 0 0 25px rgba(0, 210, 255, 0.7);
+  transform: translateY(-1px);
+}
+
+/* UI Game Container */
+.ui {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  color: #ffffff;
+}
+
+.ui__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: background 500ms ease;
+  background: #090c15 !important;
+}
+
+.ui__background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 50% 40%, rgba(0, 210, 255, 0.32) 0%, rgba(9, 12, 21, 0.98) 75%) !important;
+}
+
+.ui__game {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: all;
+  z-index: 2;
+}
+
+.ui__game canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ui__texts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+.text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  line-height: 0.75;
+  perspective: 100rem;
+  opacity: 0;
+}
+
+.text i {
+  display: inline-block;
+  opacity: 0;
+  white-space: pre-wrap;
+}
+
+.text--title {
+  bottom: 74%;
+  font-size: 4.8rem;
+  height: 1.2em;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.95);
+}
+
+.text--title span {
+  display: block;
+}
+
+.text--title span:first-child {
+  font-size: 0.52em;
+  margin-bottom: 0.3em;
+  color: #00d2ff;
+  text-shadow: 0 0 20px rgba(0, 210, 255, 0.9);
+}
+
+.text--note {
+  top: 83%;
+  font-size: 1.4rem;
+  font-weight: 900;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: 1px;
+  color: #090c15;
+  background: #00d2ff;
+  display: inline-block;
+  padding: 14px 36px;
+  border-radius: 35px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 210, 255, 0.6);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.text--note:hover {
+  background: #ffffff;
+  color: #090c15;
+  transform: translateX(-50%) scale(1.08);
+  box-shadow: 0 0 35px rgba(255, 255, 255, 0.8);
+}
+
+.text--timer {
+  bottom: 77%;
+  font-size: 4.5rem;
+  font-weight: 900;
+  line-height: 1;
+  font-family: 'Fira Code', monospace;
+  color: #39ff14;
+  text-shadow: 0 0 20px rgba(57, 255, 20, 0.6);
+}
+
+.text--complete,
+.text--best-time {
+  font-size: 2.5rem;
+  font-weight: 900;
+  top: 82%;
+  line-height: 1;
+  color: #ff007f;
+  text-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
+}
+
+/* Settings Panels & Stats */
+.ui__prefs,
+.ui__stats,
+.ui__theme {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 4;
+}
+
+.range {
+  position: relative;
+  width: min(88vw, 380px);
+  z-index: 1;
+  opacity: 0;
+}
+
+.range:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.range__label {
+  position: relative;
+  font-size: 1.15rem;
+  font-weight: 800;
+  padding-bottom: 0.7rem;
+  color: #ffffff;
+  font-family: 'Fira Code', monospace;
+}
+
+.range__track {
+  position: relative;
+  height: 1.4rem;
+  margin: 0 0.5rem;
+}
+
+.range__track-line {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+  height: 5px;
+  top: 50%;
+  margin-top: -2.5px;
+  left: -0.5rem;
+  right: -0.5rem;
+}
+
+.range__handle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 0;
+  cursor: pointer;
+}
+
+.range__handle > div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 0.45rem;
+  margin-left: -0.9rem;
+  margin-top: -0.9rem;
+  background: #00d2ff;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 18px rgba(0, 210, 255, 0.9);
+}
+
+.range__list {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  position: relative;
+  padding-top: 0.7rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #cbd5e1;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Stats */
+.stats {
+  position: relative;
+  width: min(88vw, 400px);
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0;
+  padding: 14px 0;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.15);
+}
+
+.stats > i {
+  display: block;
+  color: #cbd5e1;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.stats > b {
+  display: block;
+  font-size: 1.35rem;
+  color: #00d2ff;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Control Buttons */
+.ui__buttons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.btn {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(0, 210, 255, 0.4);
+  border-radius: 18px;
+  position: absolute;
+  pointer-events: all;
+  font-size: 1.8rem;
+  color: #00d2ff;
+  width: 68px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 210, 255, 0.2);
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #00d2ff;
+  color: #090c15;
+  border-color: #ffffff;
+  transform: scale(1.15);
+  box-shadow: 0 0 25px rgba(0, 210, 255, 0.8);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn--bl {
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.btn--br {
+  bottom: 2rem;
+  right: 2rem;
+}
+
+/* Icon SVGs fallback styling */
+svg {
+  display: block;
+  width: 34px;
+  height: 34px;
+  fill: currentColor;
+}
