@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#FFFDF7]">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Wellness Content Hub | Herbalife Stall Experience</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#2ECC71',
+              deep: '#1E8449',
+              gold: '#FFC72C',
+              orange: '#FF8C00',
+              bg: '#FFFDF7',
+              ink: '#1F2A24'
+            }
+          },
+          fontFamily: {
+            heading: ['Poppins', 'Baloo 2', 'sans-serif'],
+            body: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom CSS -->
+  <script type="module" crossorigin src="./assets/dashboard-u8naDw2A.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/staff-modal-CNHwH4TI.js">
+  <link rel="stylesheet" crossorigin href="./assets/staff-modal-BhOloT0x.css">
+</head>
+<body class="min-h-full flex flex-col justify-between bg-brand-bg text-brand-ink antialiased relative overflow-x-hidden">
+
+  <!-- Ambient wellness background glow -->
+  <div class="fixed top-0 left-1/4 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+  <div class="fixed bottom-0 right-1/4 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+
+  <!-- Header -->
+  <header class="w-full bg-white/90 backdrop-blur-md border-b border-emerald-100 shadow-sm sticky top-0 z-30">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-brand-deep to-brand-green flex items-center justify-center text-white text-lg shadow-soft-green font-bold">
+          🌿
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="font-heading font-extrabold text-base sm:text-lg tracking-tight text-brand-deep">HERBALIFE</span>
+            <span class="bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider">Stall</span>
+          </div>
+          <p class="text-[10px] text-gray-500 font-medium -mt-0.5">Interactive Wellness Hub</p>
+        </div>
+      </div>
+
+      <!-- User Greeting & Controls -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        
+        <div id="userBadge" class="flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full text-xs font-semibold text-brand-deep">
+          <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
+          <span id="headerUserName">Guest</span>
+          <span id="headerUserMood" class="text-xs bg-amber-100 px-1.5 py-0.2 rounded-md">🌟</span>
+        </div>
+
+        <button
+          id="btnNewGuest"
+          class="flex items-center gap-1.5 bg-brand-deep hover:bg-emerald-800 text-white text-xs sm:text-sm font-semibold px-3 py-2 rounded-xl shadow-soft-green transition-all touch-btn"
+          title="Reset for next stall attendee"
+        >
+          <i class="fa-solid fa-user-plus text-xs"></i>
+          <span class="hidden xs:inline">New Guest</span>
+        </button>
+
+        <button
+          id="btnStaffPortal"
+          class="btn-open-staff-data flex items-center gap-1.5 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 px-3 py-2 rounded-xl text-xs font-heading font-bold transition-all shadow-sm touch-btn"
+          title="View all registered attendee leads & export CSV"
+        >
+          <i class="fa-solid fa-database text-amber-700"></i>
+          <span class="hidden xs:inline">Stall Records</span>
+          <span id="staffDataCountBadge" class="bg-amber-200 text-amber-950 text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Dashboard Content -->
+  <main class="flex-1 max-w-5xl mx-auto w-full px-4 py-6 space-y-6">
+    
+    <!-- Hero Greeting Banner -->
+    <div class="p-6 rounded-3xl bg-gradient-to-r from-brand-deep via-brand-green to-emerald-600 text-white shadow-soft-green relative overflow-hidden">
+      <div class="absolute top-0 right-0 transform translate-x-6 -translate-y-6 w-36 h-36 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+      
+      <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold mb-2">
+            <span id="bannerMoodIcon">🌟</span>
+            <span id="bannerMoodText">Feeling Fantastic</span>
+          </div>
+          <h1 class="font-heading font-extrabold text-2xl sm:text-3xl tracking-tight">
+            Welcome, <span id="bannerUserName">Friend</span>! 🌿
+          </h1>
+          <p class="text-xs sm:text-sm text-emerald-100 mt-1 max-w-lg">
+            Choose an interactive module below to spin for Afresh drinks, play Tamil cinema riddles, test your health quiz, and check your BMI!
+          </p>
+        </div>
+
+        <div class="bg-white/15 backdrop-blur-md border border-white/25 rounded-2xl p-3 text-center min-w-[130px] flex sm:flex-col justify-between items-center self-stretch sm:self-auto">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-200">Perks Claimed</span>
+          <div class="flex items-center gap-1.5 mt-1 font-heading font-extrabold text-2xl text-brand-gold">
+            <i class="fa-solid fa-trophy text-lg text-brand-gold"></i>
+            <span id="perksWonCount">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 Interactive Modules Tab Buttons -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 bg-white p-2 rounded-2xl border border-emerald-100 shadow-sm">
+      
+      <button
+        id="tabBtnWheel"
+        class="tab-nav-btn active flex items-center justify-center gap-2 py-3 px-3 rounded-xl font-heading font-bold text-xs sm:text-sm transition-all bg-emerald-100 text-brand-deep border border-emerald-300 shadow-sm"
+      >
+        <span>🎯</span>
+        <span>Wheel of Fortune</span>
+      </button>
+
+      <button
+        id="tabBtnBmi"
+        class="tab-nav-btn flex items-center justify-center gap-2 py-3 px-3 rounded-xl font-heading font-bold text-xs sm:text-sm transition-all text-gray-600 hover:bg-emerald-50 hover:text-brand-deep"
+      >
+        <span>📊</span>
+        <span>Quick BMI Check</span>
+      </button>
+
+      <button
+        id="tabBtnRiddles"
+        class="tab-nav-btn flex items-center justify-center gap-2 py-3 px-3 rounded-xl font-heading font-bold text-xs sm:text-sm transition-all text-gray-600 hover:bg-emerald-50 hover:text-brand-deep"
+      >
+        <span>🎬</span>
+        <span>Cinema Riddles</span>
+      </button>
+
+      <button
+        id="tabBtnQuiz"
+        class="tab-nav-btn flex items-center justify-center gap-2 py-3 px-3 rounded-xl font-heading font-bold text-xs sm:text-sm transition-all text-gray-600 hover:bg-emerald-50 hover:text-brand-deep"
+      >
+        <span>🧠</span>
+        <span>Health Quiz</span>
+      </button>
+
+    </div>
+
+    <!-- ==================== MODULE 1: WHEEL OF FORTUNE ==================== -->
+    <section id="moduleWheel" class="module-pane bg-white rounded-3xl p-6 sm:p-8 shadow-soft-card border border-emerald-100 flex flex-col items-center text-center">
+      
+      <div class="mb-4">
+        <div class="inline-flex items-center gap-1.5 bg-amber-100 text-amber-900 border border-amber-200 px-3 py-1 rounded-full text-xs font-bold mb-2">
+          <i class="fa-solid fa-sparkles text-amber-500"></i>
+          <span>1 SPIN PER GUEST • WEIGHTED FORTUNE</span>
+        </div>
+        <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-brand-ink">
+          Wheel of Fortune 🎯
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-500 mt-1 max-w-md mx-auto">
+          Spin the wheel to win Afresh drinks (Saffron, Ginger, Lemon, Tulsi), healthy snack boxes, surprise gifts, or the Jackpot!
+        </p>
+      </div>
+
+      <!-- Canvas Wheel & Pointer Needle Container -->
+      <div class="relative my-4 flex items-center justify-center">
+        
+        <!-- Needle Pointer at Top -->
+        <div class="absolute -top-3 z-20 flex flex-col items-center drop-shadow-md pointer-events-none">
+          <div class="w-6 h-8 bg-gradient-to-b from-brand-gold to-amber-600 rounded-t-sm" style="clip-path: polygon(50% 100%, 0 0, 100% 0);"></div>
+          <div class="w-3.5 h-3.5 rounded-full bg-brand-deep border-2 border-white -mt-7 shadow-sm"></div>
+        </div>
+
+        <!-- Canvas Element -->
+        <div class="p-2 rounded-full bg-gradient-to-b from-amber-200 via-emerald-100 to-amber-300 shadow-2xl">
+          <canvas id="wheelCanvas" width="340" height="340" class="rounded-full max-w-[290px] max-h-[290px] sm:max-w-[340px] sm:max-h-[340px]"></canvas>
+        </div>
+      </div>
+
+      <!-- Spin Action Button -->
+      <div class="w-full max-w-xs mt-3">
+        <button
+          id="btnSpinWheel"
+          class="w-full h-15 bg-gradient-to-r from-amber-400 via-brand-gold to-yellow-500 hover:from-amber-500 hover:to-amber-400 text-brand-ink font-heading font-extrabold text-lg rounded-2xl shadow-soft-gold flex items-center justify-center gap-2 transition-all active:scale-95 touch-btn"
+        >
+          <i class="fa-solid fa-arrows-rotate text-lg"></i>
+          <span>SPIN THE WHEEL NOW!</span>
+        </button>
+        <div id="wheelCompletedNotice" class="hidden p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-brand-deep font-bold text-sm">
+          ✅ Wheel completed for this session! Check your unlocked voucher below.
+        </div>
+      </div>
+
+      <!-- Probabilities & Prizes Legend -->
+      <div class="mt-6 w-full max-w-lg bg-brand-bg/80 rounded-2xl p-3.5 border border-emerald-100 text-left">
+        <span class="text-[11px] font-bold text-brand-deep uppercase tracking-wider block mb-2 text-center">
+          Prizes & Stall Probabilities
+        </span>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs text-gray-600">
+          <div class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-emerald-50">
+            <span>🍵</span>
+            <div><strong class="text-brand-deep">Afresh Drink</strong> (85%)</div>
+          </div>
+          <div class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-emerald-50">
+            <span>🥟</span>
+            <div><strong class="text-brand-deep">Snack Box</strong> (12%)</div>
+          </div>
+          <div class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-emerald-50">
+            <span>🎁</span>
+            <div><strong class="text-amber-700">Surprise Gift</strong> (1.5%)</div>
+          </div>
+          <div class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-emerald-50">
+            <span>🏆</span>
+            <div><strong class="text-amber-800">Jackpot</strong> (0.5%)</div>
+          </div>
+          <div class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-emerald-50">
+            <span>🧠</span>
+            <div><strong class="text-emerald-700">Try Quiz</strong> (1.0%)</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== MODULE 2: QUICK HEALTH & BMI INDICATOR ==================== -->
+    <section id="moduleBmi" class="module-pane hidden bg-white rounded-3xl p-6 sm:p-8 shadow-soft-card border border-emerald-100">
+      
+      <div class="text-center mb-6">
+        <div class="inline-flex items-center gap-1.5 bg-blue-100 text-blue-900 border border-blue-200 px-3 py-1 rounded-full text-xs font-bold mb-2">
+          <i class="fa-solid fa-heart-pulse text-blue-600"></i>
+          <span>MODULE 2 • BODY MASS INDEX & VITALITY</span>
+        </div>
+        <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-brand-ink">
+          Quick Health & BMI Indicator 📊
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-500 mt-1 max-w-md mx-auto">
+          Enter your age, height, and weight to calculate your BMI score and personalized nutrition suggestions.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        
+        <!-- BMI Input Form -->
+        <div class="bg-brand-bg/50 rounded-3xl p-5 border border-emerald-100 space-y-4">
+          
+          <div>
+            <label class="block font-heading font-bold text-xs text-brand-ink mb-1.5">
+              Age (Years)
+            </label>
+            <input
+              type="number"
+              id="bmiAge"
+              min="10"
+              max="100"
+              value="28"
+              class="w-full h-12 px-4 rounded-xl border border-emerald-200 bg-white font-mono text-sm focus:border-brand-green outline-none"
+            />
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="font-heading font-bold text-xs text-brand-ink">
+                Height (cm)
+              </label>
+              <span id="bmiHeightDisplay" class="text-xs font-mono font-bold text-brand-deep">170 cm</span>
+            </div>
+            <input
+              type="range"
+              id="bmiHeight"
+              min="120"
+              max="220"
+              value="170"
+              class="w-full accent-brand-green"
+            />
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="font-heading font-bold text-xs text-brand-ink">
+                Weight (kg)
+              </label>
+              <span id="bmiWeightDisplay" class="text-xs font-mono font-bold text-brand-deep">68 kg</span>
+            </div>
+            <input
+              type="range"
+              id="bmiWeight"
+              min="35"
+              max="140"
+              value="68"
+              class="w-full accent-brand-green"
+            />
+          </div>
+
+          <button
+            id="btnCalculateBmi"
+            class="w-full h-12 bg-gradient-to-r from-brand-deep to-brand-green text-white font-heading font-bold text-sm rounded-xl shadow-soft-green flex items-center justify-center gap-2 transition-all active:scale-95 touch-btn"
+          >
+            <i class="fa-solid fa-calculator"></i>
+            <span>Calculate Health & BMI Indicator</span>
+          </button>
+
+          <a
+            href="report.html"
+            class="w-full h-10 bg-emerald-50 hover:bg-emerald-100 text-brand-deep text-xs font-bold rounded-xl border border-emerald-200 flex items-center justify-center gap-1.5 transition-colors"
+          >
+            <span>Open Full Health Report Page</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+          </a>
+
+        </div>
+
+        <!-- BMI Gauge & Results Display -->
+        <div class="bg-gradient-to-br from-brand-deep to-emerald-800 text-white rounded-3xl p-6 shadow-soft-green space-y-4">
+          
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-gold bg-white/10 px-3 py-1 rounded-full">
+              Your BMI Result
+            </span>
+            <span id="bmiCategoryBadge" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-400/30 border border-emerald-300 text-white">
+              Ideal Weight
+            </span>
+          </div>
+
+          <div class="text-center py-2">
+            <span class="text-xs text-emerald-200 block uppercase">BMI Score</span>
+            <div id="bmiScoreText" class="font-heading font-extrabold text-4xl sm:text-5xl text-brand-gold">
+              23.5
+            </div>
+            <span id="bmiZoneTitle" class="text-sm font-semibold text-white mt-1 block">
+              Normal / Healthy Weight Range (18.5 - 24.9)
+            </span>
+          </div>
+
+          <!-- Color Visual Gauge Bar -->
+          <div class="space-y-1.5 pt-2">
+            <div class="relative py-2">
+              <div class="gauge-meter w-full"></div>
+              <div id="gaugePin" class="gauge-pin" style="left: 45%;"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-emerald-200 font-semibold px-1">
+              <span>Underweight (&lt;18.5)</span>
+              <span>Ideal (18.5-24.9)</span>
+              <span>Overweight (25-29.9)</span>
+              <span>Obesity (30+)</span>
+            </div>
+          </div>
+
+          <!-- Personalized Summary Card -->
+          <div class="p-3.5 bg-white/10 backdrop-blur-md rounded-2xl border border-white/15 text-xs text-emerald-100">
+            <p id="bmiPersonalizedSummary">
+              Hey <strong id="bmiGuestName">Friend</strong>! To maintain your ideal energy levels, focus on balanced nutrition with daily Herbalife Formula 1 Shake & hydrating Afresh tea!
+            </p>
+          </div>
+
+          <button
+            id="btnSaveBmiPerk"
+            class="w-full h-12 bg-gradient-to-r from-amber-400 to-yellow-500 text-brand-ink font-heading font-extrabold text-xs sm:text-sm rounded-xl shadow-soft-gold flex items-center justify-center gap-2 transition-all active:scale-95 touch-btn"
+          >
+            <i class="fa-solid fa-award text-amber-900"></i>
+            <span>Save BMI Report & Claim Stall Token 🎉</span>
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== MODULE 3: TAMIL CINEMA FUN RIDDLES ==================== -->
+    <section id="moduleRiddles" class="module-pane hidden bg-white rounded-3xl p-6 sm:p-8 shadow-soft-card border border-emerald-100">
+      
+      <div class="text-center mb-6">
+        <div class="inline-flex items-center gap-1.5 bg-pink-100 text-pink-900 border border-pink-200 px-3 py-1 rounded-full text-xs font-bold mb-2">
+          <i class="fa-solid fa-clapperboard text-pink-600"></i>
+          <span>MODULE 3 • 3 CINEMA & WELLNESS RIDDLES</span>
+        </div>
+        <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-brand-ink">
+          Tamil Cinema Fun Riddles 🎬
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-500 mt-1 max-w-md mx-auto">
+          Answer 3 fun Tamil movie dialogues tied to wellness! Score 3/3 for a <strong>Snack Box</strong>, 2/3 for an <strong>Afresh Drink</strong>!
+        </p>
+      </div>
+
+      <!-- Riddle Container -->
+      <div id="riddleGameBox" class="max-w-xl mx-auto space-y-6">
+        
+        <div class="flex items-center justify-between">
+          <span id="riddleProgressText" class="text-xs font-bold text-brand-deep bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
+            Question 1 of 3
+          </span>
+          <span id="riddleScorePill" class="text-xs font-bold text-brand-deep bg-amber-100 border border-amber-200 px-3 py-1 rounded-full font-mono">
+            Score: 0 / 3
+          </span>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-xs sm:text-sm font-medium text-amber-950 leading-relaxed shadow-sm" id="riddleDialogueText">
+          🎬 "Naan oru thadava sonna, nooru thadava sonna madhiri!" — Superstar Rajinikanth
+        </div>
+
+        <h3 id="riddleQuestionText" class="font-heading font-bold text-base sm:text-lg text-brand-ink leading-snug">
+          Loading question...
+        </h3>
+
+        <!-- 4 Options -->
+        <div id="riddleOptionsList" class="space-y-3">
+          <!-- Options rendered dynamically -->
+        </div>
+
+        <div id="riddleExplanationBox" class="hidden p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-brand-deep font-medium">
+          <!-- Explanation -->
+        </div>
+
+        <button
+          id="btnNextRiddle"
+          class="hidden w-full h-14 bg-gradient-to-r from-brand-deep to-brand-green text-white font-heading font-bold text-base rounded-2xl shadow-soft-green flex items-center justify-center gap-2 transition-all active:scale-95 touch-btn"
+        >
+          <span>Next Riddle</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+      </div>
+
+      <!-- Riddle Results Box -->
+      <div id="riddleResultBox" class="hidden max-w-lg mx-auto text-center space-y-5 py-6">
+        <div id="riddleResultIconBox" class="w-18 h-18 p-4 rounded-3xl bg-gradient-to-tr from-brand-deep to-brand-green text-white flex items-center justify-center mx-auto text-4xl shadow-soft-green">
+          🎉
+        </div>
+        <div>
+          <h3 id="riddleResultTitle" class="font-heading font-extrabold text-2xl sm:text-3xl text-brand-ink">
+            Score: 3 / 3 Correct!
+          </h3>
+          <p id="riddleResultRewardDesc" class="text-sm text-gray-600 mt-2 max-w-md mx-auto">
+            You won a Free Healthy Snack Box (Poha Dumplings or Finger Millet Balls)!
+          </p>
+        </div>
+        <div id="riddleRewardActionArea" class="pt-3">
+          <!-- Action Buttons / Next Steps -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== MODULE 4: BASIC HEALTH QUIZ ==================== -->
+    <section id="moduleQuiz" class="module-pane hidden bg-white rounded-3xl p-6 sm:p-8 shadow-soft-card border border-emerald-100">
+      
+      <div class="text-center mb-6">
+        <div class="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-900 border border-emerald-200 px-3 py-1 rounded-full text-xs font-bold mb-2">
+          <i class="fa-solid fa-brain text-emerald-700"></i>
+          <span>MODULE 4 • 3 BASIC WELLNESS QUESTIONS</span>
+        </div>
+        <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-brand-ink">
+          Basic Health & Nutrition Quiz 🧠
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-500 mt-1 max-w-md mx-auto">
+          Answer 3 quick wellness questions! Score 3/3 for a <strong>Snack Box</strong>, 2/3 for an <strong>Afresh Drink</strong>!
+        </p>
+      </div>
+
+      <!-- Health Quiz Container -->
+      <div id="healthQuizGameBox" class="max-w-xl mx-auto space-y-6">
+        
+        <div class="flex items-center justify-between">
+          <span id="quizProgressText" class="text-xs font-bold text-brand-deep bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
+            Question 1 of 3
+          </span>
+          <span id="quizScorePill" class="text-xs font-bold text-brand-deep bg-amber-100 border border-amber-200 px-3 py-1 rounded-full font-mono">
+            Score: 0 / 3
+          </span>
+        </div>
+
+        <span id="quizCategoryBadge" class="text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 inline-block">
+          Daily Hydration
+        </span>
+
+        <h3 id="quizQuestionText" class="font-heading font-bold text-base sm:text-lg text-brand-ink leading-snug">
+          Loading question...
+        </h3>
+
+        <!-- 4 Options -->
+        <div id="quizOptionsList" class="space-y-3">
+          <!-- Options rendered dynamically -->
+        </div>
+
+        <div id="quizTipBox" class="hidden p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-brand-deep font-medium">
+          <!-- Tip -->
+        </div>
+
+        <button
+          id="btnNextQuiz"
+          class="hidden w-full h-14 bg-gradient-to-r from-brand-deep to-brand-green text-white font-heading font-bold text-base rounded-2xl shadow-soft-green flex items-center justify-center gap-2 transition-all active:scale-95 touch-btn"
+        >
+          <span>Next Question</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+      </div>
+
+      <!-- Quiz Results Box -->
+      <div id="quizResultBox" class="hidden max-w-lg mx-auto text-center space-y-5 py-6">
+        <div id="quizResultIconBox" class="w-18 h-18 p-4 rounded-3xl bg-gradient-to-tr from-amber-400 to-yellow-500 text-brand-ink flex items-center justify-center mx-auto text-4xl shadow-soft-gold">
+          🏆
+        </div>
+        <div>
+          <h3 id="quizResultTitle" class="font-heading font-extrabold text-2xl sm:text-3xl text-brand-ink">
+            Score: 3 / 3 Correct!
+          </h3>
+          <p id="quizResultRewardDesc" class="text-sm text-gray-600 mt-2 max-w-md mx-auto">
+            You won a Free Wholesome Snack Box!
+          </p>
+        </div>
+        <div id="quizRewardActionArea" class="pt-3">
+          <!-- Action -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== REWARDS TRAY ==================== -->
+    <section id="rewardsTray" class="p-5 sm:p-6 rounded-3xl bg-amber-50/80 border border-amber-200 shadow-soft-card">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">🎁</span>
+          <div>
+            <h3 class="font-heading font-bold text-base sm:text-lg text-brand-ink">
+              Your Unlocked Stall Vouchers & Perks (<span id="unlockedRewardsCount">0</span>)
+            </h3>
+            <p class="text-xs text-gray-500">Show these tokens to our wellness coaches at the stall counter!</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="rewardsListGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="p-4 rounded-2xl bg-white border border-dashed border-gray-300 text-center text-xs text-gray-400 col-span-full">
+          Play any game above to unlock instant stall vouchers!
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== CELEBRATORY REWARD MODAL POPUP WITH CHEERS ==================== -->
+  <div id="rewardModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-ink/65 backdrop-blur-sm hidden">
+    <div class="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border-2 border-brand-gold overflow-hidden animate-pop">
+      
+      <!-- Gold Top Banner -->
+      <div class="bg-gradient-to-r from-amber-400 via-brand-gold to-yellow-500 px-6 pt-6 pb-8 text-center text-brand-ink relative">
+        <div class="inline-flex items-center gap-1.5 bg-brand-ink/10 border border-brand-ink/15 text-brand-ink px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
+          <i class="fa-solid fa-sparkles text-amber-900"></i>
+          <span>STALL AWARD & CHEERS! 🥂</span>
+        </div>
+        <h3 class="font-heading font-extrabold text-2xl sm:text-3xl text-brand-ink tracking-tight">
+          Congratulations! 🎉
+        </h3>
+        <p class="text-xs sm:text-sm font-medium text-brand-ink/80 mt-1 max-w-xs mx-auto">
+          You earned an exclusive stall perk at Herbalife Nutrition!
+        </p>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 sm:p-8 -mt-4 bg-white rounded-t-3xl relative space-y-5">
+        
+        <div class="flex items-start gap-4 p-4 rounded-2xl bg-gradient-to-br from-emerald-50 to-amber-50 border border-emerald-200 shadow-sm">
+          <div id="modalRewardIcon" class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-deep to-brand-green flex items-center justify-center text-3xl shadow-soft-green shrink-0 text-white">
+            🎁
+          </div>
+          <div>
+            <span id="modalRewardTag" class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">
+              Stall Special
+            </span>
+            <h4 id="modalRewardTitle" class="font-heading font-bold text-base sm:text-lg text-brand-ink mt-1 leading-tight">
+              Free Afresh Energy Drink
+            </h4>
+            <p id="modalRewardDesc" class="text-xs text-gray-600 mt-1 leading-relaxed">
+              Choose your favorite flavor: Saffron, Ginger, Lemon, or Tulsi!
+            </p>
+          </div>
+        </div>
+
+        <!-- Voucher Code Box -->
+        <div class="bg-brand-bg border-2 border-dashed border-brand-gold/80 rounded-2xl p-4 text-center">
+          <span class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider block mb-1">
+            Your Stall Claim Voucher Code
+          </span>
+          <span id="modalVoucherCode" class="font-mono font-extrabold text-2xl sm:text-3xl tracking-widest text-brand-deep">
+            HL-AFRESH-9821
+          </span>
+          <p class="text-[11px] text-amber-900/75 mt-1 font-medium">
+            ⚡ Show this screen to our stall representative to claim your perk!
+          </p>
+        </div>
+
+        <button
+          id="btnCloseRewardModal"
+          class="w-full h-14 bg-gradient-to-r from-brand-deep to-brand-green text-white font-heading font-bold text-base rounded-2xl shadow-soft-green flex items-center justify-center gap-2 transition-all active:scale-95 touch-btn"
+        >
+          <span>Continue Wellness Hub</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== NEW GUEST CONFIRMATION MODAL ==================== -->
+  <div id="resetModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-ink/65 backdrop-blur-sm hidden">
+    <div class="w-full max-w-md bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-emerald-100 text-center space-y-4">
+      <div class="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-brand-deep mx-auto text-2xl">
+        <i class="fa-solid fa-user-plus"></i>
+      </div>
+      <h3 class="font-heading font-bold text-xl text-brand-ink">
+        Start New Guest Session?
+      </h3>
+      <p class="text-xs sm:text-sm text-gray-500 leading-relaxed">
+        This will return to the Welcome Page for the next visitor. All leads are safely saved in Firebase Firestore.
+      </p>
+      <div class="flex gap-3 pt-2">
+        <button
+          id="btnCancelReset"
+          class="flex-1 h-12 rounded-xl bg-gray-100 hover:bg-gray-200 text-brand-ink font-semibold text-xs transition-colors"
+        >
+          Keep Exploring
+        </button>
+        <button
+          id="btnConfirmReset"
+          class="flex-1 h-12 rounded-xl bg-brand-deep text-white font-semibold text-xs shadow-soft-green transition-all touch-btn"
+        >
+          Yes, Next Guest
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="w-full py-3.5 px-4 border-t border-emerald-100 bg-white/75 backdrop-blur-sm text-center text-xs text-gray-500">
+    <span>🌿 Herbalife Nutrition Wellness Stall Experience • Touchscreen Kiosk</span>
+  </footer>
+
+  <!-- ==================== DASHBOARD MODULES SCRIPT ==================== -->
+</body>
+</html>

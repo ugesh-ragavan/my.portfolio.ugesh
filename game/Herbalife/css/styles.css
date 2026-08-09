@@ -1,0 +1,140 @@
+/* Herbalife Wellness Stall Custom Theme & Styles */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap');
+
+:root {
+  --brand-green: #2ECC71;
+  --brand-deep: #1E8449;
+  --brand-gold: #FFC72C;
+  --brand-orange: #FF8C00;
+  --brand-bg: #FFFDF7;
+  --brand-ink: #1F2A24;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #FFFDF7;
+  color: #1F2A24;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Poppins', 'Baloo 2', sans-serif;
+}
+
+/* Gradients */
+.bg-gradient-brand {
+  background: linear-gradient(135deg, #1E8449 0%, #2ECC71 100%);
+}
+
+.bg-gradient-gold {
+  background: linear-gradient(135deg, #FF8C00 0%, #FFC72C 100%);
+}
+
+.bg-gradient-hero {
+  background: linear-gradient(135deg, #E8F8F5 0%, #FEF9E7 50%, #EAFaf1 100%);
+}
+
+.text-gradient-green {
+  background: linear-gradient(135deg, #1E8449 0%, #2ECC71 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #D68910 0%, #FFC72C 50%, #FF8C00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glassmorphism & Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(46, 204, 113, 0.2);
+  box-shadow: 0 12px 30px -4px rgba(30, 132, 73, 0.08);
+}
+
+.shadow-soft-green {
+  box-shadow: 0 10px 25px -5px rgba(46, 204, 113, 0.3), 0 8px 10px -6px rgba(46, 204, 113, 0.15);
+}
+
+.shadow-soft-gold {
+  box-shadow: 0 10px 25px -5px rgba(255, 199, 44, 0.4), 0 8px 10px -6px rgba(255, 140, 0, 0.2);
+}
+
+.shadow-soft-card {
+  box-shadow: 0 10px 30px -4px rgba(31, 42, 36, 0.08), 0 4px 12px -2px rgba(31, 42, 36, 0.04);
+}
+
+/* Interactive Touch Buttons */
+.touch-btn {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.touch-btn:active {
+  transform: scale(0.96);
+}
+
+.touch-card {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.touch-card:hover {
+  transform: translateY(-2px);
+}
+
+.touch-card:active {
+  transform: scale(0.98);
+}
+
+/* Shimmer Animation */
+.shimmer-badge {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmerAnim 2.5s infinite;
+}
+
+@keyframes shimmerAnim {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(46, 204, 113, 0.4); }
+  50% { box-shadow: 0 0 35px rgba(46, 204, 113, 0.8); }
+}
+
+.animate-glow {
+  animation: pulseGlow 2s infinite;
+}
+
+/* BMI Meter Gauge Pointer */
+.gauge-meter {
+  height: 14px;
+  background: linear-gradient(to right, #5DADE2 0%, #2ECC71 35%, #F39C12 70%, #E74C3C 100%);
+  border-radius: 9999px;
+  position: relative;
+}
+
+.gauge-pin {
+  position: absolute;
+  top: -6px;
+  width: 26px;
+  height: 26px;
+  background: #FFFFFF;
+  border: 4px solid #1E8449;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}

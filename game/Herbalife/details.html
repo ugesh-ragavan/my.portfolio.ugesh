@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#FFFDF7]">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Guest Registration | Herbalife Wellness Stall</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#2ECC71',
+              deep: '#1E8449',
+              gold: '#FFC72C',
+              orange: '#FF8C00',
+              bg: '#FFFDF7',
+              ink: '#1F2A24'
+            }
+          },
+          fontFamily: {
+            heading: ['Poppins', 'Baloo 2', 'sans-serif'],
+            body: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="min-h-full flex flex-col justify-between bg-brand-bg text-brand-ink antialiased relative overflow-x-hidden">
+
+  <!-- Ambient background wellness glow -->
+  <div class="fixed top-0 left-1/3 w-96 h-96 bg-emerald-400/15 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+  <div class="fixed bottom-0 right-1/4 w-80 h-80 bg-amber-400/15 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+
+  <!-- Header -->
+  <header class="w-full bg-white/90 backdrop-blur-md border-b border-emerald-100 shadow-sm sticky top-0 z-30">
+    <div class="max-w-4xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-brand-deep to-brand-green flex items-center justify-center text-white text-lg shadow-soft-green font-bold transition-transform group-hover:scale-105">
+          🌿
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="font-heading font-extrabold text-base sm:text-lg tracking-tight text-brand-deep">HERBALIFE</span>
+            <span class="bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider">Stall</span>
+          </div>
+          <p class="text-[10px] text-gray-500 font-medium -mt-0.5">Guest Check-In</p>
+        </div>
+      </a>
+      <div class="flex items-center gap-2">
+        <button
+          id="btnStaffPortal"
+          class="btn-open-staff-data flex items-center gap-1.5 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 px-3 py-1.5 rounded-xl text-xs font-heading font-bold transition-all shadow-sm touch-btn"
+          title="View all registered attendee leads & export CSV"
+        >
+          <i class="fa-solid fa-database text-amber-700"></i>
+          <span class="hidden xs:inline">Records</span>
+          <span id="staffDataCountBadge" class="bg-amber-200 text-amber-950 text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold">0</span>
+        </button>
+
+        <a href="index.html" class="text-xs font-semibold text-gray-500 hover:text-brand-deep flex items-center gap-1 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-100 transition-colors">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Welcome</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Lead Form Container -->
+  <main class="flex-1 flex flex-col items-center justify-center px-4 py-6 max-w-xl mx-auto w-full">
+    
+    <div class="text-center mb-6">
+      <div class="inline-flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full text-xs font-bold text-brand-deep mb-2">
+        <i class="fa-solid fa-sparkles text-amber-500"></i>
+        <span>STEP 1 OF 2 — UNLOCK GAMES & PERKS</span>
+      </div>
+      <h1 class="font-heading font-extrabold text-2xl sm:text-3xl text-brand-ink">
+        Tell Us About You ✨
+      </h1>
+      <p class="text-xs sm:text-sm text-gray-500 mt-1 max-w-md mx-auto">
+        Enter your details to spin the Wheel of Fortune, take the health quiz, and claim stall gifts!
+      </p>
+    </div>
+
+    <!-- Lead Form Card -->
+    <form id="leadForm" class="w-full bg-white rounded-3xl p-6 sm:p-8 shadow-soft-card border border-emerald-100 space-y-6">
+      
+      <!-- Full Name -->
+      <div>
+        <label for="fullName" class="block font-heading font-bold text-sm text-brand-ink mb-2">
+          Full Name <span class="text-brand-deep">*</span>
+        </label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-brand-green">
+            <i class="fa-solid fa-user text-base"></i>
+          </div>
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            required
+            placeholder="e.g. Alex Sharma"
+            class="w-full h-14 pl-12 pr-4 rounded-2xl border border-emerald-100 focus:border-brand-green focus:ring-2 focus:ring-emerald-200 bg-brand-bg/50 text-base font-medium transition-all outline-none"
+          />
+        </div>
+        <p id="nameError" class="text-xs text-red-600 mt-1.5 font-medium hidden">
+          <i class="fa-solid fa-circle-exclamation"></i> Please enter your full name (minimum 2 characters).
+        </p>
+      </div>
+
+      <!-- Contact Number -->
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <label for="contactPhone" class="font-heading font-bold text-sm text-brand-ink">
+            Contact Number <span class="text-brand-deep">*</span>
+          </label>
+          <span id="phoneCounter" class="text-xs font-mono font-semibold text-gray-400">
+            0/10 digits
+          </span>
+        </div>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-brand-green">
+            <i class="fa-solid fa-phone text-base"></i>
+          </div>
+          <input
+            type="tel"
+            id="contactPhone"
+            name="contactPhone"
+            inputmode="numeric"
+            maxlength="10"
+            required
+            placeholder="10-digit mobile number"
+            class="w-full h-14 pl-12 pr-12 rounded-2xl border border-emerald-100 focus:border-brand-green focus:ring-2 focus:ring-emerald-200 bg-brand-bg/50 text-base font-mono font-medium tracking-wide transition-all outline-none"
+          />
+          <div id="phoneValidIcon" class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-brand-deep hidden">
+            <i class="fa-solid fa-circle-check text-lg"></i>
+          </div>
+        </div>
+        <p id="phoneError" class="text-xs text-red-600 mt-1.5 font-medium hidden">
+          <i class="fa-solid fa-circle-exclamation"></i> Please enter a valid 10-digit contact number.
+        </p>
+      </div>
+
+      <!-- Current Mood Selection (3 100% Positive Options Only) -->
+      <div>
+        <label class="block font-heading font-bold text-sm text-brand-ink mb-2.5">
+          How is your energy & mood today? <span class="text-brand-deep">*</span>
+        </label>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          
+          <!-- Option 1: Feeling Fantastic -->
+          <label class="mood-card relative flex flex-col justify-between p-4 rounded-2xl border-2 border-emerald-100 bg-brand-bg/40 hover:border-brand-green cursor-pointer transition-all touch-card select-none">
+            <input type="radio" name="mood" value="Feeling Fantastic" class="sr-only" required />
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-2xl">🌟</span>
+              <span class="radio-check w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center text-xs"></span>
+            </div>
+            <div>
+              <h4 class="font-heading font-bold text-sm text-brand-ink">Feeling Fantastic</h4>
+              <p class="text-[11px] text-gray-500 mt-0.5">Vibrant, joyful & ready to celebrate health!</p>
+            </div>
+          </label>
+
+          <!-- Option 2: Ready to Blossom -->
+          <label class="mood-card relative flex flex-col justify-between p-4 rounded-2xl border-2 border-emerald-100 bg-brand-bg/40 hover:border-brand-green cursor-pointer transition-all touch-card select-none">
+            <input type="radio" name="mood" value="Ready to Blossom" class="sr-only" required />
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-2xl">🌱</span>
+              <span class="radio-check w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center text-xs"></span>
+            </div>
+            <div>
+              <h4 class="font-heading font-bold text-sm text-brand-ink">Ready to Blossom</h4>
+              <p class="text-[11px] text-gray-500 mt-0.5">Excited to start positive wellness habits!</p>
+            </div>
+          </label>
+
+          <!-- Option 3: Energized & Excited -->
+          <label class="mood-card relative flex flex-col justify-between p-4 rounded-2xl border-2 border-emerald-100 bg-brand-bg/40 hover:border-brand-green cursor-pointer transition-all touch-card select-none">
+            <input type="radio" name="mood" value="Energized & Excited" class="sr-only" required />
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-2xl">⚡</span>
+              <span class="radio-check w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center text-xs"></span>
+            </div>
+            <div>
+              <h4 class="font-heading font-bold text-sm text-brand-ink">Energized & Excited</h4>
+              <p class="text-[11px] text-gray-500 mt-0.5">High power & ready for fun challenges!</p>
+            </div>
+          </label>
+
+        </div>
+        <p id="moodError" class="text-xs text-red-600 mt-2 font-medium hidden">
+          <i class="fa-solid fa-circle-exclamation"></i> Please select how you are feeling today.
+        </p>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-2">
+        <button
+          type="submit"
+          id="btnSubmit"
+          class="w-full h-15 bg-gradient-to-r from-brand-deep via-brand-green to-emerald-600 hover:from-brand-deep hover:to-emerald-700 text-white font-heading font-extrabold text-lg rounded-2xl shadow-soft-green flex items-center justify-center gap-2 transition-all active:scale-95 touch-btn"
+        >
+          <span id="btnText">Unlock Games & Dashboard ✨</span>
+          <i id="btnIcon" class="fa-solid fa-arrow-right text-base"></i>
+        </button>
+      </div>
+
+    </form>
+
+  </main>
+
+  <footer class="w-full py-3.5 px-4 border-t border-emerald-100 bg-white/75 backdrop-blur-sm text-center text-xs text-gray-500">
+    <span>🌿 Stored safely in Firebase Firestore `stall_leads`</span>
+  </footer>
+
+  <!-- Submission Logic Script -->
+  <script type="module">
+    import { saveLeadToFirestore } from './js/firebase-config.js';
+    import { sounds } from './js/sound.js';
+    import './js/staff-modal.js';
+
+    const form = document.getElementById('leadForm');
+    const nameInput = document.getElementById('fullName');
+    const phoneInput = document.getElementById('contactPhone');
+    const phoneCounter = document.getElementById('phoneCounter');
+    const phoneValidIcon = document.getElementById('phoneValidIcon');
+    const nameError = document.getElementById('nameError');
+    const phoneError = document.getElementById('phoneError');
+    const moodError = document.getElementById('moodError');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const btnText = document.getElementById('btnText');
+    const btnIcon = document.getElementById('btnIcon');
+
+    // Phone input numeric formatting
+    phoneInput.addEventListener('input', (e) => {
+      const clean = e.target.value.replace(/\D/g, '').slice(0, 10);
+      e.target.value = clean;
+      phoneCounter.textContent = `${clean.length}/10 digits`;
+      if (clean.length === 10) {
+        phoneValidIcon.classList.remove('hidden');
+        phoneError.classList.add('hidden');
+        phoneCounter.classList.add('text-brand-deep');
+      } else {
+        phoneValidIcon.classList.add('hidden');
+        phoneCounter.classList.remove('text-brand-deep');
+      }
+    });
+
+    // Mood radio selection styling
+    const moodRadios = document.querySelectorAll('input[name="mood"]');
+    moodRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        sounds.playTap();
+        moodError.classList.add('hidden');
+        document.querySelectorAll('.mood-card').forEach(card => {
+          card.classList.remove('border-brand-deep', 'bg-emerald-50', 'ring-2', 'ring-emerald-400');
+          card.querySelector('.radio-check').innerHTML = '';
+          card.querySelector('.radio-check').className = 'radio-check w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center text-xs';
+        });
+        const activeCard = radio.closest('.mood-card');
+        activeCard.classList.add('border-brand-deep', 'bg-emerald-50', 'ring-2', 'ring-emerald-400');
+        const check = activeCard.querySelector('.radio-check');
+        check.className = 'radio-check w-5 h-5 rounded-full bg-brand-deep text-white flex items-center justify-center text-xs font-bold';
+        check.innerHTML = '✓';
+      });
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      sounds.playTap();
+
+      const name = nameInput.value.trim();
+      const phone = phoneInput.value.trim();
+      const selectedMood = document.querySelector('input[name="mood"]:checked')?.value;
+
+      let hasError = false;
+      if (!name || name.length < 2) {
+        nameError.classList.remove('hidden');
+        hasError = true;
+      } else {
+        nameError.classList.add('hidden');
+      }
+
+      if (!phone || phone.length !== 10) {
+        phoneError.classList.remove('hidden');
+        hasError = true;
+      } else {
+        phoneError.classList.add('hidden');
+      }
+
+      if (!selectedMood) {
+        moodError.classList.remove('hidden');
+        hasError = true;
+      } else {
+        moodError.classList.add('hidden');
+      }
+
+      if (hasError) return;
+
+      // Loading state
+      btnSubmit.disabled = true;
+      btnText.textContent = "Connecting to Stall Hub...";
+      btnIcon.className = "fa-solid fa-circle-notch fa-spin text-base";
+
+      try {
+        await saveLeadToFirestore({
+          name,
+          phone,
+          mood: selectedMood
+        });
+        sounds.playCorrect();
+        window.location.href = "dashboard.html";
+      } catch (err) {
+        console.error("Save lead error:", err);
+        // Fallback redirection even if offline
+        window.location.href = "dashboard.html";
+      }
+    });
+  </script>
+</body>
+</html>

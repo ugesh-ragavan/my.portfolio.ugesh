@@ -1,0 +1,1 @@
+import{r as e}from"./staff-modal-CNHwH4TI.js";document.getElementById(`btnGetStarted`)?.addEventListener(`click`,()=>{e.playTap()});

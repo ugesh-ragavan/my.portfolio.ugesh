@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#FFFDF7]">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Herbalife Wellness Stall | Happier & Healthier You</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#2ECC71',
+              deep: '#1E8449',
+              gold: '#FFC72C',
+              orange: '#FF8C00',
+              bg: '#FFFDF7',
+              ink: '#1F2A24'
+            }
+          },
+          fontFamily: {
+            heading: ['Poppins', 'Baloo 2', 'sans-serif'],
+            body: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Custom CSS -->
+  <script type="module" crossorigin src="./assets/main-ByxTF33p.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/staff-modal-CNHwH4TI.js">
+  <link rel="stylesheet" crossorigin href="./assets/staff-modal-BhOloT0x.css">
+</head>
+<body class="min-h-full flex flex-col justify-between bg-brand-bg text-brand-ink antialiased relative overflow-x-hidden">
+  
+  <!-- Ambient background wellness glow -->
+  <div class="fixed top-0 left-1/4 w-96 h-96 bg-emerald-400/15 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+  <div class="fixed bottom-0 right-1/4 w-[28rem] h-[28rem] bg-amber-400/15 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+  <div class="fixed top-1/2 -left-20 w-80 h-80 bg-orange-400/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+  <!-- Kiosk Header -->
+  <header class="w-full bg-white/90 backdrop-blur-md border-b border-emerald-100 shadow-sm sticky top-0 z-30">
+    <div class="max-w-4xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-brand-deep to-brand-green flex items-center justify-center text-white text-xl shadow-soft-green font-bold">
+          🌿
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="font-heading font-extrabold text-lg tracking-tight text-brand-deep">HERBALIFE</span>
+            <span class="bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Live Stall</span>
+          </div>
+          <p class="text-[11px] text-gray-500 font-medium -mt-0.5">Interactive Wellness Experience</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a
+          href="../../index.html"
+          class="flex items-center gap-1.5 bg-white hover:bg-gray-50 border border-emerald-200 text-gray-700 px-3 py-2 rounded-xl text-xs font-heading font-semibold transition-all shadow-sm touch-btn"
+          title="Return to Main Portfolio Hub"
+        >
+          <i class="fa-solid fa-arrow-left text-brand-deep"></i>
+          <span class="hidden sm:inline">Portfolio</span>
+        </a>
+
+        <button
+          id="btnStaffPortal"
+          class="btn-open-staff-data flex items-center gap-1.5 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 px-3 py-2 rounded-xl text-xs font-heading font-bold transition-all shadow-sm touch-btn"
+          title="View all registered attendee leads & export CSV"
+        >
+          <i class="fa-solid fa-database text-amber-700"></i>
+          <span>Stall Records</span>
+          <span id="staffDataCountBadge" class="bg-amber-200 text-amber-950 text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold">0</span>
+        </button>
+
+        <div class="hidden sm:flex items-center gap-2 bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 rounded-full text-xs font-semibold text-brand-deep">
+          <span class="w-2 h-2 rounded-full bg-brand-green animate-ping"></span>
+          <span>Stall Active</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Hero Section -->
+  <main class="flex-1 flex flex-col items-center justify-center px-4 py-8 max-w-4xl mx-auto w-full text-center">
+    
+    <!-- Top Pill -->
+    <div class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-100 to-amber-100 border border-emerald-300/60 px-4 py-1.5 rounded-full text-xs font-bold text-brand-deep shadow-sm mb-4">
+      <i class="fa-solid fa-sparkles text-amber-500"></i>
+      <span>DISCOVER YOUR VITALITY & WIN EXCITING GIFTS</span>
+      <span class="text-amber-600 font-extrabold">🎁</span>
+    </div>
+
+    <!-- Catchy Headline -->
+    <h1 class="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-brand-ink tracking-tight leading-[1.15] max-w-3xl">
+      Welcome to Your Journey to a <span class="text-gradient-green">Happier,</span> <span class="text-gradient-gold">Healthier</span> You! 🌿
+    </h1>
+
+    <!-- Sub-headline -->
+    <p class="text-base sm:text-lg text-gray-600 max-w-2xl mt-4 leading-relaxed font-medium">
+      Discover Herbalife Nutrition & Win Exciting Wellness Goodies! Spin the Wheel of Fortune, test your Tamil cinema knowledge, take the health quiz, and check your BMI in under 2 minutes.
+    </p>
+
+    <!-- Lifestyle Wellness Visual Cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full my-8 text-left">
+      
+      <div class="p-4 rounded-3xl bg-white border border-emerald-100 shadow-soft-card hover:shadow-soft-green transition-all touch-card flex flex-col justify-between">
+        <div class="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center text-2xl mb-3 shadow-inner">
+          🎯
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-sm text-brand-ink">Wheel of Fortune</h3>
+          <p class="text-xs text-gray-500 mt-0.5">Win Afresh Drinks, Healthy Snacks & Jackpot gifts!</p>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-3xl bg-white border border-emerald-100 shadow-soft-card hover:shadow-soft-green transition-all touch-card flex flex-col justify-between">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-2xl mb-3 shadow-inner">
+          📊
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-sm text-brand-ink">Quick Health & BMI</h3>
+          <p class="text-xs text-gray-500 mt-0.5">Instant personalized body mass index & energy tips.</p>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-3xl bg-white border border-emerald-100 shadow-soft-card hover:shadow-soft-green transition-all touch-card flex flex-col justify-between">
+        <div class="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center text-2xl mb-3 shadow-inner">
+          🎬
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-sm text-brand-ink">Tamil Cinema Riddles</h3>
+          <p class="text-xs text-gray-500 mt-0.5">Rajini, Vijay & Vadivelu fun dialogues with health twists!</p>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-3xl bg-white border border-emerald-100 shadow-soft-card hover:shadow-soft-green transition-all touch-card flex flex-col justify-between">
+        <div class="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-2xl mb-3 shadow-inner">
+          🧠
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-sm text-brand-ink">Basic Health Quiz</h3>
+          <p class="text-xs text-gray-500 mt-0.5">3 quick questions to unlock free nutritious snack boxes.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Prominent Animated Call To Action Button -->
+    <div class="w-full max-w-md">
+      <a
+        href="details.html"
+        id="btnGetStarted"
+        class="w-full h-16 bg-gradient-to-r from-brand-deep via-brand-green to-emerald-600 hover:from-brand-deep hover:to-emerald-700 text-white font-heading font-extrabold text-xl rounded-3xl shadow-soft-green flex items-center justify-center gap-3 transition-all active:scale-95 touch-btn animate-glow group relative overflow-hidden"
+      >
+        <div class="absolute inset-0 shimmer-badge pointer-events-none"></div>
+        <span class="relative z-10">Get Started ✨</span>
+        <i class="fa-solid fa-arrow-right relative z-10 text-lg transition-transform group-hover:translate-x-1"></i>
+      </a>
+
+      <!-- Quick Trust Indicators -->
+      <div class="flex items-center justify-center gap-4 mt-4 text-xs font-semibold text-gray-500">
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-brand-green"></i> 100% Free Stall Games</span>
+        <span>•</span>
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-gift text-amber-500"></i> Guaranteed Rewards</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Stall Footer -->
+  <footer class="w-full py-3.5 px-4 border-t border-emerald-100 bg-white/75 backdrop-blur-sm text-center text-xs text-gray-500">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-brand-deep font-bold">🌿 Herbalife Nutrition Stall Experience</span>
+      </div>
+      <div class="text-[11px] text-gray-400">
+        Zero Data Loss: Firebase Firestore & Local Storage Persistent
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
