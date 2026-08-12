@@ -417,38 +417,11 @@
     }
 
 
-    .game-mini-card.highlight-stall {
-      border-color: rgba(46, 204, 113, 0.4);
-      background: linear-gradient(180deg, rgba(46, 204, 113, 0.12), var(--bg-card));
-      position: relative;
-      overflow: hidden;
-    }
-
-    .game-mini-card.highlight-stall::before {
-      content: 'LIVE';
-      position: absolute;
-      top: 4px;
-      right: 4px;
-      font-size: 0.55rem;
-      font-family: var(--font-mono);
-      font-weight: 800;
-      color: #10b981;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      padding: 1px 5px;
-      border-radius: 6px;
-    }
-
-    .game-mini-card.highlight-stall:hover {
-      border-color: #2ecc71;
-      box-shadow: 0 8px 22px rgba(46, 204, 113, 0.35);
-    }
-
-    /* Mini Games Grid */
+    /* Mini Games & Apps Grid */
     .games-grid {
       width: 100%;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
       gap: 12px;
     }
 
@@ -755,14 +728,20 @@
       </div>
     </a>
 
-    <!-- 3. INTERACTIVE ARCADE & MINI-GAMES -->
-    <div class="section-title">🕹️ Arcade Lab & Interactive Apps</div>
+    <!-- 3. LIVE WEB APPS & SITES -->
+    <div class="section-title">🚀 Live Sites & Web Apps</div>
 
     <div class="games-grid">
-      <a href="sites/Herbalife/dist/index.html" class="game-mini-card highlight-stall" title="D'Sun stall — Live Wellness App">
+      <a href="sites/Herbalife/dist/index.html" class="game-mini-card" title="D'Sun stall">
         <div class="game-mini-icon">🌿</div>
         <div class="game-mini-name">D'Sun stall</div>
       </a>
+    </div>
+
+    <!-- 4. INTERACTIVE ARCADE & MINI-GAMES -->
+    <div class="section-title">🕹️ Arcade Lab & Interactive Games</div>
+
+    <div class="games-grid">
       <a href="game/lion/lion.html" class="game-mini-card">
         <div class="game-mini-icon">🦁</div>
         <div class="game-mini-name">Chill Lion</div>
@@ -781,7 +760,7 @@
       </a>
     </div>
 
-    <!-- 4. RESOURCES & RESUME -->
+    <!-- 5. RESOURCES & RESUME -->
     <div class="section-title">📄 Documents</div>
 
     <a href="img/Ugesh Resume 2021_A4.png" target="_blank" class="link-card">
