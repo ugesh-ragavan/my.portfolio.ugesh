@@ -2,1284 +2,2850 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ugesh Ragavan — Interactive OS Desktop & Creative Portfolio. Big Data Engineer, Frontend Developer, Acrylic Artist.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Ugesh Ragavan — Windows 11 Creative Suite Desktop Portfolio. Multidisciplinary Creator, Acrylic Artist, Tamil Poet & Author, Big Data Engineer.">
   <meta name="author" content="Ugesh Ragavan">
-  <title>UGESH OS // CREATIVE DESKTOP PORTFOLIO & CHROME DINO</title>
+  <title>UGESH OS // Windows 11 Creative Suite · Ugesh Ragavan</title>
   <link rel="shortcut icon" href="../images/fav.png" type="image/vnd.microsoft.icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&family=Press+Start+2P&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     /* ═══════════════════════════════════════════════════════════
-       UGESH OS // MACINTOSH DESKTOP & CREATIVE PORTFOLIO (Parinaz Inspired)
+       WINDOWS 11 MICA & FLUENT DESIGN SYSTEM
        ═══════════════════════════════════════════════════════════ */
     :root {
-      --os-bg: #1e1e24;
-      --os-wallpaper: radial-gradient(circle at 50% 50%, #2a2a36 0%, #181820 100%);
-      --os-bar-bg: rgba(240, 238, 233, 0.92);
-      --os-bar-text: #1a1a1a;
-      --os-window-bg: #f9f8f6;
-      --os-window-border: #2b2b2b;
-      --os-header-bg: linear-gradient(180deg, #e6e4df 0%, #d8d5ce 100%);
-      --os-header-text: #1c1c1c;
-      --os-accent: #3a86ff;
-      --os-accent-pink: #ff007f;
-      --os-shadow: 0 16px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,0,0,0.8);
-      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --win11-blue: #0078d4;
+      --win11-blue-glow: #00c6ff;
+      --win11-accent: #0067c0;
+      --win11-accent-light: #258cf0;
+      --win11-cyan: #06b6d4;
+      --win11-pink: #ff007f;
+      --win11-purple: #a855f7;
+      --win11-green: #10b981;
+      --win11-gold: #f59e0b;
+      --win11-red: #ef4444;
+
+      /* Dark Mica Theme Defaults */
+      --bg-desktop: #0c121e;
+      --mica-bg: rgba(20, 26, 38, 0.78);
+      --mica-bg-heavy: rgba(15, 20, 30, 0.92);
+      --mica-card: rgba(30, 41, 59, 0.65);
+      --mica-card-hover: rgba(45, 60, 85, 0.85);
+      --mica-border: rgba(255, 255, 255, 0.12);
+      --mica-border-light: rgba(255, 255, 255, 0.2);
+      --mica-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+      --taskbar-bg: rgba(15, 22, 35, 0.82);
+      --taskbar-border: rgba(255, 255, 255, 0.1);
+      --taskbar-btn-hover: rgba(255, 255, 255, 0.09);
+      --taskbar-btn-active: rgba(255, 255, 255, 0.16);
+
+      --window-bg: rgba(18, 24, 38, 0.95);
+      --window-header: rgba(12, 17, 28, 0.96);
+      --window-border: rgba(255, 255, 255, 0.14);
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --font-ui: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-display: 'Outfit', sans-serif;
       --font-mono: 'Fira Code', monospace;
-      --font-pixel: 'Press Start 2P', monospace;
-      --font-serif: 'Playfair Display', serif;
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-xl: 18px;
     }
 
-    /* Theme Variants */
+    /* Light Bloom Theme */
+    body.theme-light {
+      --bg-desktop: #e2e8f0;
+      --mica-bg: rgba(245, 247, 250, 0.88);
+      --mica-bg-heavy: rgba(255, 255, 255, 0.96);
+      --mica-card: rgba(255, 255, 255, 0.82);
+      --mica-card-hover: rgba(255, 255, 255, 0.98);
+      --mica-border: rgba(0, 0, 0, 0.1);
+      --mica-border-light: rgba(0, 0, 0, 0.16);
+      --mica-shadow: 0 16px 40px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.06);
+
+      --taskbar-bg: rgba(243, 244, 246, 0.92);
+      --taskbar-border: rgba(0, 0, 0, 0.1);
+      --taskbar-btn-hover: rgba(0, 0, 0, 0.06);
+      --taskbar-btn-active: rgba(0, 0, 0, 0.12);
+
+      --window-bg: rgba(255, 255, 255, 0.98);
+      --window-header: rgba(240, 243, 246, 0.98);
+      --window-border: rgba(0, 0, 0, 0.12);
+
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #64748b;
+    }
+
+    body.theme-light .desktop-icon-label {
+      color: #0f172a;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.95), 0 0 6px rgba(255, 255, 255, 0.85);
+      font-weight: 700;
+    }
+    body.theme-light .spotify-track-box {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+    body.theme-light .start-search-input {
+      background: rgba(0, 0, 0, 0.04);
+      color: #0f172a;
+    }
+    body.theme-light .start-footer {
+      background: rgba(0, 0, 0, 0.04);
+    }
+    body.theme-light .start-app-item:hover,
+    body.theme-light .start-rec-item:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    body.theme-light .explorer-breadcrumbs,
+    body.theme-light .explorer-search {
+      background: rgba(0, 0, 0, 0.04);
+      color: #0f172a;
+    }
+    body.theme-light .explorer-sidebar {
+      background: rgba(0, 0, 0, 0.02);
+    }
+    body.theme-light .explorer-file-card:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    body.theme-light .notepad-tab-btn {
+      background: rgba(0, 0, 0, 0.04);
+      color: #475569;
+    }
+    body.theme-light .notepad-tab-btn.active {
+      background: var(--win11-blue);
+      color: #fff;
+    }
+    body.theme-light .notepad-editor-area {
+      background: rgba(0, 0, 0, 0.03);
+      color: #0f172a;
+    }
+    body.theme-light .quick-tile {
+      background: rgba(0, 0, 0, 0.06);
+      color: #0f172a;
+    }
+    body.theme-light .quick-tile.active {
+      background: var(--win11-blue);
+      color: #fff;
+    }
+
+    /* Cyber Glow Theme */
     body.theme-cyber {
-      --os-bg: #090c10;
-      --os-wallpaper: radial-gradient(circle at 50% 50%, #131d2a 0%, #080b10 100%);
-      --os-bar-bg: rgba(13, 17, 23, 0.95);
-      --os-bar-text: #58a6ff;
-      --os-window-bg: #0d1117;
-      --os-window-border: #30363d;
-      --os-header-bg: linear-gradient(180deg, #21262d 0%, #161b22 100%);
-      --os-header-text: #f0f6fc;
-      --os-accent: #58a6ff;
-      --os-shadow: 0 16px 40px rgba(0,0,0,0.8), 0 0 0 1px #30363d;
-    }
-
-    body.theme-purple {
-      --os-bg: #1a0933;
-      --os-wallpaper: radial-gradient(circle at 50% 50%, #2e1254 0%, #120524 100%);
-      --os-bar-bg: rgba(24, 11, 46, 0.95);
-      --os-bar-text: #d4a5ff;
-      --os-window-bg: #180b2d;
-      --os-window-border: #4d2b7a;
-      --os-header-bg: linear-gradient(180deg, #371861 0%, #250d45 100%);
-      --os-header-text: #f3e8ff;
-      --os-accent: #ff007f;
+      --bg-desktop: #040711;
+      --win11-blue: #00f0ff;
+      --win11-accent: #ff007f;
+      --mica-bg: rgba(6, 12, 26, 0.85);
+      --mica-border: rgba(0, 240, 255, 0.25);
+      --taskbar-bg: rgba(4, 8, 18, 0.92);
+      --window-bg: rgba(6, 10, 20, 0.96);
+      --window-header: rgba(10, 16, 32, 0.98);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
-      font-family: var(--font-sans);
-      background: var(--os-bg);
-      color: #222;
+      font-family: var(--font-ui);
+      background-color: var(--bg-desktop);
+      color: var(--text-main);
       user-select: none;
       -webkit-user-select: none;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Desktop Environment ── */
-    #desktop {
+    /* ── Desktop Canvas Wallpaper ── */
+    #desktop-screen {
       position: absolute;
       inset: 0;
-      top: 32px;
-      bottom: 68px;
-      background-color: #f7f6f2;
-      background-image: 
-        url('images/Ugesh/ug-cartoon-wallpaper.png'),
-        radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
-      background-repeat: no-repeat, repeat;
-      background-position: right bottom, center;
-      background-size: contain, 24px 24px;
+      bottom: 50px;
       overflow: hidden;
-      padding: 20px;
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(0, 120, 212, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(168, 85, 247, 0.18) 0%, transparent 45%),
+        url('../images/Ugesh/ug-cartoon-wallpaper.png');
+      background-size: auto, auto, cover;
+      background-position: center, center, 22% center;
+      background-repeat: no-repeat;
+      transition: background-image 0.5s ease, filter 0.3s ease;
+    }
+
+    /* ── Desktop Icons Area (Left Side Columns) ── */
+    .desktop-icons-container {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      bottom: 18px;
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
       align-content: flex-start;
-      gap: 20px;
+      gap: 12px;
+      z-index: 10;
+      pointer-events: auto;
     }
 
-    /* ── Top OS Menu Bar ── */
-    #top-bar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 32px;
-      background: var(--os-bar-bg);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0,0,0,0.2);
-      z-index: 10000;
+    .desktop-icon {
+      width: 86px;
+      height: 94px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 4px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: all 0.15s ease;
+      position: relative;
+    }
+
+    .desktop-icon:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(8px);
+    }
+    body.theme-light .desktop-icon:hover {
+      background: rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+
+    .desktop-icon.selected {
+      background: rgba(0, 120, 212, 0.28);
+      border-color: rgba(0, 198, 255, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    .desktop-icon-img {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .desktop-icon:hover .desktop-icon-img {
+      transform: scale(1.08);
+    }
+
+    .desktop-icon-label {
+      font-size: 0.73rem;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 4px;
+      line-height: 1.2;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.6);
+      max-width: 100%;
+      word-break: break-word;
+    }
+
+    .desktop-icon-badge {
+      position: absolute;
+      top: 4px;
+      right: 10px;
+      font-size: 0.55rem;
+      font-weight: 800;
+      background: var(--win11-blue);
+      color: #fff;
+      padding: 1px 4px;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    /* ── Desktop Widgets Area (Bottom-Left / Mid Placement) ── */
+    .desktop-widgets-panel {
+      position: absolute;
+      left: 215px;
+      bottom: 24px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 16px;
+      z-index: 15;
+      pointer-events: auto;
+    }
+
+    .widget-clock-card {
+      width: 290px;
+    }
+
+    .widget-spotify-card {
+      width: 320px;
+    }
+
+    .win11-widget-card {
+      background: var(--mica-bg);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid var(--mica-border);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px;
+      box-shadow: var(--mica-shadow);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .win11-widget-card:hover {
+      border-color: var(--mica-border-light);
+      transform: translateY(-2px);
+    }
+
+    /* Clock & Location Widget */
+    .clock-widget-header {
       display: flex;
       justify-content: space-between;
+      align-items: flex-start;
+    }
+    .clock-widget-time {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0, 120, 212, 0.4);
+    }
+    body.theme-light .clock-widget-time {
+      color: #0f172a;
+      text-shadow: none;
+    }
+    .clock-widget-date {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .clock-widget-location {
+      display: inline-flex;
       align-items: center;
-      padding: 0 14px;
+      gap: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: rgba(0, 120, 212, 0.18);
+      color: #38bdf8;
+      border: 1px solid rgba(0, 120, 212, 0.35);
+      padding: 4px 8px;
+      border-radius: 20px;
+    }
+    .clock-widget-weather {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--mica-border);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Spotify Podcast Widget */
+    .spotify-widget-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .spotify-logo-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #1db954;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: #000;
+      font-weight: 900;
+    }
+    .spotify-widget-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .spotify-track-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 10px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--mica-border);
+    }
+    .spotify-track-thumb {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+    .spotify-track-details {
+      flex: 1;
+      min-width: 0;
+    }
+    .spotify-track-name {
       font-size: 0.82rem;
       font-weight: 700;
-      color: var(--os-bar-text);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text-main);
     }
-
-    .bar-left, .bar-right {
+    .spotify-artist-name {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .spotify-widget-controls {
       display: flex;
       align-items: center;
-      gap: 16px;
+      justify-content: space-between;
+      margin-top: 10px;
     }
-
-    .apple-logo {
-      font-size: 1.1rem;
-      cursor: pointer;
-      line-height: 1;
-    }
-
-    .menu-item {
-      cursor: pointer;
-      padding: 3px 8px;
-      border-radius: 4px;
-      transition: background 0.15s;
-    }
-    .menu-item:hover { background: rgba(0,0,0,0.1); }
-
-    .theme-swatch-group {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-left: 8px;
-    }
-    .theme-dot {
-      width: 14px; height: 14px;
+    .spotify-play-btn {
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      cursor: pointer;
-      border: 1.5px solid rgba(0,0,0,0.3);
-      transition: transform 0.15s;
-    }
-    .theme-dot:hover { transform: scale(1.25); }
-
-    .btn-top-quick {
-      background: var(--os-accent);
-      color: #fff;
+      background: #1db954;
       border: none;
-      padding: 4px 12px;
-      border-radius: 12px;
-      font-size: 0.76rem;
-      font-weight: 800;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
       cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .spotify-play-btn:hover { transform: scale(1.1); }
+    .spotify-open-link {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #1db954;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      transition: transform 0.15s, filter 0.15s;
     }
-    .btn-top-quick:hover { transform: translateY(-1px); filter: brightness(1.1); }
+    .spotify-open-link:hover { text-decoration: underline; }
 
-    /* ── Desktop Icons ── */
-    .desktop-icon {
-      width: 90px;
+    /* Creative Vibe & Soundscape Widget */
+    .vibe-widget-title {
+      font-size: 0.8rem;
+      font-weight: 800;
       display: flex;
-      flex-direction: column;
       align-items: center;
       gap: 6px;
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 8px;
-      transition: background 0.15s;
-      color: #1a1a1a;
-      text-shadow: 0 1px 2px rgba(255,255,255,0.9);
-      text-align: center;
+      margin-bottom: 8px;
     }
-    body.theme-cyber .desktop-icon,
-    body.theme-purple .desktop-icon {
-      color: #fff;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
-    }
-    .desktop-icon:hover {
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(4px);
-    }
-    .desktop-icon:active {
-      transform: scale(0.95);
-    }
-    .icon-img-box {
-      width: 52px; height: 52px;
-      background: rgba(255,255,255,0.92);
-      border-radius: 12px;
-      border: 1.5px solid rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.75rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .icon-label {
-      font-size: 0.74rem;
-      font-weight: 700;
-      line-height: 1.2;
-      word-break: break-word;
-    }
-
-    /* ── OS Floating Windows ── */
-    .os-window {
-      position: absolute;
-      background: var(--os-window-bg);
-      border: 1px solid var(--os-window-border);
-      border-radius: 10px;
-      box-shadow: var(--os-shadow);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      min-width: 320px;
-      min-height: 220px;
-      z-index: 100;
-      transition: opacity 0.2s cubic-bezier(0.1, 0.9, 0.2, 1), transform 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
-    }
-    .os-window.hidden {
-      opacity: 0;
-      pointer-events: none;
-      transform: scale(0.92) translateY(20px);
-    }
-    .os-window.maximized {
-      top: 32px !important;
-      left: 0 !important;
-      width: 100vw !important;
-      height: calc(100vh - 100px) !important;
-      border-radius: 0;
-    }
-
-    .window-header {
-      height: 36px;
-      background: var(--os-header-bg);
-      color: var(--os-header-text);
-      border-bottom: 1px solid rgba(0,0,0,0.15);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 14px;
-      cursor: move;
-      font-weight: 800;
-      font-size: 0.85rem;
-    }
-
-    .window-dots {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .dot {
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 1px solid rgba(0,0,0,0.2);
-    }
-    .dot-close { background: #ff5f56; }
-    .dot-min { background: #ffbd2e; }
-    .dot-max { background: #27c93f; }
-
-    .window-title {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      letter-spacing: 0.05em;
-    }
-
-    .window-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 20px;
-      color: #222;
-      user-select: text;
-      -webkit-user-select: text;
-    }
-
-    body.theme-cyber .window-body,
-    body.theme-purple .window-body {
-      color: #e0e0e0;
-    }
-
-    /* ── Chrome Dino Window ── */
-    #dino-game-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: #f7f7f7;
-      padding: 16px;
-      border-radius: 8px;
-      border: 2px solid #333;
-    }
-    #dinoCanvas {
-      background: #fff;
-      border: 1px solid #ccc;
-      width: 100%;
-      max-width: 600px;
-      height: 180px;
-      display: block;
-    }
-    .dino-controls-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      max-width: 600px;
-      margin-top: 12px;
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      color: #333;
-    }
-    .btn-dino-start {
-      background: #3a86ff;
-      color: #fff;
-      border: none;
-      padding: 8px 18px;
-      border-radius: 6px;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 3px 0 #1d5ec4;
-    }
-    .btn-dino-start:active { transform: translateY(2px); box-shadow: none; }
-
-    /* ── About Profile Window ── */
-    .profile-hero {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-    .profile-avatar {
-      width: 130px; height: 130px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--os-accent);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    }
-    .profile-info h2 {
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      line-height: 1.1;
-      margin-bottom: 6px;
-    }
-    .profile-tagline {
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: #ff007f;
-      font-weight: 700;
+    .vibe-quote {
+      font-size: 0.78rem;
+      font-style: italic;
+      line-height: 1.4;
+      color: var(--text-muted);
       margin-bottom: 10px;
     }
-
-    .gallery-photo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
-    }
-    .art-card {
-      border: 1.5px solid rgba(0,0,0,0.15);
-      border-radius: 10px;
-      overflow: hidden;
-      background: #fff;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-    }
-    .art-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.25);
-      border-color: #ff007f;
-    }
-    .art-img {
-      width: 100%;
-      height: 165px;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-    .art-card:hover .art-img {
-      transform: scale(1.05);
-    }
-    .art-caption {
-      padding: 8px 10px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #333;
-    }
-
-    /* ── Multi-Tab Gallery Styles ── */
-    .gallery-tabs {
+    .vibe-soundscape-bar {
       display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      margin-bottom: 14px;
-      border-bottom: 1.5px solid rgba(0,0,0,0.08);
-      scrollbar-width: thin;
+      align-items: center;
+      gap: 6px;
     }
-    .gallery-tab-btn {
-      background: rgba(0,0,0,0.05);
-      border: 1px solid rgba(0,0,0,0.15);
-      border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 0.78rem;
+    .vibe-sound-btn {
+      flex: 1;
+      padding: 6px 4px;
+      font-size: 0.7rem;
       font-weight: 700;
-      color: #444;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--mica-border);
+      color: var(--text-main);
       cursor: pointer;
-      white-space: nowrap;
       transition: all 0.2s ease;
-    }
-    .gallery-tab-btn:hover {
-      background: rgba(255, 0, 127, 0.1);
-      color: #ff007f;
-      border-color: #ff007f;
-    }
-    .gallery-tab-btn.active {
-      background: #ff007f;
-      color: #fff;
-      border-color: #ff007f;
-      box-shadow: 0 4px 12px rgba(255, 0, 127, 0.3);
-    }
-    .creative-link-card {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(0,0,0,0.12);
-      background: #fff;
-      text-decoration: none;
-      color: inherit;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    }
-    .creative-link-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-      border-color: #ff007f;
-    }
-    .creative-badge {
-      display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 12px;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    /* ── Bottom Taskbar / Tech Stack Dock ── */
-    #taskbar {
-      position: fixed;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 56px;
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 28px;
-      padding: 0 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      z-index: 10000;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
-    }
-
-    .dock-item {
-      position: relative;
-      width: 42px; height: 42px;
-      border-radius: 12px;
-      background: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.35rem;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      gap: 4px;
     }
-    .dock-item:hover {
-      transform: scale(1.3) translateY(-8px);
+    .vibe-sound-btn:hover {
+      background: rgba(0, 120, 212, 0.25);
+      border-color: var(--win11-blue);
+    }
+    .vibe-sound-btn.active {
+      background: var(--win11-blue);
+      color: #ffffff;
+      border-color: var(--win11-blue-glow);
     }
 
-    .dock-tooltip {
+    /* ═══════════════════════════════════════════════════════════
+       WINDOWS 11 CENTERED TASKBAR
+       ═══════════════════════════════════════════════════════════ */
+    #win11-taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 48px;
+      background: var(--taskbar-bg);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border-top: 1px solid var(--taskbar-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      z-index: 10000;
+    }
+
+    /* Taskbar Left: Widgets / Weather pill */
+    .taskbar-left-area {
+      display: flex;
+      align-items: center;
+      min-width: 140px;
+    }
+    .taskbar-weather-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-main);
+      transition: background 0.15s ease;
+    }
+    .taskbar-weather-pill:hover {
+      background: var(--taskbar-btn-hover);
+    }
+
+    /* Taskbar Center: App Icons & Start */
+    .taskbar-center-area {
+      display: flex;
+      align-items: center;
+      gap: 4px;
       position: absolute;
-      bottom: 54px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0,0,0,0.85);
-      color: #fff;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 6px;
-      white-space: nowrap;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.15s;
     }
-    .dock-item:hover .dock-tooltip { opacity: 1; }
 
-    .dock-indicator {
+    .taskbar-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.35rem;
+      transition: all 0.15s ease;
+    }
+    .taskbar-btn:hover {
+      background: var(--taskbar-btn-hover);
+    }
+    .taskbar-btn:active {
+      transform: scale(0.92);
+      background: var(--taskbar-btn-active);
+    }
+
+    .win11-start-logo {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5px;
+      padding: 2px;
+    }
+    .win11-start-logo span {
+      background: #0078d4;
+      border-radius: 1.5px;
+      transition: background 0.2s ease;
+    }
+    .taskbar-btn:hover .win11-start-logo span {
+      background: #00c6ff;
+    }
+
+    /* Active Indicator Pill under taskbar apps */
+    .taskbar-btn.active::after {
+      content: '';
       position: absolute;
-      bottom: -4px;
-      width: 4px; height: 4px;
-      background: #fff;
+      bottom: 2px;
+      width: 14px;
+      height: 3px;
+      background: var(--win11-blue);
+      border-radius: 2px;
+      box-shadow: 0 0 6px var(--win11-blue);
+    }
+    .taskbar-btn.running::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      width: 6px;
+      height: 3px;
+      background: var(--text-muted);
+      border-radius: 2px;
+    }
+
+    /* Taskbar Right: System Tray */
+    .taskbar-right-area {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .system-tray-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.8rem;
+      color: var(--text-main);
+      transition: background 0.15s ease;
+    }
+    .system-tray-btn:hover {
+      background: var(--taskbar-btn-hover);
+    }
+
+    .tray-clock-box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      line-height: 1.1;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .tray-peek-desktop {
+      width: 6px;
+      height: 24px;
+      border-left: 1px solid var(--mica-border);
+      cursor: pointer;
+      margin-left: 4px;
+    }
+    .tray-peek-desktop:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       WINDOWS 11 START MENU
+       ═══════════════════════════════════════════════════════════ */
+    #win11-start-menu {
+      position: fixed;
+      bottom: 58px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px) scale(0.96);
+      width: 580px;
+      height: 620px;
+      background: var(--mica-bg-heavy);
+      backdrop-filter: blur(36px) saturate(180%);
+      -webkit-backdrop-filter: blur(36px) saturate(180%);
+      border: 1px solid var(--mica-border);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      z-index: 10001;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #win11-start-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    .start-search-box {
+      padding: 24px 32px 14px;
+    }
+    .start-search-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .start-search-input {
+      width: 100%;
+      height: 38px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--mica-border);
+      border-bottom: 2px solid var(--win11-blue);
+      border-radius: var(--radius-sm);
+      padding: 0 14px 0 38px;
+      color: var(--text-main);
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .start-search-input:focus {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--win11-blue-glow);
+    }
+    .start-search-icon {
+      position: absolute;
+      left: 12px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .start-pinned-section {
+      padding: 0 32px 16px;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .start-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .start-all-apps-btn {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--mica-border);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .start-pinned-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px 6px;
+    }
+
+    .start-app-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 4px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: background 0.15s ease;
+    }
+    .start-app-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .start-app-icon {
+      font-size: 1.8rem;
+      margin-bottom: 4px;
+    }
+    .start-app-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 72px;
+    }
+
+    .start-recommended-section {
+      padding: 12px 32px 16px;
+      border-top: 1px solid var(--mica-border);
+    }
+    .start-rec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .start-rec-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.15s ease;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+    .start-rec-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .start-rec-icon {
+      font-size: 1.4rem;
+    }
+    .start-rec-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .start-rec-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .start-rec-meta {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    .start-footer {
+      height: 60px;
+      background: rgba(0, 0, 0, 0.25);
+      border-top: 1px solid var(--mica-border);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .start-user-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      transition: background 0.15s ease;
+    }
+    .start-user-pill:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .start-user-avatar {
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--win11-blue);
+    }
+    .start-user-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .start-user-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .start-user-role {
+      font-size: 0.68rem;
+      color: var(--win11-cyan);
     }
 
-    .dock-divider {
-      width: 1px; height: 28px;
-      background: rgba(255,255,255,0.4);
-      margin: 0 4px;
+    .start-power-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--text-main);
+      transition: background 0.15s ease;
+    }
+    .start-power-btn:hover {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
     }
 
-    /* ── Lightbox Modal ── */
-    #lightbox {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 20000;
-      display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s; padding: 20px;
+    /* ═══════════════════════════════════════════════════════════
+       WINDOWS 11 QUICK SETTINGS & ACTION CENTER
+       ═══════════════════════════════════════════════════════════ */
+    #win11-action-center {
+      position: fixed;
+      bottom: 58px;
+      right: 12px;
+      width: 340px;
+      background: var(--mica-bg-heavy);
+      backdrop-filter: blur(36px) saturate(180%);
+      -webkit-backdrop-filter: blur(36px) saturate(180%);
+      border: 1px solid var(--mica-border);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      padding: 16px;
+      z-index: 10001;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px) scale(0.96);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    #lightbox.open { opacity: 1; pointer-events: auto; }
-    .lightbox-content {
-      background: #fff; border-radius: 12px; padding: 20px; max-width: 750px; width: 100%; text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    #win11-action-center.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
     }
-    .lightbox-img { max-width: 100%; max-height: 65vh; border-radius: 8px; display: block; margin: 0 auto 12px; }
 
-    @media (max-width: 768px) {
-      #taskbar { gap: 6px; padding: 0 10px; height: 48px; }
-      .dock-item { width: 34px; height: 34px; font-size: 1.1rem; }
-      .profile-hero { flex-direction: column; text-align: center; }
+    .quick-tiles-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .quick-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--mica-border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-size: 0.72rem;
+      font-weight: 600;
+      gap: 4px;
+    }
+    .quick-tile.active {
+      background: var(--win11-blue);
+      border-color: var(--win11-blue-glow);
+      color: #fff;
+    }
+
+    .quick-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+    .quick-slider-row input[type="range"] {
+      flex: 1;
+      accent-color: var(--win11-blue);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       WINDOWS 11 WINDOW MANAGER & FRAMES
+       ═══════════════════════════════════════════════════════════ */
+    .win11-window {
+      position: absolute;
+      background: var(--window-bg);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid var(--window-border);
+      border-radius: var(--radius-md);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.08);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 100;
+      min-width: 320px;
+      min-height: 240px;
+      transition: box-shadow 0.2s ease, opacity 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .win11-window.active {
+      box-shadow: 0 24px 70px rgba(0, 120, 212, 0.25), 0 0 0 1px rgba(0, 198, 255, 0.4);
+      z-index: 150;
+    }
+
+    .win11-window.minimized {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(60px) scale(0.85);
+    }
+
+    .win11-window.maximized {
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: calc(100% - 48px) !important;
+      border-radius: 0 !important;
+    }
+
+    .window-titlebar {
+      height: 38px;
+      background: var(--window-header);
+      border-bottom: 1px solid var(--window-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      cursor: move;
+      flex-shrink: 0;
+    }
+
+    .window-title-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-main);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .window-title-icon {
+      font-size: 1.1rem;
+    }
+
+    .window-controls-right {
+      display: flex;
+      align-items: center;
+      margin-right: -12px;
+      height: 100%;
+    }
+
+    .win-control-btn {
+      width: 44px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      color: var(--text-main);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      position: relative;
+    }
+    .win-control-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .win-control-btn.close:hover {
+      background: #e81123;
+      color: #ffffff;
+    }
+
+    /* Snap Layouts Flyout on Maximize Hover */
+    .snap-layout-flyout {
+      position: absolute;
+      top: 38px;
+      right: 44px;
+      width: 180px;
+      background: var(--mica-bg-heavy);
+      border: 1px solid var(--mica-border);
+      border-radius: var(--radius-sm);
+      padding: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      z-index: 500;
+    }
+    .win-control-btn.maximize:hover .snap-layout-flyout {
+      display: grid;
+    }
+    .snap-option {
+      height: 44px;
+      border: 1px solid var(--mica-border);
+      border-radius: 4px;
+      display: flex;
+      gap: 2px;
+      padding: 2px;
+      cursor: pointer;
+    }
+    .snap-option:hover { border-color: var(--win11-blue); background: rgba(0, 120, 212, 0.15); }
+    .snap-box { background: rgba(255, 255, 255, 0.2); border-radius: 2px; height: 100%; }
+
+    .window-body-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 16px;
+      position: relative;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FILE EXPLORER STYLING
+       ═══════════════════════════════════════════════════════════ */
+    .explorer-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid var(--window-border);
+    }
+    .explorer-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--mica-border);
+      border-radius: var(--radius-sm);
+      padding: 4px 10px;
+      font-size: 0.76rem;
+      font-family: var(--font-mono);
+    }
+    .explorer-search {
+      width: 160px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--mica-border);
+      border-radius: var(--radius-sm);
+      padding: 4px 10px;
+      font-size: 0.76rem;
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .explorer-layout {
+      display: flex;
+      height: calc(100% - 44px);
+    }
+    .explorer-sidebar {
+      width: 170px;
+      border-right: 1px solid var(--window-border);
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex-shrink: 0;
+      background: rgba(0, 0, 0, 0.15);
+    }
+    .explorer-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .explorer-nav-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+    }
+    .explorer-nav-item.active {
+      background: rgba(0, 120, 212, 0.2);
+      color: #38bdf8;
+      font-weight: 700;
+    }
+
+    .explorer-files-grid {
+      flex: 1;
+      padding: 14px;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+      align-content: flex-start;
+    }
+
+    .explorer-file-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+    .explorer-file-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--mica-border);
+    }
+    .explorer-file-thumb {
+      width: 100%;
+      height: 90px;
+      border-radius: 4px;
+      object-fit: cover;
+      margin-bottom: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .explorer-file-name {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.2;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-break: break-word;
+    }
+    .explorer-file-sub {
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       PHOTO VIEWER & LIGHTBOX
+       ═══════════════════════════════════════════════════════════ */
+    #win11-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(20px);
+      z-index: 20000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      padding: 24px;
+    }
+    #win11-lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-modal-card {
+      background: var(--mica-bg-heavy);
+      border: 1px solid var(--mica-border);
+      border-radius: var(--radius-lg);
+      max-width: 860px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+      position: relative;
+    }
+    .lightbox-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--mica-border);
+    }
+    .lightbox-image-view {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+    .lightbox-img-element {
+      max-width: 100%;
+      max-height: 60vh;
+      object-fit: contain;
+      border-radius: 4px;
+      transition: transform 0.2s ease;
+    }
+    .lightbox-footer {
+      padding: 14px 20px;
+      border-top: 1px solid var(--mica-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lightbox-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .lightbox-nav-btn:hover { background: var(--win11-blue); }
+    .lightbox-nav-btn.prev { left: 24px; }
+    .lightbox-nav-btn.next { right: 24px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       NOTEPAD & TEXT VIEWER
+       ═══════════════════════════════════════════════════════════ */
+    .notepad-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .notepad-tabs {
+      display: flex;
+      gap: 4px;
+      border-bottom: 1px solid var(--mica-border);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      overflow-x: auto;
+    }
+    .notepad-tab-btn {
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--mica-border);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .notepad-tab-btn.active {
+      background: var(--win11-blue);
+      color: #fff;
+      border-color: var(--win11-blue-glow);
+    }
+    .notepad-editor-area {
+      flex: 1;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--text-main);
+      white-space: pre-wrap;
+      overflow-y: auto;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--mica-border);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       TERMINAL / POWERSHELL APP
+       ═══════════════════════════════════════════════════════════ */
+    .terminal-body {
+      background: #090c14;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: #38bdf8;
+      padding: 14px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .terminal-output {
+      flex: 1;
+      overflow-y: auto;
+      line-height: 1.5;
+    }
+    .terminal-prompt-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .terminal-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #f8fafc;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      outline: none;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE DESIGN (MOBILE & TABLETS)
+       ═══════════════════════════════════════════════════════════ */
+    @media (max-width: 860px) {
+      .desktop-widgets-panel {
+        display: none;
+      }
+      .taskbar-center-area {
+        position: static;
+        transform: none;
+        margin: 0 auto;
+      }
+      .taskbar-left-area { min-width: auto; }
+      #win11-start-menu {
+        width: calc(100vw - 20px);
+        height: 80vh;
+      }
+      .start-pinned-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .win11-window {
+        width: 95vw !important;
+        height: 75vh !important;
+        left: 2.5vw !important;
+        top: 5vh !important;
+      }
     }
   </style>
 </head>
-<body class="theme-default">
 
-  <!-- ── Top OS Menu Bar ── -->
-  <div id="top-bar">
-    <div class="bar-left">
-      <span class="apple-logo" onclick="openWindow('win-about')"></span>
-      <span class="menu-item" style="font-weight:800;" onclick="openWindow('win-about')">Ugesh OS</span>
-      <span class="menu-item" onclick="openWindow('win-gallery')">🎨 Art Gallery</span>
-      <span class="menu-item" onclick="openWindow('win-contact')">✉ Contact</span>
-      <div class="theme-swatch-group">
-        <span style="font-size:0.7rem; color:#666;">THEME:</span>
-        <div class="theme-dot" style="background:#e6e4df" onclick="setTheme('default')" title="Classic Mac"></div>
-        <div class="theme-dot" style="background:#131d2a" onclick="setTheme('cyber')" title="Cyber Dark"></div>
-        <div class="theme-dot" style="background:#2e1254" onclick="setTheme('purple')" title="Synthwave Purple"></div>
+<body class="theme-light">
+
+  <!-- ── Main Desktop Environment ── -->
+  <div id="desktop-screen" onclick="desktopClicked(event)">
+
+    <!-- ── Desktop Icons (Folders, Files, Shortcuts) ── -->
+    <div class="desktop-icons-container">
+
+      <!-- Folder 1: Paintings & Canvases -->
+      <div class="desktop-icon" ondblclick="openExplorer('paintings')" onclick="selectIcon(this, event)">
+        <div class="desktop-icon-img">🎨</div>
+        <div class="desktop-icon-label">Paintings & Canvases</div>
+        <span class="desktop-icon-badge">13 Art</span>
+      </div>
+
+      <!-- Folder 2: Poems & Writings -->
+      <div class="desktop-icon" ondblclick="openExplorer('poems')" onclick="selectIcon(this, event)">
+        <div class="desktop-icon-img">📖</div>
+        <div class="desktop-icon-label">Poems & Writings</div>
+        <span class="desktop-icon-badge">Book</span>
+      </div>
+
+      <!-- Folder 3: My Pictures & BTS -->
+      <div class="desktop-icon" ondblclick="openExplorer('photos')" onclick="selectIcon(this, event)">
+        <div class="desktop-icon-img">📸</div>
+        <div class="desktop-icon-label">My Pictures & BTS</div>
+        <span class="desktop-icon-badge">10 Photos</span>
+      </div>
+
+      <!-- Folder 4: My Songs & Music -->
+      <div class="desktop-icon" ondblclick="openExplorer('music')" onclick="selectIcon(this, event)">
+        <div class="desktop-icon-img">🎵</div>
+        <div class="desktop-icon-label">My Songs & Music</div>
+        <span class="desktop-icon-badge">Debut</span>
+      </div>
+
+      <!-- Folder 5: YouTube & Videos -->
+      <div class="desktop-icon" ondblclick="openExplorer('videos')" onclick="selectIcon(this, event)">
+        <div class="desktop-icon-img">🎬</div>
+        <div class="desktop-icon-label">YouTube & Videos</div>
+        <span class="desktop-icon-badge">5 Vids</span>
+      </div>
+
+      <!-- Folder 6: My Socials & Links -->
+      <div class="desktop-icon" ondblclick="openExplorer('links')" onclick="selectIcon(this, event)">
+        <div class="desktop-icon-img">🌐</div>
+        <div class="desktop-icon-label">My Links & Socials</div>
+      </div>
+
+      <!-- Document: About Ugesh.txt -->
+      <div class="desktop-icon" ondblclick="openApp('win-notepad')" onclick="selectIcon(this, event)">
+        <div class="desktop-icon-img">📝</div>
+        <div class="desktop-icon-label">About Ugesh.txt</div>
+      </div>
+
+      <!-- App: Creative Arcade -->
+      <div class="desktop-icon" ondblclick="openApp('win-arcade')" onclick="selectIcon(this, event)">
+        <div class="desktop-icon-img">🕹️</div>
+        <div class="desktop-icon-label">Arcade Lab</div>
+      </div>
+
+      <!-- Shortcut: Contact Ugesh -->
+      <div class="desktop-icon" ondblclick="openApp('win-mail')" onclick="selectIcon(this, event)">
+        <div class="desktop-icon-img">✉️</div>
+        <div class="desktop-icon-label">Contact Ugesh.mail</div>
+      </div>
+
+      <!-- Shortcut: Engineer Mode -->
+      <a href="Engineer.html" class="desktop-icon" onclick="selectIcon(this, event)">
+        <div class="desktop-icon-img">💼</div>
+        <div class="desktop-icon-label">Engineer Mode.lnk</div>
+      </a>
+
+      <!-- Recycle Bin -->
+      <div class="desktop-icon" ondblclick="openApp('win-recycle')" onclick="selectIcon(this, event)">
+        <div class="desktop-icon-img">🗑️</div>
+        <div class="desktop-icon-label">Recycle Bin</div>
+      </div>
+
+    </div>
+
+    <!-- ── Non-Intrusive Desktop Widgets (Bottom-Left / Mid) ── -->
+    <div class="desktop-widgets-panel">
+
+      <!-- Widget 1: Realtime Clock & Location -->
+      <div class="win11-widget-card widget-clock-card">
+        <div class="clock-widget-header">
+          <div>
+            <div class="clock-widget-time" id="widgetClock">12:00 PM</div>
+            <div class="clock-widget-date" id="widgetDate">Friday, August 14, 2026</div>
+          </div>
+          <div class="clock-widget-location">
+            <span>📍</span> Coimbatore, IN
+          </div>
+        </div>
+        <div class="clock-widget-weather">
+          <span>⛅ 28°C Mostly Sunny</span>
+          <span style="color:var(--text-dim); margin:0 4px;">•</span>
+          <span style="color:var(--win11-cyan);">IST (UTC+5:30)</span>
+        </div>
+      </div>
+
+      <!-- Widget 2: Spotify Podcast & Music Player -->
+      <div class="win11-widget-card widget-spotify-card">
+        <div class="spotify-widget-header">
+          <div class="spotify-logo-icon">🎧</div>
+          <div class="spotify-widget-title">Ugesh's Spotify Podcast</div>
+        </div>
+        <div class="spotify-track-box">
+          <img src="../images/8wba.jpg" alt="Spotify Podcast Cover" class="spotify-track-thumb">
+          <div class="spotify-track-details">
+            <div class="spotify-track-name">Official Podcast Series</div>
+            <div class="spotify-artist-name">Hosted by Ugesh Ragavan</div>
+          </div>
+        </div>
+        <div class="spotify-widget-controls">
+          <button class="spotify-play-btn" onclick="openApp('win-player')" title="Open Media Player">▶</button>
+          <a href="https://open.spotify.com/show/7iYB5dgIRD7hOorXV3nFjW" target="_blank" rel="noopener" class="spotify-open-link">
+            <span>Open in Spotify</span> ↗
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       WINDOWS 11 WINDOWS / APPLICATIONS
+       ═══════════════════════════════════════════════════════════ -->
+
+  <!-- ── 1. FILE EXPLORER (Creative Showcase & Segregated Folders) ── -->
+  <div class="win11-window" id="win-explorer" style="top:50px; left:80px; width:820px; height:540px;">
+    <div class="window-titlebar" onmousedown="startDrag(event, 'win-explorer')">
+      <div class="window-title-left">
+        <span class="window-title-icon">📁</span>
+        <span id="explorerTitle">File Explorer — Paintings & Canvases</span>
+      </div>
+      <div class="window-controls-right">
+        <button class="win-control-btn" onclick="minimizeWindow('win-explorer')">🗕</button>
+        <button class="win-control-btn maximize" onclick="toggleMaximize('win-explorer')">
+          🗖
+          <div class="snap-layout-flyout">
+            <div class="snap-option" onclick="snapWindow('win-explorer', 'left')"><div class="snap-box" style="width:50%;"></div><div class="snap-box" style="width:50%; opacity:0.3;"></div></div>
+            <div class="snap-option" onclick="snapWindow('win-explorer', 'right')"><div class="snap-box" style="width:50%; opacity:0.3;"></div><div class="snap-box" style="width:50%;"></div></div>
+          </div>
+        </button>
+        <button class="win-control-btn close" onclick="closeWindow('win-explorer')">✕</button>
       </div>
     </div>
 
-    <div class="bar-right">
-      <button class="btn-top-quick" onclick="toggleSFX()" id="sfxBtn">♪ SFX ON</button>
-      <a href="Engineer.html" class="btn-top-quick" style="background:#2a9d8f">💻 ENGINEER MODE</a>
-      <a href="main.html" class="btn-top-quick" style="background:#3a86ff">🕹️ CLASS SELECT</a>
-      <a href="../index.html" class="btn-top-quick" style="background:#e76f51">🔗 BIO LINKS</a>
-      <span id="clockDisplay" style="font-family:var(--font-mono); font-size:0.78rem;">12:00 PM</span>
+    <!-- Explorer Toolbar & Address Bar -->
+    <div class="explorer-toolbar">
+      <div class="explorer-breadcrumbs" id="explorerBreadcrumb">
+        <span>This PC</span> › <span>Creative Suite</span> › <span id="currentFolderLabel" style="color:var(--win11-cyan); font-weight:700;">Paintings</span>
+      </div>
+      <input type="text" class="explorer-search" placeholder="Search files..." oninput="filterExplorer(this.value)">
+    </div>
+
+    <div class="explorer-layout">
+      <!-- Sidebar navigation -->
+      <div class="explorer-sidebar">
+        <div class="explorer-nav-item active" onclick="switchFolder('paintings', this)">🎨 Paintings</div>
+        <div class="explorer-nav-item" onclick="switchFolder('poems', this)">📖 Poems & Book</div>
+        <div class="explorer-nav-item" onclick="switchFolder('photos', this)">📸 Photography</div>
+        <div class="explorer-nav-item" onclick="switchFolder('music', this)">🎵 Songs & Audio</div>
+        <div class="explorer-nav-item" onclick="switchFolder('videos', this)">🎬 YouTube & Film</div>
+        <div class="explorer-nav-item" onclick="switchFolder('links', this)">🌐 Bio Links</div>
+      </div>
+
+      <!-- Main Files Grid -->
+      <div class="explorer-files-grid" id="explorerFilesGrid">
+        <!-- Injected via JavaScript -->
+      </div>
     </div>
   </div>
 
-  <!-- ── Main Desktop Workspace ── -->
-  <div id="desktop">
-
-    <!-- Desktop Icons -->
-    <div class="desktop-icon" onclick="openWindow('win-about')">
-      <div class="icon-img-box">👨‍💻</div>
-      <div class="icon-label">About Ugesh.app</div>
-    </div>
-
-    <div class="desktop-icon" onclick="openWindow('win-gallery')">
-      <div class="icon-img-box">🎨</div>
-      <div class="icon-label">Canvas Art.app</div>
-    </div>
-
-    <div class="desktop-icon" onclick="openWindow('win-videos')">
-      <div class="icon-img-box">🎬</div>
-      <div class="icon-label">Media Edits.app</div>
-    </div>
-
-    <div class="desktop-icon" onclick="openWindow('win-contact')">
-      <div class="icon-img-box">✉️</div>
-      <div class="icon-label">Contact.app</div>
-    </div>
-
-    <!-- Social & Poems Desktop Icons -->
-    <a href="https://www.instagram.com/the.ugiverse" target="_blank" class="desktop-icon" style="text-decoration:none;">
-      <div class="icon-img-box" style="background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color:#fff; font-size:1.6rem;">📸</div>
-      <div class="icon-label">the.ugiverse.app</div>
-    </a>
-
-    <a href="https://www.instagram.com/the.0g.ug" target="_blank" class="desktop-icon" style="text-decoration:none;">
-      <div class="icon-img-box" style="background: linear-gradient(135deg, #ff007f, #e1306c); color:#fff; font-size:1.6rem;">🎨</div>
-      <div class="icon-label">the.0g.ug (Art).app</div>
-    </a>
-
-    <a href="https://www.threads.com/@the.ugiverse" target="_blank" class="desktop-icon" style="text-decoration:none;">
-      <div class="icon-img-box" style="background: #000; color:#fff; border: 1.5px solid rgba(255,255,255,0.4); font-size:1.6rem;">🧵</div>
-      <div class="icon-label">Poems & Kavithaigal.app</div>
-    </a>
-
-    <a href="https://open.spotify.com/show/7iYB5dgIRD7hOorXV3nFjW" target="_blank" class="desktop-icon" style="text-decoration:none;">
-      <div class="icon-img-box" style="padding:0; overflow:hidden; border: 1.5px solid rgba(255,255,255,0.4); background:#1db954;">
-        <img src="../images/8wba.jpg" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" alt="Spotify Podcast">
+  <!-- ── 2. NOTEPAD (Author Book, Poems, Bio) ── -->
+  <div class="win11-window" id="win-notepad" style="top:70px; left:180px; width:640px; height:500px; display:none;">
+    <div class="window-titlebar" onmousedown="startDrag(event, 'win-notepad')">
+      <div class="window-title-left">
+        <span class="window-title-icon">📝</span>
+        <span>Notepad — Creative Writings & Philosophy</span>
       </div>
-      <div class="icon-label">Spotify Podcast.app</div>
-    </a>
-
-    <!-- ══ OS WINDOW: ABOUT UGESH ══ -->
-    <div class="os-window" id="win-about" style="top:60px; left:40px; width:620px; height:560px;">
-      <div class="window-header" onmousedown="startDrag(event, 'win-about')">
-        <div class="window-dots">
-          <div class="dot dot-close" onclick="closeWindow('win-about')"></div>
-          <div class="dot dot-min" onclick="closeWindow('win-about')"></div>
-          <div class="dot dot-max" onclick="toggleMaximize('win-about')"></div>
-        </div>
-        <div class="window-title">👨‍💻 About Ugesh Ragavan — Creator Persona</div>
-        <div></div>
+      <div class="window-controls-right">
+        <button class="win-control-btn" onclick="minimizeWindow('win-notepad')">🗕</button>
+        <button class="win-control-btn" onclick="toggleMaximize('win-notepad')">🗖</button>
+        <button class="win-control-btn close" onclick="closeWindow('win-notepad')">✕</button>
       </div>
-      <div class="window-body">
-        <div class="profile-hero">
-          <img src="../images/Ugesh/ugesh_working.jpg" alt="Ugesh Ragavan Working" class="profile-avatar">
-          <div class="profile-info">
-            <h2>Ugesh Ragavan</h2>
-            <div class="profile-tagline">🧠 Engineer Brain // 🎨 Creative Heart</div>
-            <p style="font-size:0.88rem; line-height:1.5;">3+ Years Experienced Big Data Engineer at Zoho Corporation by day, and a multidisciplinary Creator by night — filming, painting original acrylic canvases, publishing books, writing Tamil Kavithaigal, hosting podcasts & producing music.</p>
-          </div>
+    </div>
+    <div class="window-body-content">
+      <div class="notepad-container">
+        <div class="notepad-tabs">
+          <button class="notepad-tab-btn active" onclick="switchNotepadDoc('book', this)">📘 The Book I Wrote</button>
+          <button class="notepad-tab-btn" onclick="switchNotepadDoc('kavithaigal', this)">✍️ Tamil Kavithaigal</button>
+          <button class="notepad-tab-btn" onclick="switchNotepadDoc('bio', this)">👨‍💻 Creator Bio.txt</button>
+          <button class="notepad-tab-btn" onclick="switchNotepadDoc('manifesto', this)">🎨 Creator Manifesto</button>
         </div>
-
-        <!-- Creator Persona Badges -->
-        <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;">
-          <span class="creative-badge" style="background:rgba(255,0,127,0.12); color:#ff007f; border:1px solid rgba(255,0,127,0.3);">🎨 Acrylic Painting</span>
-          <span class="creative-badge" style="background:rgba(59,130,246,0.12); color:#3b82f6; border:1px solid rgba(59,130,246,0.3);">📖 Published Author</span>
-          <span class="creative-badge" style="background:rgba(16,185,129,0.12); color:#10b981; border:1px solid rgba(16,185,129,0.3);">🎙️ Podcast Host</span>
-          <span class="creative-badge" style="background:rgba(168,85,247,0.12); color:#a855f7; border:1px solid rgba(168,85,247,0.3);">✍️ Tamil Poetry & Kavithaigal</span>
-          <span class="creative-badge" style="background:rgba(239,68,68,0.12); color:#ef4444; border:1px solid rgba(239,68,68,0.3);">🎬 Video Directing & VFX</span>
-          <span class="creative-badge" style="background:rgba(245,158,11,0.12); color:#f59e0b; border:1px solid rgba(245,158,11,0.3);">🎵 Vocals & Music Production</span>
-        </div>
-
-        <!-- Quick Access Shortcuts to Creative Hub -->
-        <div style="background:linear-gradient(135deg, rgba(255,0,127,0.06), rgba(59,130,246,0.06)); border:1.5px solid rgba(255,0,127,0.2); border-radius:10px; padding:12px; margin-bottom:16px;">
-          <h4 style="font-size:0.82rem; font-family:var(--font-mono); margin-bottom:8px; color:#111;">🚀 EXPLORE CREATIVE SHOWCASE & WORKS:</h4>
-          <div style="display:flex; flex-wrap:wrap; gap:6px;">
-            <button class="btn-top-quick" onclick="openWindow('win-gallery'); switchGalleryTab('paintings', document.querySelectorAll('.gallery-tab-btn')[0]);" style="background:#ff007f; font-size:0.72rem; padding:5px 10px;">🎨 Paintings & Canvases</button>
-            <button class="btn-top-quick" onclick="openWindow('win-gallery'); switchGalleryTab('poems', document.querySelectorAll('.gallery-tab-btn')[1]);" style="background:#8b5cf6; font-size:0.72rem; padding:5px 10px;">📖 Book & Kavithaigal</button>
-            <button class="btn-top-quick" onclick="openWindow('win-gallery'); switchGalleryTab('music', document.querySelectorAll('.gallery-tab-btn')[2]);" style="background:#10b981; font-size:0.72rem; padding:5px 10px;">🎵 Music & Songs</button>
-            <button class="btn-top-quick" onclick="openWindow('win-gallery'); switchGalleryTab('photography', document.querySelectorAll('.gallery-tab-btn')[3]);" style="background:#ec4899; font-size:0.72rem; padding:5px 10px;">📸 Photography</button>
-            <button class="btn-top-quick" onclick="openWindow('win-gallery'); switchGalleryTab('videos', document.querySelectorAll('.gallery-tab-btn')[4]);" style="background:#ef4444; font-size:0.72rem; padding:5px 10px;">🎬 Videos & YouTube</button>
-          </div>
-        </div>
-
-        <h4 style="font-family:var(--font-mono); margin-bottom:10px;">📸 Behind The Scenes & Life:</h4>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px;">
-          <div style="background: rgba(0,0,0,0.05); border: 1.5px solid rgba(0,0,0,0.12); border-radius: 10px; padding: 6px; text-align: center; cursor: pointer;" onclick="openLightbox('../images/Ugesh/Ugesh_chilling.jpg', 'Ugesh — Chilling')">
-            <img src="../images/Ugesh/Ugesh_chilling.jpg" style="width:100%; height:180px; object-fit:contain; border-radius:6px; display:block;" alt="Ugesh Chilling">
-            <span style="font-size:0.75rem; font-family:var(--font-mono); color:#555; display:block; margin-top:4px; font-weight:600;">Chilling & Off Hours</span>
-          </div>
-          <div style="background: rgba(0,0,0,0.05); border: 1.5px solid rgba(0,0,0,0.12); border-radius: 10px; padding: 6px; text-align: center; cursor: pointer;" onclick="openLightbox('../images/Ugesh/Ug_writer.jpg', 'Ugesh — Writing & Poetry')">
-            <img src="../images/Ugesh/Ug_writer.jpg" style="width:100%; height:180px; object-fit:contain; border-radius:6px; display:block;" alt="Ugesh Writer">
-            <span style="font-size:0.75rem; font-family:var(--font-mono); color:#555; display:block; margin-top:4px; font-weight:600;">Writing & Kavithaigal</span>
-          </div>
+        <div class="notepad-editor-area" id="notepadContent">
+          <!-- Text loaded dynamically -->
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- ══ OS WINDOW: CREATIVE SHOWCASE & FINE ART GALLERY (HIDDEN BY DEFAULT) ══ -->
-    <div class="os-window hidden" id="win-gallery" style="top:75px; left:280px; width:740px; height:550px;">
-      <div class="window-header" onmousedown="startDrag(event, 'win-gallery')">
-        <div class="window-dots">
-          <div class="dot dot-close" onclick="closeWindow('win-gallery')"></div>
-          <div class="dot dot-min" onclick="closeWindow('win-gallery')"></div>
-          <div class="dot dot-max" onclick="toggleMaximize('win-gallery')"></div>
-        </div>
-        <div class="window-title">🎨 Ugesh's Creative Showcase & Fine Art Gallery</div>
-        <div></div>
+  <!-- ── 3. MEDIA PLAYER (Original Songs, Singing Shorts, Spotify) ── -->
+  <div class="win11-window" id="win-player" style="top:90px; left:220px; width:680px; height:520px; display:none;">
+    <div class="window-titlebar" onmousedown="startDrag(event, 'win-player')">
+      <div class="window-title-left">
+        <span class="window-title-icon">🎵</span>
+        <span>Windows Media Player — Ugesh's Songs & Studio</span>
       </div>
-      <div class="window-body">
+      <div class="window-controls-right">
+        <button class="win-control-btn" onclick="minimizeWindow('win-player')">🗕</button>
+        <button class="win-control-btn" onclick="toggleMaximize('win-player')">🗖</button>
+        <button class="win-control-btn close" onclick="closeWindow('win-player')">✕</button>
+      </div>
+    </div>
+    <div class="window-body-content">
+      <div style="display:flex; flex-direction:column; gap:16px;">
         
-        <!-- Category Filter Tabs -->
-        <div class="gallery-tabs">
-          <button class="gallery-tab-btn active" onclick="switchGalleryTab('paintings', this)">🎨 Paintings & Art</button>
-          <button class="gallery-tab-btn" onclick="switchGalleryTab('poems', this)">📖 Book & Poems</button>
-          <button class="gallery-tab-btn" onclick="switchGalleryTab('music', this)">🎵 Music & Songs</button>
-          <button class="gallery-tab-btn" onclick="switchGalleryTab('photography', this)">📸 Photography</button>
-          <button class="gallery-tab-btn" onclick="switchGalleryTab('videos', this)">🎬 Videos & YouTube</button>
+        <!-- Embedded Spotify Player -->
+        <div style="border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--mica-border); box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+          <iframe style="border-radius:12px; display:block;" src="https://open.spotify.com/embed/show/7iYB5dgIRD7hOorXV3nFjW?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
 
-        <!-- Tab 1: Paintings & Art -->
-        <div class="gallery-tab-content" id="tab-paintings">
-          <p style="font-size:0.82rem; color:#666; margin-bottom:12px;">Original Acrylic Canvases painted by Ugesh Ragavan. Click any artwork to inspect in high definition.</p>
-          <div class="gallery-photo-grid">
-            <div class="art-card" onclick="openLightbox('../img/Painting/dear.jpg', 'Dear in Dusk — Original Acrylic Canvas')">
-              <img src="../img/Painting/dear.jpg" class="art-img" alt="Dear in Dusk">
-              <div class="art-caption">Dear in Dusk</div>
-            </div>
-            <div class="art-card" onclick="openLightbox('../img/Painting/ship.jpg', 'Dawn Dark Pirates — Original Acrylic Canvas')">
-              <img src="../img/Painting/ship.jpg" class="art-img" alt="Dawn Dark Pirates">
-              <div class="art-caption">Dawn Dark Pirates</div>
-            </div>
-            <div class="art-card" onclick="openLightbox('../img/Painting/yas ka wedding gift.jpg', 'Village in Eve — Original Acrylic Canvas')">
-              <img src="../img/Painting/yas ka wedding gift.jpg" class="art-img" alt="Village in Eve">
-              <div class="art-caption">Village in Eve</div>
-            </div>
-            <div class="art-card" onclick="openLightbox('../img/Painting/1.jpg', 'Eve Study I — Knife Brushwork Canvas')">
-              <img src="../img/Painting/1.jpg" class="art-img" alt="Eve Study 1">
-              <div class="art-caption">Eve Study I</div>
-            </div>
-            <div class="art-card" onclick="openLightbox('../img/Painting/2.jpg', 'Eve Study II — Color Harmony Canvas')">
-              <img src="../img/Painting/2.jpg" class="art-img" alt="Eve Study 2">
-              <div class="art-caption">Eve Study II</div>
-            </div>
-            <div class="art-card" onclick="openLightbox('../img/Painting/3.jpg', 'Pop Expressions — High Contrast Pop Art')">
-              <img src="../img/Painting/3.jpg" class="art-img" alt="Pop Expressions">
-              <div class="art-caption">Pop Expressions</div>
-            </div>
-            <a href="https://www.instagram.com/p/C1WOS_dLZMk/" target="_blank" class="art-card" style="text-decoration:none; display:flex; flex-direction:column; justify-content:center; align-items:center; background:#fafafa; padding:14px; text-align:center;">
-              <div style="font-size:2.2rem; margin-bottom:8px;">🎨</div>
-              <div style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Featured Canvas Art</div>
-              <span style="font-size:0.72rem; color:#ff007f; font-weight:700;">View on Instagram ↗</span>
+        <!-- 1st Ever Song Debut Card -->
+        <a href="https://www.instagram.com/p/DbOdkI2y5R07tSsaT4FCTEt2G8_AUxNKc7XFgU0/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; background:linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.15)); border:1px solid rgba(16, 185, 129, 0.4); border-radius:var(--radius-md); padding:12px; text-decoration:none; color:var(--text-main);">
+          <div style="font-size:2rem; background:#10b981; color:#000; width:48px; height:48px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🎵</div>
+          <div style="flex:1;">
+            <span style="font-size:0.65rem; font-weight:800; background:#10b981; color:#000; padding:2px 6px; border-radius:4px;">DEBUT SINGLE</span>
+            <div style="font-size:0.95rem; font-weight:800; margin-top:2px;">My 1st Ever Original Song Release</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Listen to Ugesh's original musical composition on Instagram</div>
+          </div>
+          <span style="font-size:0.8rem; font-weight:700; color:#10b981; padding:6px 12px; background:rgba(16,185,129,0.2); border-radius:6px;">Listen ↗</span>
+        </a>
+
+        <!-- Singing Session Shorts Grid -->
+        <div>
+          <h4 style="font-size:0.85rem; font-weight:800; margin-bottom:10px; color:var(--win11-cyan);">🎤 Singing Sessions & Vocals:</h4>
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
+            
+            <a href="https://www.youtube.com/shorts/KkWU21wQtvc" target="_blank" rel="noopener" style="background:rgba(0,0,0,0.3); border:1px solid var(--mica-border); border-radius:var(--radius-sm); overflow:hidden; text-decoration:none; color:var(--text-main); display:block;">
+              <img src="https://img.youtube.com/vi/KkWU21wQtvc/hqdefault.jpg" style="width:100%; height:110px; object-fit:cover; display:block;" alt="Singing Short 1">
+              <div style="padding:6px 8px; font-size:0.72rem; font-weight:700;">Singing Short #1 ▶</div>
             </a>
+
+            <a href="https://www.youtube.com/shorts/kwSUk6-xKl8" target="_blank" rel="noopener" style="background:rgba(0,0,0,0.3); border:1px solid var(--mica-border); border-radius:var(--radius-sm); overflow:hidden; text-decoration:none; color:var(--text-main); display:block;">
+              <img src="https://img.youtube.com/vi/kwSUk6-xKl8/hqdefault.jpg" style="width:100%; height:110px; object-fit:cover; display:block;" alt="Singing Short 2">
+              <div style="padding:6px 8px; font-size:0.72rem; font-weight:700;">Singing Short #2 ▶</div>
+            </a>
+
+            <a href="https://www.instagram.com/p/DX0zAi3xoPFuALnbnkQrWrlUKebZdusAVKl8tE0/" target="_blank" rel="noopener" style="background:rgba(0,0,0,0.3); border:1px solid var(--mica-border); border-radius:var(--radius-sm); padding:10px; text-decoration:none; color:var(--text-main); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+              <div style="font-size:1.8rem; margin-bottom:4px;">🎙️</div>
+              <div style="font-size:0.75rem; font-weight:700;">Instagram Vocal Reel</div>
+              <span style="font-size:0.68rem; color:#e1306c; margin-top:4px;">Watch Reel ↗</span>
+            </a>
+
           </div>
         </div>
 
-        <!-- Tab 2: Book & Poems -->
-        <div class="gallery-tab-content" id="tab-poems" style="display:none;">
-          <p style="font-size:0.82rem; color:#666; margin-bottom:12px;">Published book works, original poetry, and Tamil Kavithaigal by Ugesh Ragavan.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. VIDEO PLAYER (YouTube & Film Hub) ── -->
+  <div class="win11-window" id="win-videos" style="top:60px; left:160px; width:720px; height:540px; display:none;">
+    <div class="window-titlebar" onmousedown="startDrag(event, 'win-videos')">
+      <div class="window-title-left">
+        <span class="window-title-icon">🎬</span>
+        <span>Movies & TV — YouTube Directing & Video Hub</span>
+      </div>
+      <div class="window-controls-right">
+        <button class="win-control-btn" onclick="minimizeWindow('win-videos')">🗕</button>
+        <button class="win-control-btn" onclick="toggleMaximize('win-videos')">🗖</button>
+        <button class="win-control-btn close" onclick="closeWindow('win-videos')">✕</button>
+      </div>
+    </div>
+    <div class="window-body-content">
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        
+        <!-- Official Channel Banner -->
+        <a href="https://www.youtube.com/@Ugesh.Ragavan" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; background:linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(255, 0, 127, 0.1)); border:1px solid rgba(239, 68, 68, 0.4); border-radius:var(--radius-md); padding:12px; text-decoration:none; color:var(--text-main);">
+          <div style="font-size:2rem; background:#ef4444; color:#fff; width:48px; height:48px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">📺</div>
+          <div style="flex:1;">
+            <span style="font-size:0.65rem; font-weight:800; background:#ef4444; color:#fff; padding:2px 6px; border-radius:4px;">YOUTUBE CHANNEL</span>
+            <div style="font-size:0.95rem; font-weight:800; margin-top:2px;">Ugesh Ragavan Official</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Subscribe & stream filmmaking projects, video edits & shorts</div>
+          </div>
+          <span style="font-size:0.8rem; font-weight:700; color:#ef4444; padding:6px 12px; background:rgba(239,68,68,0.2); border-radius:6px;">Visit Channel ↗</span>
+        </a>
+
+        <!-- Featured Videos Grid -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
           
-          <a href="https://www.instagram.com/p/DJ1uSwMSdjY6YN-uzDclMOpIICnMv8MohuSGE00/?img_index=1" target="_blank" class="creative-link-card" style="margin-bottom:14px; background: linear-gradient(135deg, #fff5f8, #ffffff); border-color:#ff007f;">
-            <div style="font-size:1.8rem; background:#ff007f; color:#fff; width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">📘</div>
-            <div style="flex:1;">
-              <span class="creative-badge" style="background:#ff007f; color:#fff;">PUBLISHED BOOK</span>
-              <h4 style="font-size:0.92rem; margin-bottom:2px; color:#111;">The Book I Wrote</h4>
-              <p style="font-size:0.76rem; color:#666;">Explore the book written & published by Ugesh on Instagram.</p>
-            </div>
-            <span class="btn-top-quick" style="background:#ff007f; flex-shrink:0; font-size:0.75rem; padding:6px 12px;">Read Book ↗</span>
-          </a>
+          <div style="background:rgba(0,0,0,0.35); border:1px solid var(--mica-border); border-radius:var(--radius-sm); overflow:hidden;">
+            <a href="https://www.youtube.com/watch?v=8oITc7uocn4" target="_blank" rel="noopener" style="display:block; position:relative;">
+              <img src="https://img.youtube.com/vi/8oITc7uocn4/hqdefault.jpg" style="width:100%; height:140px; object-fit:cover; display:block;" alt="Video 1">
+              <div style="position:absolute; inset:0; background:rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; font-size:1.8rem; color:#ef4444;">▶</div>
+            </a>
+            <div style="padding:8px 10px; font-size:0.78rem; font-weight:700;">Featured Video Production #1 🎬</div>
+          </div>
 
-          <div class="gallery-photo-grid">
-            <a href="https://www.threads.com/share/GTv4oZuQf/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
-              <div style="font-size:1.8rem; margin-bottom:8px;">✍️</div>
-              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Threads Poem #1</h5>
-              <p style="font-size:0.75rem; color:#666;">Tamil Kavithai & Verse on Threads</p>
-              <span style="font-size:0.72rem; color:#ff007f; font-weight:700; display:inline-block; margin-top:8px;">Read Poem ↗</span>
+          <div style="background:rgba(0,0,0,0.35); border:1px solid var(--mica-border); border-radius:var(--radius-sm); overflow:hidden;">
+            <a href="https://www.youtube.com/watch?v=OsYYRuHM1Nw" target="_blank" rel="noopener" style="display:block; position:relative;">
+              <img src="https://img.youtube.com/vi/OsYYRuHM1Nw/hqdefault.jpg" style="width:100%; height:140px; object-fit:cover; display:block;" alt="Video 2">
+              <div style="position:absolute; inset:0; background:rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; font-size:1.8rem; color:#ef4444;">▶</div>
             </a>
-            <a href="https://www.threads.com/share/FGTyXXV0z/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
-              <div style="font-size:1.8rem; margin-bottom:8px;">📜</div>
-              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Threads Poem #2</h5>
-              <p style="font-size:0.75rem; color:#666;">Poetic Reflections & Thoughts</p>
-              <span style="font-size:0.72rem; color:#ff007f; font-weight:700; display:inline-block; margin-top:8px;">Read Poem ↗</span>
+            <div style="padding:8px 10px; font-size:0.78rem; font-weight:700;">Featured Video Production #2 📽️</div>
+          </div>
+
+          <div style="background:rgba(0,0,0,0.35); border:1px solid var(--mica-border); border-radius:var(--radius-sm); overflow:hidden;">
+            <a href="https://youtu.be/Rz8FALxoOis" target="_blank" rel="noopener" style="display:block; position:relative;">
+              <img src="https://img.youtube.com/vi/Rz8FALxoOis/hqdefault.jpg" style="width:100%; height:140px; object-fit:cover; display:block;" alt="Video 3">
+              <div style="position:absolute; inset:0; background:rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; font-size:1.8rem; color:#ef4444;">▶</div>
             </a>
-            <a href="https://www.threads.com/share/F1wJzqf8B/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
-              <div style="font-size:1.8rem; margin-bottom:8px;">💫</div>
-              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Threads Poem #3</h5>
-              <p style="font-size:0.75rem; color:#666;">Original Kavithaigal Collection</p>
-              <span style="font-size:0.72rem; color:#ff007f; font-weight:700; display:inline-block; margin-top:8px;">Read Poem ↗</span>
-            </a>
-            <a href="https://www.threads.com/share/GdewOsk0F/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
-              <div style="font-size:1.8rem; margin-bottom:8px;">✒️</div>
-              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Threads Poem #4</h5>
-              <p style="font-size:0.75rem; color:#666;">Heartfelt Tamil Stanza</p>
-              <span style="font-size:0.72rem; color:#ff007f; font-weight:700; display:inline-block; margin-top:8px;">Read Poem ↗</span>
-            </a>
-            <a href="https://www.threads.com/share/FdcFw8G-n/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
-              <div style="font-size:1.8rem; margin-bottom:8px;">📖</div>
-              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Threads Poem #5</h5>
-              <p style="font-size:0.75rem; color:#666;">Poetry & Expressive Lines</p>
-              <span style="font-size:0.72rem; color:#ff007f; font-weight:700; display:inline-block; margin-top:8px;">Read Poem ↗</span>
-            </a>
-            <a href="https://www.instagram.com/p/DXzZuX2NDO4qX2T7LqOGl4eoGo_pmZNGaJa2Lg0/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
-              <div style="font-size:1.8rem; margin-bottom:8px;">📸</div>
-              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Instagram Poem Post</h5>
-              <p style="font-size:0.75rem; color:#666;">Visual Poetry & Artwork Reel</p>
-              <span style="font-size:0.72rem; color:#e1306c; font-weight:700; display:inline-block; margin-top:8px;">View Post ↗</span>
-            </a>
+            <div style="padding:8px 10px; font-size:0.78rem; font-weight:700;">Featured Video Edit 🎥</div>
+          </div>
+
+          <div style="background:rgba(0,0,0,0.35); border:1px solid var(--mica-border); border-radius:var(--radius-sm); overflow:hidden;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; padding:6px;">
+              <a href="https://www.youtube.com/shorts/Sf9K_tj7dPU" target="_blank" rel="noopener" style="display:block;">
+                <img src="https://img.youtube.com/vi/Sf9K_tj7dPU/hqdefault.jpg" style="width:100%; height:110px; object-fit:cover; border-radius:4px;" alt="Short 1">
+                <div style="font-size:0.68rem; font-weight:700; margin-top:2px;">YouTube Short ⚡</div>
+              </a>
+              <a href="https://www.youtube.com/shorts/GTXYbigedqo" target="_blank" rel="noopener" style="display:block;">
+                <img src="https://img.youtube.com/vi/GTXYbigedqo/hqdefault.jpg" style="width:100%; height:110px; object-fit:cover; border-radius:4px;" alt="Short 2">
+                <div style="font-size:0.68rem; font-weight:700; margin-top:2px;">YouTube Short 🔥</div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5. CREATIVE ARCADE APP ── -->
+  <div class="win11-window" id="win-arcade" style="top:80px; left:200px; width:680px; height:480px; display:none;">
+    <div class="window-titlebar" onmousedown="startDrag(event, 'win-arcade')">
+      <div class="window-title-left">
+        <span class="window-title-icon">🕹️</span>
+        <span>Xbox / Arcade Hub — Interactive Games & Experiences</span>
+      </div>
+      <div class="window-controls-right">
+        <button class="win-control-btn" onclick="minimizeWindow('win-arcade')">🗕</button>
+        <button class="win-control-btn" onclick="toggleMaximize('win-arcade')">🗖</button>
+        <button class="win-control-btn close" onclick="closeWindow('win-arcade')">✕</button>
+      </div>
+    </div>
+    <div class="window-body-content">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        
+        <a href="../game/ninja/ninja.html" target="_blank" style="background:rgba(255,255,255,0.06); border:1px solid var(--mica-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; color:var(--text-main); display:flex; align-items:center; gap:14px; transition:transform 0.2s;">
+          <div style="font-size:2.4rem;">🥷</div>
+          <div>
+            <div style="font-size:1rem; font-weight:800;">Stick Ninja</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Timing & bridge building arcade game</div>
+            <span style="font-size:0.72rem; color:var(--win11-blue); font-weight:700; margin-top:4px; display:inline-block;">Play Game ↗</span>
+          </div>
+        </a>
+
+        <a href="../game/lion/lion.html" target="_blank" style="background:rgba(255,255,255,0.06); border:1px solid var(--mica-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; color:var(--text-main); display:flex; align-items:center; gap:14px; transition:transform 0.2s;">
+          <div style="font-size:2.4rem;">🦁</div>
+          <div>
+            <div style="font-size:1rem; font-weight:800;">Chill Lion</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Interactive 3D Three.js experience</div>
+            <span style="font-size:0.72rem; color:var(--win11-blue); font-weight:700; margin-top:4px; display:inline-block;">Launch ↗</span>
+          </div>
+        </a>
+
+        <a href="../game/Cube/cube.html" target="_blank" style="background:rgba(255,255,255,0.06); border:1px solid var(--mica-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; color:var(--text-main); display:flex; align-items:center; gap:14px; transition:transform 0.2s;">
+          <div style="font-size:2.4rem;">🧊</div>
+          <div>
+            <div style="font-size:1rem; font-weight:800;">The Cube</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Rubik's cube 3D web simulation</div>
+            <span style="font-size:0.72rem; color:var(--win11-blue); font-weight:700; margin-top:4px; display:inline-block;">Play ↗</span>
+          </div>
+        </a>
+
+        <a href="../sites/Herbalife/dist/index.html" target="_blank" style="background:rgba(255,255,255,0.06); border:1px solid var(--mica-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; color:var(--text-main); display:flex; align-items:center; gap:14px; transition:transform 0.2s;">
+          <div style="font-size:2.4rem;">🌿</div>
+          <div>
+            <div style="font-size:1rem; font-weight:800;">D'Sun Stall</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Live commercial web application</div>
+            <span style="font-size:0.72rem; color:var(--win11-blue); font-weight:700; margin-top:4px; display:inline-block;">Visit Site ↗</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 6. TERMINAL (PowerShell / Creative CLI) ── -->
+  <div class="win11-window" id="win-terminal" style="top:100px; left:140px; width:640px; height:420px; display:none;">
+    <div class="window-titlebar" onmousedown="startDrag(event, 'win-terminal')">
+      <div class="window-title-left">
+        <span class="window-title-icon">💻</span>
+        <span>Windows Terminal — ugesh@creative-os: ~</span>
+      </div>
+      <div class="window-controls-right">
+        <button class="win-control-btn" onclick="minimizeWindow('win-terminal')">🗕</button>
+        <button class="win-control-btn" onclick="toggleMaximize('win-terminal')">🗖</button>
+        <button class="win-control-btn close" onclick="closeWindow('win-terminal')">✕</button>
+      </div>
+    </div>
+    <div class="terminal-body">
+      <div class="terminal-output" id="terminalOutput">
+        <div>Windows PowerShell [Version 11.0.22621.1]</div>
+        <div>(c) Ugesh Ragavan Creative Suite. All rights reserved.</div>
+        <div style="margin: 8px 0; color:#39ff14;">Type 'help' to see all creative commands.</div>
+      </div>
+      <div class="terminal-prompt-line">
+        <span style="color:#00c6ff;">ugesh@creative-os:~$</span>
+        <input type="text" class="terminal-input" id="terminalInput" autofocus onkeydown="handleTerminalCommand(event)">
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 7. MAIL CLIENT (Contact App) ── -->
+  <div class="win11-window" id="win-mail" style="top:90px; left:240px; width:520px; height:440px; display:none;">
+    <div class="window-titlebar" onmousedown="startDrag(event, 'win-mail')">
+      <div class="window-title-left">
+        <span class="window-title-icon">✉️</span>
+        <span>Mail — Dispatch Message to Ugesh</span>
+      </div>
+      <div class="window-controls-right">
+        <button class="win-control-btn" onclick="minimizeWindow('win-mail')">🗕</button>
+        <button class="win-control-btn" onclick="toggleMaximize('win-mail')">🗖</button>
+        <button class="win-control-btn close" onclick="closeWindow('win-mail')">✕</button>
+      </div>
+    </div>
+    <div class="window-body-content">
+      <form action="https://formspree.io/f/xvoldvoz" method="POST" style="display:flex; flex-direction:column; gap:12px;">
+        <input type="text" name="name" placeholder="Your Name" required style="padding:10px 12px; background:rgba(0,0,0,0.25); border:1px solid var(--mica-border); border-radius:var(--radius-sm); color:var(--text-main); font-family:var(--font-ui); font-size:0.85rem; outline:none;">
+        <input type="email" name="email" placeholder="Your Email" required style="padding:10px 12px; background:rgba(0,0,0,0.25); border:1px solid var(--mica-border); border-radius:var(--radius-sm); color:var(--text-main); font-family:var(--font-ui); font-size:0.85rem; outline:none;">
+        <textarea name="message" rows="5" placeholder="Enter your message, creative collaboration idea, or inquiry..." required style="padding:10px 12px; background:rgba(0,0,0,0.25); border:1px solid var(--mica-border); border-radius:var(--radius-sm); color:var(--text-main); font-family:var(--font-ui); font-size:0.85rem; outline:none; resize:none;"></textarea>
+        <button type="submit" style="padding:10px; background:var(--win11-blue); color:#fff; border:none; border-radius:var(--radius-sm); font-weight:700; cursor:pointer; font-size:0.85rem; transition:background 0.2s;">Send Transmission ✉️</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── 8. SETTINGS APP (Wallpapers, Themes, Sound) ── -->
+  <div class="win11-window" id="win-settings" style="top:70px; left:190px; width:640px; height:480px; display:none;">
+    <div class="window-titlebar" onmousedown="startDrag(event, 'win-settings')">
+      <div class="window-title-left">
+        <span class="window-title-icon">⚙️</span>
+        <span>Settings — Personalization & Desktop Suite</span>
+      </div>
+      <div class="window-controls-right">
+        <button class="win-control-btn" onclick="minimizeWindow('win-settings')">🗕</button>
+        <button class="win-control-btn" onclick="toggleMaximize('win-settings')">🗖</button>
+        <button class="win-control-btn close" onclick="closeWindow('win-settings')">✕</button>
+      </div>
+    </div>
+    <div class="window-body-content">
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        
+        <!-- Wallpaper Selection -->
+        <div>
+          <h4 style="font-size:0.85rem; font-weight:800; margin-bottom:10px;">🖼️ Choose Desktop Wallpaper:</h4>
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:10px;">
+            <div onclick="setWallpaper('ug-cartoon')" style="cursor:pointer; border:2px solid var(--win11-blue); border-radius:var(--radius-sm); overflow:hidden; text-align:center;">
+              <img src="../images/Ugesh/ug-cartoon-wallpaper.png" style="width:100%; height:70px; object-fit:cover; display:block;" alt="Ug Cartoon">
+              <span style="font-size:0.68rem; font-weight:700; padding:4px 0; display:block;">Ug Cartoon</span>
+            </div>
+            <div onclick="setWallpaper('bloom-dark')" style="cursor:pointer; border:1px solid var(--mica-border); border-radius:var(--radius-sm); overflow:hidden; text-align:center;">
+              <div style="width:100%; height:70px; background:radial-gradient(circle at center, #0078d4, #050811); display:flex; align-items:center; justify-content:center; font-size:1.5rem;">🌸</div>
+              <span style="font-size:0.68rem; font-weight:700; padding:4px 0; display:block;">Bloom Dark</span>
+            </div>
+            <div onclick="setWallpaper('cyber-acrylic')" style="cursor:pointer; border:1px solid var(--mica-border); border-radius:var(--radius-sm); overflow:hidden; text-align:center;">
+              <div style="width:100%; height:70px; background:linear-gradient(135deg, #050711, #ff007f 150%); display:flex; align-items:center; justify-content:center; font-size:1.5rem;">⚡</div>
+              <span style="font-size:0.68rem; font-weight:700; padding:4px 0; display:block;">Cyber Glow</span>
+            </div>
+            <div onclick="setWallpaper('sunset-glow')" style="cursor:pointer; border:1px solid var(--mica-border); border-radius:var(--radius-sm); overflow:hidden; text-align:center;">
+              <div style="width:100%; height:70px; background:linear-gradient(135deg, #ff8c00, #881798); display:flex; align-items:center; justify-content:center; font-size:1.5rem;">🌇</div>
+              <span style="font-size:0.68rem; font-weight:700; padding:4px 0; display:block;">Sunset Vibe</span>
+            </div>
           </div>
         </div>
 
-        <!-- Tab 3: Music & Songs -->
-        <div class="gallery-tab-content" id="tab-music" style="display:none;">
-          <p style="font-size:0.82rem; color:#666; margin-bottom:12px;">Listen to original debut song releases, Spotify podcasts, and singing session shorts below.</p>
-          
-          <!-- Embedded Spotify Podcast Player -->
-          <div style="margin-bottom:14px; border-radius:12px; overflow:hidden; border:1.5px solid rgba(22,163,74,0.3); box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-            <iframe style="border-radius:12px; display:block;" src="https://open.spotify.com/embed/show/7iYB5dgIRD7hOorXV3nFjW?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-          </div>
-
-          <!-- Featured 1st Ever Song Card -->
-          <a href="https://www.instagram.com/p/DbOdkI2y5R07tSsaT4FCTEt2G8_AUxNKc7XFgU0/" target="_blank" class="creative-link-card" style="margin-bottom:14px; background: linear-gradient(135deg, #f0fdf4, #ffffff); border-color:#16a34a;">
-            <div style="font-size:1.8rem; background:#16a34a; color:#fff; width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🎵</div>
-            <div style="flex:1;">
-              <span class="creative-badge" style="background:#16a34a; color:#fff;">MY 1ST EVER SONG</span>
-              <h4 style="font-size:0.92rem; margin-bottom:2px; color:#111;">Original Debut Song Release</h4>
-              <p style="font-size:0.76rem; color:#666;">Listen to Ugesh's 1st ever original musical composition on Instagram.</p>
-            </div>
-            <span class="btn-top-quick" style="background:#16a34a; flex-shrink:0; font-size:0.75rem; padding:6px 12px;">Open Post ↗</span>
-          </a>
-
-          <div class="gallery-photo-grid">
-            <div class="art-card" style="overflow:hidden;">
-              <a href="https://www.youtube.com/shorts/KkWU21wQtvc" target="_blank" style="text-decoration:none; display:block; position:relative;">
-                <img src="https://img.youtube.com/vi/KkWU21wQtvc/hqdefault.jpg" class="art-img" alt="Singing Short #1">
-                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center;">
-                  <div style="background:#ff0000; color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 15px rgba(0,0,0,0.5);">▶</div>
-                </div>
-              </a>
-              <div class="art-caption" style="display:flex; justify-content:space-between; align-items:center;">
-                <span>Singing Short #1 🎤</span>
-                <a href="https://www.youtube.com/shorts/KkWU21wQtvc" target="_blank" style="font-size:0.7rem; color:#ff0000; font-weight:700; text-decoration:none;">Play ↗</a>
-              </div>
-            </div>
-
-            <div class="art-card" style="overflow:hidden;">
-              <a href="https://www.youtube.com/shorts/kwSUk6-xKl8" target="_blank" style="text-decoration:none; display:block; position:relative;">
-                <img src="https://img.youtube.com/vi/kwSUk6-xKl8/hqdefault.jpg" class="art-img" alt="Singing Short #2">
-                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center;">
-                  <div style="background:#ff0000; color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 15px rgba(0,0,0,0.5);">▶</div>
-                </div>
-              </a>
-              <div class="art-caption" style="display:flex; justify-content:space-between; align-items:center;">
-                <span>Singing Short #2 🎶</span>
-                <a href="https://www.youtube.com/shorts/kwSUk6-xKl8" target="_blank" style="font-size:0.7rem; color:#ff0000; font-weight:700; text-decoration:none;">Play ↗</a>
-              </div>
-            </div>
-
-            <a href="https://www.instagram.com/p/DX0zAi3xoPFuALnbnkQrWrlUKebZdusAVKl8tE0/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
-              <div style="font-size:1.8rem; margin-bottom:8px;">🎙️</div>
-              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Instagram Singing Reel</h5>
-              <p style="font-size:0.75rem; color:#666;">Live vocal performance reel</p>
-              <span style="font-size:0.72rem; color:#e1306c; font-weight:700; display:inline-block; margin-top:8px;">Watch Reel ↗</span>
-            </a>
+        <!-- Theme Selection -->
+        <div>
+          <h4 style="font-size:0.85rem; font-weight:800; margin-bottom:10px;">🎨 Color Mode:</h4>
+          <div style="display:flex; gap:10px;">
+            <button onclick="setTheme('dark')" style="padding:8px 16px; border-radius:var(--radius-sm); background:rgba(255,255,255,0.1); border:1px solid var(--mica-border); color:#fff; font-weight:700; cursor:pointer;">Dark Mica</button>
+            <button onclick="setTheme('light')" style="padding:8px 16px; border-radius:var(--radius-sm); background:#fff; color:#000; border:1px solid #ccc; font-weight:700; cursor:pointer;">Light Bloom</button>
+            <button onclick="setTheme('cyber')" style="padding:8px 16px; border-radius:var(--radius-sm); background:#060a14; color:#00f0ff; border:1px solid #00f0ff; font-weight:700; cursor:pointer;">Cyber Synth</button>
           </div>
         </div>
 
-        <!-- Tab 4: Photography -->
-        <div class="gallery-tab-content" id="tab-photography" style="display:none;">
-          <p style="font-size:0.82rem; color:#666; margin-bottom:12px;">Visual photography compositions & life frames captured by Ugesh.</p>
-          <div class="gallery-photo-grid">
-            <a href="https://www.instagram.com/p/BxrO9_npbzTY7KjKKcIqYFCBQDcHKSPo5XSyOE0/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
-              <div style="font-size:1.8rem; margin-bottom:8px;">📷</div>
-              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Photo Collection I</h5>
-              <p style="font-size:0.75rem; color:#666;">Cinematic composition & framing</p>
-              <span style="font-size:0.72rem; color:#e1306c; font-weight:700; display:inline-block; margin-top:8px;">View Photo ↗</span>
-            </a>
-            <a href="https://www.instagram.com/p/B_IIK2XJ5nmlMKOY12gcfrwfLcHwC-aUeYZcEI0/?img_index=1" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
-              <div style="font-size:1.8rem; margin-bottom:8px;">🌇</div>
-              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Photo Collection II</h5>
-              <p style="font-size:0.75rem; color:#666;">Landscape & Ambient Lighting</p>
-              <span style="font-size:0.72rem; color:#e1306c; font-weight:700; display:inline-block; margin-top:8px;">View Photo ↗</span>
-            </a>
-            <a href="https://www.instagram.com/p/B0-2j3SJYMKpbSiNWSEnYlu66bPz4qoMndG5wo0/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
-              <div style="font-size:1.8rem; margin-bottom:8px;">🍃</div>
-              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Photo Collection III</h5>
-              <p style="font-size:0.75rem; color:#666;">Nature & Street Mood Frames</p>
-              <span style="font-size:0.72rem; color:#e1306c; font-weight:700; display:inline-block; margin-top:8px;">View Photo ↗</span>
-            </a>
-            <a href="https://www.instagram.com/p/CHuFzOZs9CoobHBiFIyjJ4bz21QYeXeZSXJ4NM0/" target="_blank" class="art-card" style="text-decoration:none; padding:14px; background:#fafafa;">
-              <div style="font-size:1.8rem; margin-bottom:8px;">✨</div>
-              <h5 style="font-size:0.85rem; font-weight:800; color:#111; margin-bottom:4px;">Photo Collection IV</h5>
-              <p style="font-size:0.75rem; color:#666;">Creative Perspective Shots</p>
-              <span style="font-size:0.72rem; color:#e1306c; font-weight:700; display:inline-block; margin-top:8px;">View Photo ↗</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Tab 5: Videos & YouTube -->
-        <div class="gallery-tab-content" id="tab-videos" style="display:none;">
-          <p style="font-size:0.82rem; color:#666; margin-bottom:12px;">Watch video productions, short films & teaser edits below.</p>
-
-          <a href="https://www.youtube.com/@Ugesh.Ragavan" target="_blank" class="creative-link-card" style="margin-bottom:14px; background: linear-gradient(135deg, #fff5f5, #ffffff); border-color:#ff0000;">
-            <div style="font-size:1.8rem; background:#ff0000; color:#fff; width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">📺</div>
-            <div style="flex:1;">
-              <span class="creative-badge" style="background:#ff0000; color:#fff;">YOUTUBE CHANNEL</span>
-              <h4 style="font-size:0.92rem; margin-bottom:2px; color:#111;">Ugesh Ragavan Official Channel</h4>
-              <p style="font-size:0.76rem; color:#666;">Subscribe & watch full-length videos, short films & video edits.</p>
-            </div>
-            <span class="btn-top-quick" style="background:#ff0000; flex-shrink:0; font-size:0.75rem; padding:6px 12px;">Visit Channel ↗</span>
-          </a>
-
-          <div class="gallery-photo-grid">
-            <div class="art-card" style="overflow:hidden;">
-              <a href="https://www.youtube.com/watch?v=8oITc7uocn4" target="_blank" style="text-decoration:none; display:block; position:relative;">
-                <img src="https://img.youtube.com/vi/8oITc7uocn4/hqdefault.jpg" class="art-img" alt="Featured Video #1">
-                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center;">
-                  <div style="background:#ff0000; color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 15px rgba(0,0,0,0.5);">▶</div>
-                </div>
-              </a>
-              <div class="art-caption" style="display:flex; justify-content:space-between; align-items:center;">
-                <span>Featured Video #1 🎬</span>
-                <a href="https://www.youtube.com/watch?v=8oITc7uocn4" target="_blank" style="font-size:0.7rem; color:#ff0000; font-weight:700; text-decoration:none;">Watch ↗</a>
-              </div>
-            </div>
-
-            <div class="art-card" style="overflow:hidden;">
-              <a href="https://www.youtube.com/watch?v=OsYYRuHM1Nw" target="_blank" style="text-decoration:none; display:block; position:relative;">
-                <img src="https://img.youtube.com/vi/OsYYRuHM1Nw/hqdefault.jpg" class="art-img" alt="Featured Video #2">
-                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center;">
-                  <div style="background:#ff0000; color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 15px rgba(0,0,0,0.5);">▶</div>
-                </div>
-              </a>
-              <div class="art-caption" style="display:flex; justify-content:space-between; align-items:center;">
-                <span>Featured Video #2 📽️</span>
-                <a href="https://www.youtube.com/watch?v=OsYYRuHM1Nw" target="_blank" style="font-size:0.7rem; color:#ff0000; font-weight:700; text-decoration:none;">Watch ↗</a>
-              </div>
-            </div>
-
-            <div class="art-card" style="overflow:hidden;">
-              <a href="https://youtu.be/Rz8FALxoOis" target="_blank" style="text-decoration:none; display:block; position:relative;">
-                <img src="https://img.youtube.com/vi/Rz8FALxoOis/hqdefault.jpg" class="art-img" alt="Featured YouTube Video">
-                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center;">
-                  <div style="background:#ff0000; color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 15px rgba(0,0,0,0.5);">▶</div>
-                </div>
-              </a>
-              <div class="art-caption" style="display:flex; justify-content:space-between; align-items:center;">
-                <span>Featured Video 🎥</span>
-                <a href="https://youtu.be/Rz8FALxoOis" target="_blank" style="font-size:0.7rem; color:#ff0000; font-weight:700; text-decoration:none;">Watch ↗</a>
-              </div>
-            </div>
-
-            <div class="art-card" style="overflow:hidden;">
-              <a href="https://www.youtube.com/shorts/Sf9K_tj7dPU" target="_blank" style="text-decoration:none; display:block; position:relative;">
-                <img src="https://img.youtube.com/vi/Sf9K_tj7dPU/hqdefault.jpg" class="art-img" alt="YouTube Short #1">
-                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center;">
-                  <div style="background:#ff0000; color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 15px rgba(0,0,0,0.5);">▶</div>
-                </div>
-              </a>
-              <div class="art-caption" style="display:flex; justify-content:space-between; align-items:center;">
-                <span>YouTube Short #1 ⚡</span>
-                <a href="https://www.youtube.com/shorts/Sf9K_tj7dPU" target="_blank" style="font-size:0.7rem; color:#ff0000; font-weight:700; text-decoration:none;">Play ↗</a>
-              </div>
-            </div>
-
-            <div class="art-card" style="overflow:hidden;">
-              <a href="https://www.youtube.com/shorts/GTXYbigedqo" target="_blank" style="text-decoration:none; display:block; position:relative;">
-                <img src="https://img.youtube.com/vi/GTXYbigedqo/hqdefault.jpg" class="art-img" alt="YouTube Short #2">
-                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center;">
-                  <div style="background:#ff0000; color:#fff; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; box-shadow:0 4px 15px rgba(0,0,0,0.5);">▶</div>
-                </div>
-              </a>
-              <div class="art-caption" style="display:flex; justify-content:space-between; align-items:center;">
-                <span>YouTube Short #2 🔥</span>
-                <a href="https://www.youtube.com/shorts/GTXYbigedqo" target="_blank" style="font-size:0.7rem; color:#ff0000; font-weight:700; text-decoration:none;">Play ↗</a>
-              </div>
-            </div>
+        <!-- Mode Jump -->
+        <div style="padding-top:10px; border-top:1px solid var(--mica-border);">
+          <h4 style="font-size:0.85rem; font-weight:800; margin-bottom:6px;">💼 Switch Persona:</h4>
+          <div style="display:flex; gap:10px;">
+            <a href="Engineer.html" style="padding:8px 14px; background:rgba(0,120,212,0.2); border:1px solid var(--win11-blue); color:#38bdf8; border-radius:var(--radius-sm); text-decoration:none; font-size:0.8rem; font-weight:700;">💻 Switch to Engineer Mode</a>
+            <a href="main.html" style="padding:8px 14px; background:rgba(255,140,0,0.2); border:1px solid #ff8c00; color:#fb923c; border-radius:var(--radius-sm); text-decoration:none; font-size:0.8rem; font-weight:700;">🕹️ Class Select Screen</a>
+            <a href="../index.html" style="padding:8px 14px; background:rgba(255,255,255,0.1); border:1px solid var(--mica-border); color:#fff; border-radius:var(--radius-sm); text-decoration:none; font-size:0.8rem; font-weight:700;">🔗 Bio Links Hub</a>
           </div>
         </div>
 
       </div>
     </div>
+  </div>
 
-    <!-- ══ OS WINDOW 5: CONTACT ══ -->
-    <div class="os-window hidden" id="win-contact" style="top:140px; left:260px; width:480px; height:380px;">
-      <div class="window-header" onmousedown="startDrag(event, 'win-contact')">
-        <div class="window-dots">
-          <div class="dot dot-close" onclick="closeWindow('win-contact')"></div>
-          <div class="dot dot-min" onclick="closeWindow('win-contact')"></div>
-          <div class="dot dot-max" onclick="toggleMaximize('win-contact')"></div>
+  <!-- ── 9. RECYCLE BIN MODAL ── -->
+  <div class="win11-window" id="win-recycle" style="top:120px; left:260px; width:480px; height:340px; display:none;">
+    <div class="window-titlebar" onmousedown="startDrag(event, 'win-recycle')">
+      <div class="window-title-left">
+        <span class="window-title-icon">🗑️</span>
+        <span>Recycle Bin (12 items)</span>
+      </div>
+      <div class="window-controls-right">
+        <button class="win-control-btn" onclick="minimizeWindow('win-recycle')">🗕</button>
+        <button class="win-control-btn" onclick="toggleMaximize('win-recycle')">🗖</button>
+        <button class="win-control-btn close" onclick="closeWindow('win-recycle')">✕</button>
+      </div>
+    </div>
+    <div class="window-body-content">
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:0.8rem;">
+        <div style="padding:6px 10px; background:rgba(255,255,255,0.04); border-radius:4px; display:flex; justify-content:space-between;">
+          <span>🐛 boring_legacy_bugs.dump</span>
+          <span style="color:var(--text-dim);">Deleted</span>
         </div>
-        <div class="window-title">✉ Dispatch Message to Ugesh</div>
-        <div></div>
+        <div style="padding:6px 10px; background:rgba(255,255,255,0.04); border-radius:4px; display:flex; justify-content:space-between;">
+          <span>💭 creative_block_excuses.docx</span>
+          <span style="color:var(--text-dim);">Deleted</span>
+        </div>
+        <div style="padding:6px 10px; background:rgba(255,255,255,0.04); border-radius:4px; display:flex; justify-content:space-between;">
+          <span>☕ empty_espresso_shot_3am.tmp</span>
+          <span style="color:var(--text-dim);">Deleted</span>
+        </div>
+        <div style="padding:6px 10px; background:rgba(255,255,255,0.04); border-radius:4px; display:flex; justify-content:space-between;">
+          <span>❌ imposter_syndrome.exe</span>
+          <span style="color:var(--text-dim);">Permanently Erased</span>
+        </div>
       </div>
-      <div class="window-body">
-        <form action="https://formspree.io/f/xvoldvoz" method="POST" style="display:flex; flex-direction:column; gap:12px;">
-          <input type="text" name="name" placeholder="YOUR NAME" required style="padding:10px; border:1px solid #ccc; border-radius:6px; font-family:var(--font-mono);">
-          <input type="email" name="email" placeholder="YOUR EMAIL" required style="padding:10px; border:1px solid #ccc; border-radius:6px; font-family:var(--font-mono);">
-          <textarea name="message" rows="4" placeholder="ENTER MESSAGE OR JOB INQUIRY..." required style="padding:10px; border:1px solid #ccc; border-radius:6px; font-family:var(--font-mono);"></textarea>
-          <button type="submit" class="btn-top-quick" style="padding:10px; justify-content:center; background:#3a86ff;">SEND TRANSMISSION ▶</button>
-        </form>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PHOTO VIEWER LIGHTBOX MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="win11-lightbox" onclick="closeLightbox()">
+    <div class="lightbox-modal-card" onclick="event.stopPropagation()">
+      <div class="lightbox-header">
+        <div style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:0.9rem;">
+          <span>🖼️</span> <span id="lightboxCaption">Artwork Preview</span>
+        </div>
+        <button class="win-control-btn close" onclick="closeLightbox()" style="margin-right:-18px;">✕</button>
+      </div>
+      <div class="lightbox-image-view">
+        <button class="lightbox-nav-btn prev" onclick="navigateLightbox(-1)">❮</button>
+        <img src="" id="lightboxImg" class="lightbox-img-element" alt="Artwork detail">
+        <button class="lightbox-nav-btn next" onclick="navigateLightbox(1)">❯</button>
+      </div>
+      <div class="lightbox-footer">
+        <div id="lightboxDetails" style="font-size:0.78rem; color:var(--text-muted);">Acrylic Canvas painted by Ugesh Ragavan</div>
+        <a id="lightboxActionBtn" href="https://www.instagram.com/the.0g.ug" target="_blank" rel="noopener" style="font-size:0.75rem; font-weight:700; color:var(--win11-blue); text-decoration:none; padding:4px 10px; background:rgba(0,120,212,0.15); border-radius:4px;">View on Instagram ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       WINDOWS 11 START MENU
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="win11-start-menu">
+    <!-- Top Search Input -->
+    <div class="start-search-box">
+      <div class="start-search-input-wrapper">
+        <span class="start-search-icon">🔍</span>
+        <input type="text" class="start-search-input" placeholder="Type here to search creative works, paintings, poems..." oninput="handleStartSearch(this.value)">
       </div>
     </div>
 
+    <!-- Pinned Grid -->
+    <div class="start-pinned-section">
+      <div class="start-section-header">
+        <span>Pinned</span>
+        <button class="start-all-apps-btn" onclick="openExplorer('paintings')">All Works ›</button>
+      </div>
+      <div class="start-pinned-grid">
+        <div class="start-app-item" onclick="openExplorer('paintings'); toggleStartMenu();">
+          <div class="start-app-icon">🎨</div>
+          <div class="start-app-label">Paintings</div>
+        </div>
+        <div class="start-app-item" onclick="openExplorer('poems'); toggleStartMenu();">
+          <div class="start-app-icon">📖</div>
+          <div class="start-app-label">Poems & Book</div>
+        </div>
+        <div class="start-app-item" onclick="openExplorer('photos'); toggleStartMenu();">
+          <div class="start-app-icon">📸</div>
+          <div class="start-app-label">Photos</div>
+        </div>
+        <div class="start-app-item" onclick="openApp('win-player'); toggleStartMenu();">
+          <div class="start-app-icon">🎵</div>
+          <div class="start-app-label">Media Player</div>
+        </div>
+        <div class="start-app-item" onclick="openApp('win-videos'); toggleStartMenu();">
+          <div class="start-app-icon">🎬</div>
+          <div class="start-app-label">YouTube Hub</div>
+        </div>
+        <div class="start-app-item" onclick="openApp('win-notepad'); toggleStartMenu();">
+          <div class="start-app-icon">📝</div>
+          <div class="start-app-label">Notepad</div>
+        </div>
+        <div class="start-app-item" onclick="openApp('win-arcade'); toggleStartMenu();">
+          <div class="start-app-icon">🕹️</div>
+          <div class="start-app-label">Arcade Lab</div>
+        </div>
+        <div class="start-app-item" onclick="openApp('win-terminal'); toggleStartMenu();">
+          <div class="start-app-icon">💻</div>
+          <div class="start-app-label">Terminal</div>
+        </div>
+        <div class="start-app-item" onclick="openApp('win-mail'); toggleStartMenu();">
+          <div class="start-app-icon">✉️</div>
+          <div class="start-app-label">Mail</div>
+        </div>
+        <div class="start-app-item" onclick="openApp('win-settings'); toggleStartMenu();">
+          <div class="start-app-icon">⚙️</div>
+          <div class="start-app-label">Settings</div>
+        </div>
+        <a href="Engineer.html" class="start-app-item">
+          <div class="start-app-icon">💼</div>
+          <div class="start-app-label">Engineer</div>
+        </a>
+        <a href="../index.html" class="start-app-item">
+          <div class="start-app-icon">🔗</div>
+          <div class="start-app-label">Bio Links</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Recommended Section -->
+    <div class="start-recommended-section">
+      <div class="start-section-header">
+        <span>Recommended Works</span>
+      </div>
+      <div class="start-rec-grid">
+        <div class="start-rec-item" onclick="openLightboxImage('../img/Painting/dear.jpg', 'Dear in Dusk — Acrylic Canvas'); toggleStartMenu();">
+          <div class="start-rec-icon">🦌</div>
+          <div class="start-rec-info">
+            <div class="start-rec-name">Dear in Dusk</div>
+            <div class="start-rec-meta">Original Acrylic Painting</div>
+          </div>
+        </div>
+        <div class="start-rec-item" onclick="openApp('win-notepad'); switchNotepadDoc('book', document.querySelectorAll('.notepad-tab-btn')[0]); toggleStartMenu();">
+          <div class="start-rec-icon">📘</div>
+          <div class="start-rec-info">
+            <div class="start-rec-name">The Book I Wrote</div>
+            <div class="start-rec-meta">Published Author Edition</div>
+          </div>
+        </div>
+        <div class="start-rec-item" onclick="openApp('win-player'); toggleStartMenu();">
+          <div class="start-rec-icon">🎵</div>
+          <div class="start-rec-info">
+            <div class="start-rec-name">Debut Original Song</div>
+            <div class="start-rec-meta">Original Music Release</div>
+          </div>
+        </div>
+        <div class="start-rec-item" onclick="openApp('win-videos'); toggleStartMenu();">
+          <div class="start-rec-icon">🎬</div>
+          <div class="start-rec-info">
+            <div class="start-rec-name">Featured Video Project</div>
+            <div class="start-rec-meta">Directing & Visual Film</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Start Footer Profile & Power -->
+    <div class="start-footer">
+      <div class="start-user-pill" onclick="openApp('win-notepad'); switchNotepadDoc('bio', document.querySelectorAll('.notepad-tab-btn')[2]); toggleStartMenu();">
+        <img src="../images/fav_icon.jpg" alt="Ugesh Avatar" class="start-user-avatar" onerror="this.src='../images/fav.png'">
+        <div class="start-user-info">
+          <span class="start-user-name">Ugesh Ragavan</span>
+          <span class="start-user-role">Creative Mastermind & Engineer</span>
+        </div>
+      </div>
+      <div class="start-power-btn" onclick="openApp('win-settings'); toggleStartMenu();" title="Personalization & Settings">
+        ⚙️
+      </div>
+    </div>
   </div>
 
-  <!-- ── Bottom Taskbar / Tech Stack Dock ── -->
-  <div id="taskbar">
-    <div class="dock-item" onclick="openWindow('win-dino')">
-      🦖
-      <div class="dock-tooltip">Chrome Dino Game</div>
-      <div class="dock-indicator"></div>
+  <!-- ═══════════════════════════════════════════════════════════
+       WINDOWS 11 QUICK SETTINGS ACTION CENTER
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="win11-action-center">
+    <div class="quick-tiles-grid">
+      <div class="quick-tile active" id="sfxTile" onclick="toggleSFX()">
+        <span>🔊</span>
+        <span id="sfxLabel">SFX On</span>
+      </div>
+      <div class="quick-tile" onclick="openApp('win-settings'); toggleActionCenter();">
+        <span>🖼️</span>
+        <span>Wallpaper</span>
+      </div>
+      <div class="quick-tile" onclick="toggleThemeQuick()">
+        <span>🌙</span>
+        <span>Theme</span>
+      </div>
     </div>
 
-    <div class="dock-item" onclick="openWindow('win-about')">
-      🐍
-      <div class="dock-tooltip">Python & PySpark</div>
-      <div class="dock-indicator"></div>
+    <div class="quick-slider-row">
+      <span>🔊</span>
+      <input type="range" min="0" max="100" value="80" oninput="setAudioVolume(this.value)">
     </div>
 
-    <div class="dock-item" onclick="openWindow('win-about')">
-      ⚛️
-      <div class="dock-tooltip">React Frontend</div>
-      <div class="dock-indicator"></div>
-    </div>
-
-    <div class="dock-item" onclick="openWindow('win-about')">
-      🐘
-      <div class="dock-tooltip">PostgreSQL & Kafka</div>
-      <div class="dock-indicator"></div>
-    </div>
-
-    <div class="dock-divider"></div>
-
-    <div class="dock-item" onclick="openWindow('win-gallery')">
-      🎨
-      <div class="dock-tooltip">Acrylic Painting</div>
-      <div class="dock-indicator"></div>
-    </div>
-
-    <div class="dock-item" onclick="openWindow('win-videos')">
-      🎬
-      <div class="dock-tooltip">Video Editing</div>
-      <div class="dock-indicator"></div>
-    </div>
-
-    <div class="dock-item" onclick="openWindow('win-contact')">
-      ✉️
-      <div class="dock-tooltip">Contact Ugesh</div>
-      <div class="dock-indicator"></div>
-    </div>
-
-    <div class="dock-divider"></div>
-
-    <a href="Engineer.html" class="dock-item" style="text-decoration:none;">
-      💼
-      <div class="dock-tooltip">Engineer Mode Resume</div>
-    </a>
-  </div>
-
-  <!-- ── Lightbox Modal ── -->
-  <div id="lightbox" onclick="closeLightbox()">
-    <div class="lightbox-content" onclick="event.stopPropagation()">
-      <img src="" id="lightboxImg" class="lightbox-img" alt="Artwork Detail">
-      <div id="lightboxCaption" style="font-weight:700; font-size:1.1rem; margin-bottom:12px;"></div>
-      <button class="btn-top-quick" onclick="closeLightbox()" style="background:#ff5f56;">CLOSE EXHIBITION ✕</button>
+    <div style="padding-top:10px; border-top:1px solid var(--mica-border); display:flex; justify-content:space-between; align-items:center;">
+      <a href="Engineer.html" style="font-size:0.75rem; font-weight:700; color:var(--win11-blue); text-decoration:none;">💼 Engineer Mode ↗</a>
+      <a href="../index.html" style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-decoration:none;">Bio Links ↗</a>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════
-       JAVASCRIPT: OS DESKTOP ENGINE
-       ═══════════════════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════════════════
+       WINDOWS 11 TASKBAR
+       ═══════════════════════════════════════════════════════════ -->
+  <nav id="win11-taskbar">
+    <!-- Left: Weather Widget Pill -->
+    <div class="taskbar-left-area">
+      <div class="taskbar-weather-pill" onclick="toggleWidgetsBoard()">
+        <span>⛅</span>
+        <span>28°C Mostly Sunny</span>
+      </div>
+    </div>
+
+    <!-- Center: App Icons & Start Button -->
+    <div class="taskbar-center-area">
+      
+      <!-- Start Button -->
+      <button class="taskbar-btn" id="startBtn" onclick="toggleStartMenu()" title="Start">
+        <div class="win11-start-logo">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </button>
+
+      <!-- Task View / File Explorer -->
+      <button class="taskbar-btn active" id="tb-explorer" onclick="toggleApp('win-explorer')" title="File Explorer">
+        📁
+      </button>
+
+      <!-- Notepad / Poetry -->
+      <button class="taskbar-btn" id="tb-notepad" onclick="toggleApp('win-notepad')" title="Notepad">
+        📝
+      </button>
+
+      <!-- Media Player -->
+      <button class="taskbar-btn" id="tb-player" onclick="toggleApp('win-player')" title="Media Player">
+        🎵
+      </button>
+
+      <!-- Video Player -->
+      <button class="taskbar-btn" id="tb-videos" onclick="toggleApp('win-videos')" title="Videos & Film">
+        🎬
+      </button>
+
+      <!-- Arcade Hub -->
+      <button class="taskbar-btn" id="tb-arcade" onclick="toggleApp('win-arcade')" title="Arcade Games">
+        🕹️
+      </button>
+
+      <!-- Terminal -->
+      <button class="taskbar-btn" id="tb-terminal" onclick="toggleApp('win-terminal')" title="Windows Terminal">
+        💻
+      </button>
+
+      <!-- Settings -->
+      <button class="taskbar-btn" id="tb-settings" onclick="toggleApp('win-settings')" title="Settings">
+        ⚙️
+      </button>
+
+    </div>
+
+    <!-- Right: System Tray & Clock -->
+    <div class="taskbar-right-area">
+      <div class="system-tray-btn" onclick="toggleActionCenter()" title="Quick Settings">
+        <span>🌐</span>
+        <span>🔊</span>
+        <span>🔋</span>
+      </div>
+
+      <div class="system-tray-btn" onclick="toggleActionCenter()" title="Date & Time">
+        <div class="tray-clock-box">
+          <span id="trayTime">12:00 PM</span>
+          <span id="trayDate">8/14/2026</span>
+        </div>
+      </div>
+
+      <!-- Peek Desktop Bar -->
+      <div class="tray-peek-desktop" onclick="minimizeAllWindows()" title="Show Desktop"></div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       JAVASCRIPT: WINDOWS 11 CORE DESKTOP OS ENGINE
+       ═══════════════════════════════════════════════════════════ -->
   <script>
-    // ── Gallery Multi-Tab Switcher ──
-    function switchGalleryTab(tabId, btn) {
-      tone(600, 'sine', 0.05);
-      document.querySelectorAll('.gallery-tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.gallery-tab-content').forEach(c => c.style.display = 'none');
-      btn.classList.add('active');
-      const target = document.getElementById('tab-' + tabId);
-      if (target) target.style.display = 'block';
-    }
+    // ── CREATIVE ASSETS REPOSITORY (Paintings, Poems, Photos, Songs, Videos, Links) ──
+    const CREATIVE_DATA = {
+      paintings: [
+        { title: "Dear in Dusk", file: "../img/Painting/dear.jpg", type: "Original Acrylic Canvas", desc: "Knife brushwork & ambient dusk study" },
+        { title: "Dawn Dark Pirates", file: "../img/Painting/ship.jpg", type: "Original Acrylic Canvas", desc: "Seascape storm & high sea vessel painting" },
+        { title: "Village in Eve", file: "../img/Painting/yas ka wedding gift.jpg", type: "Original Acrylic Canvas", desc: "Traditional landscape & warm color palette" },
+        { title: "Eve Study I", file: "../img/Painting/1.jpg", type: "Original Acrylic Canvas", desc: "Atmospheric evening study on canvas" },
+        { title: "Eve Study II", file: "../img/Painting/2.jpg", type: "Original Acrylic Canvas", desc: "High contrast color harmony composition" },
+        { title: "Pop Expressions", file: "../img/Painting/3.jpg", type: "Pop Art Canvas", desc: "Bold palette acrylic character portrait" },
+        { title: "Art Study #1", file: "../images/Art/623298156_17982407381791778_5187901518600606748_n.jpg", type: "HD Canvas Collection", desc: "Abstract brush strokes & texture" },
+        { title: "Art Study #2", file: "../images/Art/649661316_17914285797147572_8427449629855332481_n.jpg", type: "HD Canvas Collection", desc: "Expressive color harmony artwork" },
+        { title: "Art Study #3", file: "../images/Art/653765323_18086683823239187_4672738865360339735_n.jpg", type: "HD Canvas Collection", desc: "Fine art canvas detailing" },
+        { title: "Art Study #4", file: "../images/Art/655816398_18097984699825894_7727239032953379349_n.jpg", type: "HD Canvas Collection", desc: "Original composition artwork" },
+        { title: "Art Study #5", file: "../images/Art/657918210_18329664100246955_6427640837754503145_n.jpg", type: "HD Canvas Collection", desc: "Modern acrylic textures & depth" },
+        { title: "Art Study #6", file: "../images/Art/658873489_18129443473561226_4394535041261019309_n.jpg", type: "HD Canvas Collection", desc: "Visual storytelling through pigments" },
+        { title: "Art Study #7", file: "../images/Art/662183195_18406050754178333_3260889362253269538_n.jpg", type: "HD Canvas Collection", desc: "Contemporary canvas piece" }
+      ],
+      poems: [
+        { title: "The Book I Wrote", type: "Published Author Edition", url: "https://www.instagram.com/p/DJ1uSwMSdjY6YN-uzDclMOpIICnMv8MohuSGE00/?img_index=1", desc: "Ugesh's official published book edition" },
+        { title: "Threads Poem #1", type: "Tamil Kavithai", url: "https://www.threads.com/share/GTv4oZuQf/", desc: "Original poetic reflections on life & heart" },
+        { title: "Threads Poem #2", type: "Tamil Kavithai", url: "https://www.threads.com/share/FGTyXXV0z/", desc: "Expressive verse written in night hours" },
+        { title: "Threads Poem #3", type: "Tamil Kavithai", url: "https://www.threads.com/share/F1wJzqf8B/", desc: "Introspective Tamil poetry collection" },
+        { title: "Threads Poem #4", type: "Tamil Kavithai", url: "https://www.threads.com/share/GdewOsk0F/", desc: "Rhyme, cadence & soul reflections" },
+        { title: "Threads Poem #5", type: "Tamil Kavithai", url: "https://www.threads.com/share/FdcFw8G-n/", desc: "Heartfelt Stanza on Threads" },
+        { title: "Instagram Poetry Reel", type: "Visual Verse", url: "https://www.instagram.com/p/DXzZuX2NDO4qX2T7LqOGl4eoGo_pmZNGaJa2Lg0/", desc: "Spoken poetry video reel" }
+      ],
+      photos: [
+        { title: "Ugesh — Chilling", file: "../images/Ugesh/Ugesh_chilling.jpg", type: "Life & BTS", desc: "Off-hours relaxation & creative contemplation" },
+        { title: "Ugesh — Writer", file: "../images/Ugesh/Ug_writer.jpg", type: "Life & BTS", desc: "Writing poems & script concepts" },
+        { title: "Ugesh — Working", file: "../images/Ugesh/ugesh_working.jpg", type: "Studio Time", desc: "Data engineering & creative editing setup" },
+        { title: "Ugiverse Portrait", file: "../images/Ugesh/Ugiverse.jpg", type: "Creative Identity", desc: "Official persona frame" },
+        { title: "OG UG Frame", file: "../images/Ugesh/og-ug.jpg", type: "Life Frame", desc: "Raw candid shot" },
+        { title: "Photo Frame #1", file: "../images/photograph/1.jpg", type: "Photography", desc: "Cinematic lighting & angle" },
+        { title: "Photo Frame #2", file: "../images/photograph/2.jpg", type: "Photography", desc: "Perspective & atmosphere" },
+        { title: "Photo Capture #3", file: "../images/photograph/619854222_18062757692285870_5821068524660829916_n.jpg", type: "Photography", desc: "Street & ambient lighting" },
+        { title: "Photo Capture #4", file: "../images/photograph/622762922_18159383638416766_440057493795503440_n.jpg", type: "Photography", desc: "Visual mood composition" },
+        { title: "Photo Capture #5", file: "../images/photograph/654417937_18123544402582589_5778609982254488738_n.webp", type: "Photography", desc: "Life frame" }
+      ],
+      music: [
+        { title: "My 1st Ever Song Debut", type: "Original Music", url: "https://www.instagram.com/p/DbOdkI2y5R07tSsaT4FCTEt2G8_AUxNKc7XFgU0/", desc: "Ugesh's 1st original musical composition & release" },
+        { title: "Spotify Podcast Series", type: "Tamil Podcast", url: "https://open.spotify.com/show/7iYB5dgIRD7hOorXV3nFjW", desc: "Official audio podcast show on Spotify" },
+        { title: "Singing Session Short #1", type: "Vocals", url: "https://www.youtube.com/shorts/KkWU21wQtvc", desc: "Live vocal rehearsal recording" },
+        { title: "Singing Session Short #2", type: "Vocals", url: "https://www.youtube.com/shorts/kwSUk6-xKl8", desc: "Acoustic singing snippet" },
+        { title: "Instagram Singing Reel", type: "Live Vocal", url: "https://www.instagram.com/p/DX0zAi3xoPFuALnbnkQrWrlUKebZdusAVKl8tE0/", desc: "Performance reel on Instagram" }
+      ],
+      videos: [
+        { title: "Featured Video Production #1", type: "Directing & Edit", url: "https://www.youtube.com/watch?v=8oITc7uocn4", desc: "Full-length YouTube project" },
+        { title: "Featured Video Production #2", type: "Directing & Edit", url: "https://www.youtube.com/watch?v=OsYYRuHM1Nw", desc: "Cinematic edit & storytelling" },
+        { title: "YouTube Video Showcase", type: "Creative Edit", url: "https://youtu.be/Rz8FALxoOis", desc: "Visual effects & montage" },
+        { title: "YouTube Short ⚡", type: "Short Form", url: "https://www.youtube.com/shorts/Sf9K_tj7dPU", desc: "Quick-cut creative short" },
+        { title: "YouTube Short 🔥", type: "Short Form", url: "https://www.youtube.com/shorts/GTXYbigedqo", desc: "High energy short video" }
+      ],
+      links: [
+        { title: "the.ugiverse (Instagram)", type: "Social", url: "https://www.instagram.com/the.ugiverse", desc: "Creative Tech, Projects & Lifestyle" },
+        { title: "the.0g.ug (Instagram Art)", type: "Social", url: "https://www.instagram.com/the.0g.ug", desc: "Canvas Artworks & Acrylic Gallery" },
+        { title: "Threads (@the.ugiverse)", type: "Social", url: "https://www.threads.com/@the.ugiverse", desc: "Tamil Poems & Kavithaigal Hub" },
+        { title: "YouTube Channel", type: "Social", url: "https://www.youtube.com/@Ugesh.Ragavan", desc: "Official Video & Directing Channel" },
+        { title: "Spotify Podcast", type: "Podcast", url: "https://open.spotify.com/show/7iYB5dgIRD7hOorXV3nFjW", desc: "Official Tamil Podcast Show" },
+        { title: "LinkedIn Profile", type: "Career", url: "https://www.linkedin.com/in/ugeshragavan", desc: "Engineering credentials & experience" },
+        { title: "GitHub Repositories", type: "Code", url: "https://github.com/ugesh-ragavan", desc: "Open source code & ETL pipelines" }
+      ]
+    };
 
-    // ── Live OS Clock ──
-    function updateClock() {
+    // ── NOTEPAD DOCUMENTS ──
+    const NOTEPAD_TEXTS = {
+      book: `=====================================================
+THE BOOK I WROTE — BY UGESH RAGAVAN
+Official Published Edition
+=====================================================
+
+"We write not simply to be remembered, but to give form
+to the storms and silences that would otherwise remain
+unspoken within us."
+
+A compilation of introspective thoughts, poetry, philosophical
+stanzas, and verses exploring life, human emotions, dreams,
+and the journey of a creative soul balancing the rational
+logic of engineering with the boundless freedom of art.
+
+Explore full book edition on Instagram:
+🔗 https://www.instagram.com/p/DJ1uSwMSdjY6YN-uzDclMOpIICnMv8MohuSGE00/
+`,
+      kavithaigal: `=====================================================
+TAMIL KAVITHAIGAL & POETRY — UGESH RAGAVAN
+Published on Threads (@the.ugiverse)
+=====================================================
+
+[ கவிதை வரிகள் ]
+
+"இரவின் அமைதியில்
+பிறக்கும் எண்ணங்கள்,
+வார்த்தைகளாக வடிவெடுத்து
+காலத்தின் பக்கங்களில்
+சுவடுகளாய் நிறைகின்றன..."
+
+Threads Poetry Collection:
+1. https://www.threads.com/share/GTv4oZuQf/
+2. https://www.threads.com/share/FGTyXXV0z/
+3. https://www.threads.com/share/F1wJzqf8B/
+4. https://www.threads.com/share/GdewOsk0F/
+5. https://www.threads.com/share/FdcFw8G-n/
+`,
+      bio: `=====================================================
+ABOUT UGESH RAGAVAN — CREATOR PERSONA
+=====================================================
+
+🧠 Engineer's Brain // 🎨 Creative Heart
+Location: Coimbatore, India
+
+3+ Years Experienced Big Data Engineer at Cognizant by day,
+scaling Azure Databricks, PySpark pipelines & Lakehouses.
+
+Multidisciplinary Creator by night:
+- 🎨 Acrylic Painter & Canvas Artist (@the.0g.ug)
+- 📖 Published Author & Tamil Poet (@the.ugiverse)
+- 🎙️ Spotify Podcast Host
+- 🎵 Original Music Composer & Singer
+- 🎬 Filmmaker, Video Editor & Director (@Ugesh.Ragavan on YouTube)
+
+Contact: ugeshragavan@gmail.com
+`,
+      manifesto: `=====================================================
+THE CREATOR MANIFESTO
+=====================================================
+
+1. Logic builds the bridge; art chooses where it leads.
+2. Code is poetry for machines; poetry is code for the soul.
+3. Keep the brush wet, the mic live, and the mind curious.
+4. Scale pipelines by day, paint galaxies by night.
+`
+    };
+
+    // ── STATE VARIABLES ──
+    let activeFolder = 'paintings';
+    let lightboxList = [];
+    let currentLightboxIdx = 0;
+    let sfxEnabled = true;
+    let activeAudioContext = null;
+    let currentOscillator = null;
+
+    // ── INITIALIZATION ──
+    document.addEventListener('DOMContentLoaded', () => {
+      updateClocks();
+      setInterval(updateClocks, 1000);
+      switchFolder('paintings');
+      switchNotepadDoc('book', document.querySelector('.notepad-tab-btn'));
+    });
+
+    // ── CLOCK & DATE ──
+    function updateClocks() {
       const now = new Date();
-      document.getElementById('clockDisplay').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
+      const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const fullDateStr = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+      const shortDateStr = now.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' });
 
-    // ── Audio SFX ──
-    let sfxEnabled = true, audioCtx = null;
-    function getAudioCtx() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return audioCtx; }
-    function toggleSFX() {
-      sfxEnabled = !sfxEnabled;
-      document.getElementById('sfxBtn').textContent = sfxEnabled ? '♪ SFX ON' : '✕ SFX OFF';
+      const wClock = document.getElementById('widgetClock');
+      if (wClock) wClock.textContent = timeStr;
+
+      const wDate = document.getElementById('widgetDate');
+      if (wDate) wDate.textContent = fullDateStr;
+
+      const tTime = document.getElementById('trayTime');
+      if (tTime) tTime.textContent = timeStr;
+
+      const tDate = document.getElementById('trayDate');
+      if (tDate) tDate.textContent = shortDateStr;
     }
-    function tone(freq, type='sine', dur=0.1) {
+
+    // ── SOUND EFFECTS (Web Audio API Synthesizer) ──
+    function playTone(freq, duration, type = 'sine') {
       if (!sfxEnabled) return;
       try {
-        const ctx = getAudioCtx(); const osc = ctx.createOscillator(); const g = ctx.createGain();
-        osc.type = type; osc.frequency.setValueAtTime(freq, ctx.currentTime);
-        g.gain.setValueAtTime(0.08, ctx.currentTime);
-        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
-        osc.connect(g); g.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + dur);
-      } catch(e){}
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {}
     }
 
-    // ── Theme Switcher ──
-    function setTheme(themeName) {
-      document.body.className = themeName === 'default' ? 'theme-default' : 'theme-' + themeName;
-      tone(520, 'sine', 0.15);
+    function toggleSFX() {
+      sfxEnabled = !sfxEnabled;
+      const label = document.getElementById('sfxLabel');
+      const tile = document.getElementById('sfxTile');
+      if (label) label.textContent = sfxEnabled ? 'SFX On' : 'SFX Off';
+      if (tile) tile.classList.toggle('active', sfxEnabled);
+      if (sfxEnabled) playTone(600, 0.1);
     }
 
-    // ── Window Management & Drag Engine ──
-    let zIndexCounter = 100;
-    let activeDragWin = null, dragOffsetX = 0, dragOffsetY = 0;
+    // ── AMBIENT SOUNDSCAPE SYNTHESIZER ──
+    function toggleAmbient(type, btn) {
+      const isActive = btn.classList.contains('active');
+      document.querySelectorAll('.vibe-sound-btn').forEach(b => b.classList.remove('active'));
 
-    function openWindow(id) {
-      const win = document.getElementById(id);
-      if (!win) return;
-      win.classList.remove('hidden');
-      bringToFront(win);
-      tone(440, 'sine', 0.1);
-    }
-
-    function closeWindow(id) {
-      const win = document.getElementById(id);
-      if (win) {
-        win.classList.add('hidden');
-        tone(300, 'sine', 0.1);
+      if (currentOscillator) {
+        try { currentOscillator.stop(); } catch(e) {}
+        currentOscillator = null;
       }
-    }
 
-    function toggleMaximize(id) {
-      const win = document.getElementById(id);
-      if (win) {
-        win.classList.toggle('maximized');
-        tone(580, 'sine', 0.1);
-      }
-    }
+      if (isActive) return;
+      btn.classList.add('active');
 
-    function bringToFront(win) {
-      zIndexCounter++;
-      win.style.zIndex = zIndexCounter;
-    }
-
-    document.querySelectorAll('.os-window').forEach(win => {
-      win.addEventListener('mousedown', () => bringToFront(win));
-    });
-
-    function startDrag(e, id) {
-      activeDragWin = document.getElementById(id);
-      bringToFront(activeDragWin);
-      dragOffsetX = e.clientX - activeDragWin.offsetLeft;
-      dragOffsetY = e.clientY - activeDragWin.offsetTop;
-    }
-
-    document.addEventListener('mousemove', e => {
-      if (!activeDragWin || activeDragWin.classList.contains('maximized')) return;
-      activeDragWin.style.left = (e.clientX - dragOffsetX) + 'px';
-      activeDragWin.style.top = (e.clientY - dragOffsetY) + 'px';
-    });
-
-    document.addEventListener('mouseup', () => { activeDragWin = null; });
-
-    // ── Lightbox ──
-    function openLightbox(src, caption) {
-      document.getElementById('lightboxImg').src = src;
-      document.getElementById('lightboxCaption').textContent = caption;
-      document.getElementById('lightbox').classList.add('open');
-      tone(600, 'square', 0.08);
-    }
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('open');
-    }
-
-    // ═══════════════════════════════════════════════════════
-    //  CHROME DINO RUNNER GAME ENGINE
-    // ═══════════════════════════════════════════════════════
-    const canvas = document.getElementById('dinoCanvas');
-    const ctx = canvas.getContext('2d');
-    const dinoScoreEl = document.getElementById('dinoScore');
-    const dinoHiScoreEl = document.getElementById('dinoHiScore');
-
-    let dino = { x: 50, y: 130, w: 24, h: 32, vy: 0, jumping: false };
-    let obstacles = [];
-    let dinoFrame = 0, dinoScore = 0, dinoHiScore = 0;
-    let dinoGameRunning = false, dinoGameOver = false;
-
-    function resetDinoGame() {
-      dino = { x: 50, y: 130, w: 24, h: 32, vy: 0, jumping: false };
-      obstacles = [];
-      dinoScore = 0;
-      dinoFrame = 0;
-      dinoGameOver = false;
-      dinoGameRunning = true;
-      tone(500, 'sine', 0.15);
-    }
-
-    function jumpDino() {
-      if (!dinoGameRunning && !dinoGameOver) resetDinoGame();
-      if (dinoGameOver) resetDinoGame();
-      if (!dino.jumping) {
-        dino.vy = -10;
-        dino.jumping = true;
-        tone(750, 'sine', 0.1);
-      }
-    }
-
-    document.addEventListener('keydown', e => {
-      if (e.code === 'Space' || e.code === 'ArrowUp') {
-        const dinoWin = document.getElementById('win-dino');
-        if (!dinoWin.classList.contains('hidden')) {
-          e.preventDefault();
-          jumpDino();
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        activeAudioContext = new AudioCtx();
+        
+        // Simple ambient noise generator
+        const bufferSize = activeAudioContext.sampleRate * 2;
+        const noiseBuffer = activeAudioContext.createBuffer(1, bufferSize, activeAudioContext.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          output[i] = Math.random() * 2 - 1;
         }
-      }
-    });
 
-    function updateDino() {
-      if (!dinoGameRunning || dinoGameOver) return;
+        const whiteNoise = activeAudioContext.createBufferSource();
+        whiteNoise.buffer = noiseBuffer;
+        whiteNoise.loop = true;
 
-      dinoFrame++;
-      dinoScore = Math.floor(dinoFrame / 4);
-      dinoScoreEl.textContent = String(dinoScore).padStart(5, '0');
-      if (dinoScore > dinoHiScore) {
-        dinoHiScore = dinoScore;
-        dinoHiScoreEl.textContent = String(dinoHiScore).padStart(5, '0');
-      }
+        const filter = activeAudioContext.createBiquadFilter();
+        filter.type = type === 'rain' ? 'lowpass' : (type === 'lofi' ? 'bandpass' : 'lowpass');
+        filter.frequency.value = type === 'rain' ? 800 : (type === 'lofi' ? 400 : 300);
 
-      // Physics
-      dino.vy += 0.55;
-      dino.y += dino.vy;
-      if (dino.y >= 130) {
-        dino.y = 130;
-        dino.vy = 0;
-        dino.jumping = false;
-      }
+        const gainNode = activeAudioContext.createGain();
+        gainNode.gain.value = 0.04;
 
-      // Spawn obstacles
-      if (dinoFrame % 90 === 0) {
-        obstacles.push({ x: 600, y: 134, w: 16, h: 28 });
-      }
+        whiteNoise.connect(filter);
+        filter.connect(gainNode);
+        gainNode.connect(activeAudioContext.destination);
 
-      // Move obstacles & collision
-      for (let i = 0; i < obstacles.length; i++) {
-        const obs = obstacles[i];
-        obs.x -= 5.5;
-
-        // Collision check
-        if (
-          dino.x < obs.x + obs.w &&
-          dino.x + dino.w > obs.x &&
-          dino.y < obs.y + obs.h &&
-          dino.y + dino.h > obs.y
-        ) {
-          dinoGameOver = true;
-          dinoGameRunning = false;
-          tone(180, 'sawtooth', 0.3);
-        }
-      }
-      obstacles = obstacles.filter(o => o.x + o.w > 0);
+        whiteNoise.start(0);
+        currentOscillator = whiteNoise;
+      } catch(e) {}
     }
 
-    function drawDino() {
-      ctx.clearRect(0, 0, 600, 180);
-
-      // Ground Line
-      ctx.strokeStyle = '#555';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(0, 160);
-      ctx.lineTo(600, 160);
-      ctx.stroke();
-
-      // Draw Dino (Pixel T-Rex / Traveler shape)
-      ctx.fillStyle = '#333';
-      ctx.fillRect(dino.x, dino.y, dino.w, dino.h);
-      ctx.fillStyle = '#fff';
-      ctx.fillRect(dino.x + 14, dino.y + 4, 4, 4); // Eye
-
-      // Draw Cacti Obstacles
-      ctx.fillStyle = '#2a9d8f';
-      obstacles.forEach(obs => {
-        ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
+    // ── EXPLORER FOLDER SWITCHER ──
+    function openExplorer(folderKey) {
+      openApp('win-explorer');
+      const navItems = document.querySelectorAll('.explorer-nav-item');
+      navItems.forEach(item => {
+        if (item.textContent.toLowerCase().includes(folderKey.toLowerCase())) {
+          switchFolder(folderKey, item);
+        }
       });
+    }
 
-      if (dinoGameOver) {
-        ctx.font = "bold 16px 'Fira Code', monospace";
-        ctx.fillStyle = '#ff007f';
-        ctx.fillText("GAME OVER — PRESS SPACE TO RESTART", 140, 90);
-      } else if (!dinoGameRunning) {
-        ctx.font = "bold 14px 'Fira Code', monospace";
-        ctx.fillStyle = '#555';
-        ctx.fillText("PRESS SPACE OR RESTART TO PLAY CHROME DINO", 110, 90);
+    function switchFolder(folderKey, navElement) {
+      playTone(480, 0.08);
+      activeFolder = folderKey;
+
+      if (navElement) {
+        document.querySelectorAll('.explorer-nav-item').forEach(el => el.classList.remove('active'));
+        navElement.classList.add('active');
+      }
+
+      const titleEl = document.getElementById('explorerTitle');
+      const breadcrumbEl = document.getElementById('currentFolderLabel');
+      const grid = document.getElementById('explorerFilesGrid');
+
+      const folderTitles = {
+        paintings: "Paintings & Canvases",
+        poems: "Poems, Writings & Book",
+        photos: "Photography & Life Frames",
+        music: "Original Songs & Audio",
+        videos: "YouTube & Video Productions",
+        links: "Bio Links & Social Channels"
+      };
+
+      if (titleEl) titleEl.textContent = `File Explorer — ${folderTitles[folderKey] || folderKey}`;
+      if (breadcrumbEl) breadcrumbEl.textContent = folderTitles[folderKey] || folderKey;
+
+      const items = CREATIVE_DATA[folderKey] || [];
+      grid.innerHTML = '';
+
+      if (folderKey === 'paintings' || folderKey === 'photos') {
+        lightboxList = items;
+      }
+
+      items.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'explorer-file-card';
+
+        if (folderKey === 'paintings') {
+          card.innerHTML = `
+            <img src="${item.file}" class="explorer-file-thumb" alt="${item.title}">
+            <div class="explorer-file-name">${item.title}</div>
+            <div class="explorer-file-sub">${item.type}</div>
+          `;
+          card.onclick = () => openLightboxIndex(idx, items);
+        } else if (folderKey === 'photos') {
+          card.innerHTML = `
+            <img src="${item.file}" class="explorer-file-thumb" alt="${item.title}">
+            <div class="explorer-file-name">${item.title}</div>
+            <div class="explorer-file-sub">${item.type}</div>
+          `;
+          card.onclick = () => openLightboxIndex(idx, items);
+        } else if (folderKey === 'poems') {
+          card.innerHTML = `
+            <div style="font-size:2.4rem; height:90px; display:flex; align-items:center; justify-content:center;">📜</div>
+            <div class="explorer-file-name">${item.title}</div>
+            <div class="explorer-file-sub">${item.type}</div>
+          `;
+          card.onclick = () => window.open(item.url, '_blank');
+        } else if (folderKey === 'music') {
+          card.innerHTML = `
+            <div style="font-size:2.4rem; height:90px; display:flex; align-items:center; justify-content:center;">🎵</div>
+            <div class="explorer-file-name">${item.title}</div>
+            <div class="explorer-file-sub">${item.type}</div>
+          `;
+          card.onclick = () => window.open(item.url, '_blank');
+        } else if (folderKey === 'videos') {
+          card.innerHTML = `
+            <div style="font-size:2.4rem; height:90px; display:flex; align-items:center; justify-content:center;">🎬</div>
+            <div class="explorer-file-name">${item.title}</div>
+            <div class="explorer-file-sub">${item.type}</div>
+          `;
+          card.onclick = () => window.open(item.url, '_blank');
+        } else {
+          card.innerHTML = `
+            <div style="font-size:2.4rem; height:90px; display:flex; align-items:center; justify-content:center;">🌐</div>
+            <div class="explorer-file-name">${item.title}</div>
+            <div class="explorer-file-sub">${item.type}</div>
+          `;
+          card.onclick = () => window.open(item.url, '_blank');
+        }
+
+        grid.appendChild(card);
+      });
+    }
+
+    function filterExplorer(query) {
+      const q = query.toLowerCase();
+      const cards = document.querySelectorAll('.explorer-file-card');
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    }
+
+    // ── NOTEPAD TAB SWITCHER ──
+    function switchNotepadDoc(docKey, btn) {
+      playTone(520, 0.08);
+      document.querySelectorAll('.notepad-tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const content = document.getElementById('notepadContent');
+      if (content) content.textContent = NOTEPAD_TEXTS[docKey] || '';
+    }
+
+    // ── LIGHTBOX VIEWER ──
+    function openLightboxIndex(idx, list) {
+      playTone(600, 0.1);
+      lightboxList = list;
+      currentLightboxIdx = idx;
+      renderLightboxCurrent();
+      document.getElementById('win11-lightbox').classList.add('open');
+    }
+
+    function openLightboxImage(src, caption) {
+      playTone(600, 0.1);
+      lightboxList = [{ file: src, title: caption, desc: "Featured Artwork Preview" }];
+      currentLightboxIdx = 0;
+      renderLightboxCurrent();
+      document.getElementById('win11-lightbox').classList.add('open');
+    }
+
+    function renderLightboxCurrent() {
+      if (!lightboxList.length) return;
+      const item = lightboxList[currentLightboxIdx];
+      const img = document.getElementById('lightboxImg');
+      const cap = document.getElementById('lightboxCaption');
+      const det = document.getElementById('lightboxDetails');
+      if (img) img.src = item.file;
+      if (cap) cap.textContent = item.title;
+      if (det) det.textContent = `${item.type || 'Artwork'} — ${item.desc || 'Created by Ugesh Ragavan'}`;
+    }
+
+    function navigateLightbox(dir) {
+      playTone(500, 0.08);
+      currentLightboxIdx = (currentLightboxIdx + dir + lightboxList.length) % lightboxList.length;
+      renderLightboxCurrent();
+    }
+
+    function closeLightbox() {
+      playTone(380, 0.08);
+      document.getElementById('win11-lightbox').classList.remove('open');
+    }
+
+    // ── WINDOW MANAGEMENT ENGINE ──
+    let highestZ = 200;
+
+    function openApp(winId) {
+      playTone(650, 0.1);
+      const win = document.getElementById(winId);
+      if (!win) return;
+      win.style.display = 'flex';
+      win.classList.remove('minimized');
+      focusWindow(winId);
+
+      const taskBtnId = winId.replace('win-', 'tb-');
+      const taskBtn = document.getElementById(taskBtnId);
+      if (taskBtn) {
+        taskBtn.classList.add('active');
+        taskBtn.classList.add('running');
       }
     }
 
-    function dinoLoop() {
-      updateDino();
-      drawDino();
-      requestAnimationFrame(dinoLoop);
+    function toggleApp(winId) {
+      const win = document.getElementById(winId);
+      if (!win) return;
+      if (win.style.display === 'none' || win.classList.contains('minimized')) {
+        openApp(winId);
+      } else {
+        minimizeWindow(winId);
+      }
     }
-    dinoLoop();
+
+    function closeWindow(winId) {
+      playTone(400, 0.08);
+      const win = document.getElementById(winId);
+      if (!win) return;
+      win.style.display = 'none';
+
+      const taskBtnId = winId.replace('win-', 'tb-');
+      const taskBtn = document.getElementById(taskBtnId);
+      if (taskBtn) {
+        taskBtn.classList.remove('active');
+        taskBtn.classList.remove('running');
+      }
+    }
+
+    function minimizeWindow(winId) {
+      playTone(350, 0.08);
+      const win = document.getElementById(winId);
+      if (!win) return;
+      win.classList.add('minimized');
+
+      const taskBtnId = winId.replace('win-', 'tb-');
+      const taskBtn = document.getElementById(taskBtnId);
+      if (taskBtn) taskBtn.classList.remove('active');
+    }
+
+    function minimizeAllWindows() {
+      playTone(320, 0.1);
+      document.querySelectorAll('.win11-window').forEach(w => {
+        if (w.style.display !== 'none') w.classList.add('minimized');
+      });
+      document.querySelectorAll('.taskbar-btn').forEach(b => b.classList.remove('active'));
+    }
+
+    function toggleMaximize(winId) {
+      playTone(550, 0.08);
+      const win = document.getElementById(winId);
+      if (win) win.classList.toggle('maximized');
+    }
+
+    function snapWindow(winId, side) {
+      playTone(550, 0.08);
+      const win = document.getElementById(winId);
+      if (!win) return;
+      win.classList.remove('maximized');
+      win.style.top = '0px';
+      win.style.height = 'calc(100% - 48px)';
+      win.style.width = '50%';
+      win.style.left = side === 'left' ? '0px' : '50%';
+    }
+
+    function focusWindow(winId) {
+      const win = document.getElementById(winId);
+      if (!win) return;
+      highestZ += 2;
+      win.style.zIndex = highestZ;
+      document.querySelectorAll('.win11-window').forEach(w => w.classList.remove('active'));
+      win.classList.add('active');
+    }
+
+    // ── WINDOW DRAGGING ──
+    let draggedWin = null;
+    let dragOffsetX = 0;
+    let dragOffsetY = 0;
+
+    function startDrag(e, winId) {
+      const win = document.getElementById(winId);
+      if (!win || win.classList.contains('maximized')) return;
+      focusWindow(winId);
+      draggedWin = win;
+      const rect = win.getBoundingClientRect();
+      dragOffsetX = e.clientX - rect.left;
+      dragOffsetY = e.clientY - rect.top;
+
+      document.addEventListener('mousemove', onDragMove);
+      document.addEventListener('mouseup', onDragEnd);
+    }
+
+    function onDragMove(e) {
+      if (!draggedWin) return;
+      let x = e.clientX - dragOffsetX;
+      let y = e.clientY - dragOffsetY;
+      if (y < 0) y = 0;
+      draggedWin.style.left = `${x}px`;
+      draggedWin.style.top = `${y}px`;
+    }
+
+    function onDragEnd() {
+      draggedWin = null;
+      document.removeEventListener('mousemove', onDragMove);
+      document.removeEventListener('mouseup', onDragEnd);
+    }
+
+    // ── START MENU & FLYOUTS ──
+    function toggleStartMenu() {
+      playTone(580, 0.08);
+      const startMenu = document.getElementById('win11-start-menu');
+      const actionCenter = document.getElementById('win11-action-center');
+      if (actionCenter) actionCenter.classList.remove('open');
+      if (startMenu) startMenu.classList.toggle('open');
+    }
+
+    function toggleActionCenter() {
+      playTone(580, 0.08);
+      const startMenu = document.getElementById('win11-start-menu');
+      const actionCenter = document.getElementById('win11-action-center');
+      if (startMenu) startMenu.classList.remove('open');
+      if (actionCenter) actionCenter.classList.toggle('open');
+    }
+
+    function toggleWidgetsBoard() {
+      openApp('win-explorer');
+    }
+
+    function desktopClicked(e) {
+      if (e.target.id === 'desktop-screen') {
+        document.querySelectorAll('.desktop-icon').forEach(i => i.classList.remove('selected'));
+        const startMenu = document.getElementById('win11-start-menu');
+        const actionCenter = document.getElementById('win11-action-center');
+        if (startMenu) startMenu.classList.remove('open');
+        if (actionCenter) actionCenter.classList.remove('open');
+      }
+    }
+
+    function selectIcon(iconEl, e) {
+      e.stopPropagation();
+      playTone(450, 0.05);
+      document.querySelectorAll('.desktop-icon').forEach(i => i.classList.remove('selected'));
+      iconEl.classList.add('selected');
+    }
+
+    function handleStartSearch(query) {
+      const q = query.toLowerCase();
+      if (!q) return;
+      if (q.includes('art') || q.includes('paint')) openExplorer('paintings');
+      else if (q.includes('poem') || q.includes('book')) openExplorer('poems');
+      else if (q.includes('music') || q.includes('song')) openApp('win-player');
+      else if (q.includes('video') || q.includes('youtube')) openApp('win-videos');
+    }
+
+    // ── TERMINAL COMMANDS ──
+    function handleTerminalCommand(e) {
+      if (e.key !== 'Enter') return;
+      const input = document.getElementById('terminalInput');
+      const output = document.getElementById('terminalOutput');
+      const cmd = input.value.trim().toLowerCase();
+      input.value = '';
+
+      const line = document.createElement('div');
+      line.innerHTML = `<span style="color:#00c6ff;">ugesh@creative-os:~$</span> ${cmd}`;
+      output.appendChild(line);
+
+      const resp = document.createElement('div');
+      resp.style.margin = '4px 0 10px';
+
+      if (cmd === 'help') {
+        resp.innerHTML = `Available commands:<br>
+- <strong>art</strong>: Open Acrylic Paintings Gallery<br>
+- <strong>poems</strong>: View Tamil Kavithaigal & Published Book<br>
+- <strong>music</strong>: Open Media Player & Debut Song<br>
+- <strong>videos</strong>: Stream YouTube Film Productions<br>
+- <strong>bio</strong>: Display Creator Persona details<br>
+- <strong>engineer</strong>: Launch Engineer Mode<br>
+- <strong>clear</strong>: Clear terminal console`;
+      } else if (cmd === 'art') {
+        resp.textContent = "Launching Paintings & Canvases...";
+        openExplorer('paintings');
+      } else if (cmd === 'poems') {
+        resp.textContent = "Opening Poems & Book...";
+        openExplorer('poems');
+      } else if (cmd === 'music') {
+        resp.textContent = "Opening Media Player...";
+        openApp('win-player');
+      } else if (cmd === 'videos') {
+        resp.textContent = "Opening YouTube Film Hub...";
+        openApp('win-videos');
+      } else if (cmd === 'bio') {
+        resp.textContent = "Ugesh Ragavan — 3+ Yrs Data Engineer at Cognizant & Multidisciplinary Artist.";
+      } else if (cmd === 'engineer') {
+        window.location.href = 'Engineer.html';
+      } else if (cmd === 'clear') {
+        output.innerHTML = '';
+        return;
+      } else if (cmd) {
+        resp.innerHTML = `<span style="color:#ef4444;">Command not recognized: '${cmd}'. Type 'help' for commands.</span>`;
+      }
+
+      output.appendChild(resp);
+      output.scrollTop = output.scrollHeight;
+    }
+
+    // ── WALLPAPER & THEME SWITCHING ──
+    function setWallpaper(type) {
+      playTone(600, 0.1);
+      const desktop = document.getElementById('desktop-screen');
+      if (!desktop) return;
+
+      if (type === 'ug-cartoon') {
+        desktop.style.backgroundPosition = 'center, center, 22% center';
+        desktop.style.backgroundImage = `
+          radial-gradient(circle at 85% 15%, rgba(0, 120, 212, 0.2) 0%, transparent 45%),
+          radial-gradient(circle at 15% 85%, rgba(168, 85, 247, 0.18) 0%, transparent 45%),
+          url('../images/Ugesh/ug-cartoon-wallpaper.png')
+        `;
+      } else if (type === 'bloom-dark') {
+        desktop.style.backgroundImage = `
+          radial-gradient(circle at 50% 50%, rgba(0, 120, 212, 0.4) 0%, #050811 100%)
+        `;
+      } else if (type === 'cyber-acrylic') {
+        desktop.style.backgroundImage = `
+          radial-gradient(circle at 80% 20%, rgba(255, 0, 127, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 20% 80%, rgba(0, 240, 255, 0.25) 0%, transparent 50%),
+          #040711
+        `;
+      } else if (type === 'sunset-glow') {
+        desktop.style.backgroundImage = `
+          radial-gradient(circle at 50% 30%, rgba(255, 140, 0, 0.35) 0%, #1a0933 100%)
+        `;
+      }
+    }
+
+    function setTheme(themeName) {
+      playTone(550, 0.08);
+      document.body.className = `theme-${themeName}`;
+    }
+
+    function toggleThemeQuick() {
+      if (document.body.classList.contains('theme-light')) {
+        setTheme('dark');
+      } else if (document.body.classList.contains('theme-dark')) {
+        setTheme('cyber');
+      } else {
+        setTheme('light');
+      }
+    }
   </script>
 </body>
 </html>
