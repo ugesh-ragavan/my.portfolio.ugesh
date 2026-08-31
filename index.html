@@ -422,44 +422,71 @@
       width: 100%;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 12px;
+      gap: 16px;
+      margin-bottom: 24px;
     }
 
     .game-mini-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 10px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 18px 12px;
       text-align: center;
       text-decoration: none;
-      color: var(--text);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
-      transition: all 0.25s ease;
+      gap: 12px;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .game-mini-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      box-shadow: inset 0 0 0 2px transparent;
+      transition: all 0.3s ease;
     }
 
     .game-mini-card:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--accent-gold);
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(255, 183, 3, 0.2);
+      transform: translateY(-6px);
+      background: rgba(30, 41, 59, 0.8);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
     }
+    
+    .game-mini-card:hover::after {
+      box-shadow: inset 0 0 0 2px rgba(255, 183, 3, 0.6);
+    }
+    
+    .games-grid a:nth-child(1):hover::after { box-shadow: inset 0 0 0 2px rgba(16, 185, 129, 0.6); }
+    .games-grid a:nth-child(2):hover::after { box-shadow: inset 0 0 0 2px rgba(255, 183, 3, 0.6); }
+    .games-grid a:nth-child(3):hover::after { box-shadow: inset 0 0 0 2px rgba(0, 210, 255, 0.6); }
+    .games-grid a:nth-child(4):hover::after { box-shadow: inset 0 0 0 2px rgba(255, 0, 127, 0.6); }
+
+    .games-grid a:nth-child(1):hover { box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2); }
+    .games-grid a:nth-child(2):hover { box-shadow: 0 10px 25px rgba(255, 183, 3, 0.2); }
+    .games-grid a:nth-child(3):hover { box-shadow: 0 10px 25px rgba(0, 210, 255, 0.2); }
+    .games-grid a:nth-child(4):hover { box-shadow: 0 10px 25px rgba(255, 0, 127, 0.2); }
 
     .game-mini-icon {
-      font-size: 2rem;
-      transition: transform 0.25s ease;
+      font-size: 2.6rem;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
     }
 
     .game-mini-card:hover .game-mini-icon {
-      transform: scale(1.2);
+      transform: scale(1.2) translateY(-4px);
     }
 
     .game-mini-name {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.5px;
     }
 
     /* Toast Notification */
@@ -513,6 +540,332 @@
       .link-title {
         font-size: 0.98rem;
       }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       DUAL PERSONA 3D CARDS (FROM PORTFOLIO/MAIN)
+       ═══════════════════════════════════════════════════════════ */
+    .persona-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(15px, 4vw, 30px);
+      width: 100%;
+      margin: 10px 0 20px;
+    }
+
+    figure.persona-card {
+      width: min(150px, 40vw);
+      aspect-ratio: 1;
+      margin: 0;
+      padding: 5px 10px 0;
+      display: grid;
+      grid-template-rows: 100%;
+      cursor: pointer;
+      position: relative;
+      z-index: 10;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.7));
+      transition: filter 0.5s ease, transform 0.4s ease;
+      text-decoration: none;
+    }
+
+    figure.persona-card:hover {
+      transform: translateY(-8px);
+    }
+    a.persona-link {
+      text-decoration: none;
+      color: inherit;
+    }
+    a.persona-link:nth-of-type(1) figure:hover {
+      filter: drop-shadow(0 15px 35px rgba(6, 182, 212, 0.45));
+    }
+    a.persona-link:nth-of-type(2) figure:hover {
+      filter: drop-shadow(0 15px 35px rgba(255, 123, 0, 0.45));
+    }
+
+    figure.persona-card::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform-origin: bottom;
+      filter: brightness(.8);
+      transition: .5s cubic-bezier(0.25, 1, 0.5, 1);
+      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+    }
+
+    figure.card-engineer::before {
+      background: radial-gradient(circle at 50% 25%, rgba(6, 182, 212, 0.35) 0%, transparent 65%), linear-gradient(160deg, #091e2b 0%, #060e17 55%, #041824 100%);
+      border-color: rgba(6, 182, 212, 0.45);
+      box-shadow: inset 0 0 25px rgba(6, 182, 212, 0.25), inset 0 0 10px rgba(0, 0, 0, 0.8);
+    }
+
+    figure.card-creator::before {
+      background: radial-gradient(circle at 50% 25%, rgba(255, 123, 0, 0.35) 0%, transparent 65%), linear-gradient(160deg, #2b1708 0%, #110904 55%, #241103 100%);
+      border-color: rgba(255, 123, 0, 0.45);
+      box-shadow: inset 0 0 25px rgba(255, 123, 0, 0.25), inset 0 0 10px rgba(0, 0, 0, 0.8);
+    }
+
+    figure.persona-card img.persona-img {
+      grid-area: 1/1;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center bottom;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
+      place-self: end center;
+      transition: .5s cubic-bezier(0.25, 1, 0.5, 1);
+      pointer-events: none;
+    }
+
+    figure.persona-card figcaption {
+      grid-area: 1/1;
+      width: calc(100% + 10px);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #fff;
+      text-align: center;
+      place-self: end center;
+      transform: perspective(400px) translateY(100%) rotateX(-90deg);
+      backface-visibility: hidden;
+      transform-origin: top;
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-top: 2px solid #06b6d4;
+      border-radius: 0 0 10px 10px;
+      padding: 6px 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9);
+      transition: .5s cubic-bezier(0.25, 1, 0.5, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    figure.card-creator figcaption {
+      border-top-color: #ff7b00;
+    }
+
+    .persona-title {
+      font-weight: 900;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+    }
+
+    .persona-desc {
+      font-size: 0.55rem;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    figure.persona-card:hover img.persona-img {
+      width: 115%;
+      height: 135%;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8)) brightness(1.08);
+      transform: translateY(-8px);
+    }
+
+    figure.persona-card:hover::before {
+      filter: brightness(1.2);
+      transform: perspective(400px) rotateX(40deg);
+    }
+
+    figure.persona-card:hover figcaption {
+      transform: perspective(400px) translateY(100%) rotateX(-15deg);
+    }
+
+    figure.card-engineer:hover figcaption .persona-title {
+      color: #06b6d4;
+      text-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
+    }
+
+    figure.card-creator:hover figcaption .persona-title {
+      color: #ff7b00;
+      text-shadow: 0 0 8px rgba(255, 123, 0, 0.6);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       BENTO GRID FOR SOCIAL CHANNELS & RESUME
+       ═══════════════════════════════════════════════════════════ */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .bento-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      position: relative;
+      overflow: hidden;
+      min-height: 120px;
+    }
+
+    .bento-card.full-width {
+      grid-column: span 2;
+      flex-direction: row;
+      justify-content: flex-start;
+      text-align: left;
+      min-height: 90px;
+      padding: 16px 20px;
+      gap: 16px;
+    }
+
+    .bento-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-glow);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .bento-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bento-card.full-width .bento-icon {
+      margin-bottom: 0;
+      font-size: 2.2rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+    }
+    
+    .bento-card:hover .bento-icon {
+      transform: scale(1.1);
+    }
+
+    .bento-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+    
+    .bento-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    /* Premium Resume Card */
+    .resume-main {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .resume-main::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%; right: -50%; bottom: -50%;
+      background: conic-gradient(transparent, rgba(0, 210, 255, 0.4), transparent 30%);
+      animation: rotate-glow 4s linear infinite;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .resume-main::after {
+      content: '';
+      position: absolute;
+      inset: 1px;
+      background: #0f172a;
+      border-radius: 15px;
+      z-index: 1;
+    }
+
+    .resume-main > * {
+      z-index: 2;
+      position: relative;
+    }
+
+    @keyframes rotate-glow {
+      100% { transform: rotate(1turn); }
+    }
+
+    .resume-main:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0, 210, 255, 0.2);
+    }
+
+    .resume-main:hover::before {
+      opacity: 1;
+    }
+
+    .resume-badge {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 0.65rem;
+      background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+      color: #fff;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-family: var(--font-mono);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+      letter-spacing: 0.5px;
+    }
+    
+    .resume-main .bento-icon {
+      background: rgba(255, 255, 255, 0.05) !important;
+      color: #00d2ff !important;
+      border: 1px solid rgba(0, 210, 255, 0.3);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+    }
+    
+    .resume-main:hover .bento-icon {
+      background: rgba(0, 210, 255, 0.15) !important;
+      border-color: #00d2ff;
+      color: #fff !important;
+    }
+
+    .resume-secondary {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      padding: 10px 16px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      text-decoration: none;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
+    .resume-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border-style: solid;
     }
   </style>
 </head>
@@ -579,169 +932,92 @@
     <!-- 1. FEATURED PORTFOLIO ENTRY LINK -->
     <div class="section-title">✨ Featured Portfolio</div>
 
-    <a href="Portfolio/main.html" class="link-card hero-portfolio">
-      <div class="link-left">
-        <div class="link-icon-box" style="background: rgba(0, 210, 255, 0.2);">🚀</div>
-        <div class="link-info">
-          <div class="link-title">
-            Portfolio
-            <span class="badge-hero">MUST SEE</span>
-          </div>
-          <div class="link-subtitle">Know more about me...</div>
-        </div>
-      </div>
-      <div class="link-arrow">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </div>
-    </a>
+    <div class="persona-container">
+      <a href="Portfolio/Engineer.html" class="persona-link" title="Enter Engineer Portfolio">
+        <figure class="persona-card card-engineer">
+          <img src="images/Engineer.png" alt="Engineer Class" class="persona-img">
+          <figcaption>
+            <span class="persona-title">ENGINEER</span>
+            <span class="persona-desc">Pyspark, Bigdata & GenAI</span>
+          </figcaption>
+        </figure>
+      </a>
+
+      <a href="Portfolio/Creator.html" class="persona-link" title="Enter Creator Portfolio">
+        <figure class="persona-card card-creator">
+          <img src="images/Creator.png" alt="Creator Class" class="persona-img">
+          <figcaption>
+            <span class="persona-title">CREATOR</span>
+            <span class="persona-desc">Filming & Documenting</span>
+          </figcaption>
+        </figure>
+      </a>
+    </div>
 
     <!-- 2. SOCIAL & MEDIA CHANNELS -->
     <div class="section-title">🌐 Social & Creative Channels</div>
 
-    <!-- Spotify Podcast -->
-    <a href="https://open.spotify.com/show/7iYB5dgIRD7hOorXV3nFjW" target="_blank" rel="noopener" class="link-card">
-      <div class="link-left">
-        <div class="link-icon-box" style="padding:0; overflow:hidden; border: 1px solid rgba(255,255,255,0.2);">
-          <img src="images/8wba.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Spotify Podcast Cover">
+    <div class="bento-grid">
+      <!-- Spotify Podcast -->
+      <a href="https://open.spotify.com/show/7iYB5dgIRD7hOorXV3nFjW" target="_blank" rel="noopener" class="bento-card full-width" style="border-color: rgba(29, 185, 84, 0.5);">
+        <img src="images/8wba.jpg" alt="Spotify Podcast Cover" class="bento-icon" style="object-fit:cover;">
+        <div class="bento-content">
+          <div class="bento-title" style="color: #1DB954;">Spotify Podcast 🎙️</div>
+          <div class="bento-subtitle">Listen to Tamil podcast episodes on Spotify</div>
         </div>
-        <div class="link-info">
-          <div class="link-title">Spotify Podcast 🎙️</div>
-          <div class="link-subtitle">Listen to Tamil podcast episodes on Spotify</div>
-        </div>
-      </div>
-      <div class="link-arrow">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-      </div>
-    </a>
+      </a>
 
-    <!-- the.ugiverse (Instagram) -->
-    <a href="https://www.instagram.com/the.ugiverse" target="_blank" rel="noopener" class="link-card">
-      <div class="link-left">
-        <div class="link-icon-box" style="color: #e1306c;">📸</div>
-        <div class="link-info">
-          <div class="link-title">the.ugiverse</div>
-          <div class="link-subtitle">Instagram — Creative Tech, Projects & Lifestyle</div>
-        </div>
-      </div>
-      <div class="link-arrow">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-      </div>
-    </a>
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/ugeshragavan" target="_blank" rel="noopener" class="bento-card">
+        <div class="bento-icon" style="color: #0a66c2;">💼</div>
+        <div class="bento-title">LinkedIn</div>
+        <div class="bento-subtitle">Engineering & Hiring</div>
+      </a>
 
-    <!-- the.0g.ug (Instagram Art) -->
-    <a href="https://www.instagram.com/the.0g.ug" target="_blank" rel="noopener" class="link-card">
-      <div class="link-left">
-        <div class="link-icon-box" style="color: #ff007f;">🎨</div>
-        <div class="link-info">
-          <div class="link-title">the.0g.ug</div>
-          <div class="link-subtitle">Instagram — Visual Canvas & Acrylic Artworks</div>
-        </div>
-      </div>
-      <div class="link-arrow">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-      </div>
-    </a>
+      <!-- GitHub -->
+      <a href="https://github.com/ugesh-ragavan" target="_blank" rel="noopener" class="bento-card">
+        <div class="bento-icon" style="color: #fff;">🐙</div>
+        <div class="bento-title">GitHub</div>
+        <div class="bento-subtitle">Open Source & ETL</div>
+      </a>
 
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/in/ugeshragavan" target="_blank" rel="noopener" class="link-card">
-      <div class="link-left">
-        <div class="link-icon-box" style="color: #0a66c2;">💼</div>
-        <div class="link-info">
-          <div class="link-title">LinkedIn</div>
-          <div class="link-subtitle">Professional Experience, Engineering & Hiring</div>
-        </div>
-      </div>
-      <div class="link-arrow">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-      </div>
-    </a>
+      <!-- ugesh.ragavan (Instagram) -->
+      <a href="https://www.instagram.com/ugesh.ragavan/" target="_blank" rel="noopener" class="bento-card" style="background: linear-gradient(135deg, rgba(225, 48, 108, 0.1) 0%, rgba(253, 29, 29, 0.05) 100%);">
+        <div class="bento-icon" style="color: #E1306C;">📷</div>
+        <div class="bento-title">ugesh.ragavan</div>
+        <div class="bento-subtitle">Tech & Lifestyle</div>
+      </a>
 
-    <!-- Threads -->
-    <a href="https://www.threads.com/@the.ugiverse" target="_blank" rel="noopener" class="link-card">
-      <div class="link-left">
-        <div class="link-icon-box" style="color: #ffffff;">🧵</div>
-        <div class="link-info">
-          <div class="link-title">Threads</div>
-          <div class="link-subtitle">Threads by Instagram for my poems and kavithaigal ✍️</div>
-        </div>
-      </div>
-      <div class="link-arrow">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-      </div>
-    </a>
+      <!-- the.0g.ug (Instagram Art) -->
+      <a href="https://www.instagram.com/the.0g.ug" target="_blank" rel="noopener" class="bento-card" style="background: linear-gradient(135deg, rgba(255, 0, 127, 0.1) 0%, rgba(121, 40, 202, 0.05) 100%);">
+        <div class="bento-icon" style="color: #ff007f;">🎨</div>
+        <div class="bento-title">the.0g.ug</div>
+        <div class="bento-subtitle">Visual Canvas & Artworks</div>
+      </a>
 
-    <!-- YouTube -->
-    <a href="https://www.youtube.com/@Ugesh.Ragavan" target="_blank" rel="noopener" class="link-card">
-      <div class="link-left">
-        <div class="link-icon-box" style="color: #ff0000;">📺</div>
-        <div class="link-info">
-          <div class="link-title">YouTube Channel</div>
-          <div class="link-subtitle">Tech Tutorials, Creative Vlogs & Demos</div>
-        </div>
-      </div>
-      <div class="link-arrow">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-      </div>
-    </a>
+      <!-- YouTube -->
+      <a href="https://www.youtube.com/@Ugesh.Ragavan" target="_blank" rel="noopener" class="bento-card">
+        <div class="bento-icon" style="color: #ff0000;">📺</div>
+        <div class="bento-title">YouTube</div>
+        <div class="bento-subtitle">Tutorials & Vlogs</div>
+      </a>
 
-    <!-- GitHub -->
-    <a href="https://github.com/ugesh-ragavan" target="_blank" rel="noopener" class="link-card">
-      <div class="link-left">
-        <div class="link-icon-box" style="color: #333;">🐙</div>
-        <div class="link-info">
-          <div class="link-title">GitHub Repository</div>
-          <div class="link-subtitle">Open Source Projects, ETL Pipelines & Code</div>
-        </div>
-      </div>
-      <div class="link-arrow">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-      </div>
-    </a>
+      <!-- Threads -->
+      <a href="https://www.threads.com/@the.ugiverse" target="_blank" rel="noopener" class="bento-card">
+        <div class="bento-icon" style="color: #ffffff;">🧵</div>
+        <div class="bento-title">Threads</div>
+        <div class="bento-subtitle">Poems & Thoughts</div>
+      </a>
+    </div>
 
-    <!-- 3. LIVE WEB APPS & SITES -->
-    <div class="section-title">🚀 Live Sites & Web Apps</div>
+    <!-- 3. INTERACTIVE ARCADE & WEB APPS -->
+    <div class="section-title">🚀 Arcade Lab & Live Sites</div>
 
     <div class="games-grid">
       <a href="sites/Herbalife/dist/index.html" class="game-mini-card" title="D'Sun stall">
         <div class="game-mini-icon">🌿</div>
         <div class="game-mini-name">D'Sun stall</div>
       </a>
-    </div>
-
-    <!-- 4. INTERACTIVE ARCADE & MINI-GAMES -->
-    <div class="section-title">🕹️ Arcade Lab & Interactive Games</div>
-
-    <div class="games-grid">
       <a href="game/lion/lion.html" class="game-mini-card">
         <div class="game-mini-icon">🦁</div>
         <div class="game-mini-name">Chill Lion</div>
@@ -756,25 +1032,23 @@
       </a>
     </div>
 
-    <!-- 5. RESOURCES & RESUME -->
+    <!-- 4. RESOURCES & RESUME -->
     <div class="section-title">📄 Documents</div>
 
-    <a href="img/Ugesh Resume 2021_A4.png" target="_blank" class="link-card">
-      <div class="link-left">
-        <div class="link-icon-box" style="color: #39ff14;">📄</div>
-        <div class="link-info">
-          <div class="link-title">Download Official Resume / CV</div>
-          <div class="link-subtitle">Big Data Engineering & Frontend Development credentials</div>
+    <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
+      <a href="Portfolio/resume/Ugesh_R_DataEngineer_2026.pdf" target="_blank" class="resume-main" style="display: flex; align-items: center; justify-content: center; text-decoration: none; padding: 24px;">
+        <div class="resume-badge">2026 LATEST</div>
+        <div class="bento-icon" style="font-size: 1.8rem; margin: 0 16px 0 0; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">📥</div>
+        <div class="bento-content" style="text-align: left;">
+          <div class="bento-title" style="color: #fff; font-size: 1.2rem; margin-bottom: 4px;">2026 Resume - Download</div>
+          <div class="bento-subtitle" style="color: rgba(255,255,255,0.8); font-size: 0.85rem;">Big Data Engineering & AI Systems</div>
         </div>
-      </div>
-      <div class="link-arrow">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-          <polyline points="7 10 12 15 17 10"></polyline>
-          <line x1="12" y1="15" x2="12" y2="3"></line>
-        </svg>
-      </div>
-    </a>
+      </a>
+
+      <a href="img/Ugesh Resume 2021_A4.png" target="_blank" class="resume-secondary" style="margin-bottom: 0;">
+        📄 2021 Resume - Download
+      </a>
+    </div>
 
     <footer>
       © 2026 Ugesh Ragavan. Built with HTML, CSS & JavaScript.
