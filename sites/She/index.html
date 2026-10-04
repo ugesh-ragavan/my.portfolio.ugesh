@@ -1,1137 +1,282 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A Little Something for You</title>
-    <meta name="description" content="A sweet, lighthearted floral surprise featuring pastel lilies and a gentle note." />
-    <meta property="og:title" content="A Little Something for You" />
-    <meta property="og:description" content="A sweet, lighthearted floral surprise featuring pastel lilies and a gentle note." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHE — Dedicated Web Apps Hub 💖</title>
+  <meta name="description" content="A special menu and gateway featuring dedicated websites created for her with love by Ugesh." />
+  <meta property="og:title" content="SHE — Dedicated Web Apps Hub" />
+  <meta property="og:description" content="Explore pages created for her — LOVE Vault, Floral Surprise, and more." />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              'warm-white': '#FFFDFB',
-              'blush-pink': '#FADADD',
-              'pale-pink': '#F8C8DC',
-              'rose-pink': '#E99AB2',
-              'muted-green': '#B9D8BE',
-              'dark-pink': '#7A4052',
-              'sparkle-gold': '#F4D58D',
-            },
-            fontFamily: {
-              script: ['Caveat', 'cursive'],
-              body: ['Nunito', 'sans-serif'],
-            }
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'terracotta': '#B85D38',
+            'terracotta-light': '#E28458',
+            'warm-bg': '#0F0C15',
+            'blush-pink': '#F8C8DC',
+            'rose-accent': '#E99AB2',
+            'champagne-gold': '#F4D58D',
+          },
+          fontFamily: {
+            script: ['Caveat', 'cursive'],
+            display: ['Outfit', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif'],
           }
         }
       }
-    </script>
+    }
+  </script>
 
-    <style>
-      body {
-        background-color: #FFFDFB;
-        color: #7A4052;
-        font-family: 'Nunito', sans-serif;
-      }
-      .font-script {
-        font-family: 'Caveat', cursive;
-      }
-      .font-body {
-        font-family: 'Nunito', sans-serif;
-      }
-
-      /* Custom gentle floating & glow animations */
-      @keyframes gentle-sway {
-        0%, 100% {
-          transform: translateY(0px) rotate(0deg);
-        }
-        50% {
-          transform: translateY(-6px) rotate(1deg);
-        }
-      }
-      @keyframes gentle-glow {
-        0%, 100% {
-          filter: drop-shadow(0 0 12px rgba(248, 200, 220, 0.45));
-        }
-        50% {
-          filter: drop-shadow(0 0 24px rgba(233, 154, 178, 0.65));
-        }
-      }
-      @keyframes sparkle-pulse {
-        0%, 100% {
-          opacity: 0.25;
-          transform: scale(0.85);
-        }
-        50% {
-          opacity: 0.95;
-          transform: scale(1.15);
-        }
-      }
-
-      .animate-gentle-sway {
-        animation: gentle-sway 7s ease-in-out infinite;
-      }
-      .animate-gentle-glow {
-        animation: gentle-glow 5s ease-in-out infinite;
-      }
-      .animate-sparkle-pulse {
-        animation: sparkle-pulse 3s ease-in-out infinite;
-      }
-
-      /* Graphical Flower Interactivity */
-      .interactive-flower {
-        transform-box: fill-box;
-        transform-origin: center;
-        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
-        will-change: transform;
-      }
-      .interactive-flower:hover {
-        transform: scale(1.09) translateY(-5px);
-        filter: drop-shadow(0 10px 20px rgba(233, 154, 178, 0.55));
-      }
-      .interactive-flower:focus-visible,
-      .interactive-ribbon:focus-visible {
-        outline: 2px solid #E99AB2;
-        outline-offset: 4px;
-      }
-      .interactive-ribbon {
-        transform-box: fill-box;
-        transform-origin: center;
-        transition: transform 0.35s ease;
-        will-change: transform;
-      }
-      .interactive-ribbon:hover {
-        transform: scale(1.08) rotate(-2deg);
-      }
-      .bloom-pop-anim {
-        animation: bloomPop 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      }
-      @keyframes bloomPop {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.22) rotate(4deg); }
-        100% { transform: scale(1); }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .animate-gentle-sway,
-        .animate-gentle-glow,
-        .animate-sparkle-pulse {
-          animation: none !important;
-        }
-      }
-
-      /* Sparkle Burst Animation */
-      .burst-sparkle {
-        position: absolute;
-        color: #F4D58D;
-        font-size: 1.25rem;
-        pointer-events: none;
-        animation: burstFloat 1.4s ease-out forwards;
-        z-index: 40;
-      }
-
-      @keyframes burstFloat {
-        0% {
-          opacity: 0;
-          transform: translate(0, 0) scale(0.3);
-        }
-        40% {
-          opacity: 1;
-          transform: translate(var(--tx), var(--ty)) scale(1.2);
-        }
-        100% {
-          opacity: 0;
-          transform: translate(calc(var(--tx) * 1.4), calc(var(--ty) - 25px)) scale(0.8);
-        }
-      }
-    </style>
-  </head>
-  <body class="bg-[#FFFDFB] text-[#7A4052] font-['Nunito',sans-serif] antialiased selection:bg-[#FADADD] selection:text-[#7A4052]">
+  <style>
+    body {
+      background-color: #0F0C15;
+      color: #F8F6F0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
     
-    <!-- Background Calm Petals & Sparkles Layer Canvas -->
-    <canvas id="petal-background-canvas" aria-hidden="true" class="fixed inset-0 pointer-events-none z-10 w-full h-full"></canvas>
+    #ambient-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-    <!-- Main Container -->
-    <div class="relative min-h-screen w-full bg-[#FFFDFB] text-[#7A4052] selection:bg-[#FADADD] selection:text-[#7A4052] overflow-x-hidden">
-      
-      <main class="relative z-10 w-full max-w-7xl mx-auto flex flex-col">
-        
-        <!-- 1. HERO SECTION -->
-        <section id="hero-section" class="relative min-h-screen flex flex-col md:flex-row items-center justify-between overflow-hidden">
-          
-          <!-- Background Split: Left Warm White, Right Soft Pastel Pink Gradient -->
-          <div class="absolute inset-0 grid grid-cols-1 md:grid-cols-2 pointer-events-none -z-10">
-            <div class="bg-[#FFFDFB] w-full h-full"></div>
-            <div class="bg-gradient-to-b md:bg-gradient-to-br from-[#FFFDFB] via-[#FADADD]/35 to-[#F8C8DC]/25 w-full h-full"></div>
-          </div>
+    .glass-card {
+      background: rgba(25, 20, 34, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(248, 200, 220, 0.12);
+      transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .glass-card:hover {
+      background: rgba(38, 30, 52, 0.9);
+      border-color: rgba(233, 154, 178, 0.4);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 25px rgba(184, 93, 56, 0.25);
+      transform: translateY(-4px);
+    }
 
-          <!-- Division accent line on desktop -->
-          <div class="hidden md:block absolute top-12 bottom-12 left-1/2 w-[1px] bg-gradient-to-b from-transparent via-[#F8C8DC]/40 to-transparent pointer-events-none"></div>
+    .pulse-glow {
+      animation: pulseGlow 3s infinite alternate;
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 20px rgba(184, 93, 56, 0.3); }
+      100% { box-shadow: 0 0 40px rgba(248, 200, 220, 0.6); }
+    }
+  </style>
+</head>
+<body class="bg-[#0F0C15] text-[#F8F6F0] antialiased selection:bg-[#B85D38] selection:text-white">
 
-          <!-- LEFT CONTENT -->
-          <div class="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start px-6 sm:px-12 lg:px-16 pt-16 md:pt-0 pb-6 md:pb-0 z-20 max-w-xl mx-auto md:mx-0">
-            
-            <!-- Badge -->
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FADADD]/45 border border-[#F8C8DC]/60 text-[#7A4052] text-xs font-medium mb-6 shadow-xs select-none">
-              <svg class="w-3.5 h-3.5 text-[#E99AB2]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z"/></svg>
-              <span>A friendly digital flower delivery</span>
-            </div>
+  <!-- Ambient Particles Canvas -->
+  <canvas id="ambient-canvas"></canvas>
 
-            <!-- Heading -->
-            <h1 id="hero-heading" class="font-script text-5xl sm:text-6xl lg:text-7xl font-semibold text-[#7A4052] leading-tight text-center md:text-left mb-4 tracking-normal">
-              A Little Something for You
-            </h1>
+  <!-- Header -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-[#0F0C15]/80 border-b border-[#F8C8DC]/10 px-4 sm:px-8 py-4 flex items-center justify-between">
+    <a href="../../index.html" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-[#E99AB2]/40 text-xs font-semibold text-[#F8C8DC] transition-all hover:bg-white/10">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      <span>Ugesh Portfolio</span>
+    </a>
 
-            <!-- Subtitle -->
-            <p id="hero-subtitle" class="font-body text-lg sm:text-xl text-[#7A4052]/85 leading-relaxed text-center md:text-left max-w-md mb-8 font-normal">
-              Just a small surprise to brighten your mood.
-            </p>
+    <span class="font-display font-extrabold text-xl text-white tracking-widest flex items-center gap-2">
+      SHE <span class="text-xs font-normal px-2.5 py-0.5 rounded-full bg-[#B85D38]/30 border border-[#B85D38]/50 text-[#E28458]">Sites Gateway</span>
+    </span>
+  </header>
 
-            <!-- Action Button -->
-            <div class="w-full sm:w-auto flex justify-center md:justify-start">
-              <button id="see-flowers-button" type="button" class="group relative inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-[#FADADD] hover:bg-[#F8C8DC] active:scale-[0.98] text-[#7A4052] font-semibold text-base shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer min-h-[44px] min-w-[190px] border border-[#E99AB2]/30">
-                <span>See the Flowers</span>
-                <svg class="w-4 h-4 text-[#7A4052] group-hover:translate-y-0.5 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
-              </button>
-            </div>
+  <!-- Main Container -->
+  <main class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
 
-            <p class="text-xs text-[#7A4052]/50 mt-4 text-center md:text-left font-body">
-              Delivered fresh to your screen
-            </p>
-          </div>
+    <!-- HERO HEADER SECTION -->
+    <section class="text-center space-y-4 max-w-2xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#B85D38]/20 border border-[#B85D38]/40 text-[#F8C8DC] text-xs font-semibold select-none shadow-sm">
+        <span>💖</span>
+        <span>Dedicated Digital Space for Her</span>
+      </div>
 
-          <!-- RIGHT CONTENT: INTERACTIVE GRAPHICAL LILY BOUQUET -->
-          <div class="w-full md:w-1/2 flex items-center justify-center p-4 sm:p-8 lg:p-12 z-20">
-            <div id="lily-bouquet-container" class="relative flex items-center justify-center p-2 sm:p-4 select-none group w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[540px] perspective-[1000px]">
-              
-              <!-- Soft radial aura behind bouquet -->
-              <div class="absolute w-72 h-72 sm:w-[28rem] sm:h-[28rem] rounded-full pointer-events-none transition-transform duration-1000 ease-out group-hover:scale-110" style="background: radial-gradient(circle, rgba(250, 218, 221, 0.65) 0%, rgba(248, 200, 220, 0.3) 45%, rgba(255, 253, 251, 0) 70%);"></div>
+      <h1 class="font-display font-extrabold text-4xl sm:text-6xl text-white tracking-tight leading-tight">
+        Dedicated Websites for <span class="bg-gradient-to-r from-[#F8C8DC] via-[#E28458] to-[#F4D58D] bg-clip-text text-transparent">SHE</span>
+      </h1>
 
-              <!-- Floating Sparkles around bouquet -->
-              <div class="absolute inset-0 pointer-events-none overflow-visible z-20">
-                <span class="absolute top-8 left-6 text-[#F4D58D] text-xl animate-sparkle-pulse" style="animation-delay: 0s;">✦</span>
-                <span class="absolute top-20 right-6 text-[#F4D58D] text-base animate-sparkle-pulse" style="animation-delay: 1.2s;">✦</span>
-                <span class="absolute bottom-20 left-4 text-[#F4D58D] text-lg animate-sparkle-pulse" style="animation-delay: 2.1s;">✧</span>
-                <span class="absolute top-4 right-24 text-[#F4D58D] text-sm animate-sparkle-pulse" style="animation-delay: 1.8s;">✧</span>
-                <span class="absolute bottom-12 right-12 text-[#F4D58D] text-xs animate-sparkle-pulse" style="animation-delay: 0.7s;">✦</span>
-              </div>
+      <p class="font-script text-2xl text-[#F4D58D]">
+        “Every page created with a story, a feeling, & pure love.”
+      </p>
 
-              <!-- Sparkle burst overlay container for click interaction -->
-              <div id="bouquet-click-particles" class="absolute inset-0 pointer-events-none overflow-visible z-40"></div>
+      <p class="text-sm text-white/70 leading-relaxed">
+        Select a site from her collection below — explore her preferences & vault in <strong>LOVE</strong> or open the pastel lily surprise in <strong>Floral Surprise</strong>.
+      </p>
+    </section>
 
-              <!-- Interactive Graphical SVG Bouquet -->
-              <div id="bouquet-3d-wrapper" class="relative z-10 animate-gentle-sway animate-gentle-glow transition-transform duration-300 ease-out w-full flex justify-center">
-                <svg id="interactive-bouquet-svg" role="img" aria-label="An interactive graphical arrangement of white and blush-pink lilies" viewBox="0 0 550 640" class="w-full max-w-[400px] sm:max-w-[460px] md:max-w-[500px] lg:max-w-[540px] h-auto drop-shadow-md transition-all overflow-visible">
-                  <title>Interactive Lush Lily Bouquet</title>
-                  <desc>Click, tap or focus any lily blossom to make it bloom and sparkle!</desc>
-                  <defs>
-                    <linearGradient id="whiteLilyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#FFFFFF" />
-                      <stop offset="65%" stop-color="#FFFDFB" />
-                      <stop offset="100%" stop-color="#FADADD" />
-                    </linearGradient>
+    <!-- WEBSITES MENU GRID -->
+    <section class="space-y-6">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <h2 class="font-display font-bold text-xl text-white flex items-center gap-2">
+          <span>Explore Sites Menu</span>
+        </h2>
+        <span class="text-xs text-[#F8C8DC]/60">Click any card to open page</span>
+      </div>
 
-                    <radialGradient id="whiteLilyThroat" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stop-color="#B9D8BE" stop-opacity="0.95" />
-                      <stop offset="40%" stop-color="#F8C8DC" stop-opacity="0.6" />
-                      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
-                    </radialGradient>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    <linearGradient id="blushLilyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#FFF5F7" />
-                      <stop offset="45%" stop-color="#FADADD" />
-                      <stop offset="100%" stop-color="#F8C8DC" />
-                    </linearGradient>
+        <!-- 1. LOVE (MAIN FEATURED PAGE) -->
+        <a href="love.html" class="glass-card p-6 sm:p-8 rounded-3xl group relative overflow-hidden flex flex-col justify-between pulse-glow border-[#B85D38]/40">
+          <div class="absolute -top-12 -right-12 w-40 h-40 bg-[#B85D38]/20 rounded-full blur-2xl group-hover:scale-125 transition-transform pointer-events-none"></div>
 
-                    <radialGradient id="blushLilyThroat" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stop-color="#9EBEA3" stop-opacity="0.95" />
-                      <stop offset="45%" stop-color="#E99AB2" stop-opacity="0.7" />
-                      <stop offset="100%" stop-color="#F8C8DC" stop-opacity="0" />
-                    </radialGradient>
-
-                    <linearGradient id="roseAccentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#FADADD" />
-                      <stop offset="65%" stop-color="#E99AB2" />
-                      <stop offset="100%" stop-color="#D9829D" />
-                    </linearGradient>
-
-                    <linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#Cde4d1" />
-                      <stop offset="100%" stop-color="#7B9E81" />
-                    </linearGradient>
-
-                    <linearGradient id="leafGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
-                      <stop offset="0%" stop-color="#5B7C61" />
-                      <stop offset="100%" stop-color="#9EBEA3" />
-                    </linearGradient>
-
-                    <linearGradient id="eucalyptusGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#B2C9B7" />
-                      <stop offset="100%" stop-color="#76987D" />
-                    </linearGradient>
-
-                    <linearGradient id="stemGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stop-color="#5B7C61" />
-                      <stop offset="50%" stop-color="#8DAF93" />
-                      <stop offset="100%" stop-color="#4B6A50" />
-                    </linearGradient>
-
-                    <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#F8C8DC" />
-                      <stop offset="50%" stop-color="#E99AB2" />
-                      <stop offset="100%" stop-color="#C76F88" />
-                    </linearGradient>
-
-                    <filter id="softFlowerShadow" x="-20%" y="-20%" width="140%" height="140%">
-                      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#7A4052" flood-opacity="0.1" />
-                    </filter>
-                  </defs>
-
-                  <!-- STEMS -->
-                  <g id="stems-group">
-                    <rect x="260" y="420" width="10" height="170" rx="5" fill="url(#stemGrad)" />
-                    <rect x="274" y="425" width="9" height="160" rx="4.5" fill="url(#stemGrad)" />
-                    <rect x="248" y="430" width="9" height="155" rx="4.5" fill="url(#stemGrad)" />
-                    <rect x="286" y="432" width="8" height="145" rx="4" fill="url(#stemGrad)" />
-                    <rect x="238" y="435" width="8" height="140" rx="4" fill="url(#stemGrad)" />
-                  </g>
-
-                  <!-- EUCALYPTUS FOLIAGE & BABY'S BREATH FILLERS -->
-                  <g id="eucalyptus-and-fillers">
-                    <!-- Left Eucalyptus Branch -->
-                    <path d="M250 350 Q180 280 100 240" stroke="#76987D" stroke-width="2.5" fill="none" />
-                    <circle cx="110" cy="245" r="14" fill="url(#eucalyptusGrad)" opacity="0.9" />
-                    <circle cx="140" cy="260" r="16" fill="url(#eucalyptusGrad)" opacity="0.9" />
-                    <circle cx="175" cy="280" r="18" fill="url(#eucalyptusGrad)" opacity="0.9" />
-                    <circle cx="210" cy="310" r="19" fill="url(#eucalyptusGrad)" opacity="0.9" />
-
-                    <!-- Right Eucalyptus Branch -->
-                    <path d="M290 350 Q370 280 450 230" stroke="#76987D" stroke-width="2.5" fill="none" />
-                    <circle cx="440" cy="235" r="14" fill="url(#eucalyptusGrad)" opacity="0.9" />
-                    <circle cx="410" cy="250" r="16" fill="url(#eucalyptusGrad)" opacity="0.9" />
-                    <circle cx="375" cy="275" r="18" fill="url(#eucalyptusGrad)" opacity="0.9" />
-                    <circle cx="335" cy="305" r="19" fill="url(#eucalyptusGrad)" opacity="0.9" />
-
-                    <!-- Top Eucalyptus Branch -->
-                    <path d="M275 250 Q275 120 275 60" stroke="#76987D" stroke-width="2" fill="none" />
-                    <circle cx="275" cy="70" r="11" fill="url(#eucalyptusGrad)" />
-                    <circle cx="275" cy="100" r="13" fill="url(#eucalyptusGrad)" />
-                    <circle cx="275" cy="135" r="15" fill="url(#eucalyptusGrad)" />
-
-                    <!-- Baby's Breath Clusters (White delicate dots) -->
-                    <g opacity="0.85">
-                      <path d="M180 200 L160 170 M180 200 L195 165 M180 200 L170 150" stroke="#B9D8BE" stroke-width="1.2" />
-                      <circle cx="160" cy="170" r="3" fill="#FFFDFB" />
-                      <circle cx="166" cy="164" r="2.5" fill="#FADADD" />
-                      <circle cx="195" cy="165" r="3" fill="#FFFDFB" />
-                      <circle cx="170" cy="150" r="3.5" fill="#FFFDFB" />
-                      <circle cx="177" cy="144" r="2.5" fill="#F4D58D" />
-
-                      <path d="M370 210 L390 180 M370 210 L360 170 M370 210 L380 155" stroke="#B9D8BE" stroke-width="1.2" />
-                      <circle cx="390" cy="180" r="3" fill="#FFFDFB" />
-                      <circle cx="360" cy="170" r="3.5" fill="#FFFDFB" />
-                      <circle cx="367" cy="164" r="2.5" fill="#FADADD" />
-                      <circle cx="380" cy="155" r="3" fill="#FFFDFB" />
-
-                      <path d="M220 330 L170 340 M220 330 L160 360" stroke="#B9D8BE" stroke-width="1.2" />
-                      <circle cx="170" cy="340" r="3" fill="#FFFDFB" />
-                      <circle cx="160" cy="360" r="3.5" fill="#FFFDFB" />
-
-                      <path d="M330 330 L380 340 M330 330 L390 360" stroke="#B9D8BE" stroke-width="1.2" />
-                      <circle cx="380" cy="340" r="3" fill="#FFFDFB" />
-                      <circle cx="390" cy="360" r="3.5" fill="#FFFDFB" />
-                    </g>
-                  </g>
-
-                  <!-- DEEP GREEN LILY LEAVES RADIATING -->
-                  <g id="deep-green-leaves">
-                    <path d="M260 360 C180 320, 110 330, 70 360 C100 390, 190 380, 255 370 Z" fill="url(#leafGrad2)" opacity="0.9" />
-                    <path d="M290 360 C370 320, 440 330, 480 360 C450 390, 360 380, 295 370 Z" fill="url(#leafGrad1)" opacity="0.9" />
-                    <path d="M250 320 C180 230, 120 200, 80 210 C100 240, 170 290, 245 330 Z" fill="url(#leafGrad1)" opacity="0.9" />
-                    <path d="M300 320 C370 230, 430 200, 470 210 C450 240, 380 290, 305 330 Z" fill="url(#leafGrad2)" opacity="0.9" />
-                    <path d="M265 260 C240 150, 200 90, 170 70 C200 100, 250 170, 270 260 Z" fill="url(#leafGrad1)" opacity="0.85" />
-                    <path d="M285 260 C310 150, 350 90, 380 70 C350 100, 300 170, 280 260 Z" fill="url(#leafGrad2)" opacity="0.85" />
-                  </g>
-
-                  <!-- 10 INTERACTIVE LILY BLOSSOMS & BUDS -->
-                  <g id="interactive-flowers-layer">
-                    
-                    <!-- FLOWER 1: Top Left Bud -->
-                    <g transform="translate(130, 100)">
-                      <g class="interactive-flower cursor-pointer" filter="url(#softFlowerShadow)" data-name="Blush Lily Bud" tabindex="0" role="button" aria-label="Blush Lily Bud">
-                        <path d="M20 55 C10 35, 12 15, 25 0 C38 15, 40 35, 30 55 Z" fill="url(#blushLilyGrad)" stroke="#F8C8DC" stroke-width="0.8" />
-                        <path d="M16 57 C20 42, 23 22, 25 0" stroke="#7B9E81" stroke-width="1.5" fill="none" />
-                      </g>
-                    </g>
-
-                    <!-- FLOWER 2: Top Right Bud -->
-                    <g transform="translate(390, 110)">
-                      <g class="interactive-flower cursor-pointer" filter="url(#softFlowerShadow)" data-name="White Lily Bud" tabindex="0" role="button" aria-label="White Lily Bud">
-                        <path d="M20 55 C8 35, 10 15, 23 0 C36 15, 38 35, 28 55 Z" fill="url(#whiteLilyGrad)" stroke="#FADADD" stroke-width="0.8" />
-                        <path d="M15 57 C19 40, 21 22, 23 0" stroke="#7B9E81" stroke-width="1.5" fill="none" />
-                      </g>
-                    </g>
-
-                    <!-- FLOWER 3: Top Center Half-Open Lily -->
-                    <g transform="translate(275, 130)">
-                      <g class="interactive-flower cursor-pointer" filter="url(#softFlowerShadow)" data-name="Half-Open White Lily" tabindex="0" role="button" aria-label="Half-Open White Lily">
-                        <path d="M0 0 C-30 -30, -45 -60, -35 -90 C-10 -70, 0 -30, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C30 -30, 45 -60, 35 -90 C10 -70, 0 -30, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C-15 -40, -15 -80, 0 -105 C15 -80, 15 -40, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <circle cx="0" cy="-25" r="16" fill="url(#whiteLilyThroat)" />
-                        <path d="M0 0 Q-10 -40 -12 -65" stroke="#7A4052" stroke-width="1.2" fill="none" opacity="0.6" />
-                        <ellipse cx="-12" cy="-65" rx="3.5" ry="2" fill="#F4D58D" />
-                        <path d="M0 0 Q10 -40 12 -65" stroke="#7A4052" stroke-width="1.2" fill="none" opacity="0.6" />
-                        <ellipse cx="12" cy="-65" rx="3.5" ry="2" fill="#F4D58D" />
-                      </g>
-                    </g>
-
-                    <!-- FLOWER 4: Upper Left White Lily -->
-                    <g transform="translate(195, 185)">
-                      <g class="interactive-flower cursor-pointer" filter="url(#softFlowerShadow)" data-name="Upper Left White Lily" tabindex="0" role="button" aria-label="Upper Left White Lily">
-                        <path d="M0 0 C-45 -25, -75 -20, -95 0 C-65 15, -35 15, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C-35 -45, -45 -85, -35 -115 C-10 -85, 0 -45, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C0 -50, 20 -90, 35 -115 C35 -75, 20 -35, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C35 -35, 75 -45, 105 -40 C75 -15, 40 0, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C40 10, 75 35, 95 65 C60 55, 30 30, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C-20 40, -35 75, -40 100 C-45 65, -30 35, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C-50 20, -85 35, -110 35 C-85 10, -45 0, 0 0 Z" fill="url(#whiteLilyGrad)" />
-
-                        <circle cx="0" cy="0" r="24" fill="url(#whiteLilyThroat)" />
-                        <circle cx="-12" cy="-10" r="1.2" fill="#E99AB2" opacity="0.7" />
-                        <circle cx="10" cy="-12" r="1.1" fill="#E99AB2" opacity="0.7" />
-                        <circle cx="-8" cy="12" r="1.2" fill="#E99AB2" opacity="0.7" />
-
-                        <path d="M0 0 Q-20 -25 -30 -42" stroke="#7A4052" stroke-width="1.3" fill="none" opacity="0.6" />
-                        <ellipse cx="-30" cy="-42" rx="3.8" ry="2" fill="#F4D58D" transform="rotate(-30, -30, -42)" />
-                        <path d="M0 0 Q5 -30 8 -48" stroke="#7A4052" stroke-width="1.3" fill="none" opacity="0.6" />
-                        <ellipse cx="8" cy="-48" rx="3.8" ry="2" fill="#F4D58D" />
-                        <path d="M0 0 Q25 -20 40 -32" stroke="#7A4052" stroke-width="1.3" fill="none" opacity="0.6" />
-                        <ellipse cx="40" cy="-32" rx="3.8" ry="2" fill="#F4D58D" transform="rotate(30, 40, -32)" />
-                      </g>
-                    </g>
-
-                    <!-- FLOWER 5: Upper Right Soft Pink Lily -->
-                    <g transform="translate(365, 195)">
-                      <g class="interactive-flower cursor-pointer" filter="url(#softFlowerShadow)" data-name="Upper Right Blush Lily" tabindex="0" role="button" aria-label="Upper Right Blush Lily">
-                        <path d="M0 0 C-35 -35, -70 -45, -100 -40 C-70 -15, -35 0, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C-20 -50, -20 -90, -5 -115 C15 -85, 10 -45, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C25 -45, 55 -80, 80 -95 C65 -65, 40 -30, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C50 -20, 85 -20, 110 0 C80 15, 45 15, 0 0 Z" fill="url(#roseAccentGrad)" opacity="0.9" />
-                        <path d="M0 0 C45 25, 75 55, 95 85 C65 65, 35 35, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C10 45, 10 80, 0 105 C-15 75, -10 40, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C-40 30, -75 40, -100 40 C-75 15, -40 0, 0 0 Z" fill="url(#blushLilyGrad)" />
-
-                        <circle cx="0" cy="0" r="24" fill="url(#blushLilyThroat)" />
-                        <circle cx="-10" cy="-8" r="1.3" fill="#7A4052" opacity="0.5" />
-                        <circle cx="8" cy="-10" r="1.2" fill="#7A4052" opacity="0.5" />
-                        <circle cx="12" cy="8" r="1.2" fill="#7A4052" opacity="0.5" />
-
-                        <path d="M0 0 Q-15 -30 -22 -48" stroke="#7A4052" stroke-width="1.3" fill="none" opacity="0.6" />
-                        <ellipse cx="-22" cy="-48" rx="3.8" ry="2" fill="#F4D58D" transform="rotate(-20, -22, -48)" />
-                        <path d="M0 0 Q15 -30 25 -45" stroke="#7A4052" stroke-width="1.3" fill="none" opacity="0.6" />
-                        <ellipse cx="25" cy="-45" rx="3.8" ry="2" fill="#F4D58D" transform="rotate(25, 25, -45)" />
-                      </g>
-                    </g>
-
-                    <!-- FLOWER 6: Far Left Accent Blossom -->
-                    <g transform="translate(115, 275)">
-                      <g class="interactive-flower cursor-pointer" filter="url(#softFlowerShadow)" data-name="Left Accent Bloom" tabindex="0" role="button" aria-label="Left Accent Bloom">
-                        <path d="M0 0 C-30 -20, -55 -25, -75 -15 C-55 5, -30 10, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C-20 -40, -30 -65, -25 -85 C-5 -60, 0 -30, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C15 -35, 35 -60, 55 -70 C40 -45, 25 -20, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C30 15, 55 30, 70 50 C45 40, 25 20, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C-15 30, -30 55, -40 70 C-35 45, -20 25, 0 0 Z" fill="url(#whiteLilyGrad)" />
-
-                        <circle cx="0" cy="0" r="18" fill="url(#blushLilyThroat)" />
-                        <path d="M0 0 Q-10 -20 -15 -32" stroke="#7A4052" stroke-width="1.2" fill="none" opacity="0.6" />
-                        <ellipse cx="-15" cy="-32" rx="3" ry="1.8" fill="#F4D58D" />
-                      </g>
-                    </g>
-
-                    <!-- FLOWER 7: Far Right Accent Blossom -->
-                    <g transform="translate(445, 285)">
-                      <g class="interactive-flower cursor-pointer" filter="url(#softFlowerShadow)" data-name="Right Accent Bloom" tabindex="0" role="button" aria-label="Right Accent Bloom">
-                        <path d="M0 0 C30 -20, 55 -25, 75 -15 C55 5, 30 10, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C20 -40, 30 -65, 25 -85 C5 -60, 0 -30, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C-15 -35, -35 -60, -55 -70 C-40 -45, -25 -20, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C-30 15, -55 30, -70 50 C-45 40, -25 20, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C15 30, 30 55, 40 70 C35 45, 20 25, 0 0 Z" fill="url(#whiteLilyGrad)" />
-
-                        <circle cx="0" cy="0" r="18" fill="url(#whiteLilyThroat)" />
-                        <path d="M0 0 Q10 -20 15 -32" stroke="#7A4052" stroke-width="1.2" fill="none" opacity="0.6" />
-                        <ellipse cx="15" cy="-32" rx="3" ry="1.8" fill="#F4D58D" />
-                      </g>
-                    </g>
-
-                    <!-- FLOWER 8: Left Main Blush Pink Lily -->
-                    <g transform="translate(180, 300)">
-                      <g class="interactive-flower cursor-pointer" filter="url(#softFlowerShadow)" data-name="Main Left Blush Lily" tabindex="0" role="button" aria-label="Main Left Blush Lily">
-                        <path d="M0 0 C-50 -30, -90 -40, -120 -30 C-85 0, -45 10, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C-35 -55, -50 -100, -40 -130 C-10 -95, 0 -50, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C10 -55, 35 -100, 55 -125 C45 -85, 25 -45, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C45 -25, 85 -30, 115 -20 C80 5, 45 10, 0 0 Z" fill="url(#roseAccentGrad)" opacity="0.9" />
-                        <path d="M0 0 C45 25, 80 60, 100 95 C70 70, 35 40, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C-10 45, -20 85, -25 115 C-30 80, -20 45, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C-50 20, -90 30, -115 25 C-85 0, -45 0, 0 0 Z" fill="url(#blushLilyGrad)" />
-
-                        <circle cx="0" cy="0" r="28" fill="url(#blushLilyThroat)" />
-                        <circle cx="-14" cy="-10" r="1.4" fill="#7A4052" opacity="0.5" />
-                        <circle cx="10" cy="-14" r="1.3" fill="#7A4052" opacity="0.5" />
-                        <circle cx="-6" cy="14" r="1.3" fill="#7A4052" opacity="0.5" />
-                        <circle cx="12" cy="10" r="1.4" fill="#7A4052" opacity="0.5" />
-
-                        <path d="M0 0 Q-25 -30 -38 -50" stroke="#7A4052" stroke-width="1.4" fill="none" opacity="0.6" />
-                        <ellipse cx="-38" cy="-50" rx="4" ry="2.2" fill="#F4D58D" transform="rotate(-35, -38, -50)" />
-                        <path d="M0 0 Q0 -35 2 -55" stroke="#7A4052" stroke-width="1.4" fill="none" opacity="0.6" />
-                        <ellipse cx="2" cy="-55" rx="4" ry="2.2" fill="#F4D58D" />
-                        <path d="M0 0 Q30 -25 45 -40" stroke="#7A4052" stroke-width="1.4" fill="none" opacity="0.6" />
-                        <ellipse cx="45" cy="-40" rx="4" ry="2.2" fill="#F4D58D" transform="rotate(35, 45, -40)" />
-                      </g>
-                    </g>
-
-                    <!-- FLOWER 9: Right Main Soft Pink Lily -->
-                    <g transform="translate(370, 310)">
-                      <g class="interactive-flower cursor-pointer" filter="url(#softFlowerShadow)" data-name="Main Right Blush Lily" tabindex="0" role="button" aria-label="Main Right Blush Lily">
-                        <path d="M0 0 C-45 -25, -85 -30, -115 -20 C-80 5, -45 10, 0 0 Z" fill="url(#roseAccentGrad)" opacity="0.9" />
-                        <path d="M0 0 C-10 -55, -35 -100, -55 -125 C-45 -85, -25 -45, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C35 -55, 50 -100, 40 -130 C10 -95, 0 -50, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C50 -30, 90 -40, 120 -30 C85 0, 45 10, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C50 20, 90 30, 115 25 C85 0, 45 0, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C10 45, 20 85, 25 115 C30 80, 20 45, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C-45 25, -80 60, -100 95 C-70 70, -35 40, 0 0 Z" fill="url(#blushLilyGrad)" />
-
-                        <circle cx="0" cy="0" r="28" fill="url(#blushLilyThroat)" />
-                        <circle cx="-10" cy="-12" r="1.4" fill="#7A4052" opacity="0.5" />
-                        <circle cx="14" cy="-8" r="1.3" fill="#7A4052" opacity="0.5" />
-                        <circle cx="8" cy="12" r="1.3" fill="#7A4052" opacity="0.5" />
-
-                        <path d="M0 0 Q-30 -25 -45 -40" stroke="#7A4052" stroke-width="1.4" fill="none" opacity="0.6" />
-                        <ellipse cx="-45" cy="-40" rx="4" ry="2.2" fill="#F4D58D" transform="rotate(-35, -45, -40)" />
-                        <path d="M0 0 Q0 -35 -2 -55" stroke="#7A4052" stroke-width="1.4" fill="none" opacity="0.6" />
-                        <ellipse cx="-2" cy="-55" rx="4" ry="2.2" fill="#F4D58D" />
-                        <path d="M0 0 Q25 -30 38 -50" stroke="#7A4052" stroke-width="1.4" fill="none" opacity="0.6" />
-                        <ellipse cx="38" cy="-50" rx="4" ry="2.2" fill="#F4D58D" transform="rotate(35, 38, -50)" />
-                      </g>
-                    </g>
-
-                    <!-- FLOWER 10: Center Main Large Open White & Blush Lily -->
-                    <g transform="translate(275, 335)">
-                      <g class="interactive-flower cursor-pointer" filter="url(#softFlowerShadow)" data-name="Center Master Lily" tabindex="0" role="button" aria-label="Center Master Lily">
-                        <path d="M0 0 C-50 -40, -100 -50, -135 -40 C-95 -5, -50 10, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C-40 -65, -60 -115, -50 -150 C-15 -110, 0 -60, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C0 -70, 0 -130, 0 -160 C18 -115, 15 -60, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C40 -65, 60 -115, 50 -150 C15 -110, 0 -60, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C50 -40, 100 -50, 135 -40 C95 -5, 50 10, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C55 30, 95 70, 120 110 C85 85, 45 45, 0 0 Z" fill="url(#blushLilyGrad)" />
-                        <path d="M0 0 C0 55, -10 105, -15 135 C-30 95, -20 50, 0 0 Z" fill="url(#whiteLilyGrad)" />
-                        <path d="M0 0 C-55 30, -95 70, -120 110 C-85 85, -45 45, 0 0 Z" fill="url(#whiteLilyGrad)" />
-
-                        <!-- Throat -->
-                        <circle cx="0" cy="0" r="34" fill="url(#whiteLilyThroat)" />
-
-                        <!-- Freckles -->
-                        <circle cx="-16" cy="-14" r="1.5" fill="#E99AB2" opacity="0.8" />
-                        <circle cx="-8" cy="-22" r="1.3" fill="#E99AB2" opacity="0.7" />
-                        <circle cx="12" cy="-18" r="1.4" fill="#E99AB2" opacity="0.8" />
-                        <circle cx="18" cy="-8" r="1.3" fill="#E99AB2" opacity="0.7" />
-                        <circle cx="-14" cy="14" r="1.4" fill="#E99AB2" opacity="0.8" />
-                        <circle cx="12" cy="16" r="1.4" fill="#E99AB2" opacity="0.8" />
-
-                        <!-- Stamens -->
-                        <path d="M0 0 Q-30 -35 -45 -58" stroke="#7A4052" stroke-width="1.5" fill="none" opacity="0.7" />
-                        <ellipse cx="-45" cy="-58" rx="4.5" ry="2.5" fill="#F4D58D" transform="rotate(-35, -45, -58)" />
-                        <path d="M0 0 Q-10 -40 -15 -65" stroke="#7A4052" stroke-width="1.5" fill="none" opacity="0.7" />
-                        <ellipse cx="-15" cy="-65" rx="4.5" ry="2.5" fill="#F4D58D" transform="rotate(-10, -15, -65)" />
-                        <path d="M0 0 Q10 -40 15 -65" stroke="#7A4052" stroke-width="1.5" fill="none" opacity="0.7" />
-                        <ellipse cx="15" cy="-65" rx="4.5" ry="2.5" fill="#F4D58D" transform="rotate(10, 15, -65)" />
-                        <path d="M0 0 Q30 -35 45 -58" stroke="#7A4052" stroke-width="1.5" fill="none" opacity="0.7" />
-                        <ellipse cx="45" cy="-58" rx="4.5" ry="2.5" fill="#F4D58D" transform="rotate(35, 45, -58)" />
-                        <path d="M0 0 Q-25 25 -38 42" stroke="#7A4052" stroke-width="1.5" fill="none" opacity="0.7" />
-                        <ellipse cx="-38" cy="42" rx="4" ry="2.2" fill="#F4D58D" transform="rotate(45, -38, 42)" />
-                        <path d="M0 0 Q25 25 38 42" stroke="#7A4052" stroke-width="1.5" fill="none" opacity="0.7" />
-                        <ellipse cx="38" cy="42" rx="4" ry="2.2" fill="#F4D58D" transform="rotate(-45, 38, 42)" />
-                      </g>
-                    </g>
-
-                  </g>
-
-                  <!-- PASTEL RIBBON & SILK BOW -->
-                  <g transform="translate(275, 450)">
-                    <g id="ribbon-bow" class="interactive-ribbon cursor-pointer" filter="url(#softFlowerShadow)" tabindex="0" role="button" aria-label="Pastel Ribbon Bow">
-                      <!-- Flowing Ribbon Streamers -->
-                      <path d="M-8 12 C-20 45, -35 80, -50 115 C-40 115, -25 95, -12 80 C-6 95, 0 115, 8 115 C-2 88, -3 50, 0 12 Z" fill="url(#ribbonGrad)" />
-                      <path d="M8 12 C20 45, 35 80, 50 115 C40 115, 25 95, 12 80 C6 95, 0 115, -8 115 C2 88, 3 50, 0 12 Z" fill="url(#ribbonGrad)" />
-
-                      <!-- Left Bow Loop -->
-                      <path d="M0 0 C-25 -28, -60 -20, -60 8 C-60 34, -25 20, 0 5 Z" fill="url(#ribbonGrad)" stroke="#E99AB2" stroke-width="1.2" />
-                      <!-- Right Bow Loop -->
-                      <path d="M0 0 C25 -28, 60 -20, 60 8 C60 34, 25 20, 0 5 Z" fill="url(#ribbonGrad)" stroke="#E99AB2" stroke-width="1.2" />
-
-                      <!-- Center Knot -->
-                      <ellipse cx="0" cy="3" rx="12" ry="9" fill="#E99AB2" stroke="#FFFDFB" stroke-width="2" />
-                      <circle cx="-2" cy="1" r="4" fill="#F8C8DC" opacity="0.9" />
-                    </g>
-                  </g>
-
-                </svg>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SECTION DIVIDER WITH FLORAL FOCUS -->
-        <div id="flower-delivery-note-anchor" class="relative pt-12 sm:pt-16 pb-6 px-4">
-          
-          <!-- 2. SMALL INTRO CARD -->
-          <div class="flex justify-center px-4 sm:px-6 mb-8 sm:mb-12">
-            <div id="small-intro-card" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-[#FADADD]/60 border border-[#F8C8DC] shadow-[0_4px_16px_rgba(248,200,220,0.3)] transition-all duration-300 hover:bg-[#FADADD]/80 hover:shadow-[0_6px_20px_rgba(248,200,220,0.45)] text-center">
-              <span class="flex items-center justify-center w-8 h-8 rounded-full bg-[#FFFDFB] text-[#E99AB2] shadow-2xs">
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v14m0-7a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m-4.5-1.5a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm15 0a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-[#B85D38]/30 border border-[#B85D38]/60 text-[#E28458] text-[11px] font-bold uppercase tracking-wider">
+                MAIN PAGE • FEATURED 💖
               </span>
-              <p class="font-body text-[#7A4052] text-sm sm:text-base font-medium tracking-wide">
-                Flowers seemed like a nice way to say hello.
-              </p>
+              <span class="text-2xl group-hover:scale-125 transition-transform">💌</span>
             </div>
+
+            <h3 class="font-display font-extrabold text-2xl text-white group-hover:text-[#F8C8DC] transition-colors">
+              LOVE — Everything About Her
+            </h3>
+
+            <p class="text-xs text-white/80 mt-2 leading-relaxed">
+              Her culinary favorites (Biryani, Waffles, Tiramisu), cute rules, dreams, key details, live relationship timer, and stargazing mode.
+            </p>
           </div>
 
-          <!-- 3. INTERACTIVE LETTER SECTION -->
-          <div id="letter-section" class="relative max-w-xl mx-auto px-4 sm:px-6 py-6">
-            
-            <!-- Sparkle burst container -->
-            <div id="sparkle-burst-container" class="pointer-events-none absolute inset-0 overflow-visible z-30"></div>
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-bold text-[#E28458] group-hover:text-white">
+            <span>Explore LOVE Page</span>
+            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </div>
+        </a>
 
-            <!-- Main Letter Card -->
-            <div id="letter-card" class="relative bg-gradient-to-b from-[#FFFDFB] via-[#FFFDFB] to-[#FAEFF1]/45 border border-[#F8C8DC] rounded-2xl shadow-[0_10px_30px_rgba(248,200,220,0.35)] overflow-hidden transition-all duration-500">
-              
-              <!-- Ribbon top border -->
-              <div class="h-1.5 w-full bg-gradient-to-r from-[#FADADD] via-[#E99AB2]/70 to-[#FADADD]"></div>
+        <!-- 2. FLORAL SURPRISE (THE FLOWER PAGE) -->
+        <a href="floral.html" class="glass-card p-6 sm:p-8 rounded-3xl group relative overflow-hidden flex flex-col justify-between hover:border-pink-300/40">
+          <div class="absolute -top-12 -right-12 w-40 h-40 bg-pink-500/10 rounded-full blur-2xl group-hover:scale-125 transition-transform pointer-events-none"></div>
 
-              <!-- Card Header -->
-              <div class="pt-8 px-6 sm:px-10 pb-4 text-center">
-                <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#FADADD]/50 border border-[#F8C8DC] text-[#E99AB2] mb-3 shadow-2xs">
-                  <svg class="w-5 h-5 text-[#E99AB2]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7.5a4.5 4.5 0 1 1 4.5 4.5M12 7.5A4.5 4.5 0 1 0 7.5 12M12 7.5V12m4.5 0a4.5 4.5 0 1 1 4.5 4.5m4.5-4.5H12m-4.5 0a4.5 4.5 0 1 0 4.5 4.5m-4.5-4.5H12m0 4.5V21"/></svg>
-                </div>
-                <h2 id="letter-title" class="font-script text-3xl sm:text-4xl text-[#7A4052] font-bold tracking-wide">
-                  Just a Little Note
-                </h2>
-                <p class="text-xs text-[#7A4052]/60 mt-1 font-body">
-                  A few quiet words, sealed with a blush pink bow
-                </p>
-              </div>
-
-              <!-- Content Area -->
-              <div class="relative px-6 sm:px-10 py-4 min-h-[220px]">
-                
-                <!-- Closed Overlay -->
-                <div id="letter-closed-overlay" class="absolute inset-0 z-20 flex flex-col items-center justify-center p-6 backdrop-blur-[6px] bg-[#FFFDFB]/60 rounded-b-2xl transition-all duration-300">
-                  <div class="flex flex-col items-center text-center max-w-xs space-y-4">
-                    <div class="p-3.5 rounded-full bg-[#FADADD]/60 text-[#7A4052] border border-[#F8C8DC]">
-                      <svg class="w-6 h-6 text-[#E99AB2]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    </div>
-                    <p class="font-body text-sm text-[#7A4052]/80">
-                      Tap below to unfold the note.
-                    </p>
-                    <button id="open-note-button" type="button" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#FADADD] hover:bg-[#F8C8DC] active:scale-[0.98] text-[#7A4052] font-semibold text-sm shadow-xs hover:shadow-md transition-all duration-200 border border-[#E99AB2]/30 cursor-pointer min-h-[44px]">
-                      <svg class="w-4 h-4 text-[#7A4052]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10c0-.63.3-1.22.8-1.6l8-6a2 2 0 0 1 2.4 0l8 6z"/><path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10"/></svg>
-                      <span>Open the Note</span>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Letter Body Text -->
-                <div id="letter-body-wrapper" class="space-y-6 select-text opacity-25 filter blur-[4px] translate-y-2 transition-all duration-500">
-                  <div class="relative p-5 sm:p-6 rounded-xl bg-[#FFFDFB] border border-[#F8C8DC]/60 shadow-2xs">
-                    
-                    <!-- Edit Button -->
-                    <div class="flex justify-end mb-2">
-                      <button type="button" id="toggle-edit-note-btn" class="text-xs text-[#7A4052]/60 hover:text-[#7A4052] inline-flex items-center gap-1 transition-colors px-2 py-1 rounded-md hover:bg-[#FADADD]/30" title="Personalize or edit the note" aria-label="Personalize or edit note message">
-                        <svg id="edit-icon-pen" class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                        <svg id="edit-icon-check" class="w-3.5 h-3.5 text-[#B9D8BE] hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        <span id="edit-btn-label">Edit note</span>
-                      </button>
-                    </div>
-
-                    <!-- Read View -->
-                    <div id="letter-read-container">
-                      <div id="letter-body-text" class="font-body text-[#7A4052] text-base sm:text-lg leading-relaxed whitespace-pre-wrap tracking-wide"></div>
-                    </div>
-
-                    <!-- Edit View (Hidden by default) -->
-                    <div id="letter-edit-container" class="space-y-3 hidden">
-                      <label for="letter-input" class="block text-xs font-semibold text-[#7A4052]/70">
-                        Write or paste your note:
-                      </label>
-                      <textarea id="letter-input" rows="6" placeholder="Type or paste your message here..." class="w-full p-3 rounded-lg border border-[#F8C8DC] focus:outline-none focus:ring-2 focus:ring-[#E99AB2]/50 text-sm font-body text-[#7A4052] bg-white leading-relaxed resize-y"></textarea>
-                      <div class="flex justify-between items-center text-xs text-[#7A4052]/60">
-                        <span>Paragraph breaks are preserved</span>
-                        <button type="button" id="reset-note-btn" class="text-xs underline hover:text-[#7A4052]">
-                          Reset to placeholder
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Sign-off -->
-                  <div class="pt-2 text-center sm:text-right space-y-1.5 border-t border-[#F8C8DC]/50">
-                    <p id="letter-closing-line" class="font-script text-2xl text-[#E99AB2] font-semibold tracking-wide">
-                      Hope this made you smile.
-                    </p>
-                    <p id="letter-sign-off" class="font-body text-sm sm:text-base text-[#7A4052]/90 font-medium">
-                      — From someone who enjoys talking to you
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Footer Hide Button -->
-              <div id="letter-footer-bar" class="px-6 py-4 bg-[#FADADD]/30 border-t border-[#F8C8DC]/50 justify-center items-center hidden">
-                <button id="hide-note-button" type="button" class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#FFFDFB] hover:bg-[#FADADD]/60 text-[#7A4052] text-xs sm:text-sm font-semibold border border-[#F8C8DC] shadow-2xs hover:shadow-xs transition-all duration-200 cursor-pointer min-h-[44px]">
-                  <svg class="w-3.5 h-3.5 text-[#E99AB2]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z"/></svg>
-                  <span>Hide the Note</span>
-                </button>
-              </div>
-
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-pink-500/20 border border-pink-400/40 text-pink-300 text-[11px] font-bold uppercase tracking-wider">
+                FLORAL SURPRISE 🌸
+              </span>
+              <span class="text-2xl group-hover:scale-125 transition-transform">🌺</span>
             </div>
+
+            <h3 class="font-display font-extrabold text-2xl text-white group-hover:text-pink-200 transition-colors">
+              A Little Something for You
+            </h3>
+
+            <p class="text-xs text-white/80 mt-2 leading-relaxed">
+              A sweet, lighthearted floral surprise featuring interactive pastel lilies, glowing ribbons, gentle animations, and a heartfelt note.
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-bold text-pink-300 group-hover:text-white">
+            <span>Open Floral Surprise</span>
+            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </div>
+        </a>
+
+        <!-- 3. UPCOMING PAGE: STARGAZING NIGHTS -->
+        <div class="glass-card p-6 sm:p-8 rounded-3xl relative overflow-hidden flex flex-col justify-between opacity-75 border-amber-500/20">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 text-[11px] font-bold uppercase tracking-wider">
+                UPCOMING 🌌
+              </span>
+              <span class="text-2xl">🌙</span>
+            </div>
+
+            <h3 class="font-display font-bold text-xl text-white">
+              Stargazing Nights Simulator
+            </h3>
+
+            <p class="text-xs text-white/70 mt-2 leading-relaxed">
+              An ambient Bangalore twilight sky experience under the same evening stars with gentle music & custom messages.
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-amber-300/70 font-mono">
+            <span>In Construction • Coming Soon</span>
+            <span>✨</span>
           </div>
         </div>
 
-        <!-- 4. CHEERFUL CLOSING SECTION -->
-        <footer id="closing-section" class="relative z-20 pt-12 pb-16 text-center select-none">
-          <div class="max-w-md mx-auto px-4 flex flex-col items-center space-y-3">
-            <p id="closing-message" class="font-script text-3xl sm:text-4xl text-[#7A4052] font-semibold tracking-wide">
-              Have a lovely mood.
-            </p>
-
-            <div class="relative inline-flex items-center justify-center py-1">
-              <svg class="w-7 h-7 text-[#E99AB2] animate-gentle-sway transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Tiny lily flower illustration">
-                <title>Tiny lily flower</title>
-                <path d="M12 4c-2 3-5 5-8 5 4 2 6 6 8 11 2-5 4-9 8-11-3 0-6-2-8-5z" fill="#FADADD" fill-opacity="0.7" />
-                <path d="M12 4v16" stroke="#B9D8BE" stroke-width="1.5" />
-                <circle cx="12" cy="11" r="1.5" fill="#F4D58D" stroke="none" />
-              </svg>
-              <span class="absolute -top-1 -right-2 text-[#F4D58D] text-xs animate-sparkle-pulse">✦</span>
+        <!-- 4. UPCOMING PAGE: OUR LOVE STORY GALLERY -->
+        <div class="glass-card p-6 sm:p-8 rounded-3xl relative overflow-hidden flex flex-col justify-between opacity-75 border-purple-500/20">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-purple-500/20 border border-purple-400/30 text-purple-300 text-[11px] font-bold uppercase tracking-wider">
+                UPCOMING 📸
+              </span>
+              <span class="text-2xl">📷</span>
             </div>
 
-            <p id="footer-text" class="font-body text-xs text-[#7A4052]/65 tracking-wide pt-2">
-              Made with a little thought and a lot of pastel pink.
+            <h3 class="font-display font-bold text-xl text-white">
+              Our Love Story & Memories
+            </h3>
+
+            <p class="text-xs text-white/70 mt-2 leading-relaxed">
+              A photo memory canvas & milestone timeline celebrating dates, coffee talks, sunset walks, and shared laughter.
             </p>
           </div>
-        </footer>
 
-      </main>
-    </div>
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-purple-300/70 font-mono">
+            <span>In Construction • Coming Soon</span>
+            <span>✨</span>
+          </div>
+        </div>
 
-    <!-- Interactive JavaScript -->
-    <script>
-      (function() {
-        // --- 1. Canvas Petals & Sparkles Background (Retina-aware) ---
-        const canvas = document.getElementById('petal-background-canvas');
-        if (canvas) {
-          const ctx = canvas.getContext('2d');
-          const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-          let reducedMotion = mediaQuery.matches;
-          mediaQuery.addEventListener('change', (e) => { reducedMotion = e.matches; });
+      </div>
+    </section>
 
-          let width = window.innerWidth;
-          let height = window.innerHeight;
+    <!-- FOOTER -->
+    <footer class="pt-8 border-t border-white/10 text-center text-xs text-white/50 space-y-2">
+      <p>Crafted with love by Ugesh Ragavan • Bengaluru 2026</p>
+      <p class="text-[11px] text-white/40">Dedicated Hub for Her Websites</p>
+    </footer>
 
-          function resizeCanvas() {
-            const dpr = window.devicePixelRatio || 1;
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width * dpr;
-            canvas.height = height * dpr;
-            canvas.style.width = width + 'px';
-            canvas.style.height = height + 'px';
-            ctx.scale(dpr, dpr);
-          }
+  </main>
 
-          resizeCanvas();
-          window.addEventListener('resize', resizeCanvas);
+  <script>
+    const canvas = document.getElementById('ambient-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
 
-          const colors = [
-            'rgba(250, 218, 221, 0.7)',
-            'rgba(248, 200, 220, 0.6)',
-            'rgba(233, 154, 178, 0.45)',
-            'rgba(255, 253, 251, 0.85)',
-          ];
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
 
-          const particleCount = 18;
-          const particles = [];
-          for (let i = 0; i < particleCount; i++) {
-            particles.push({
-              x: Math.random() * width,
-              y: Math.random() * height,
-              r: 6 + Math.random() * 8,
-              angle: Math.random() * Math.PI * 2,
-              spin: (Math.random() - 0.5) * 0.015,
-              speedY: 0.35 + Math.random() * 0.55,
-              speedX: (Math.random() - 0.5) * 0.4,
-              color: colors[Math.floor(Math.random() * colors.length)],
-              flip: Math.random(),
-              flipSpeed: 0.01 + Math.random() * 0.015,
-            });
-          }
+    const particles = Array.from({ length: 35 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 2 + 1,
+      alpha: Math.random() * 0.4 + 0.15
+    }));
 
-          const sparkleCount = 12;
-          const sparkles = [];
-          for (let i = 0; i < sparkleCount; i++) {
-            sparkles.push({
-              x: Math.random() * width,
-              y: Math.random() * height,
-              size: 1.5 + Math.random() * 2.5,
-              opacity: Math.random(),
-              opacitySpeed: 0.008 + Math.random() * 0.012,
-              color: '#F4D58D',
-            });
-          }
+    function animateAmbient() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
 
-          window.addEventListener('click', (e) => {
-            if (reducedMotion) return;
-            for (let i = 0; i < 4; i++) {
-              particles.push({
-                x: e.clientX + (Math.random() - 0.5) * 20,
-                y: e.clientY + (Math.random() - 0.5) * 20,
-                r: 7 + Math.random() * 6,
-                angle: Math.random() * Math.PI * 2,
-                spin: (Math.random() - 0.5) * 0.02,
-                speedY: 0.5 + Math.random() * 0.8,
-                speedX: (Math.random() - 0.5) * 1.5,
-                color: colors[Math.floor(Math.random() * colors.length)],
-                flip: Math.random(),
-                flipSpeed: 0.02,
-              });
-            }
-            if (particles.length > 40) {
-              particles.splice(0, particles.length - 35);
-            }
-          });
-
-          function render() {
-            ctx.clearRect(0, 0, width, height);
-
-            // Sparkles
-            for (let i = 0; i < sparkles.length; i++) {
-              const s = sparkles[i];
-              if (!reducedMotion) {
-                s.opacity += s.opacitySpeed;
-                if (s.opacity > 0.85 || s.opacity < 0.1) {
-                  s.opacitySpeed = -s.opacitySpeed;
-                }
-              }
-
-              ctx.save();
-              ctx.fillStyle = s.color;
-              ctx.globalAlpha = Math.max(0, Math.min(1, s.opacity));
-              ctx.beginPath();
-              const arm = s.size;
-              ctx.moveTo(s.x, s.y - arm * 1.5);
-              ctx.quadraticCurveTo(s.x, s.y, s.x + arm * 1.5, s.y);
-              ctx.quadraticCurveTo(s.x, s.y, s.x, s.y + arm * 1.5);
-              ctx.quadraticCurveTo(s.x, s.y, s.x - arm * 1.5, s.y);
-              ctx.quadraticCurveTo(s.x, s.y, s.x, s.y - arm * 1.5);
-              ctx.fill();
-              ctx.restore();
-            }
-
-            // Petals
-            for (let i = 0; i < particles.length; i++) {
-              const p = particles[i];
-              if (!reducedMotion) {
-                p.y += p.speedY;
-                p.x += Math.sin(p.angle) * 0.5 + p.speedX;
-                p.angle += p.spin;
-                p.flip += p.flipSpeed;
-
-                if (p.y > height + 20) {
-                  p.y = -20;
-                  p.x = Math.random() * width;
-                }
-                if (p.x < -20) p.x = width + 20;
-                if (p.x > width + 20) p.x = -20;
-              }
-
-              ctx.save();
-              ctx.translate(p.x, p.y);
-              ctx.rotate(p.angle);
-              const scaleX = Math.cos(p.flip);
-              ctx.scale(scaleX, 1);
-
-              ctx.fillStyle = p.color;
-              ctx.beginPath();
-              ctx.moveTo(0, -p.r * 1.2);
-              ctx.bezierCurveTo(p.r * 0.8, -p.r * 0.6, p.r * 0.8, p.r * 0.6, 0, p.r * 1.2);
-              ctx.bezierCurveTo(-p.r * 0.8, p.r * 0.6, -p.r * 0.8, -p.r * 0.6, 0, -p.r * 1.2);
-              ctx.fill();
-
-              ctx.restore();
-            }
-
-            requestAnimationFrame(render);
-          }
-
-          render();
-        }
-
-        // --- 2. Smooth Scroll to Flowers Note ---
-        const seeFlowersBtn = document.getElementById('see-flowers-button');
-        const noteAnchor = document.getElementById('flower-delivery-note-anchor');
-        if (seeFlowersBtn && noteAnchor) {
-          seeFlowersBtn.addEventListener('click', () => {
-            noteAnchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          });
-        }
-
-        // --- 3. Interactive Letter Logic ---
-        const DEFAULT_NOTE = `It’s funny how two days can feel like so much more than two days.
-
-Somewhere between the random jokes and the deeper conversations, you became someone I genuinely enjoy talking to.
-
-I don’t know where this little story goes,
-but I’m really glad our paths crossed.`;
-        let isOpen = false;
-        let isEditing = false;
-
-        function getSavedNote() {
-          try {
-            const saved = localStorage.getItem('surprise_note_text');
-            if (saved && saved.trim() !== '' && saved !== '[PASTE THE LETTER HERE]') {
-              return saved;
-            }
-            return DEFAULT_NOTE;
-          } catch (e) {
-            return DEFAULT_NOTE;
-          }
-        }
-
-        function saveNote(text) {
-          try {
-            localStorage.setItem('surprise_note_text', text);
-          } catch (e) {}
-        }
-
-        const openBtn = document.getElementById('open-note-button');
-        const hideBtn = document.getElementById('hide-note-button');
-        const closedOverlay = document.getElementById('letter-closed-overlay');
-        const letterWrapper = document.getElementById('letter-body-wrapper');
-        const footerBar = document.getElementById('letter-footer-bar');
-        const bodyText = document.getElementById('letter-body-text');
-        const editBtn = document.getElementById('toggle-edit-note-btn');
-        const editIconPen = document.getElementById('edit-icon-pen');
-        const editIconCheck = document.getElementById('edit-icon-check');
-        const editBtnLabel = document.getElementById('edit-btn-label');
-        const readContainer = document.getElementById('letter-read-container');
-        const editContainer = document.getElementById('letter-edit-container');
-        const letterInput = document.getElementById('letter-input');
-        const resetBtn = document.getElementById('reset-note-btn');
-        const sparkleBurstContainer = document.getElementById('sparkle-burst-container');
-
-        // Initial set text
-        let currentText = getSavedNote();
-        bodyText.textContent = currentText;
-        letterInput.value = currentText;
-
-        function triggerSparkleBurst() {
-          if (!sparkleBurstContainer) return;
-          sparkleBurstContainer.innerHTML = '';
-          const count = 6;
-          for (let i = 0; i < count; i++) {
-            const el = document.createElement('div');
-            el.className = 'burst-sparkle';
-            el.textContent = '✦';
-            const dir = (i % 2 === 0 ? 1 : -1);
-            const tx = dir * (40 + i * 25) + 'px';
-            const ty = (-30 - i * 15) + 'px';
-            el.style.setProperty('--tx', tx);
-            el.style.setProperty('--ty', ty);
-            el.style.top = '40px';
-            el.style.left = '50%';
-            sparkleBurstContainer.appendChild(el);
-          }
-          setTimeout(() => {
-            if (sparkleBurstContainer) sparkleBurstContainer.innerHTML = '';
-          }, 1500);
-        }
-
-        function toggleLetter(open) {
-          isOpen = open;
-          if (isOpen) {
-            closedOverlay.classList.add('opacity-0', 'pointer-events-none');
-            setTimeout(() => {
-              closedOverlay.style.display = 'none';
-            }, 300);
-
-            letterWrapper.classList.remove('opacity-25', 'filter', 'blur-[4px]', 'translate-y-2');
-            letterWrapper.classList.add('opacity-100', 'filter-none', 'translate-y-0');
-
-            footerBar.classList.remove('hidden');
-            footerBar.classList.add('flex');
-
-            triggerSparkleBurst();
-          } else {
-            closedOverlay.style.display = 'flex';
-            requestAnimationFrame(() => {
-              closedOverlay.classList.remove('opacity-0', 'pointer-events-none');
-            });
-
-            letterWrapper.classList.add('opacity-25', 'filter', 'blur-[4px]', 'translate-y-2');
-            letterWrapper.classList.remove('opacity-100', 'filter-none', 'translate-y-0');
-
-            footerBar.classList.add('hidden');
-            footerBar.classList.remove('flex');
-          }
-        }
-
-        if (openBtn) openBtn.addEventListener('click', () => toggleLetter(true));
-        if (hideBtn) hideBtn.addEventListener('click', () => toggleLetter(false));
-
-        // Edit Note Toggle
-        if (editBtn) {
-          editBtn.addEventListener('click', () => {
-            isEditing = !isEditing;
-            if (isEditing) {
-              editIconPen.classList.add('hidden');
-              editIconCheck.classList.remove('hidden');
-              editBtnLabel.textContent = 'Done';
-              readContainer.classList.add('hidden');
-              editContainer.classList.remove('hidden');
-            } else {
-              editIconPen.classList.remove('hidden');
-              editIconCheck.classList.add('hidden');
-              editBtnLabel.textContent = 'Edit note';
-              readContainer.classList.remove('hidden');
-              editContainer.classList.add('hidden');
-            }
-          });
-        }
-
-        if (letterInput) {
-          letterInput.addEventListener('input', (e) => {
-            const val = e.target.value;
-            bodyText.textContent = val;
-            saveNote(val);
-          });
-        }
-
-        if (resetBtn) {
-          resetBtn.addEventListener('click', () => {
-            letterInput.value = DEFAULT_NOTE;
-            bodyText.textContent = DEFAULT_NOTE;
-            saveNote(DEFAULT_NOTE);
-          });
-        }
-
-        // --- 4. Interactive Graphical Bouquet Mechanics ---
-        const bouquetContainer = document.getElementById('lily-bouquet-container');
-        const bouquetWrapper = document.getElementById('bouquet-3d-wrapper');
-        const particleOverlay = document.getElementById('bouquet-click-particles');
-        const flowers = document.querySelectorAll('.interactive-flower');
-        const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        // 3D Parallax Tilt Effect on Cursor & Touch Movement
-        if (bouquetContainer && bouquetWrapper && !isReducedMotion) {
-          const handleTilt = (clientX, clientY) => {
-            const rect = bouquetContainer.getBoundingClientRect();
-            const x = clientX - rect.left - rect.width / 2;
-            const y = clientY - rect.top - rect.height / 2;
-            const rotateX = (-y / rect.height) * 12;
-            const rotateY = (x / rect.width) * 12;
-            bouquetWrapper.style.transform = `rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale(1.02)`;
-          };
-
-          const resetTilt = () => {
-            bouquetWrapper.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
-          };
-
-          bouquetContainer.addEventListener('mousemove', (e) => {
-            handleTilt(e.clientX, e.clientY);
-          });
-
-          bouquetContainer.addEventListener('mouseleave', resetTilt);
-
-          bouquetContainer.addEventListener('touchmove', (e) => {
-            if (e.touches && e.touches[0]) {
-              handleTilt(e.touches[0].clientX, e.touches[0].clientY);
-            }
-          }, { passive: true });
-
-          bouquetContainer.addEventListener('touchend', resetTilt);
-          bouquetContainer.addEventListener('touchcancel', resetTilt);
-        }
-
-        // Flower Click / Touch / Keyboard Burst Interactivity
-        flowers.forEach((flower) => {
-          const triggerBloom = (clientX, clientY) => {
-            if (!isReducedMotion) {
-              flower.classList.remove('bloom-pop-anim');
-              void flower.offsetWidth; // trigger reflow
-              flower.classList.add('bloom-pop-anim');
-            }
-
-            if (!particleOverlay) return;
-            const rect = bouquetContainer.getBoundingClientRect();
-            const flowerRect = flower.getBoundingClientRect();
-            
-            // Determine particle origin relative to bouquet container
-            const clickX = (clientX && clientX !== 0) ? (clientX - rect.left) : (flowerRect.left + flowerRect.width / 2 - rect.left);
-            const clickY = (clientY && clientY !== 0) ? (clientY - rect.top) : (flowerRect.top + flowerRect.height / 2 - rect.top);
-
-            const createdParticles = [];
-            const icons = ['✦', '✧', '🌸', '✦', '✧'];
-            for (let i = 0; i < 6; i++) {
-              const p = document.createElement('div');
-              p.className = 'burst-sparkle';
-              p.textContent = icons[Math.floor(Math.random() * icons.length)];
-              const angle = (i / 6) * Math.PI * 2;
-              const dist = 28 + Math.random() * 32;
-              const tx = Math.cos(angle) * dist + 'px';
-              const ty = Math.sin(angle) * dist - 18 + 'px';
-              p.style.setProperty('--tx', tx);
-              p.style.setProperty('--ty', ty);
-              p.style.left = clickX + 'px';
-              p.style.top = clickY + 'px';
-              particleOverlay.appendChild(p);
-              createdParticles.push(p);
-            }
-
-            setTimeout(() => {
-              flower.classList.remove('bloom-pop-anim');
-              createdParticles.forEach((p) => {
-                if (p && p.parentNode) {
-                  p.parentNode.removeChild(p);
-                }
-              });
-            }, 1400);
-          };
-
-          flower.addEventListener('click', (e) => {
-            e.stopPropagation();
-            triggerBloom(e.clientX, e.clientY);
-          });
-
-          flower.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              const flowerRect = flower.getBoundingClientRect();
-              triggerBloom(flowerRect.left + flowerRect.width / 2, flowerRect.top + flowerRect.height / 2);
-            }
-          });
-        });
-
-      })();
-    </script>
-  </body>
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(248, 200, 220, ${p.alpha})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(animateAmbient);
+    }
+    animateAmbient();
+  </script>
+</body>
 </html>

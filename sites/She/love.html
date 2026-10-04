@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LOVE — Everything About Her 💖</title>
+  <meta name="description" content="A lovely dedicated website page showcasing everything about her — her favorites, cute rules, ambitions, moments, milestone tracker, and live counter." />
+  <meta property="og:title" content="LOVE — Everything About Her" />
+  <meta property="og:description" content="A warm, sweet digital vault celebrating everything about her." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'terracotta': '#B85D38',
+            'terracotta-light': '#E28458',
+            'warm-bg': '#0F0C15',
+            'card-bg': 'rgba(25, 20, 34, 0.75)',
+            'card-hover': 'rgba(38, 30, 52, 0.9)',
+            'blush-pink': '#F8C8DC',
+            'rose-accent': '#E99AB2',
+            'champagne-gold': '#F4D58D',
+            'soft-cream': '#FFFDFB',
+            'dark-plum': '#2A1A24',
+          },
+          fontFamily: {
+            script: ['Caveat', 'cursive'],
+            display: ['Outfit', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --primary-glow: rgba(184, 93, 56, 0.4);
+      --pink-glow: rgba(248, 200, 220, 0.3);
+    }
+    body {
+      background-color: #0F0C15;
+      color: #F8F6F0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+    
+    /* Background Canvas */
+    #ambient-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glass-card {
+      background: rgba(25, 20, 34, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(248, 200, 220, 0.12);
+      transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .glass-card:hover {
+      background: rgba(38, 30, 52, 0.88);
+      border-color: rgba(233, 154, 178, 0.35);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(184, 93, 56, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .heart-pulse {
+      animation: heartPulse 2s ease-in-out infinite;
+    }
+    @keyframes heartPulse {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(233,154,178,0.4)); }
+      50% { transform: scale(1.12); filter: drop-shadow(0 0 18px rgba(233,154,178,0.8)); }
+    }
+
+    .glow-pulse {
+      animation: glowPulse 3s ease-in-out infinite alternate;
+    }
+    @keyframes glowPulse {
+      0% { border-color: rgba(184, 93, 56, 0.3); box-shadow: 0 0 15px rgba(184, 93, 56, 0.2); }
+      100% { border-color: rgba(248, 200, 220, 0.5); box-shadow: 0 0 25px rgba(248, 200, 220, 0.4); }
+    }
+
+    /* Floating Heart Particle on Click */
+    .floating-heart {
+      position: absolute;
+      pointer-events: none;
+      font-size: 1.5rem;
+      animation: floatUp 1.6s ease-out forwards;
+      z-index: 50;
+    }
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translate(0, 0) scale(0.6) rotate(0deg); }
+      50% { opacity: 0.9; transform: translate(var(--dx), -60px) scale(1.3) rotate(var(--rot)); }
+      100% { opacity: 0; transform: translate(calc(var(--dx) * 1.5), -130px) scale(0.8) rotate(calc(var(--rot) * 2)); }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0F0C15;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #382A3A;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #B85D38;
+    }
+  </style>
+</head>
+<body class="bg-[#0F0C15] text-[#F8F6F0] antialiased selection:bg-[#B85D38] selection:text-white">
+
+  <!-- Ambient Particles Background -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-[#0F0C15]/80 border-b border-[#F8C8DC]/10 px-4 sm:px-8 py-3.5 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-[#E99AB2]/40 text-xs font-semibold text-[#F8C8DC] transition-all hover:bg-white/10">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        <span>SHE Menu</span>
+      </a>
+      <div class="h-4 w-[1px] bg-white/20"></div>
+      <span class="font-display font-bold text-lg text-white tracking-wide flex items-center gap-2">
+        LOVE <span class="text-xs px-2 py-0.5 rounded-full bg-[#B85D38]/30 border border-[#B85D38]/50 text-[#E28458]">Vault & Notes</span>
+      </span>
+    </div>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <button onclick="openStargazingModal()" class="px-3 sm:px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 to-purple-600/20 border border-amber-400/30 hover:border-amber-400/60 text-xs font-semibold text-amber-200 transition-all flex items-center gap-1.5 shadow-sm">
+        <span>🌙 Stargazing</span>
+      </button>
+      <button onclick="shareLovePage()" class="px-3 py-1.5 rounded-full bg-[#B85D38] hover:bg-[#E28458] text-xs font-bold text-white transition-all shadow-md flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+        <span class="hidden sm:inline">Share</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+    <!-- HERO SECTION: RELATIONSHIP TIMER & FAVOURITE NOTIFICATION -->
+    <section class="relative overflow-hidden rounded-3xl p-6 sm:p-10 text-center glass-card border-[#E99AB2]/20 shadow-2xl">
+      <!-- Background Ambient Glow -->
+      <div class="absolute -top-24 -left-24 w-72 h-72 bg-[#B85D38]/25 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-[#E99AB2]/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 flex flex-col items-center space-y-5">
+        
+        <!-- Tag Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#B85D38]/20 border border-[#B85D38]/40 text-[#F8C8DC] text-xs font-semibold select-none shadow-inner">
+          <span class="heart-pulse text-base">💖</span>
+          <span>Dating App Spark • 21st Sep 2026</span>
+        </div>
+
+        <!-- Big Romantic Title -->
+        <h1 class="font-display font-extrabold text-4xl sm:text-6xl text-white tracking-tight leading-tight">
+          Everything About <span class="bg-gradient-to-r from-[#F8C8DC] via-[#E28458] to-[#F4D58D] bg-clip-text text-transparent">Her</span>
+        </h1>
+
+        <!-- Signature Quote -->
+        <p class="font-script text-2xl sm:text-3xl text-[#F4D58D] max-w-xl">
+          “My favourite notification 🤍”
+        </p>
+        <p class="font-body text-sm text-[#F8C8DC]/80 max-w-md">
+          A heartfelt space gathering her favourite foods, little secrets, cute rules, dreams, and special memories.
+        </p>
+
+        <!-- LIVE RELATIONSHIP COUNTER -->
+        <div class="w-full max-w-2xl mt-4 pt-4 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
+            <span id="counter-days" class="font-display font-extrabold text-3xl sm:text-4xl text-[#F8C8DC]">0</span>
+            <span class="block text-[11px] font-bold uppercase tracking-wider text-white/50 mt-1">Days</span>
+          </div>
+          <div class="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
+            <span id="counter-hours" class="font-display font-extrabold text-3xl sm:text-4xl text-[#E28458]">0</span>
+            <span class="block text-[11px] font-bold uppercase tracking-wider text-white/50 mt-1">Hours</span>
+          </div>
+          <div class="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
+            <span id="counter-minutes" class="font-display font-extrabold text-3xl sm:text-4xl text-[#F4D58D]">0</span>
+            <span class="block text-[11px] font-bold uppercase tracking-wider text-white/50 mt-1">Minutes</span>
+          </div>
+          <div class="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
+            <span id="counter-seconds" class="font-display font-extrabold text-3xl sm:text-4xl text-rose-400">0</span>
+            <span class="block text-[11px] font-bold uppercase tracking-wider text-white/50 mt-1">Seconds</span>
+          </div>
+        </div>
+
+        <!-- Interactive Heart Trigger -->
+        <button id="send-love-burst-btn" onclick="spawnHeartBurst(event)" class="mt-4 px-6 py-3 rounded-full bg-gradient-to-r from-[#B85D38] to-[#E28458] hover:from-[#E28458] hover:to-[#B85D38] text-white font-display font-bold text-sm shadow-lg shadow-[#B85D38]/30 active:scale-95 transition-all flex items-center gap-2">
+          <span>Send Hearts Burst 💌</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- DYNAMIC ANNIVERSARY & MILESTONE TRACKER CARD (NEW) -->
+    <section class="glass-card glow-pulse rounded-3xl p-6 sm:p-8 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#F4D58D] mb-1">
+            <span>🎉 Milestone & Anniversary Tracker</span>
+          </div>
+          <h2 class="font-display font-extrabold text-2xl text-white">Upcoming Anniversary Countdown</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#F8C8DC]">
+            Auto-ticks into next milestone
+          </span>
+          <button onclick="triggerMilestoneCelebration()" class="px-3 py-1 rounded-full bg-[#B85D38] hover:bg-[#E28458] text-xs font-bold text-white transition-all">
+            Celebrate 🎉
+          </button>
+        </div>
+      </div>
+
+      <!-- 3 Columns: Weekly, Monthly, Yearly -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- 1. WEEKLY ANNIVERSARY CARD -->
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3 relative overflow-hidden group">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-[#E28458] px-2.5 py-0.5 rounded-full bg-[#B85D38]/20 border border-[#B85D38]/40">
+              Weekly Milestone
+            </span>
+            <span class="text-xs text-white/50">Every 7 Days</span>
+          </div>
+
+          <div>
+            <span id="weekly-title" class="font-display font-extrabold text-3xl text-white block">
+              -- Week
+            </span>
+            <span id="weekly-countdown" class="font-display font-bold text-lg text-[#F8C8DC] block mt-1">
+              Calculating...
+            </span>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="space-y-1 pt-1">
+            <div class="flex justify-between text-[10px] text-white/60 font-mono">
+              <span>Week Progress</span>
+              <span id="weekly-pct">0%</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+              <div id="weekly-progress-bar" class="h-full rounded-full bg-gradient-to-r from-[#B85D38] to-[#E28458] transition-all duration-500" style="width: 0%;"></div>
+            </div>
+          </div>
+          <p class="text-[11px] text-white/50 italic">
+            Once completed, automatically advances to next week!
+          </p>
+        </div>
+
+        <!-- 2. MONTHLY ANNIVERSARY CARD -->
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3 relative overflow-hidden group">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-[#F4D58D] px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/30">
+              Monthly Milestone
+            </span>
+            <span class="text-xs text-white/50">Every 21st</span>
+          </div>
+
+          <div>
+            <span id="monthly-title" class="font-display font-extrabold text-3xl text-white block">
+              -- Month
+            </span>
+            <span id="monthly-countdown" class="font-display font-bold text-lg text-[#F4D58D] block mt-1">
+              Calculating...
+            </span>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="space-y-1 pt-1">
+            <div class="flex justify-between text-[10px] text-white/60 font-mono">
+              <span>Month Progress</span>
+              <span id="monthly-pct">0%</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+              <div id="monthly-progress-bar" class="h-full rounded-full bg-gradient-to-r from-amber-400 to-rose-400 transition-all duration-500" style="width: 0%;"></div>
+            </div>
+          </div>
+          <p class="text-[11px] text-white/50 italic">
+            Next: 21st of every month
+          </p>
+        </div>
+
+        <!-- 3. YEARLY ANNIVERSARY CARD -->
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3 relative overflow-hidden group">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-rose-300 px-2.5 py-0.5 rounded-full bg-rose-500/20 border border-rose-400/30">
+              Yearly Milestone
+            </span>
+            <span class="text-xs text-white/50">Sep 21st</span>
+          </div>
+
+          <div>
+            <span id="yearly-title" class="font-display font-extrabold text-3xl text-white block">
+              -- Year
+            </span>
+            <span id="yearly-countdown" class="font-display font-bold text-lg text-rose-300 block mt-1">
+              Calculating...
+            </span>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="space-y-1 pt-1">
+            <div class="flex justify-between text-[10px] text-white/60 font-mono">
+              <span>Year Progress</span>
+              <span id="yearly-pct">0%</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+              <div id="yearly-progress-bar" class="h-full rounded-full bg-gradient-to-r from-rose-400 to-purple-400 transition-all duration-500" style="width: 0%;"></div>
+            </div>
+          </div>
+          <p class="text-[11px] text-white/50 italic">
+            Annual celebration milestone
+          </p>
+        </div>
+
+      </div>
+
+      <div class="pt-2 border-t border-white/10 text-xs text-white/60 text-center sm:text-left">
+        <span>💡 Countdown updates live every second</span>
+      </div>
+    </section>
+
+    <!-- CHEER-UP QUICK EMERGENCY KIT -->
+    <section class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="font-display font-bold text-2xl text-white flex items-center gap-2">
+          <span>⚡ Emergency Cheer-Up Kit</span>
+        </h2>
+        <span class="text-xs text-[#F8C8DC]/60">Instant ways to brighten her day</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Lilies -->
+        <button onclick="triggerCheerAction('lilies')" class="glass-card p-4 rounded-2xl text-left hover:border-pink-300/40 group relative overflow-hidden">
+          <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">🌸</div>
+          <h3 class="font-display font-bold text-base text-white">Fresh Bunch of Lilies</h3>
+          <p class="text-xs text-white/70 mt-1">Her signature flower. Instantly brightens her room & heart.</p>
+          <span class="mt-3 inline-block text-[11px] font-bold text-[#F8C8DC] group-hover:underline">Send Flowers Note →</span>
+        </button>
+
+        <!-- Waffles -->
+        <button onclick="triggerCheerAction('waffles')" class="glass-card p-4 rounded-2xl text-left hover:border-amber-300/40 group relative overflow-hidden">
+          <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">🧇</div>
+          <h3 class="font-display font-bold text-base text-white">KitKat Waffle / Dessert</h3>
+          <p class="text-xs text-white/70 mt-1">Her reward treat when she receives great feedback!</p>
+          <span class="mt-3 inline-block text-[11px] font-bold text-[#F4D58D] group-hover:underline">Waffle Quest Order →</span>
+        </button>
+
+        <!-- Sweet Text -->
+        <button onclick="triggerCheerAction('text')" class="glass-card p-4 rounded-2xl text-left hover:border-rose-300/40 group relative overflow-hidden">
+          <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">💬</div>
+          <h3 class="font-display font-bold text-base text-white">Sweet Reassuring Text</h3>
+          <p class="text-xs text-white/70 mt-1">Remind her how capable, loved, and deeply valued she is.</p>
+          <span class="mt-3 inline-block text-[11px] font-bold text-[#E28458] group-hover:underline">Copy Sweet Text →</span>
+        </button>
+
+        <!-- Warm Hug -->
+        <button onclick="triggerCheerAction('hug')" class="glass-card p-4 rounded-2xl text-left hover:border-purple-300/40 group relative overflow-hidden">
+          <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">🫂</div>
+          <h3 class="font-display font-bold text-base text-white">Tight Hug & Hand Hold</h3>
+          <p class="text-xs text-white/70 mt-1">Grounding, secure physical presence with no rush.</p>
+          <span class="mt-3 inline-block text-[11px] font-bold text-purple-300 group-hover:underline">Send Warm Hug →</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- VAULT TABBED EXPLORER (Everything About Her) -->
+    <section class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-display font-bold text-2xl text-white">Girlfriend Vault & Cheatsheet</h2>
+          <p class="text-xs text-[#F8C8DC]/70">Curated details, preferences, rules & dreams</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-white/5 border border-white/10 text-xs font-semibold">
+          <button onclick="switchVaultTab('all')" id="tab-btn-all" class="vault-tab-btn active px-3.5 py-1.5 rounded-xl bg-[#B85D38] text-white transition-all">All</button>
+          <button onclick="switchVaultTab('food')" id="tab-btn-food" class="vault-tab-btn px-3.5 py-1.5 rounded-xl text-white/70 hover:text-white transition-all">Food 🍱</button>
+          <button onclick="switchVaultTab('rules')" id="tab-btn-rules" class="vault-tab-btn px-3.5 py-1.5 rounded-xl text-white/70 hover:text-white transition-all">Rules & Habits 📝</button>
+          <button onclick="switchVaultTab('ambitions')" id="tab-btn-ambitions" class="vault-tab-btn px-3.5 py-1.5 rounded-xl text-white/70 hover:text-white transition-all">Dreams ✨</button>
+          <button onclick="switchVaultTab('logistics')" id="tab-btn-logistics" class="vault-tab-btn px-3.5 py-1.5 rounded-xl text-white/70 hover:text-white transition-all">Logistics 📍</button>
+        </div>
+      </div>
+
+      <!-- Vault Cards Grid -->
+      <div id="vault-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- JS will populate cards dynamically -->
+      </div>
+    </section>
+
+    <!-- CAPTURED MOMENTS & TIMELINE -->
+    <section class="space-y-6">
+      <div>
+        <h2 class="font-display font-bold text-2xl text-white">Captured Moments & Timeline</h2>
+        <p class="text-xs text-[#F8C8DC]/70">Key milestones in our story so far</p>
+      </div>
+
+      <div class="relative border-l-2 border-[#B85D38]/40 ml-4 pl-6 space-y-8">
+        <!-- Milestone 1 -->
+        <div class="relative group">
+          <div class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-[#B85D38] border-4 border-[#0F0C15] flex items-center justify-center text-xs">✨</div>
+          <div class="glass-card p-5 rounded-2xl">
+            <span class="text-xs font-bold text-[#F4D58D]">Sep 21, 2026 • 5:41 PM IST</span>
+            <h3 class="font-display font-bold text-lg text-white mt-0.5">The Dating App Spark 💫</h3>
+            <p class="text-xs text-[#F8C8DC]/90 leading-relaxed mt-2">
+              “That smile in a picture; I said ‘hi :)’. A simple greeting that turned into ‘my favourite notification’ and my whole world.”
+            </p>
+            <span class="inline-block mt-3 px-2.5 py-1 rounded-full bg-white/5 text-[10px] text-white/60">Bengaluru (Online)</span>
+          </div>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div class="relative group">
+          <div class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-indigo-500 border-4 border-[#0F0C15] flex items-center justify-center text-xs">🌙</div>
+          <div class="glass-card p-5 rounded-2xl">
+            <span class="text-xs font-bold text-[#F8C8DC]">Sep 23, 2026</span>
+            <h3 class="font-display font-bold text-lg text-white mt-0.5">Twilight Stargazing Walk 🌌</h3>
+            <p class="text-xs text-[#F8C8DC]/90 leading-relaxed mt-2">
+              Walking together under the Bangalore evening twilight breeze, looking up at the stars in Ramamurthy Nagar & holding hands with no rush.
+            </p>
+            <span class="inline-block mt-3 px-2.5 py-1 rounded-full bg-white/5 text-[10px] text-white/60">KR Puram / Ramamurthy Nagar</span>
+          </div>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div class="relative group">
+          <div class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-amber-500 border-4 border-[#0F0C15] flex items-center justify-center text-xs">🧇</div>
+          <div class="glass-card p-5 rounded-2xl">
+            <span class="text-xs font-bold text-[#F4D58D]">Sep 25, 2026</span>
+            <h3 class="font-display font-bold text-lg text-white mt-0.5">Dora on a Waffle Quest 🧇</h3>
+            <p class="text-xs text-[#F8C8DC]/90 leading-relaxed mt-2">
+              Treating herself to warm KitKat waffles after receiving glowing feedback! Her brightest smile lighting up the whole room.
+            </p>
+            <span class="inline-block mt-3 px-2.5 py-1 rounded-full bg-white/5 text-[10px] text-white/60">Belgian Waffle Co.</span>
+          </div>
+        </div>
+
+        <!-- Milestone 4 -->
+        <div class="relative group">
+          <div class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-rose-500 border-4 border-[#0F0C15] flex items-center justify-center text-xs">💬</div>
+          <div class="glass-card p-5 rounded-2xl">
+            <span class="text-xs font-bold text-[#E28458]">Sep 27, 2026</span>
+            <h3 class="font-display font-bold text-lg text-white mt-0.5">The Iconic Tongue-Twister Laughs 😂</h3>
+            <p class="text-xs text-[#F8C8DC]/90 leading-relaxed mt-2">
+              “You're not, he's mean by telling you mean that means you need not to worry for a mean guy saying you mean, this is what I mean...” Laughing until our stomachs hurt!
+            </p>
+            <span class="inline-block mt-3 px-2.5 py-1 rounded-full bg-white/5 text-[10px] text-white/60">Late Night Calls</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADD NEW VAULT NOTE FORM -->
+    <section class="glass-card p-6 sm:p-8 rounded-3xl space-y-4 border-[#B85D38]/30">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="font-display font-bold text-xl text-white">Add New Detail to Vault 📝</h2>
+          <p class="text-xs text-[#F8C8DC]/70">Save something sweet, a preference, or a reminder about her</p>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-full bg-[#B85D38]/30 text-[#E28458] font-mono">Persists in LocalStorage</span>
+      </div>
+
+      <form id="add-note-form" onsubmit="handleFormSubmit(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-[#F8C8DC] mb-1">Title / Headline</label>
+          <input type="text" id="input-title" required placeholder="e.g. Favorite Ice Cream Flavor..." class="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#B85D38]" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[#F8C8DC] mb-1">Category</label>
+          <select id="input-category" class="w-full bg-[#1F1929] border border-white/15 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#B85D38]">
+            <option value="food">Food & Treat 🍱</option>
+            <option value="rules">Cute Rule / Habit 📝</option>
+            <option value="ambitions">Dream / Ambition ✨</option>
+            <option value="logistics">Logistics / Detail 📍</option>
+          </select>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label class="block text-xs font-semibold text-[#F8C8DC] mb-1">Details & Note</label>
+          <textarea id="input-desc" rows="3" required placeholder="e.g. Tender coconut ice cream, zero artificial syrup..." class="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#B85D38]"></textarea>
+        </div>
+
+        <div class="sm:col-span-2 flex justify-end">
+          <button type="submit" class="px-6 py-2.5 rounded-full bg-[#B85D38] hover:bg-[#E28458] text-white font-display font-bold text-xs shadow-md transition-all">
+            Save Note to Vault 💖
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pt-8 border-t border-white/10 text-center text-xs text-white/50 space-y-2">
+      <p>Crafted with endless love & care by Ugesh for her 🤍 • Bengaluru 2026</p>
+      <div class="flex justify-center gap-4 text-[11px] text-[#F8C8DC]/60">
+        <a href="index.html" class="hover:underline">SHE Menu</a>
+        <span>•</span>
+        <a href="floral.html" class="hover:underline">Floral Surprise</a>
+        <span>•</span>
+        <a href="../../index.html" class="hover:underline">Ugesh Portfolio</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- STARGAZING NIGHT MODAL OVERLAY -->
+  <div id="stargazing-modal" class="fixed inset-0 z-50 bg-[#0B0914] text-white hidden flex-col justify-between p-6 sm:p-10 animate-fadeIn backdrop-blur-xl">
+    <div class="flex items-center justify-between z-10">
+      <div class="flex items-center space-x-3">
+        <span class="text-2xl">🌙</span>
+        <div>
+          <h3 class="font-display font-bold text-lg text-amber-200">Bangalore Evening Sky Simulator</h3>
+          <p class="text-xs text-white/60">KR Puram & Ramamurthy Nagar horizon</p>
+        </div>
+      </div>
+      <button onclick="closeStargazingModal()" class="w-9 h-9 rounded-full bg-white/10 text-white font-bold flex items-center justify-center text-sm hover:bg-white/20">✕</button>
+    </div>
+
+    <div class="text-center space-y-4 my-auto z-10 px-4 max-w-lg mx-auto">
+      <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-tr from-amber-400 to-rose-400 opacity-90 shadow-[0_0_60px_rgba(251,191,36,0.4)] flex items-center justify-center text-4xl">✨</div>
+      <h2 class="font-display font-extrabold text-3xl text-white">Under the Same Stars 🌌</h2>
+      <p class="text-sm text-white/85 leading-relaxed">
+        “No matter the distance or busy schedules, we look up at the exact same twilight sky. Holding hands in spirit, always.”
+      </p>
+      <div class="pt-2">
+        <span class="text-xs bg-white/10 border border-white/20 px-4 py-1.5 rounded-full text-amber-200 font-mono">Love & Ugesh • Sep 21, 2026</span>
+      </div>
+    </div>
+
+    <div class="space-y-3 z-10 max-w-md mx-auto w-full">
+      <button onclick="copyStargazingText()" class="w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-semibold py-3 rounded-full text-center transition-all">
+        Copy “Look up at the stars” Text 💌
+      </button>
+      <button onclick="sendWhatsAppStargazing()" class="w-full bg-gradient-to-r from-[#B85D38] to-[#E28458] hover:from-[#E28458] hover:to-[#B85D38] text-white text-xs font-bold py-3 rounded-full text-center shadow-lg transition-all">
+        Send to Her on WhatsApp 💬
+      </button>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#2A1A24] border border-[#E99AB2]/40 text-[#F8C8DC] text-xs font-semibold px-5 py-3 rounded-2xl shadow-2xl opacity-0 pointer-events-none transition-all duration-300 transform translate-y-4">
+    Message copied! 💖
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. VAULT SEED DATA & STORAGE
+    const DEFAULT_VAULT_ITEMS = [
+      {
+        id: "item-1",
+        category: "food",
+        title: "Mutton Biryani 🍖",
+        desc: "Absolute favorite! Crucial rule: zero visible blood on meat!",
+        tag: "Comfort Food"
+      },
+      {
+        id: "item-2",
+        category: "food",
+        title: "KitKat Waffle 🧇",
+        desc: "Her reward treat when she receives great feedback! ('Dora quest')",
+        tag: "Treat"
+      },
+      {
+        id: "item-3",
+        category: "food",
+        title: "Tiramisu 🍰",
+        desc: "Instant cheer-up dessert. Creamy, rich, and decadent.",
+        tag: "Sweet Dessert"
+      },
+      {
+        id: "item-4",
+        category: "food",
+        title: "Dosa & Upma / Rasam & Potato Fry",
+        desc: "Homely, warm everyday South Indian comfort meals.",
+        tag: "Soul Food"
+      },
+      {
+        id: "item-5",
+        category: "rules",
+        title: "Waffle Reward Rule 🧇",
+        desc: "“If I get nice feedback, I treat myself to waffles lol! ('Dora is on a quest today')”—Always remember KitKat waffle!",
+        tag: "Cute Habit"
+      },
+      {
+        id: "item-6",
+        category: "rules",
+        title: "Strict Meat Rule 🍖",
+        desc: "In meat if I see blood I can't eat! Pristine Mutton Biryani requirement.",
+        tag: "Preference"
+      },
+      {
+        id: "item-7",
+        category: "rules",
+        title: "The Iconic Tongue-Twister Text 💬",
+        desc: "“You're not, he's mean by telling you mean that means you need not to worry for a mean guy saying you mean, this is what I mean...”",
+        tag: "In-Joke"
+      },
+      {
+        id: "item-8",
+        category: "rules",
+        title: "Science + Commerce Chemistry 🔬💼",
+        desc: "Commerce background herself, but she loves science guys! Extrovert, high vibe energy, warm laugh.",
+        tag: "Vibe"
+      },
+      {
+        id: "item-9",
+        category: "ambitions",
+        title: "Event Management Company Brand ✨",
+        desc: "Dreams of owning her own event management firm! Creative, people-first, organizing heartfelt celebrations.",
+        tag: "Vision"
+      },
+      {
+        id: "item-10",
+        category: "ambitions",
+        title: "Creative People-First Career 🌟",
+        desc: "Thrives in vibrant social settings where she connects with people rather than staring at spreadsheets.",
+        tag: "Career"
+      },
+      {
+        id: "item-11",
+        category: "logistics",
+        title: "Home & Neighborhood 📍",
+        desc: "KR Puram / Ramamurthy Nagar, Bengaluru (10 mins from Krishnarajapuram train spot).",
+        tag: "Location"
+      },
+      {
+        id: "item-12",
+        category: "logistics",
+        title: "Best Friend 👭",
+        desc: "Deepthi (BFF & trusted confidante).",
+        tag: "BFF"
+      }
+    ];
+
+    function getVaultData() {
+      try {
+        const stored = localStorage.getItem('love_vault_items');
+        if (stored) return JSON.parse(stored);
+      } catch (e) {}
+      return DEFAULT_VAULT_ITEMS;
+    }
+
+    function saveVaultData(items) {
+      try {
+        localStorage.setItem('love_vault_items', JSON.stringify(items));
+      } catch (e) {}
+    }
+
+    let currentTab = 'all';
+
+    function renderVaultGrid() {
+      const grid = document.getElementById('vault-grid');
+      const items = getVaultData();
+      const filtered = currentTab === 'all' ? items : items.filter(i => i.category === currentTab);
+
+      grid.innerHTML = filtered.map(item => `
+        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[#F8C8DC]">${item.tag || 'Detail'}</span>
+              <button onclick="deleteVaultItem('${item.id}')" class="text-white/30 hover:text-rose-400 text-xs transition-colors" title="Delete note">✕</button>
+            </div>
+            <h3 class="font-display font-bold text-base text-white group-hover:text-[#E28458] transition-colors">${item.title}</h3>
+            <p class="text-xs text-white/70 mt-2 leading-relaxed">${item.desc}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function switchVaultTab(tab) {
+      currentTab = tab;
+      document.querySelectorAll('.vault-tab-btn').forEach(btn => {
+        btn.classList.remove('bg-[#B85D38]', 'text-white');
+        btn.classList.add('text-white/70');
+      });
+      const activeBtn = document.getElementById(`tab-btn-${tab}`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-[#B85D38]', 'text-white');
+        activeBtn.classList.remove('text-white/70');
+      }
+      renderVaultGrid();
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const title = document.getElementById('input-title').value.trim();
+      const category = document.getElementById('input-category').value;
+      const desc = document.getElementById('input-desc').value.trim();
+
+      if (!title || !desc) return;
+
+      const newItem = {
+        id: 'user-item-' + Date.now(),
+        category,
+        title,
+        desc,
+        tag: 'Custom Note'
+      };
+
+      const current = getVaultData();
+      current.unshift(newItem);
+      saveVaultData(current);
+
+      document.getElementById('add-note-form').reset();
+      renderVaultGrid();
+      showToast('New note saved to vault! 💖');
+    }
+
+    function deleteVaultItem(id) {
+      const current = getVaultData().filter(i => i.id !== id);
+      saveVaultData(current);
+      renderVaultGrid();
+      showToast('Note deleted');
+    }
+
+    // 2. RELATIONSHIP LIVE TIMER
+    // Origin: Sep 21, 2026, 5:41 PM IST
+    const START_TIME = new Date("2026-09-21T17:41:00+05:30").getTime();
+
+    function updateLiveTimer() {
+      const now = new Date().getTime();
+      let diff = Math.max(0, now - START_TIME);
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      diff -= days * (1000 * 60 * 60 * 24);
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      diff -= hours * (1000 * 60 * 60);
+
+      const minutes = Math.floor(diff / (1000 * 60));
+      diff -= minutes * (1000 * 60);
+
+      const seconds = Math.floor(diff / 1000);
+
+      document.getElementById('counter-days').innerText = days;
+      document.getElementById('counter-hours').innerText = hours;
+      document.getElementById('counter-minutes').innerText = minutes;
+      document.getElementById('counter-seconds').innerText = seconds;
+    }
+
+    // 3. DYNAMIC MILESTONE & ANNIVERSARY COUNTDOWN LOGIC
+    function getOrdinal(n) {
+      const s = ["th", "st", "nd", "rd"];
+      const v = n % 100;
+      return n + (s[(v - 20) % 10] || s[v] || s[0]);
+    }
+
+    function updateMilestoneTracker() {
+      const nowMs = new Date().getTime();
+      const elapsedMs = Math.max(0, nowMs - START_TIME);
+
+      // A. WEEKLY ANNIVERSARY
+      const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+      const completedWeeks = Math.floor(elapsedMs / WEEK_MS);
+      const currentWeekNum = completedWeeks + 1;
+      const currentWeekStart = START_TIME + (completedWeeks * WEEK_MS);
+      const nextWeekTarget = START_TIME + (currentWeekNum * WEEK_MS);
+      const remWeekMs = Math.max(0, nextWeekTarget - nowMs);
+
+      const weekDays = Math.floor(remWeekMs / (1000 * 60 * 60 * 24));
+      const weekHrs = Math.floor((remWeekMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const weekMins = Math.floor((remWeekMs % (1000 * 60 * 60)) / (1000 * 60));
+      const weekSecs = Math.floor((remWeekMs % (1000 * 60)) / 1000);
+
+      let weekCountdownStr = "";
+      if (weekDays > 0) {
+        weekCountdownStr = `${weekDays}d ${weekHrs}h ${weekMins}m to go`;
+      } else if (weekHrs > 0) {
+        weekCountdownStr = `${weekHrs} hrs ${weekMins} mins to go`;
+      } else if (weekMins > 0) {
+        weekCountdownStr = `${weekMins} mins ${weekSecs}s to go`;
+      } else {
+        weekCountdownStr = `${weekSecs}s to go`;
+      }
+
+      const weekPct = Math.min(100, Math.max(0, ((nowMs - currentWeekStart) / WEEK_MS) * 100)).toFixed(1);
+
+      document.getElementById('weekly-title').innerText = `${getOrdinal(currentWeekNum)} Week`;
+      document.getElementById('weekly-countdown').innerText = weekCountdownStr;
+      document.getElementById('weekly-progress-bar').style.width = `${weekPct}%`;
+      document.getElementById('weekly-pct').innerText = `${weekPct}%`;
+
+      // B. MONTHLY ANNIVERSARY
+      const originDate = new Date("2026-09-21T17:41:00+05:30");
+      let monthIdx = 0;
+      let targetMonthDate = new Date(originDate);
+
+      while (targetMonthDate.getTime() <= nowMs) {
+        monthIdx++;
+        targetMonthDate = new Date(originDate.getFullYear(), originDate.getMonth() + monthIdx, originDate.getDate(), originDate.getHours(), originDate.getMinutes(), originDate.getSeconds());
+      }
+
+      const prevMonthDate = new Date(originDate.getFullYear(), originDate.getMonth() + (monthIdx - 1), originDate.getDate(), originDate.getHours(), originDate.getMinutes(), originDate.getSeconds());
+      const remMonthMs = Math.max(0, targetMonthDate.getTime() - nowMs);
+      const monthTotalMs = Math.max(1, targetMonthDate.getTime() - prevMonthDate.getTime());
+
+      const monthDays = Math.floor(remMonthMs / (1000 * 60 * 60 * 24));
+      const monthHrs = Math.floor((remMonthMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const monthMins = Math.floor((remMonthMs % (1000 * 60 * 60)) / (1000 * 60));
+
+      let monthCountdownStr = "";
+      if (monthDays > 0) {
+        monthCountdownStr = `${monthDays}d ${monthHrs}h to go`;
+      } else {
+        monthCountdownStr = `${monthHrs} hrs ${monthMins}m to go`;
+      }
+
+      const monthPct = Math.min(100, Math.max(0, ((nowMs - prevMonthDate.getTime()) / monthTotalMs) * 100)).toFixed(1);
+
+      document.getElementById('monthly-title').innerText = `${getOrdinal(monthIdx)} Month`;
+      document.getElementById('monthly-countdown').innerText = monthCountdownStr;
+      document.getElementById('monthly-progress-bar').style.width = `${monthPct}%`;
+      document.getElementById('monthly-pct').innerText = `${monthPct}%`;
+
+      // C. YEARLY ANNIVERSARY
+      let yearIdx = 0;
+      let targetYearDate = new Date(originDate);
+
+      while (targetYearDate.getTime() <= nowMs) {
+        yearIdx++;
+        targetYearDate = new Date(originDate.getFullYear() + yearIdx, originDate.getMonth(), originDate.getDate(), originDate.getHours(), originDate.getMinutes(), originDate.getSeconds());
+      }
+
+      const prevYearDate = new Date(originDate.getFullYear() + (yearIdx - 1), originDate.getMonth(), originDate.getDate(), originDate.getHours(), originDate.getMinutes(), originDate.getSeconds());
+      const remYearMs = Math.max(0, targetYearDate.getTime() - nowMs);
+      const yearTotalMs = Math.max(1, targetYearDate.getTime() - prevYearDate.getTime());
+
+      const yearDays = Math.floor(remYearMs / (1000 * 60 * 60 * 24));
+      const yearHrs = Math.floor((remYearMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+      const yearPct = Math.min(100, Math.max(0, ((nowMs - prevYearDate.getTime()) / yearTotalMs) * 100)).toFixed(1);
+
+      document.getElementById('yearly-title').innerText = `${getOrdinal(yearIdx)} Year`;
+      document.getElementById('yearly-countdown').innerText = `${yearDays}d ${yearHrs}h to go`;
+      document.getElementById('yearly-progress-bar').style.width = `${yearPct}%`;
+      document.getElementById('yearly-pct').innerText = `${yearPct}%`;
+    }
+
+    function triggerMilestoneCelebration() {
+      spawnHeartBurst({ clientX: window.innerWidth / 2, clientY: window.innerHeight / 3, currentTarget: document.body });
+      showToast('🎉 Happy Milestone Celebration! Ticking into the next memory!');
+    }
+
+    // 4. INTERACTIVE HEART BURST
+    function spawnHeartBurst(e) {
+      const btn = e.currentTarget || document.body;
+      const rect = btn.getBoundingClientRect ? btn.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
+      const emojis = ['💖', '🤍', '✨', '🌸', '🧇', '💌', '🎉', '🥳'];
+
+      for (let i = 0; i < 16; i++) {
+        const el = document.createElement('span');
+        el.className = 'floating-heart';
+        el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        el.style.left = ((e.clientX || rect.left + rect.width / 2) + (Math.random() * 40 - 20)) + 'px';
+        el.style.top = ((e.clientY || rect.top + rect.height / 2) + (Math.random() * 40 - 20)) + 'px';
+        el.style.setProperty('--dx', (Math.random() * 200 - 100) + 'px');
+        el.style.setProperty('--rot', (Math.random() * 80 - 40) + 'deg');
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1600);
+      }
+      showToast('Sent a burst of love hearts! 💌');
+    }
+
+    // 5. CHEER-UP ACTIONS
+    function triggerCheerAction(type) {
+      if (type === 'lilies') {
+        showToast('Flowers note: "Fresh bunch of lilies for her room 🌸"');
+      } else if (type === 'waffles') {
+        showToast('Waffle quest note: "KitKat waffle reward activated 🧇"');
+      } else if (type === 'text') {
+        navigator.clipboard.writeText("You're so deeply loved, capable, and amazing Love! 🤍✨");
+        showToast('Sweet text copied to clipboard! 💬');
+      } else if (type === 'hug') {
+        showToast('Virtual tight warm hug sent! 🫂');
+      }
+    }
+
+    // 6. STARGAZING MODAL
+    function openStargazingModal() {
+      document.getElementById('stargazing-modal').classList.remove('hidden');
+      document.getElementById('stargazing-modal').classList.add('flex');
+    }
+    function closeStargazingModal() {
+      document.getElementById('stargazing-modal').classList.add('hidden');
+      document.getElementById('stargazing-modal').classList.remove('flex');
+    }
+
+    function copyStargazingText() {
+      navigator.clipboard.writeText("Look up at the stars right now Love! Thinking of that sweet smile 🤍✨");
+      showToast('Stargazing message copied! 🌙');
+    }
+
+    function sendWhatsAppStargazing() {
+      const text = encodeURIComponent("Look up at the stars right now Love! Thinking of that sweet smile 🤍✨");
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+
+    function shareLovePage() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'LOVE — Everything About Her',
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        showToast('Page link copied to clipboard! 🔗');
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 2600);
+    }
+
+    // 7. AMBIENT BACKGROUND PARTICLES
+    const canvas = document.getElementById('ambient-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = Array.from({ length: 40 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 2 + 1,
+      alpha: Math.random() * 0.4 + 0.15
+    }));
+
+    function animateAmbient() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(248, 200, 220, ${p.alpha})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(animateAmbient);
+    }
+
+    // Init
+    renderVaultGrid();
+    updateLiveTimer();
+    updateMilestoneTracker();
+    setInterval(updateLiveTimer, 1000);
+    setInterval(updateMilestoneTracker, 1000);
+    animateAmbient();
+  </script>
+</body>
+</html>
