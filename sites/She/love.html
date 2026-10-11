@@ -449,6 +449,7 @@
         <!-- Filter Tabs -->
         <div class="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-white/5 border border-white/10 text-xs font-semibold">
           <button onclick="switchVaultTab('all')" id="tab-btn-all" class="vault-tab-btn active px-3.5 py-1.5 rounded-xl bg-[#B85D38] text-white transition-all">All</button>
+          <button onclick="switchVaultTab('friends')" id="tab-btn-friends" class="vault-tab-btn px-3.5 py-1.5 rounded-xl text-white/70 hover:text-white transition-all">Friends & Circle 👥</button>
           <button onclick="switchVaultTab('food')" id="tab-btn-food" class="vault-tab-btn px-3.5 py-1.5 rounded-xl text-white/70 hover:text-white transition-all">Food 🍱</button>
           <button onclick="switchVaultTab('rules')" id="tab-btn-rules" class="vault-tab-btn px-3.5 py-1.5 rounded-xl text-white/70 hover:text-white transition-all">Rules & Habits 📝</button>
           <button onclick="switchVaultTab('ambitions')" id="tab-btn-ambitions" class="vault-tab-btn px-3.5 py-1.5 rounded-xl text-white/70 hover:text-white transition-all">Dreams ✨</button>
@@ -543,6 +544,7 @@
         <div>
           <label class="block text-xs font-semibold text-[#F8C8DC] mb-1">Category</label>
           <select id="input-category" class="w-full bg-[#1F1929] border border-white/15 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#B85D38]">
+            <option value="friends">Friends & Circle 👥</option>
             <option value="food">Food & Treat 🍱</option>
             <option value="rules">Cute Rule / Habit 📝</option>
             <option value="ambitions">Dream / Ambition ✨</option>
@@ -699,17 +701,113 @@
         desc: "KR Puram / Ramamurthy Nagar, Bengaluru (10 mins from Krishnarajapuram train spot).",
         tag: "Location"
       },
+      // --- FRIENDS & INNER CIRCLE ---
       {
-        id: "item-12",
-        category: "logistics",
-        title: "Best Friend 👭",
-        desc: "Deepthi (BFF & trusted confidante).",
-        tag: "BFF"
+        id: "item-friend-deepthi",
+        category: "friends",
+        title: "Deepthi — BFF & Core Confidante 👭",
+        desc: "Deepthi (BFF & lifelong trusted confidante)—her primary emotional anchor and best friend.",
+        tag: "BFF Confidante"
+      },
+      {
+        id: "item-friend-sunayana",
+        category: "friends",
+        title: "Sunayana — 12th Grade Bestie 🫂",
+        desc: "“Sunayana is my bestie lol. She has seen me cry the most.” 12th grade best friend who has stood by her through her most vulnerable, raw emotional moments.",
+        tag: "12th Bestie"
+      },
+      {
+        id: "item-friend-veena",
+        category: "friends",
+        title: "Veena — Reassuring & Always There 🤍",
+        desc: "12th grade friend: “Another friend always reassuring and there for me, she heard me cry a lot too damn.” Warm, dependable comfort who always reassures her.",
+        tag: "12th Friend"
+      },
+      {
+        id: "item-friend-leela",
+        category: "friends",
+        title: "Leela — The Fun Side Partner 😂",
+        desc: "12th grade friend: “Lol she hasn't seen me cry, she knows my fun side and I love having that side with her!” Pure laughs, lighthearted cheerful energy, and genuine fun.",
+        tag: "12th Friend"
+      },
+      {
+        id: "item-friend-sravya",
+        category: "friends",
+        title: "Sravya — First Flowers & Girls' Girl 🌸",
+        desc: "The sweet friend who gifted her her very first flowers! “Such a girls' girl. Caring and kind. She knows I'm sick—everyday WhatsApp la she messages me asking how am I.”",
+        tag: "First Flowers Gifter"
+      },
+      {
+        id: "item-friend-aayush",
+        category: "friends",
+        title: "Aayush — Badminton Roasts & Ice Cream 🏸🍦",
+        desc: "1st Company friend: The one in the badminton video giving commentary that she's sitting like a homeless beggar lol! Always pulls her leg, but when she felt bad he immediately bought her ice cream. Calls her for shopping (and she ends up buying!). Very knowledgeable and a nice guy.",
+        tag: "1st Company"
+      },
+      {
+        id: "item-friend-vikranth",
+        category: "friends",
+        title: "Vikranth — Low Maintenance & Reliable 🤝",
+        desc: "1st Company friend: Low maintenance, but she can 100% vouch for him—he will always be there if she needs him. Sweet person and very respectful towards elders.",
+        tag: "1st Company"
+      },
+      {
+        id: "item-friend-akhil",
+        category: "friends",
+        title: "Akhil — Sweet Smiling & Pavam Soul 😊",
+        desc: "1st Company friend: “One sweet and pavam soul.” They love pulling each other's legs, and he is always that smiling, gentle, pure-hearted presence.",
+        tag: "1st Company"
+      },
+      {
+        id: "item-friend-wincy",
+        category: "friends",
+        title: "Wincy — The Practical Rock ⚓",
+        desc: "1st Company friend: “My very, very practical friend.” Not overly expressive, but fiercely dependable—will drop everything and be there if called upon.",
+        tag: "1st Company"
+      },
+      {
+        id: "item-friend-kavya",
+        category: "friends",
+        title: "Kavya — 1st Company Squad 💼",
+        desc: "Key member of her close-knit first company friendship squad alongside Aayush, Vikranth, Akhil, and Wincy.",
+        tag: "1st Company"
+      },
+      {
+        id: "item-friend-school",
+        category: "friends",
+        title: "School Friends — Chaitanya & Likitha 🎒",
+        desc: "School friends: Not much in touch nowadays, but Chaitanya and Likitha remain cherished memories from her school days.",
+        tag: "School Memories"
+      },
+      {
+        id: "item-friend-akish",
+        category: "friends",
+        title: "Akish — Jovial & Sane Words 💬✨",
+        desc: "Recent friend from Tirupur: Jovial, grounded, talks sane words, and brings positive, thoughtful conversation.",
+        tag: "Recent Friend"
       }
     ];
 
+    const VAULT_DATA_VERSION = 'v3_akish_added_2026';
+
     function getVaultData() {
       try {
+        const storedVer = localStorage.getItem('love_vault_version');
+        if (storedVer !== VAULT_DATA_VERSION) {
+          // Merge user-added custom notes if any existed
+          let customNotes = [];
+          const stored = localStorage.getItem('love_vault_items');
+          if (stored) {
+            try {
+              const parsed = JSON.parse(stored);
+              customNotes = parsed.filter(i => i.id && i.id.startsWith('user-item-'));
+            } catch (err) {}
+          }
+          const merged = [...customNotes, ...DEFAULT_VAULT_ITEMS];
+          localStorage.setItem('love_vault_version', VAULT_DATA_VERSION);
+          localStorage.setItem('love_vault_items', JSON.stringify(merged));
+          return merged;
+        }
         const stored = localStorage.getItem('love_vault_items');
         if (stored) return JSON.parse(stored);
       } catch (e) {}
@@ -724,20 +822,37 @@
 
     let currentTab = 'all';
 
+    function getCategoryTagStyle(category) {
+      switch (category) {
+        case 'friends':
+          return 'bg-pink-500/20 border-pink-400/40 text-pink-300';
+        case 'food':
+          return 'bg-amber-500/20 border-amber-400/40 text-amber-300';
+        case 'rules':
+          return 'bg-rose-500/20 border-rose-400/40 text-rose-300';
+        case 'ambitions':
+          return 'bg-purple-500/20 border-purple-400/40 text-purple-300';
+        case 'logistics':
+          return 'bg-blue-500/20 border-blue-400/40 text-blue-300';
+        default:
+          return 'bg-white/10 border-white/20 text-[#F8C8DC]';
+      }
+    }
+
     function renderVaultGrid() {
       const grid = document.getElementById('vault-grid');
       const items = getVaultData();
       const filtered = currentTab === 'all' ? items : items.filter(i => i.category === currentTab);
 
       grid.innerHTML = filtered.map(item => `
-        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between group">
+        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between group transition-all duration-300 hover:border-[#E99AB2]/40">
           <div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[#F8C8DC]">${item.tag || 'Detail'}</span>
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${getCategoryTagStyle(item.category)}">${item.tag || 'Detail'}</span>
               <button onclick="deleteVaultItem('${item.id}')" class="text-white/30 hover:text-rose-400 text-xs transition-colors" title="Delete note">✕</button>
             </div>
             <h3 class="font-display font-bold text-base text-white group-hover:text-[#E28458] transition-colors">${item.title}</h3>
-            <p class="text-xs text-white/70 mt-2 leading-relaxed">${item.desc}</p>
+            <p class="text-xs text-white/80 mt-2 leading-relaxed">${item.desc}</p>
           </div>
         </div>
       `).join('');
