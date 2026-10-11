@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>A Little Softness for Sree 🤍</title>
+
+  <!-- PIN Authentication Guard -->
+  <script src="auth.js"></script>
+
+  <meta name="description" content="A gentle, comforting sanctuary for Sree with blooming lilies, calming notes, ambient chimes, a breathing bubble, and a sweet KitKat Waffle surprise." />
+  <meta property="og:title" content="A Little Softness for Sree 🤍" />
+  <meta property="og:description" content="A gentle sanctuary made just for you." />
+
+  <!-- Google Fonts: Playfair Display, Caveat, Quicksand, Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. CORE RESET & VIEWPORT SETUP
+       ========================================================================== */
+    :root {
+      --bg-gradient: radial-gradient(circle at 50% 25%, #FFF9F6 0%, #FDF1EE 45%, #FCE8E5 100%);
+      --text-dark: #3A2F28;
+      --text-soft: #70635A;
+      --text-muted: #9C8F85;
+      --accent-rose: #D97C73;
+      --accent-rose-soft: #EAA39D;
+      --accent-sage: #6B8B71;
+      --accent-gold: #CFA052;
+
+      /* Sticky Note Palettes */
+      --note-yellow-bg: #FEF9EB;
+      --note-yellow-border: #F3E5C3;
+      --note-green-bg: #F0F6F1;
+      --note-green-border: #D1E4D4;
+      --note-pink-bg: #FCF1EE;
+      --note-pink-border: #F5D3CC;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Quicksand', -apple-system, sans-serif;
+      --font-hand: 'Caveat', cursive, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    html, body {
+      width: 100vw;
+      min-height: 100vh;
+      min-height: 100dvh;
+      font-family: var(--font-body);
+      color: var(--text-dark);
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+    }
+
+    /* Desktop Viewport Lock */
+    @media (min-width: 861px) {
+      html, body {
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden !important;
+      }
+    }
+
+    /* Mobile Clean Vertical Scrolling Flow */
+    @media (max-width: 860px) {
+      html, body {
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.45), transparent 75%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       2. CONTINUOUS FALLING PETALS (PURE CSS ANIMATION)
+       ========================================================================== */
+    .petals-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .petal {
+      position: absolute;
+      top: -40px;
+      width: var(--size, 16px);
+      height: calc(var(--size, 16px) * 1.35);
+      background: linear-gradient(135deg, rgba(255, 245, 245, 0.85) 0%, rgba(255, 218, 214, 0.72) 100%);
+      border-radius: 50% 50% 50% 10% / 60% 60% 40% 40%;
+      box-shadow: 0 2px 6px rgba(220, 160, 150, 0.15);
+      opacity: 0;
+      animation: driftDown var(--duration, 9s) linear infinite;
+      animation-delay: var(--delay, 0s);
+      will-change: transform, opacity;
+    }
+
+    @keyframes driftDown {
+      0% {
+        transform: translate3d(var(--start-x, 0vw), -30px, 0) rotate(0deg) scale(0.8);
+        opacity: 0;
+      }
+      8% {
+        opacity: var(--max-op, 0.85);
+      }
+      50% {
+        transform: translate3d(calc(var(--start-x, 0vw) + var(--sway, 40px)), 50vh, 0) rotate(180deg) scale(1);
+      }
+      90% {
+        opacity: var(--max-op, 0.85);
+      }
+      100% {
+        transform: translate3d(calc(var(--start-x, 0vw) - var(--sway, 40px)), 105vh, 0) rotate(360deg) scale(0.9);
+        opacity: 0;
+      }
+    }
+
+    .p1  { --start-x: 5vw;  --size: 14px; --duration: 8.5s; --delay: 0.2s; --sway: 35px;  --max-op: 0.8; }
+    .p2  { --start-x: 18vw; --size: 18px; --duration: 11s;  --delay: 1.5s; --sway: -45px; --max-op: 0.75; }
+    .p3  { --start-x: 28vw; --size: 13px; --duration: 7.8s; --delay: 3.2s; --sway: 25px;  --max-op: 0.7; }
+    .p4  { --start-x: 42vw; --size: 20px; --duration: 12.5s;--delay: 0.8s; --sway: -50px; --max-op: 0.85; }
+    .p5  { --start-x: 55vw; --size: 15px; --duration: 9.2s; --delay: 4.1s; --sway: 30px;  --max-op: 0.75; }
+    .p6  { --start-x: 68vw; --size: 17px; --duration: 10.2s;--delay: 2.3s; --sway: -35px; --max-op: 0.8; }
+    .p7  { --start-x: 82vw; --size: 14px; --duration: 8.9s; --delay: 5.4s; --sway: 40px;  --max-op: 0.7; }
+    .p8  { --start-x: 93vw; --size: 19px; --duration: 11.8s;--delay: 1.1s; --sway: -30px; --max-op: 0.8; }
+    .p9  { --start-x: 12vw; --size: 16px; --duration: 9.7s; --delay: 6.2s; --sway: 45px;  --max-op: 0.75; }
+    .p10 { --start-x: 35vw; --size: 15px; --duration: 10.8s;--delay: 5.0s; --sway: -25px; --max-op: 0.8; }
+    .p11 { --start-x: 50vw; --size: 18px; --duration: 13.0s;--delay: 7.3s; --sway: 35px;  --max-op: 0.85; }
+    .p12 { --start-x: 75vw; --size: 13px; --duration: 8.2s; --delay: 4.8s; --sway: -40px; --max-op: 0.7; }
+    .p13 { --start-x: 88vw; --size: 16px; --duration: 9.5s; --delay: 8.0s; --sway: 28px;  --max-op: 0.8; }
+    .p14 { --start-x: 23vw; --size: 17px; --duration: 11.2s;--delay: 7.7s; --sway: -35px; --max-op: 0.75; }
+    .p15 { --start-x: 62vw; --size: 14px; --duration: 8.6s; --delay: 9.1s; --sway: 32px;  --max-op: 0.8; }
+
+    /* ==========================================================================
+       3. WRAPPER CONTAINER
+       ========================================================================== */
+    .app-screen {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding-top: max(14px, env(safe-area-inset-top));
+      padding-bottom: max(16px, env(safe-area-inset-bottom));
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 861px) {
+      .app-screen {
+        height: 100%;
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .app-screen {
+        min-height: 100dvh;
+        gap: 20px;
+      }
+    }
+
+    /* Top Bar */
+    .top-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      flex-shrink: 0;
+      padding-bottom: 6px;
+    }
+
+    .header-left-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hub-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(220, 195, 185, 0.45);
+      border-radius: 9999px;
+      padding: 6px 14px;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      text-decoration: none;
+      box-shadow: 0 3px 12px rgba(180, 140, 130, 0.08);
+      transition: all 0.25s ease;
+      min-height: 38px;
+      cursor: pointer;
+    }
+
+    .hub-back-btn:hover, .hub-back-btn:active {
+      background: #FFFFFF;
+      color: var(--accent-rose);
+      border-color: rgba(217, 124, 115, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .header-titles {
+      text-align: left;
+    }
+
+    .header-main-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+      font-weight: 500;
+      color: var(--text-dark);
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-sub-whisper {
+      font-size: clamp(0.72rem, 1.25vw, 0.84rem);
+      color: var(--text-soft);
+      margin-top: 1px;
+    }
+
+    .header-actions-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chime-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(220, 195, 185, 0.45);
+      border-radius: 9999px;
+      padding: 6px 14px;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      cursor: pointer;
+      box-shadow: 0 3px 12px rgba(180, 140, 130, 0.08);
+      transition: all 0.25s ease;
+      min-height: 38px;
+    }
+
+    .chime-toggle-btn:hover, .chime-toggle-btn:active {
+      background: #FFFFFF;
+      color: var(--accent-rose);
+      border-color: rgba(217, 124, 115, 0.45);
+    }
+
+    .chime-toggle-btn.is-active {
+      background: #FFF1EE;
+      color: var(--accent-rose);
+      border-color: var(--accent-rose);
+    }
+
+    /* Auth.js Lock Button Styling Fallback & Integration */
+    #she-header-lock-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      background: rgba(217, 124, 115, 0.12) !important;
+      backdrop-filter: blur(8px) !important;
+      border: 1px solid rgba(217, 124, 115, 0.35) !important;
+      border-radius: 9999px !important;
+      padding: 6px 14px !important;
+      font-family: var(--font-body) !important;
+      font-size: 0.78rem !important;
+      font-weight: 600 !important;
+      color: var(--accent-rose) !important;
+      cursor: pointer !important;
+      box-shadow: 0 3px 12px rgba(180, 140, 130, 0.08) !important;
+      transition: all 0.25s ease !important;
+      min-height: 38px !important;
+    }
+
+    #she-header-lock-btn:hover {
+      background: rgba(217, 124, 115, 0.22) !important;
+      color: #B8564D !important;
+      border-color: var(--accent-rose) !important;
+    }
+
+    /* ==========================================================================
+       4. CENTERPIECE: BLOOMING LILIES & BREATHE GUIDE
+       ========================================================================== */
+    .lily-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+    }
+
+    .bouquet-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .bouquet-halo {
+      position: absolute;
+      width: clamp(230px, 34vh, 310px);
+      height: clamp(230px, 34vh, 310px);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 235, 230, 0.9) 0%, rgba(254, 218, 212, 0.45) 50%, transparent 75%);
+      filter: blur(22px);
+      pointer-events: none;
+      z-index: 1;
+      animation: breathHalo 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+
+    @keyframes breathHalo {
+      0%, 100% {
+        transform: scale(0.88);
+        opacity: 0.5;
+        filter: blur(16px);
+      }
+      50% {
+        transform: scale(1.28);
+        opacity: 0.95;
+        filter: blur(24px);
+      }
+    }
+
+    .bouquet-svg-container {
+      position: relative;
+      z-index: 2;
+      width: clamp(190px, 28vh, 280px);
+      height: clamp(190px, 28vh, 280px);
+      filter: drop-shadow(0 14px 26px rgba(180, 130, 120, 0.16));
+      animation: bouquetGentleSway 8s ease-in-out infinite alternate;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .bouquet-wrapper:active .bouquet-svg-container {
+      transform: scale(1.05);
+    }
+
+    @keyframes bouquetGentleSway {
+      0% { transform: rotate(-1deg) translateY(2px); }
+      50% { transform: rotate(0.8deg) translateY(-2px); }
+      100% { transform: rotate(-0.5deg) translateY(1px); }
+    }
+
+    /* Bud to Bloom Petal Keyframes */
+    .bloom-center-top {
+      transform-origin: 120px 105px;
+      animation: bloomTopPetal 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+    @keyframes bloomTopPetal {
+      0%, 100% { transform: scale(0.72, 0.8) translateY(14px); }
+      50% { transform: scale(1.08, 1.05) translateY(-2px); }
+    }
+
+    .bloom-center-left-back {
+      transform-origin: 120px 108px;
+      animation: bloomLeftBackPetal 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+    @keyframes bloomLeftBackPetal {
+      0%, 100% { transform: scale(0.68) rotate(16deg) translateY(10px); }
+      50% { transform: scale(1.05) rotate(-2deg) translateY(0); }
+    }
+
+    .bloom-center-right-back {
+      transform-origin: 120px 108px;
+      animation: bloomRightBackPetal 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+    @keyframes bloomRightBackPetal {
+      0%, 100% { transform: scale(0.68) rotate(-16deg) translateY(10px); }
+      50% { transform: scale(1.05) rotate(2deg) translateY(0); }
+    }
+
+    .bloom-center-left-front {
+      transform-origin: 120px 108px;
+      animation: bloomLeftFrontPetal 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+    @keyframes bloomLeftFrontPetal {
+      0%, 100% { transform: scale(0.65) rotate(24deg) translate(8px, 12px); opacity: 0.85; }
+      50% { transform: scale(1.08) rotate(-4deg) translate(0, 0); opacity: 1; }
+    }
+
+    .bloom-center-right-front {
+      transform-origin: 120px 108px;
+      animation: bloomRightFrontPetal 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+    @keyframes bloomRightFrontPetal {
+      0%, 100% { transform: scale(0.65) rotate(-24deg) translate(-8px, 12px); opacity: 0.85; }
+      50% { transform: scale(1.08) rotate(4deg) translate(0, 0); opacity: 1; }
+    }
+
+    .bloom-center-bottom-petal {
+      transform-origin: 120px 115px;
+      animation: bloomBottomPetal 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+    @keyframes bloomBottomPetal {
+      0%, 100% { transform: scale(0.65, 0.7) translateY(-6px); }
+      50% { transform: scale(1.06, 1.1) translateY(4px); }
+    }
+
+    .bloom-stamens {
+      transform-origin: 120px 105px;
+      animation: stamensEmerge 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+    @keyframes stamensEmerge {
+      0%, 100% { transform: scale(0.4) translateY(15px); opacity: 0.2; }
+      50% { transform: scale(1.05) translateY(-3px); opacity: 1; }
+    }
+
+    .side-lily-left-bloom {
+      transform-origin: 88px 135px;
+      animation: sideBloomLeft 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+    @keyframes sideBloomLeft {
+      0%, 100% { transform: scale(0.7) rotate(14deg); }
+      50% { transform: scale(1.06) rotate(-2deg); }
+    }
+
+    .side-lily-right-bloom {
+      transform-origin: 152px 135px;
+      animation: sideBloomRight 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+    @keyframes sideBloomRight {
+      0%, 100% { transform: scale(0.7) rotate(-14deg); }
+      50% { transform: scale(1.06) rotate(2deg); }
+    }
+
+    .swaying-leaves {
+      transform-origin: 120px 170px;
+      animation: leafBreathe 8s ease-in-out infinite alternate;
+    }
+    @keyframes leafBreathe {
+      0%, 100% { transform: scale(0.96) rotate(-1deg); }
+      50% { transform: scale(1.02) rotate(1deg); }
+    }
+
+    /* Breathe Pill Guide */
+    .breathe-interactive-guide {
+      margin-top: 6px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      z-index: 20;
+    }
+
+    .breathe-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(220, 195, 185, 0.5);
+      border-radius: 9999px;
+      padding: 6px 16px;
+      box-shadow: 0 4px 16px rgba(180, 130, 120, 0.12);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      min-height: 38px;
+    }
+
+    .breathe-pill:hover, .breathe-pill:active {
+      background: #FFFFFF;
+      border-color: var(--accent-rose);
+      transform: translateY(-1px);
+    }
+
+    .breathe-circle-orb {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-rose), var(--accent-rose-soft));
+      box-shadow: 0 0 10px rgba(217, 124, 115, 0.5);
+      animation: orbBreathe 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+
+    @keyframes orbBreathe {
+      0%, 100% { transform: scale(0.75); opacity: 0.6; }
+      50% { transform: scale(1.4); opacity: 1; box-shadow: 0 0 16px rgba(217, 124, 115, 0.85); }
+    }
+
+    .breathe-phase-text {
+      font-family: var(--font-display);
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      letter-spacing: -0.01em;
+      min-width: 78px;
+      text-align: left;
+    }
+
+    .breathe-timer-counter {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent-rose);
+      background: rgba(217, 124, 115, 0.12);
+      padding: 2px 7px;
+      border-radius: 9999px;
+      min-width: 28px;
+      text-align: center;
+    }
+
+    .breathe-whisper-tip {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      letter-spacing: 0.02em;
+      opacity: 0.85;
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       5. NOTES ARCHITECTURE (DESKTOP DESK VS MOBILE VERTICAL FLOW)
+       ========================================================================== */
+    .sticky-note-card {
+      position: relative;
+      perspective: 1000px;
+      cursor: pointer;
+      z-index: 15;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+
+    .note-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.65s cubic-bezier(0.2, 0.85, 0.35, 1.05);
+      border-radius: 16px;
+    }
+
+    .sticky-note-card.is-flipped .note-inner {
+      transform: rotateY(180deg);
+    }
+
+    .note-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 
+        0 10px 24px rgba(180, 130, 120, 0.14),
+        0 2px 6px rgba(100, 70, 60, 0.05);
+      transition: box-shadow 0.3s ease;
+      overflow: hidden;
+    }
+
+    .sticky-note-card:hover .note-face,
+    .sticky-note-card:active .note-face {
+      box-shadow: 
+        0 16px 36px rgba(180, 130, 120, 0.22),
+        0 4px 10px rgba(100, 70, 60, 0.08);
+    }
+
+    /* Translucent Paper Tape */
+    .tape-strip {
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 62px;
+      height: 18px;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(3px);
+      border: 1px dashed rgba(200, 175, 160, 0.45);
+      border-radius: 2px;
+      box-shadow: 0 2px 4px rgba(160, 120, 110, 0.08);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .note-1 .note-face {
+      background: var(--note-yellow-bg);
+      border: 1px solid var(--note-yellow-border);
+    }
+
+    .note-2 .note-face {
+      background: var(--note-green-bg);
+      border: 1px solid var(--note-green-border);
+    }
+
+    .note-3 .note-face {
+      background: var(--note-pink-bg);
+      border: 1px solid var(--note-pink-border);
+    }
+
+    /* Card Front */
+    .front-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .note-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .note-front-center {
+      text-align: center;
+      margin: auto 0;
+    }
+
+    .front-emoji {
+      font-size: 2.1rem;
+      margin-bottom: 3px;
+      display: inline-block;
+      transition: transform 0.25s ease;
+    }
+
+    .sticky-note-card:hover .front-emoji,
+    .sticky-note-card:active .front-emoji {
+      transform: scale(1.15) rotate(6deg);
+    }
+
+    .front-prompt {
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.25;
+    }
+
+    .front-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-rose);
+      opacity: 0.88;
+    }
+
+    /* Card Back (Revealed Note) */
+    .note-back {
+      transform: rotateY(180deg);
+      background-image: radial-gradient(rgba(180, 150, 140, 0.12) 1px, transparent 1px);
+      background-size: 14px 14px;
+      text-align: left;
+    }
+
+    .back-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed rgba(180, 150, 140, 0.25);
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+    }
+
+    .back-header-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-rose);
+    }
+
+    .revealed-message {
+      font-family: var(--font-hand);
+      font-size: 1.26rem;
+      line-height: 1.34;
+      color: var(--text-dark);
+      margin: auto 0;
+      overflow-y: auto;
+      max-height: 100%;
+      scrollbar-width: none;
+    }
+
+    .revealed-message::-webkit-scrollbar {
+      display: none;
+    }
+
+    .back-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px dashed rgba(180, 150, 140, 0.22);
+      padding-top: 5px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .flip-back-hint {
+      color: var(--accent-rose);
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    /* Desktop Desk Arrangement (Screens > 860px) */
+    @media (min-width: 861px) {
+      .stage-canvas {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        justify-items: center;
+        gap: 16px;
+        width: 100%;
+        height: 100%;
+        max-height: 600px;
+        flex: 1;
+      }
+
+      .notes-col-left {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 8px;
+      }
+
+      .notes-col-right {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 18px;
+        padding-left: 8px;
+      }
+
+      .sticky-note-card {
+        width: clamp(230px, 24vw, 290px);
+        height: clamp(165px, 20.5vh, 205px);
+      }
+
+      .note-1 { transform: rotate(-3deg); }
+      .note-2 { transform: rotate(2.5deg); }
+      .note-3 { transform: rotate(-2deg); }
+
+      .sticky-note-card:hover {
+        transform: rotate(0deg) scale(1.03) translateY(-4px);
+        z-index: 30;
+      }
+
+      .sticky-note-card.is-flipped {
+        transform: rotate(0deg) scale(1.04);
+        z-index: 40;
+      }
+    }
+
+    /* Mobile Vertical Layout: Lily 1st, Notes ONE AFTER ANOTHER (Screens <= 860px) */
+    @media (max-width: 860px) {
+      .stage-canvas {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 24px;
+      }
+
+      /* Lily Section is 1st */
+      .lily-section {
+        order: 1;
+        width: 100%;
+        padding-top: 6px;
+      }
+
+      .bouquet-halo {
+        width: 250px;
+        height: 250px;
+      }
+
+      .bouquet-svg-container {
+        width: 205px;
+        height: 205px;
+      }
+
+      /* Desktop columns flatten into one sequential column */
+      .notes-col-left {
+        order: 2;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+      }
+
+      .notes-col-right {
+        order: 3;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 0;
+      }
+
+      /* Mobile Note Cards: One After Another, Full Width, Tilted Stationery Style */
+      .sticky-note-card {
+        width: 100%;
+        max-width: 360px;
+        height: 205px;
+        margin: 0 auto;
+      }
+
+      .note-1 { transform: rotate(-1.5deg); }
+      .note-2 { transform: rotate(1.2deg); }
+      .note-3 { transform: rotate(-1deg); }
+
+      .sticky-note-card:active {
+        transform: scale(0.98);
+      }
+
+      .sticky-note-card.is-flipped {
+        transform: rotate(0deg);
+        z-index: 30;
+      }
+
+      .revealed-message {
+        font-size: 1.32rem;
+        line-height: 1.38;
+      }
+    }
+
+    /* Footer */
+    .bottom-footer {
+      width: 100%;
+      text-align: center;
+      flex-shrink: 0;
+      font-size: clamp(0.72rem, 1.2vw, 0.8rem);
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      padding-top: 10px;
+    }
+
+
+    /* Floating Heart Effect on Interaction */
+    .floating-sparkle {
+      position: fixed;
+      pointer-events: none;
+      user-select: none;
+      z-index: 200;
+      will-change: transform, opacity;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Falling Petals Layer (Smooth Continuous Pure CSS) -->
+  <div class="petals-layer" aria-hidden="true">
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="petal p5"></div>
+    <div class="petal p6"></div>
+    <div class="petal p7"></div>
+    <div class="petal p8"></div>
+    <div class="petal p9"></div>
+    <div class="petal p10"></div>
+    <div class="petal p11"></div>
+    <div class="petal p12"></div>
+    <div class="petal p13"></div>
+    <div class="petal p14"></div>
+    <div class="petal p15"></div>
+  </div>
+
+  <!-- 2. Main Application Flow -->
+  <div class="app-screen">
+    <!-- Top Header Bar -->
+    <header class="top-header">
+      <div class="header-left-group">
+        <a href="index.html" class="hub-back-btn" aria-label="Return to SHE Menu">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>SHE Menu</span>
+        </a>
+
+        <div class="header-titles">
+          <h1 class="header-main-title">
+            <span>A Little Softness for You, Sree</span>
+            <span style="color: var(--accent-rose);">🤍</span>
+          </h1>
+          <p class="header-sub-whisper">Leave the heavy thoughts outside · Follow the gentle bloom</p>
+        </div>
+      </div>
+
+      <div class="header-actions-right">
+        <!-- Ambient Sound Synthesizer Toggle -->
+        <button id="chime-btn" class="chime-toggle-btn" aria-label="Toggle gentle ambient chimes">
+          <span id="chime-icon">🎵</span>
+          <span id="chime-label">Chimes</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Stage Canvas -->
+    <main class="stage-canvas">
+
+      <!-- LILY SECTION (On mobile this is ORDER 1 - sits FIRST at top!) -->
+      <section class="lily-section" aria-label="Blooming Lily Bouquet and Breathe Guide">
+        <div class="bouquet-wrapper" id="bouquet-trigger" title="Tap to bloom love sparkles">
+          <div class="bouquet-halo" aria-hidden="true"></div>
+          
+          <!-- Real Bud-to-Bloom Animated SVG Lily Bouquet -->
+          <div class="bouquet-svg-container">
+            <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="120" cy="225" rx="46" ry="8" fill="rgba(190, 140, 130, 0.18)" />
+
+              <!-- Stems & Swaying Greenery -->
+              <g class="swaying-leaves">
+                <path d="M116 160L108 220" stroke="#718E77" stroke-width="4.5" stroke-linecap="round"/>
+                <path d="M124 160L132 220" stroke="#638069" stroke-width="4" stroke-linecap="round"/>
+                <path d="M120 155L120 222" stroke="#56725B" stroke-width="4" stroke-linecap="round"/>
+
+                <path d="M110 165C85 160 55 175 42 195C58 198 85 190 108 175Z" fill="#84A38B" stroke="#607C66" stroke-width="1.5"/>
+                <path d="M130 165C155 160 185 175 198 195C182 198 155 190 132 175Z" fill="#84A38B" stroke="#607C66" stroke-width="1.5"/>
+                <path d="M95 130C65 115 48 90 42 70C55 85 80 110 102 124Z" fill="#95B59C" stroke="#6E8C74" stroke-width="1.5"/>
+                <path d="M145 130C175 115 192 90 198 70C185 85 160 110 138 124Z" fill="#95B59C" stroke="#6E8C74" stroke-width="1.5"/>
+              </g>
+
+              <!-- Left Side Lily -->
+              <g class="side-lily-left-bloom">
+                <g transform="translate(-32, 28) rotate(-14 120 108)">
+                  <path d="M120 108C120 108 95 82 88 58C82 38 96 30 106 38C116 48 118 78 120 108Z" fill="#FFF4F1" stroke="#E29D96" stroke-width="1.8"/>
+                  <path d="M120 108C120 108 130 82 148 66C162 54 152 42 140 48C128 56 122 80 120 108Z" fill="#FFF8F6" stroke="#E29D96" stroke-width="1.8"/>
+                  <path d="M120 108C120 108 85 96 66 90C50 85 52 72 65 72C78 72 100 88 120 108Z" fill="#FCE9E6" stroke="#E29D96" stroke-width="1.8"/>
+                  <circle cx="114" cy="74" r="2.8" fill="#D9A354"/>
+                  <circle cx="124" cy="72" r="2.8" fill="#D9A354"/>
+                </g>
+              </g>
+
+              <!-- Right Side Lily -->
+              <g class="side-lily-right-bloom">
+                <g transform="translate(32, 28) rotate(14 120 108)">
+                  <path d="M120 108C120 108 145 82 152 58C158 38 144 30 134 38C124 48 122 78 120 108Z" fill="#FFF4F1" stroke="#E29D96" stroke-width="1.8"/>
+                  <path d="M120 108C120 108 110 82 92 66C78 54 88 42 100 48C112 56 118 80 120 108Z" fill="#FFF8F6" stroke="#E29D96" stroke-width="1.8"/>
+                  <path d="M120 108C120 108 155 96 174 90C190 85 188 72 175 72C162 72 140 88 120 108Z" fill="#FCE9E6" stroke="#E29D96" stroke-width="1.8"/>
+                  <circle cx="126" cy="74" r="2.8" fill="#D9A354"/>
+                  <circle cx="116" cy="72" r="2.8" fill="#D9A354"/>
+                </g>
+              </g>
+
+              <!-- Center Main Blooming Lily with Animated Petals -->
+              <g id="center-main-blooming-lily">
+                <path class="bloom-center-top" d="M120 108C120 108 102 75 98 48C94 22 108 12 120 20C132 12 146 22 142 48C138 75 120 108 120 108Z" fill="#FFF5F2" stroke="#E29D96" stroke-width="2"/>
+                <path class="bloom-center-left-back" d="M120 108C120 108 85 95 62 85C40 75 42 58 56 56C70 54 98 80 120 108Z" fill="#FCEAE7" stroke="#E29D96" stroke-width="1.8"/>
+                <path class="bloom-center-right-back" d="M120 108C120 108 155 95 178 85C200 75 198 58 184 56C170 54 142 80 120 108Z" fill="#FCEAE7" stroke="#E29D96" stroke-width="1.8"/>
+
+                <!-- Golden Stamens -->
+                <g class="bloom-stamens">
+                  <path d="M120 102L112 66" stroke="#D9A354" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="111" cy="64" r="3.2" fill="#D9A354"/>
+                  <path d="M120 102L128 66" stroke="#D9A354" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="129" cy="64" r="3.2" fill="#D9A354"/>
+                  <path d="M120 102L120 58" stroke="#D9A354" stroke-width="2.2" stroke-linecap="round"/>
+                  <circle cx="120" cy="55" r="3.5" fill="#D9A354"/>
+                </g>
+
+                <path class="bloom-center-left-front" d="M120 108C120 108 108 82 86 64C68 50 82 36 94 44C108 54 116 82 120 108Z" fill="#FFFDFD" stroke="#E29D96" stroke-width="2"/>
+                <path class="bloom-center-right-front" d="M120 108C120 108 132 82 154 64C172 50 158 36 146 44C132 54 124 82 120 108Z" fill="#FFFDFD" stroke="#E29D96" stroke-width="2"/>
+                <path class="bloom-center-bottom-petal" d="M120 108C120 108 112 128 108 142C116 145 124 145 132 142C128 128 120 108 120 108Z" fill="#F9ECE9" stroke="#E29D96" stroke-width="1.8"/>
+              </g>
+
+              <!-- Silk Ribbon Tie -->
+              <g id="ribbon-bow">
+                <path d="M120 162C106 150 88 154 94 168C100 180 114 168 120 164Z" fill="#E89B93" stroke="#C97870" stroke-width="1.6"/>
+                <path d="M120 162C134 150 152 154 146 168C140 180 126 168 120 164Z" fill="#E89B93" stroke="#C97870" stroke-width="1.6"/>
+                <ellipse cx="120" cy="164" rx="6" ry="5.5" fill="#D97C73" stroke="#B8665E" stroke-width="1.8"/>
+                <path d="M117 168C114 182 106 195 98 206" stroke="#D97C73" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M123 168C126 182 134 195 142 206" stroke="#D97C73" stroke-width="3.5" stroke-linecap="round"/>
+              </g>
+
+              <path d="M72 40L74 34L80 32L74 30L72 24L70 30L64 32L70 34L72 40Z" fill="#D9A354"/>
+              <path d="M174 42L176 36L182 34L176 32L174 26L172 32L166 34L172 36L174 42Z" fill="#D97C73"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Integrated Breathe Guide -->
+        <div class="breathe-interactive-guide">
+          <div id="breathe-toggle-guide" class="breathe-pill" role="button" tabindex="0" aria-label="Breathing guide: Inhale and exhale in rhythm with the blooming lilies">
+            <span class="breathe-circle-orb" aria-hidden="true"></span>
+            <span id="breathe-stage-label" class="breathe-phase-text">Inhale...</span>
+            <span id="breathe-timer-pill" class="breathe-timer-counter">4s</span>
+          </div>
+          <span id="breathe-guide-whisper" class="breathe-whisper-tip">Breathe gently with the blooming lilies</span>
+        </div>
+      </section>
+
+      <!-- NOTE 1 (On mobile this is ORDER 2 - comes right after Lily!) -->
+      <section class="notes-col-left" aria-label="First Comfort Note">
+        <div class="sticky-note-card note-1" tabindex="0" role="button" aria-label="Note 1: Tap to read">
+          <div class="tape-strip" aria-hidden="true"></div>
+          <div class="note-inner">
+            <!-- Front -->
+            <div class="note-face note-front">
+              <div class="front-header">
+                <span class="note-tag">Note 01</span>
+                <span>✨</span>
+              </div>
+              <div class="note-front-center">
+                <div class="front-emoji">🌸</div>
+                <div class="front-prompt">Tap me 🌸</div>
+              </div>
+              <div class="front-hint">
+                <span>open note</span>
+                <span>→</span>
+              </div>
+            </div>
+            <!-- Back (Revealed Message) -->
+            <div class="note-face note-back">
+              <div class="back-header">
+                <span class="back-header-title">For Sree</span>
+                <span>🌼</span>
+              </div>
+              <p class="revealed-message">
+                "sending you a tiny flower today 🌼❤️ I don't know exactly how you're feeling rn, but I hope your day gets a little softer. Don't forget to take care of yourself, okay? 🫂"
+              </p>
+              <div class="back-footer">
+                <span>warm hugs</span>
+                <span class="flip-back-hint">flip ↩</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NOTE 2 & NOTE 3 (On mobile this is ORDER 3 - placed one after another below Note 1!) -->
+      <section class="notes-col-right" aria-label="Additional Comfort Notes">
+        <!-- Sticky Note 2 -->
+        <div class="sticky-note-card note-2" tabindex="0" role="button" aria-label="Note 2: Tap to read">
+          <div class="tape-strip" aria-hidden="true"></div>
+          <div class="note-inner">
+            <div class="note-face note-front">
+              <div class="front-header">
+                <span class="note-tag">Note 02</span>
+                <span>☁️</span>
+              </div>
+              <div class="note-front-center">
+                <div class="front-emoji">🤍</div>
+                <div class="front-prompt">A little reminder 🤍</div>
+              </div>
+              <div class="front-hint">
+                <span>open note</span>
+                <span>→</span>
+              </div>
+            </div>
+            <div class="note-face note-back">
+              <div class="back-header">
+                <span class="back-header-title">Take A Breath</span>
+                <span>❤️</span>
+              </div>
+              <p class="revealed-message">
+                "No fixing anything today, okay? Just take a little breath. ❤️"
+              </p>
+              <div class="back-footer">
+                <span>you are safe</span>
+                <span class="flip-back-hint">flip ↩</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky Note 3 -->
+        <div class="sticky-note-card note-3" tabindex="0" role="button" aria-label="Note 3: Tap to read">
+          <div class="tape-strip" aria-hidden="true"></div>
+          <div class="note-inner">
+            <div class="note-face note-front">
+              <div class="front-header">
+                <span class="note-tag">Note 03</span>
+                <span>🧇</span>
+              </div>
+              <div class="note-front-center">
+                <div class="front-emoji">🧇🍫</div>
+                <div class="front-prompt">For Sree 🧇</div>
+              </div>
+              <div class="front-hint">
+                <span>open note</span>
+                <span>→</span>
+              </div>
+            </div>
+            <div class="note-face note-back">
+              <div class="back-header">
+                <span class="back-header-title">Always Waiting For You</span>
+                <span>🍫</span>
+              </div>
+              <p class="revealed-message">
+                "One awkward day doesn't define you or your friendships. Be gentle with yourself :) P.S. A warm KitKat waffle is waiting for you whenever you want it 🧇🍫"
+              </p>
+              <div class="back-footer">
+                <span>anytime you want</span>
+                <span class="flip-back-hint">flip ↩</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Footer -->
+    <footer class="bottom-footer">
+      <span>Crafted with infinite care for Sree 🤍 · Tap any note to reveal</span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* ------------------------------------------------------------------------
+       * 1. 3D FLIP CARD INTERACTION & HEART SPARKLE PARTICLES
+       * ------------------------------------------------------------------------ */
+      function createHeartSparkle(x, y) {
+        const emojis = ['🤍', '🌸', '✨', '🌼', '🫂', '🧇'];
+        const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+        const el = document.createElement('div');
+        el.className = 'floating-sparkle';
+        el.textContent = emoji;
+        el.style.left = (x || window.innerWidth / 2) + 'px';
+        el.style.top = (y || window.innerHeight / 2) + 'px';
+        el.style.fontSize = (16 + Math.random() * 12) + 'px';
+        document.body.appendChild(el);
+
+        const driftX = (Math.random() - 0.5) * 60;
+        const driftY = -50 - Math.random() * 40;
+
+        const anim = el.animate([
+          { transform: 'translate(0, 0) scale(0.6)', opacity: 1 },
+          { transform: `translate(${driftX}px, ${driftY}px) scale(1.2)`, opacity: 0 }
+        ], {
+          duration: 1000,
+          easing: 'cubic-bezier(0.16, 1, 0.3, 1)'
+        });
+
+        anim.onfinish = () => el.remove();
+      }
+
+      document.querySelectorAll('.sticky-note-card').forEach(card => {
+        card.addEventListener('click', function (e) {
+          const isFlipBack = e.target.closest('.flip-back-hint');
+          if (isFlipBack) {
+            e.stopPropagation();
+            card.classList.remove('is-flipped');
+            createHeartSparkle(e.clientX, e.clientY);
+            return;
+          }
+          card.classList.toggle('is-flipped');
+          createHeartSparkle(e.clientX, e.clientY);
+        });
+
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.classList.toggle('is-flipped');
+          }
+        });
+      });
+
+      // Bouquet Tap Sparkles
+      const bouquet = document.getElementById('bouquet-trigger');
+      if (bouquet) {
+        bouquet.addEventListener('click', (e) => {
+          const rect = bouquet.getBoundingClientRect();
+          for (let i = 0; i < 6; i++) {
+            setTimeout(() => {
+              createHeartSparkle(
+                rect.left + rect.width * (0.25 + Math.random() * 0.5),
+                rect.top + rect.height * (0.2 + Math.random() * 0.4)
+              );
+            }, i * 80);
+          }
+        });
+      }
+
+      /* ------------------------------------------------------------------------
+       * 2. BREATHE IN / BREATHE OUT 4-4 TIMER ENGINE
+       * ------------------------------------------------------------------------ */
+      const breatheStageLabel = document.getElementById('breathe-stage-label');
+      const breatheTimerPill = document.getElementById('breathe-timer-pill');
+      const breatheGuideWhisper = document.getElementById('breathe-guide-whisper');
+      const breatheToggleGuide = document.getElementById('breathe-toggle-guide');
+
+      let breathSeconds = 4;
+      let isInhaling = true;
+      let isBreatheActive = true;
+
+      function updateBreathCycle() {
+        if (!isBreatheActive) return;
+
+        breatheTimerPill.textContent = breathSeconds + 's';
+
+        if (breathSeconds <= 1) {
+          isInhaling = !isInhaling;
+          breathSeconds = 4;
+
+          if (isInhaling) {
+            breatheStageLabel.textContent = 'Inhale...';
+            breatheGuideWhisper.textContent = 'Breathe in as the lilies slowly bloom open';
+          } else {
+            breatheStageLabel.textContent = 'Exhale...';
+            breatheGuideWhisper.textContent = 'Softly let go of all the tension as they rest';
+          }
+        } else {
+          breathSeconds--;
+        }
+      }
+
+      setInterval(updateBreathCycle, 1000);
+
+      if (breatheToggleGuide) {
+        breatheToggleGuide.addEventListener('click', function () {
+          isBreatheActive = !isBreatheActive;
+          if (isBreatheActive) {
+            breathSeconds = 4;
+            isInhaling = true;
+            breatheStageLabel.textContent = 'Inhale...';
+            breatheTimerPill.textContent = '4s';
+            breatheGuideWhisper.textContent = 'Breathe in as the lilies slowly bloom open';
+          } else {
+            breatheStageLabel.textContent = 'Resting 🤍';
+            breatheTimerPill.textContent = '⏸';
+            breatheGuideWhisper.textContent = 'Tap to resume gentle breathing';
+          }
+        });
+      }
+
+      /* ------------------------------------------------------------------------
+       * 3. GENTLE AMBIENT CHIMES (WEB AUDIO API SYNTHESIZER)
+       * ------------------------------------------------------------------------ */
+      let audioCtx = null;
+      let isPlayingChimes = false;
+      let chimeTimer = null;
+
+      const chimeBtn = document.getElementById('chime-btn');
+      const chimeLabel = document.getElementById('chime-label');
+
+      const FREQS = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50];
+
+      function initAudio() {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AudioContextClass();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+      }
+
+      function ringSoftBell(freq) {
+        if (!audioCtx || audioCtx.state !== 'running') return;
+        const now = audioCtx.currentTime;
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        const filter = audioCtx.createBiquadFilter();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(freq * 2.5, now);
+
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(0.04, now + 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 3.0);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + 3.1);
+      }
+
+      function playRandomChime() {
+        if (!isPlayingChimes) return;
+        const note = FREQS[Math.floor(Math.random() * FREQS.length)];
+        ringSoftBell(note);
+
+        if (Math.random() > 0.6) {
+          setTimeout(() => {
+            if (!isPlayingChimes) return;
+            const note2 = FREQS[Math.floor(Math.random() * FREQS.length)];
+            ringSoftBell(note2);
+          }, 320);
+        }
+      }
+
+      chimeBtn.addEventListener('click', function () {
+        initAudio();
+        if (!isPlayingChimes) {
+          isPlayingChimes = true;
+          chimeBtn.classList.add('is-active');
+          chimeLabel.textContent = 'Peaceful 🤍';
+          playRandomChime();
+          chimeTimer = setInterval(playRandomChime, 3400);
+        } else {
+          isPlayingChimes = false;
+          chimeBtn.classList.remove('is-active');
+          chimeLabel.textContent = 'Chimes';
+          clearInterval(chimeTimer);
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>

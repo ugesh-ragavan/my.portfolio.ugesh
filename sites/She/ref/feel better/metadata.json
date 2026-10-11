@@ -1,0 +1,6 @@
+{
+  "name": "A Little Softness for Sree",
+  "description": "A gentle, comforting sanctuary with lily motifs, calming notes, ambient chimes, a breathing bubble, and a sweet KitKat Waffle surprise.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
