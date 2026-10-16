@@ -14,9 +14,9 @@ if (!fs.existsSync(htmlPath)) {
 
 let s = fs.readFileSync(htmlPath, 'utf8');
 
-const scriptStart = s.indexOf('<script');
+const scriptStart = s.indexOf('<script type="module"');
 const scriptCloseTag = '</script>';
-const scriptEnd = s.indexOf(scriptCloseTag) + scriptCloseTag.length;
+const scriptEnd = scriptStart !== -1 ? s.indexOf(scriptCloseTag, scriptStart) + scriptCloseTag.length : -1;
 
 if (scriptStart === -1 || scriptEnd === -1) {
   console.log('No script block found');
