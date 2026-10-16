@@ -1,0 +1,6 @@
+{
+  "name": "Yasakka's 30th Birthday Universe",
+  "description": "A heartwarming interactive 30th birthday journey for Dr. Yashwanthi (Yasakka), crafted with sibling banter and love by Ugi.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
