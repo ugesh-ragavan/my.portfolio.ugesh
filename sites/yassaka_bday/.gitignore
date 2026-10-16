@@ -1,6 +1,7 @@
 node_modules/
 build/
-dist/
+# dist is deliberately tracked for GitHub Pages static hosting
+# dist/
 coverage/
 .DS_Store
 *.log
