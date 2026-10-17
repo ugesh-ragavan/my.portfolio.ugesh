@@ -21,13 +21,15 @@ export const Screen7Finale: React.FC<Screen7FinaleProps> = ({
   const [isBlown, setIsBlown] = useState(candleBlown);
   const [showLetter, setShowLetter] = useState(candleBlown);
   const [copied, setCopied] = useState(false);
-  const [isListening, setIsListening] = useState(false);
-  const [micError, setMicError] = useState(false);
+  const [isBlowingMode, setIsBlowingMode] = useState(false);
+  const [hasMic, setHasMic] = useState<boolean | null>(null);
   const [breathLevel, setBreathLevel] = useState(0);
+  const [countdown, setCountdown] = useState(3);
 
   const streamRef = useRef<MediaStream | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const animFrameRef = useRef<number | null>(null);
+  const countdownTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const blowProgressRef = useRef(0);
   const isExtinguishingRef = useRef(false);
 
@@ -35,6 +37,10 @@ export const Screen7Finale: React.FC<Screen7FinaleProps> = ({
     if (animFrameRef.current !== null) {
       cancelAnimationFrame(animFrameRef.current);
       animFrameRef.current = null;
+    }
+    if (countdownTimerRef.current !== null) {
+      clearInterval(countdownTimerRef.current);
+      countdownTimerRef.current = null;
     }
     if (streamRef.current) {
       streamRef.current.getTracks().forEach((track) => track.stop());
@@ -44,7 +50,7 @@ export const Screen7Finale: React.FC<Screen7FinaleProps> = ({
       audioContextRef.current.close().catch(() => {});
       audioContextRef.current = null;
     }
-    setIsListening(false);
+    setIsBlowingMode(false);
     setBreathLevel(0);
     blowProgressRef.current = 0;
   }, []);
@@ -72,102 +78,150 @@ export const Screen7Finale: React.FC<Screen7FinaleProps> = ({
     }, 600);
   }, [isBlown, onUpdateCandle, stopListening]);
 
-  const startListening = async () => {
-    if (isBlown) return;
-    setMicError(false);
-    blowProgressRef.current = 0;
-    isExtinguishingRef.current = false;
+  // Interactive animated blow countdown when microphone is not accessible (e.g. mobile HTTP / file://)
+  const startInteractiveBlow = useCallback(() => {
+    let elapsed = 0;
+    const duration = 2800;
+    const interval = 50;
+    setCountdown(3);
 
-    try {
-      if (typeof window === 'undefined' || !navigator?.mediaDevices?.getUserMedia) {
-        setMicError(true);
-        return;
+    countdownTimerRef.current = setInterval(() => {
+      elapsed += interval;
+      const progress = elapsed / duration;
+      const flicker = Math.sin(elapsed / 100) * 0.15 + progress * 0.85;
+      setBreathLevel(Math.min(1, Math.max(0.2, flicker)));
+
+      const secondsRemaining = Math.max(1, Math.ceil((duration - elapsed) / 1000));
+      setCountdown(secondsRemaining);
+
+      if (elapsed >= duration) {
+        if (countdownTimerRef.current) {
+          clearInterval(countdownTimerRef.current);
+          countdownTimerRef.current = null;
+        }
+        triggerBlow();
       }
+    }, interval);
+  }, [triggerBlow]);
 
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          echoCancellation: false,
-          noiseSuppression: false,
-          autoGainControl: false,
-        },
-      });
+  const handleStartBlow = async () => {
+    if (isBlown || isBlowingMode) return;
 
-      streamRef.current = stream;
+    isExtinguishingRef.current = false;
+    blowProgressRef.current = 0;
+    setIsBlowingMode(true);
+    setBreathLevel(0.15);
 
+    // Initialize AudioContext synchronously during user gesture for iOS Safari compatibility
+    let audioCtx: AudioContext | null = null;
+    try {
       const AudioCtx =
         window.AudioContext ||
         (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      const audioContext = new AudioCtx();
-      if (audioContext.state === 'suspended') {
-        await audioContext.resume();
+      if (AudioCtx) {
+        audioCtx = new AudioCtx();
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume().catch(() => {});
+        }
+        audioContextRef.current = audioCtx;
       }
-      audioContextRef.current = audioContext;
-
-      const analyser = audioContext.createAnalyser();
-      analyser.fftSize = 256;
-      analyser.smoothingTimeConstant = 0.2;
-
-      const source = audioContext.createMediaStreamSource(stream);
-      source.connect(analyser);
-
-      setIsListening(true);
-
-      const freqData = new Uint8Array(analyser.frequencyBinCount);
-      const timeData = new Uint8Array(analyser.fftSize);
-
-      const checkBlow = () => {
-        if (isExtinguishingRef.current) return;
-
-        analyser.getByteFrequencyData(freqData);
-        analyser.getByteTimeDomainData(timeData);
-
-        // Calculate low-frequency wind turbulence (bins 0-5 cover ~0-500Hz)
-        let lowSum = 0;
-        const lowBins = Math.min(6, freqData.length);
-        for (let i = 0; i < lowBins; i++) {
-          lowSum += freqData[i];
-        }
-        const lowAvg = lowSum / lowBins;
-
-        // Calculate time domain RMS amplitude
-        let sumSquares = 0;
-        for (let i = 0; i < timeData.length; i++) {
-          const norm = (timeData[i] - 128) / 128;
-          sumSquares += norm * norm;
-        }
-        const rms = Math.sqrt(sumSquares / timeData.length);
-
-        // Normalize scores: talking/ambient has lowAvg<25 & rms<0.1
-        // Direct blow onto microphone yields lowAvg 60-150+ and rms 0.2-0.6+
-        const lowScore = Math.max(0, (lowAvg - 28) / 60);
-        const rmsScore = Math.max(0, (rms - 0.12) / 0.28);
-        const currentBlow = Math.min(Math.max(lowScore * 0.65 + rmsScore * 0.35, 0), 1);
-
-        if (currentBlow > 0.4) {
-          blowProgressRef.current += 0.22;
-          if (blowProgressRef.current >= 1.0) {
-            triggerBlow();
-            return;
-          }
-        } else {
-          blowProgressRef.current = Math.max(0, blowProgressRef.current - 0.05);
-        }
-
-        setBreathLevel(Math.max(currentBlow, blowProgressRef.current));
-        animFrameRef.current = requestAnimationFrame(checkBlow);
-      };
-
-      animFrameRef.current = requestAnimationFrame(checkBlow);
-    } catch (err) {
-      console.warn('Microphone error or permission denied:', err);
-      setMicError(true);
-      setIsListening(false);
+    } catch (e) {
+      console.warn('AudioContext init error:', e);
     }
+
+    const canUseMic =
+      typeof navigator !== 'undefined' &&
+      !!navigator.mediaDevices &&
+      typeof navigator.mediaDevices.getUserMedia === 'function';
+
+    if (canUseMic) {
+      try {
+        let stream: MediaStream;
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({
+            audio: {
+              echoCancellation: false,
+              noiseSuppression: false,
+              autoGainControl: false,
+            },
+          });
+        } catch {
+          stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        }
+
+        streamRef.current = stream;
+        setHasMic(true);
+
+        if (!audioCtx) {
+          const AudioCtx =
+            window.AudioContext ||
+            (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+          audioCtx = new AudioCtx();
+          audioContextRef.current = audioCtx;
+        }
+
+        const analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 256;
+        analyser.smoothingTimeConstant = 0.2;
+
+        const source = audioCtx.createMediaStreamSource(stream);
+        source.connect(analyser);
+
+        const freqData = new Uint8Array(analyser.frequencyBinCount);
+        const timeData = new Uint8Array(analyser.fftSize);
+
+        const checkMic = () => {
+          if (isExtinguishingRef.current) return;
+
+          analyser.getByteFrequencyData(freqData);
+          analyser.getByteTimeDomainData(timeData);
+
+          let lowSum = 0;
+          const lowBins = Math.min(6, freqData.length);
+          for (let i = 0; i < lowBins; i++) {
+            lowSum += freqData[i];
+          }
+          const lowAvg = lowSum / lowBins;
+
+          let sumSquares = 0;
+          for (let i = 0; i < timeData.length; i++) {
+            const norm = (timeData[i] - 128) / 128;
+            sumSquares += norm * norm;
+          }
+          const rms = Math.sqrt(sumSquares / timeData.length);
+
+          const lowScore = Math.max(0, (lowAvg - 22) / 50);
+          const rmsScore = Math.max(0, (rms - 0.10) / 0.25);
+          const currentBlow = Math.min(Math.max(lowScore * 0.65 + rmsScore * 0.35, 0), 1);
+
+          if (currentBlow > 0.35) {
+            blowProgressRef.current += 0.25;
+            if (blowProgressRef.current >= 1.0) {
+              triggerBlow();
+              return;
+            }
+          } else {
+            blowProgressRef.current = Math.max(0, blowProgressRef.current - 0.04);
+          }
+
+          setBreathLevel(Math.max(currentBlow, blowProgressRef.current));
+          animFrameRef.current = requestAnimationFrame(checkMic);
+        };
+
+        animFrameRef.current = requestAnimationFrame(checkMic);
+        return;
+      } catch (err) {
+        console.warn('Microphone permission or hardware unavailable:', err);
+      }
+    }
+
+    // Fallback: If microphone is not accessible, wait with an animated countdown & flame flutter
+    setHasMic(false);
+    startInteractiveBlow();
   };
 
   const handleLight = () => {
     stopListening();
-    setMicError(false);
     sfx.candleLight();
     setIsLit(true);
     setIsBlown(false);
@@ -181,7 +235,7 @@ An official birthday letter from your brother (vera yaaru naantha)
 
 Halloooo Yasakkaaa! 😂❤️
 
-A random reel scroll somehow reminded me of you and Rheanyra, and then it hit me — Adei, Yasakka is turning 30! gandhi thatha Welcomes you to the club, akka. Don't worry, we still allow you to join our youth gang :)
+A random reel scroll somehow reminded me of you and Rheanyra, and then it hit me — Adei, Yasakka is turning 30! its time for kids to give you the bus seat ka. Don't worry, Age it just a number until your back starts hurting for no reason :)
 
 But jokes apart, there's something I've always wanted to tell you.
 
@@ -213,7 +267,7 @@ Have the loveliest year ahead. Give Rheanyra and hariesh anna lots of love and y
 
 Always smart, occasionally sensible, forever your brother,
 
-Geesh 🫂❤️`;
+Ugesh 🫂❤️`;
 
   const handleCopyLetter = () => {
     sfx.pop();
@@ -259,8 +313,8 @@ Geesh 🫂❤️`;
             }`}
           >
             {!isBlown ? (
-              isListening ? (
-                <span>🎙️ Mic active! Blow onto your mic to extinguish the candle 💨</span>
+              isBlowingMode ? (
+                <span>🌬️ Ippo Nalla Oothunga! Blow onto your screen or mic 💨</span>
               ) : (
                 <span>🕯️ Blow the candle to reveal your birthday letter! 💌</span>
               )
@@ -413,14 +467,14 @@ Geesh 🫂❤️`;
           <div className="w-80 h-4 bg-[#D4AF37]/25 blur-lg rounded-full mt-0.5" />
         </div>
 
-        {/* Blow Controls: Mic listening + Blow detection */}
+        {/* Blow Controls */}
         {!isBlown && (
           <div className="flex flex-col items-center gap-3.5 mb-8 animate-in zoom-in-95">
-            {!isListening && !micError && (
+            {!isBlowingMode ? (
               <>
                 <button
                   type="button"
-                  onClick={startListening}
+                  onClick={handleStartBlow}
                   className="py-4 px-8 sm:px-12 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#CA8A04] hover:from-[#C59B27] hover:to-[#B45309] text-[#200D30] font-sans-body font-bold text-base sm:text-lg shadow-[0_10px_30px_rgba(212,175,55,0.45)] hover:shadow-[0_14px_40px_rgba(212,175,55,0.65)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 cursor-pointer border-2 border-white/80"
                 >
                   <Wind className="w-5 h-5 text-[#200D30]" />
@@ -431,62 +485,47 @@ Geesh 🫂❤️`;
                   Make a silent 30th birthday wish, click the button, and blow! ✨
                 </p>
               </>
-            )}
-
-            {isListening && (
+            ) : (
               <div className="flex flex-col items-center gap-3 w-full max-w-md mx-auto animate-in fade-in zoom-in-95">
-                <div className="py-3.5 px-7 sm:px-9 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#E11D48] text-white font-sans-body font-bold text-base sm:text-lg shadow-[0_0_35px_rgba(245,158,11,0.6)] border-2 border-white flex items-center gap-3 animate-pulse">
-                  <span className="relative flex h-3.5 w-3.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-white"></span>
-                  </span>
+                <button
+                  type="button"
+                  onClick={triggerBlow}
+                  className="py-3.5 px-7 sm:px-9 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#E11D48] text-white font-sans-body font-bold text-base sm:text-lg shadow-[0_0_35px_rgba(245,158,11,0.6)] border-2 border-white flex items-center gap-3 animate-pulse active:scale-95 transition-transform cursor-pointer"
+                >
                   <Wind className="w-5 h-5 text-white animate-spin" style={{ animationDuration: '3s' }} />
-                  <span>Ippo Mic kitta nalla Oothunga!</span>
-                  <span className="text-xl">💨</span>
-                </div>
+                  <span>Ippo Nalla Oothunga! 💨</span>
+                  <span className="text-xl">🌬️</span>
+                </button>
 
                 {/* Live breath meter bar */}
                 <div className="w-64 sm:w-72 flex flex-col items-center gap-1.5 mt-1">
-                  <div className="w-full h-3 bg-black/10 rounded-full overflow-hidden border border-[#D4AF37]/50 shadow-inner p-0.5">
+                  <div className="w-full h-3.5 bg-black/10 rounded-full overflow-hidden border border-[#D4AF37]/50 shadow-inner p-0.5">
                     <div
                       className="h-full bg-gradient-to-r from-[#F59E0B] via-[#E11D48] to-[#9333EA] rounded-full transition-all duration-75"
-                      style={{ width: `${Math.max(6, Math.min(100, Math.round(breathLevel * 100)))}%` }}
+                      style={{ width: `${Math.max(10, Math.min(100, Math.round(breathLevel * 100)))}%` }}
                     />
                   </div>
-                  <span className="text-[11px] font-serif text-[#785918] italic">
-                    {breathLevel > 0.35 ? '💨 Wind detected! Keep blowing...' : '🎙️ Blow into your phone/laptop mic'}
+                  <span className="text-[12px] font-serif text-[#785918] italic font-medium">
+                    {hasMic
+                      ? breathLevel > 0.35
+                        ? '💨 Wind detected! Keep blowing...'
+                        : '🎙️ Blow into your phone mic now!'
+                      : `🌬️ Blowing... (${countdown}s) or tap below when done!`}
                   </span>
                 </div>
 
                 <p className="text-xs font-serif italic text-neutral-500 text-center">
-                  Make your silent wish and blow directly into the microphone! ✨
+                  Make your 30th birthday wish and blow towards the screen/mic! ✨
                 </p>
 
-                {/* Direct tap fallback option */}
+                {/* Instant finish button */}
                 <button
                   type="button"
                   onClick={triggerBlow}
-                  className="text-xs font-sans-body text-[#785918] hover:text-[#2B211E] underline underline-offset-4 decoration-dotted cursor-pointer mt-1 transition-colors"
+                  className="text-xs font-sans-body text-[#785918] hover:text-[#2B211E] underline underline-offset-4 decoration-dotted cursor-pointer mt-1 transition-colors font-medium"
                 >
-                  (Mic work aagala-na? Tap here to blow directly 💨)
+                  Oothiyachu! Tap to reveal letter 💌
                 </button>
-              </div>
-            )}
-
-            {micError && (
-              <div className="flex flex-col items-center gap-3 animate-in zoom-in-95">
-                <button
-                  type="button"
-                  onClick={triggerBlow}
-                  className="py-4 px-8 sm:px-12 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#CA8A04] hover:from-[#C59B27] hover:to-[#B45309] text-[#200D30] font-sans-body font-bold text-base sm:text-lg shadow-[0_10px_30px_rgba(212,175,55,0.45)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 cursor-pointer border-2 border-white/80"
-                >
-                  <Wind className="w-5 h-5 text-[#200D30]" />
-                  <span>Tap to Blow the Candle</span>
-                  <span className="text-xl">🎂💨</span>
-                </button>
-                <p className="text-xs font-serif italic text-amber-800/80 text-center max-w-sm">
-                  Microphone access enable aagala, so direct'a button click panni oothidalam! ✨
-                </p>
               </div>
             )}
           </div>
@@ -546,7 +585,7 @@ Geesh 🫂❤️`;
               </p>
 
               <p>
-                A random reel scroll somehow reminded me of you and Rheanyra, and then it hit me — Adei, Yasakka is turning 30! gandhi thatha Welcomes you to the club, akka. Don't worry, we still allow you to join our youth gang :)
+                A random reel scroll somehow reminded me of you and Rheanyra, and then it hit me — Adei, Yasakka is turning 30! its time for kids to give you the bus seat ka. Don't worry, Age it just a number until your back starts hurting for no reason :)
               </p>
 
               <p className="font-semibold text-[#2B211E]">
@@ -610,7 +649,7 @@ Geesh 🫂❤️`;
                   Always smart, occasionally sensible, forever your brother,
                 </p>
                 <p className="font-serif text-3xl text-[#2B211E] font-medium mt-1">
-                  Geesh 🫂❤️
+                  Ugesh 🫂❤️
                 </p>
               </div>
             </div>
