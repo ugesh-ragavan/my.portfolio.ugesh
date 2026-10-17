@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { sfx } from '../../utils/audio';
 import { fireGrandFinaleConfetti } from '../../utils/confetti';
 import { RippedPaperCard } from '../RippedPaperCard';
@@ -21,9 +21,45 @@ export const Screen7Finale: React.FC<Screen7FinaleProps> = ({
   const [isBlown, setIsBlown] = useState(candleBlown);
   const [showLetter, setShowLetter] = useState(candleBlown);
   const [copied, setCopied] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const [micError, setMicError] = useState(false);
+  const [breathLevel, setBreathLevel] = useState(0);
 
-  const handleBlow = () => {
-    if (isBlown) return;
+  const streamRef = useRef<MediaStream | null>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const animFrameRef = useRef<number | null>(null);
+  const blowProgressRef = useRef(0);
+  const isExtinguishingRef = useRef(false);
+
+  const stopListening = useCallback(() => {
+    if (animFrameRef.current !== null) {
+      cancelAnimationFrame(animFrameRef.current);
+      animFrameRef.current = null;
+    }
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((track) => track.stop());
+      streamRef.current = null;
+    }
+    if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
+      audioContextRef.current.close().catch(() => {});
+      audioContextRef.current = null;
+    }
+    setIsListening(false);
+    setBreathLevel(0);
+    blowProgressRef.current = 0;
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      stopListening();
+    };
+  }, [stopListening]);
+
+  const triggerBlow = useCallback(() => {
+    if (isExtinguishingRef.current || isBlown) return;
+    isExtinguishingRef.current = true;
+    stopListening();
+
     sfx.candleBlow();
     setIsBlown(true);
     setIsLit(false);
@@ -32,13 +68,110 @@ export const Screen7Finale: React.FC<Screen7FinaleProps> = ({
     setTimeout(() => {
       fireGrandFinaleConfetti();
       setShowLetter(true);
+      isExtinguishingRef.current = false;
     }, 600);
+  }, [isBlown, onUpdateCandle, stopListening]);
+
+  const startListening = async () => {
+    if (isBlown) return;
+    setMicError(false);
+    blowProgressRef.current = 0;
+    isExtinguishingRef.current = false;
+
+    try {
+      if (typeof window === 'undefined' || !navigator?.mediaDevices?.getUserMedia) {
+        setMicError(true);
+        return;
+      }
+
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: false,
+          noiseSuppression: false,
+          autoGainControl: false,
+        },
+      });
+
+      streamRef.current = stream;
+
+      const AudioCtx =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const audioContext = new AudioCtx();
+      if (audioContext.state === 'suspended') {
+        await audioContext.resume();
+      }
+      audioContextRef.current = audioContext;
+
+      const analyser = audioContext.createAnalyser();
+      analyser.fftSize = 256;
+      analyser.smoothingTimeConstant = 0.2;
+
+      const source = audioContext.createMediaStreamSource(stream);
+      source.connect(analyser);
+
+      setIsListening(true);
+
+      const freqData = new Uint8Array(analyser.frequencyBinCount);
+      const timeData = new Uint8Array(analyser.fftSize);
+
+      const checkBlow = () => {
+        if (isExtinguishingRef.current) return;
+
+        analyser.getByteFrequencyData(freqData);
+        analyser.getByteTimeDomainData(timeData);
+
+        // Calculate low-frequency wind turbulence (bins 0-5 cover ~0-500Hz)
+        let lowSum = 0;
+        const lowBins = Math.min(6, freqData.length);
+        for (let i = 0; i < lowBins; i++) {
+          lowSum += freqData[i];
+        }
+        const lowAvg = lowSum / lowBins;
+
+        // Calculate time domain RMS amplitude
+        let sumSquares = 0;
+        for (let i = 0; i < timeData.length; i++) {
+          const norm = (timeData[i] - 128) / 128;
+          sumSquares += norm * norm;
+        }
+        const rms = Math.sqrt(sumSquares / timeData.length);
+
+        // Normalize scores: talking/ambient has lowAvg<25 & rms<0.1
+        // Direct blow onto microphone yields lowAvg 60-150+ and rms 0.2-0.6+
+        const lowScore = Math.max(0, (lowAvg - 28) / 60);
+        const rmsScore = Math.max(0, (rms - 0.12) / 0.28);
+        const currentBlow = Math.min(Math.max(lowScore * 0.65 + rmsScore * 0.35, 0), 1);
+
+        if (currentBlow > 0.4) {
+          blowProgressRef.current += 0.22;
+          if (blowProgressRef.current >= 1.0) {
+            triggerBlow();
+            return;
+          }
+        } else {
+          blowProgressRef.current = Math.max(0, blowProgressRef.current - 0.05);
+        }
+
+        setBreathLevel(Math.max(currentBlow, blowProgressRef.current));
+        animFrameRef.current = requestAnimationFrame(checkBlow);
+      };
+
+      animFrameRef.current = requestAnimationFrame(checkBlow);
+    } catch (err) {
+      console.warn('Microphone error or permission denied:', err);
+      setMicError(true);
+      setIsListening(false);
+    }
   };
 
   const handleLight = () => {
+    stopListening();
+    setMicError(false);
     sfx.candleLight();
     setIsLit(true);
     setIsBlown(false);
+    setShowLetter(false);
     onUpdateCandle(true, false);
   };
 
@@ -126,7 +259,11 @@ Geesh 🫂❤️`;
             }`}
           >
             {!isBlown ? (
-              <span>🕯️ Blow the candle to reveal your birthday letter! 💌</span>
+              isListening ? (
+                <span>🎙️ Mic active! Blow onto your mic to extinguish the candle 💨</span>
+              ) : (
+                <span>🕯️ Blow the candle to reveal your birthday letter! 💌</span>
+              )
             ) : (
               <span>✨ Wish sent into the universe! Scroll down for your letter 📜</span>
             )}
@@ -136,10 +273,19 @@ Geesh 🫂❤️`;
         {/* Enhanced Artisanal Keepsake Cake with Burning '30' Candle */}
         <div className="relative mx-auto w-84 sm:w-98 h-[340px] flex flex-col items-center justify-end mb-8 select-none">
           
-          {/* Flame & Smoke Container (FLAME UNCHANGED) */}
+          {/* Flame & Smoke Container */}
           <div className="relative mb-2 flex flex-col items-center z-30">
             {isLit && (
-              <div className="relative flex flex-col items-center">
+              <div
+                className="relative flex flex-col items-center transition-transform duration-75"
+                style={{
+                  transform:
+                    breathLevel > 0.05
+                      ? `scale(${Math.max(0.4, 1 - breathLevel * 0.6)}, ${Math.max(0.4, 1 - breathLevel * 0.5)}) skewX(${(breathLevel * 28).toFixed(1)}deg)`
+                      : undefined,
+                  opacity: breathLevel > 0.1 ? Math.max(0.35, 1 - breathLevel * 0.6) : 1,
+                }}
+              >
                 <div className="absolute -inset-5 bg-[#C59B27]/40 blur-xl rounded-full animate-pulse" />
                 <div className="w-8 h-13 bg-gradient-to-t from-[#A25B50] via-[#FBBF24] to-[#FFFBEB] rounded-full animate-candle-flame" />
                 <div className="absolute bottom-1 w-3.5 h-6 bg-white/95 rounded-full blur-[0.5px]" />
@@ -267,20 +413,82 @@ Geesh 🫂❤️`;
           <div className="w-80 h-4 bg-[#D4AF37]/25 blur-lg rounded-full mt-0.5" />
         </div>
 
-        {/* Blow Controls: Single High-End Button */}
+        {/* Blow Controls: Mic listening + Blow detection */}
         {!isBlown && (
           <div className="flex flex-col items-center gap-3.5 mb-8 animate-in zoom-in-95">
-            <button
-              onClick={handleBlow}
-              className="py-4 px-8 sm:px-12 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#CA8A04] hover:from-[#C59B27] hover:to-[#B45309] text-[#200D30] font-sans-body font-bold text-base sm:text-lg shadow-[0_10px_30px_rgba(212,175,55,0.45)] hover:shadow-[0_14px_40px_rgba(212,175,55,0.65)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 cursor-pointer border-2 border-white/80"
-            >
-              <Wind className="w-5 h-5 text-[#200D30]" />
-              <span>Button'a click pantu, Oothunga</span>
-              <span className="text-xl">🎂💨</span>
-            </button>
-            <p className="text-xs font-serif italic text-neutral-500 text-center">
-              Make a silent 30th birthday wish, click the button, and blow! ✨
-            </p>
+            {!isListening && !micError && (
+              <>
+                <button
+                  type="button"
+                  onClick={startListening}
+                  className="py-4 px-8 sm:px-12 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#CA8A04] hover:from-[#C59B27] hover:to-[#B45309] text-[#200D30] font-sans-body font-bold text-base sm:text-lg shadow-[0_10px_30px_rgba(212,175,55,0.45)] hover:shadow-[0_14px_40px_rgba(212,175,55,0.65)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 cursor-pointer border-2 border-white/80"
+                >
+                  <Wind className="w-5 h-5 text-[#200D30]" />
+                  <span>Button'a click pantu, Oothunga</span>
+                  <span className="text-xl">🎂💨</span>
+                </button>
+                <p className="text-xs font-serif italic text-neutral-500 text-center">
+                  Make a silent 30th birthday wish, click the button, and blow! ✨
+                </p>
+              </>
+            )}
+
+            {isListening && (
+              <div className="flex flex-col items-center gap-3 w-full max-w-md mx-auto animate-in fade-in zoom-in-95">
+                <div className="py-3.5 px-7 sm:px-9 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#E11D48] text-white font-sans-body font-bold text-base sm:text-lg shadow-[0_0_35px_rgba(245,158,11,0.6)] border-2 border-white flex items-center gap-3 animate-pulse">
+                  <span className="relative flex h-3.5 w-3.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-white"></span>
+                  </span>
+                  <Wind className="w-5 h-5 text-white animate-spin" style={{ animationDuration: '3s' }} />
+                  <span>Ippo Mic kitta nalla Oothunga!</span>
+                  <span className="text-xl">💨</span>
+                </div>
+
+                {/* Live breath meter bar */}
+                <div className="w-64 sm:w-72 flex flex-col items-center gap-1.5 mt-1">
+                  <div className="w-full h-3 bg-black/10 rounded-full overflow-hidden border border-[#D4AF37]/50 shadow-inner p-0.5">
+                    <div
+                      className="h-full bg-gradient-to-r from-[#F59E0B] via-[#E11D48] to-[#9333EA] rounded-full transition-all duration-75"
+                      style={{ width: `${Math.max(6, Math.min(100, Math.round(breathLevel * 100)))}%` }}
+                    />
+                  </div>
+                  <span className="text-[11px] font-serif text-[#785918] italic">
+                    {breathLevel > 0.35 ? '💨 Wind detected! Keep blowing...' : '🎙️ Blow into your phone/laptop mic'}
+                  </span>
+                </div>
+
+                <p className="text-xs font-serif italic text-neutral-500 text-center">
+                  Make your silent wish and blow directly into the microphone! ✨
+                </p>
+
+                {/* Direct tap fallback option */}
+                <button
+                  type="button"
+                  onClick={triggerBlow}
+                  className="text-xs font-sans-body text-[#785918] hover:text-[#2B211E] underline underline-offset-4 decoration-dotted cursor-pointer mt-1 transition-colors"
+                >
+                  (Mic work aagala-na? Tap here to blow directly 💨)
+                </button>
+              </div>
+            )}
+
+            {micError && (
+              <div className="flex flex-col items-center gap-3 animate-in zoom-in-95">
+                <button
+                  type="button"
+                  onClick={triggerBlow}
+                  className="py-4 px-8 sm:px-12 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F59E0B] to-[#CA8A04] hover:from-[#C59B27] hover:to-[#B45309] text-[#200D30] font-sans-body font-bold text-base sm:text-lg shadow-[0_10px_30px_rgba(212,175,55,0.45)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 cursor-pointer border-2 border-white/80"
+                >
+                  <Wind className="w-5 h-5 text-[#200D30]" />
+                  <span>Tap to Blow the Candle</span>
+                  <span className="text-xl">🎂💨</span>
+                </button>
+                <p className="text-xs font-serif italic text-amber-800/80 text-center max-w-sm">
+                  Microphone access enable aagala, so direct'a button click panni oothidalam! ✨
+                </p>
+              </div>
+            )}
           </div>
         )}
 
