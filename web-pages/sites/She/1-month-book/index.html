@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>OUR FIRST CHAPTER — Boo ♡ Sree</title>
+  <meta name="description" content="A realistic physical 3D anniversary storybook for Boo ♡ Sree with side-by-side pages." />
+  <meta name="theme-color" content="#140c09" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Ambient Dust Motes Background Canvas -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Discreet Floating Sound & Zoom Controls -->
+  <aside class="hud-controls" aria-label="Book Controls">
+    <a href="../index.html" class="hud-pill" aria-label="Return to SHE Hub" title="Return to SHE Hub" style="text-decoration: none;">
+      <span class="hud-icon">←</span>
+      <span class="hud-label">SHE Menu</span>
+    </a>
+    <button id="sound-btn" class="hud-pill" aria-label="Toggle Sound" title="Sound Effects">
+      <span class="hud-icon" id="sound-icon">🔔</span>
+      <span class="hud-label" id="sound-text">Sound</span>
+    </button>
+    <button id="zoom-btn" class="hud-pill" aria-label="Toggle Reading Zoom" title="Reading Zoom">
+      <span class="hud-icon" id="zoom-icon">🔍</span>
+      <span class="hud-label" id="zoom-text">Zoom</span>
+    </button>
+  </aside>
+
+  <!-- VIEWPORT FOR THE BOOK -->
+  <main class="viewport" id="viewport">
+    <div class="book-scaler is-cover" id="book-scaler">
+      <div class="flip-book" id="book">
+
+        <!-- ═══════════════════════════════════════════════
+             PAGE 0: FRONT COVER (Closed book initial state)
+             ═══════════════════════════════════════════════ -->
+        <div class="page page-cover page-cover-front" data-density="hard">
+          <div class="cover-inner">
+            <div class="cover-gold-frame">
+              <span class="filigree tl">❦</span>
+              <span class="filigree tr">❦</span>
+              <span class="filigree bl">❦</span>
+              <span class="filigree br">❦</span>
+
+              <header class="cover-head">
+                <span class="cover-tag">A KEEPSAKE BOOKLET</span>
+                <h1 class="cover-main-title">OUR FIRST CHAPTER</h1>
+                <div class="cover-bar"></div>
+                <p class="cover-desc">A little story about you, me, and the beginning of us.</p>
+              </header>
+
+              <div class="cover-art-box">
+                <img src="img/cover-page-v2.jpg" alt="Our First Chapter Cover Artwork - Stargazing by the sea" class="cover-img" />
+                <span class="brass-corner c-tl"></span>
+                <span class="brass-corner c-tr"></span>
+                <span class="brass-corner c-bl"></span>
+                <span class="brass-corner c-br"></span>
+              </div>
+
+              <footer class="cover-foot">
+                <p class="cover-author">Boo ♡ Sree</p>
+                <div class="cover-callout">
+                  <span class="callout-sparkle">✨</span>
+                  <span>Tap or swipe to open</span>
+                  <span class="callout-arrow">→</span>
+                </div>
+              </footer>
+            </div>
+          </div>
+          <div class="cover-spine-edge"></div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             SPREAD 1: MEMORY 1 (Page 1 Left / Page 2 Right)
+             ═══════════════════════════════════════════════ -->
+        <!-- Left: Illustration 1 -->
+        <div class="page page-left memory-illustration-page" data-density="soft">
+          <div class="page-paper-edge-left"></div>
+          <div class="illustration-frame">
+            <div class="art-mount">
+              <img src="img/1.jpg" alt="Memory 1: Late night text notification" class="spread-img" />
+              <div class="tape-corner top-right"></div>
+            </div>
+            <span class="spread-caption">Memory I</span>
+          </div>
+          <span class="page-footer-num left-num">1</span>
+        </div>
+
+        <!-- Right: Quote 1 -->
+        <div class="page page-right memory-quote-page" data-density="soft">
+          <div class="page-paper-edge-right"></div>
+          <div class="story-wrapper">
+            <div class="quote-symbol">“</div>
+            <div class="quote-content">
+              <p class="quote-paragraph">
+                It's funny how, in just three days, you became my favourite notification.
+              </p>
+              <p class="quote-paragraph">
+                Now, even a little message from you can make an ordinary day feel different.
+              </p>
+              <p class="quote-paragraph quote-question">
+                How did you do that, Sree?
+              </p>
+            </div>
+            <div class="quote-ornament">✦ ── ❦ ── ✦</div>
+          </div>
+          <span class="page-footer-num right-num">2</span>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             SPREAD 2: MEMORY 2 (Page 3 Left / Page 4 Right)
+             ═══════════════════════════════════════════════ -->
+        <!-- Left: Illustration 2 -->
+        <div class="page page-left memory-illustration-page" data-density="soft">
+          <div class="page-paper-edge-left"></div>
+          <div class="illustration-frame">
+            <div class="art-mount">
+              <img src="img/2.jpg" alt="Memory 2: Pickup lines & banter" class="spread-img" />
+              <div class="tape-corner top-right"></div>
+            </div>
+            <span class="spread-caption">Memory II</span>
+          </div>
+          <span class="page-footer-num left-num">3</span>
+        </div>
+
+        <!-- Right: Quote 2 -->
+        <div class="page page-right memory-quote-page" data-density="soft">
+          <div class="page-paper-edge-right"></div>
+          <div class="story-wrapper">
+            <div class="quote-symbol">“</div>
+            <div class="quote-content">
+              <p class="quote-paragraph">
+                recently “You gave me a few pickup lines first…<br />
+                Obviously, I couldn't let you win that easily. 😂<br />
+                So I came up with:
+              </p>
+              <div class="poetry-card">
+                <p>‘Latte poda theva paalu,</p>
+                <p>Last month la irundhu nee tha en aalu.’</p>
+              </div>
+              <p class="quote-paragraph">
+                And then, because one terrible line wasn't enough…
+              </p>
+              <div class="poetry-card">
+                <p>‘Wait panra edathuku peru lobby,</p>
+                <p>Unaku hug kudukrathu tha en hobby.’</p>
+              </div>
+              <p class="quote-paragraph punchline">
+                not better than yours but ill try For you, always. ❤️”
+              </p>
+            </div>
+            <div class="quote-ornament">✦ ── ❦ ── ✦</div>
+          </div>
+          <span class="page-footer-num right-num">4</span>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             SPREAD 3: MEMORY 3 (Page 5 Left / Page 6 Right)
+             ═══════════════════════════════════════════════ -->
+        <!-- Left: Illustration 3 -->
+        <div class="page page-left memory-illustration-page" data-density="soft">
+          <div class="page-paper-edge-left"></div>
+          <div class="illustration-frame">
+            <div class="art-mount">
+              <img src="img/3.jpg" alt="Memory 3: Sharing songs" class="spread-img" />
+              <div class="tape-corner top-right"></div>
+            </div>
+            <span class="spread-caption">Memory III</span>
+          </div>
+          <span class="page-footer-num left-num">5</span>
+        </div>
+
+        <!-- Right: Quote 3 -->
+        <div class="page page-right memory-quote-page" data-density="soft">
+          <div class="page-paper-edge-right"></div>
+          <div class="story-wrapper">
+            <div class="quote-symbol">“</div>
+            <div class="quote-content">
+              <p class="quote-paragraph">
+                “You gave me ‘Ennodu Nee Irundhal’<br />
+                I gave you ‘Sami Sela Poley’
+              </p>
+              <p class="quote-paragraph highlight-thought">
+                hehehe this this the 1st song we dedicated for each other ig”
+              </p>
+            </div>
+            <div class="quote-ornament">✦ ── ❦ ── ✦</div>
+          </div>
+          <span class="page-footer-num right-num">6</span>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             SPREAD 4: MEMORY 4 (Page 7 Left / Page 8 Right)
+             ═══════════════════════════════════════════════ -->
+        <!-- Left: Illustration 4 -->
+        <div class="page page-left memory-illustration-page" data-density="soft">
+          <div class="page-paper-edge-left"></div>
+          <div class="illustration-frame">
+            <div class="art-mount">
+              <img src="img/4.jpg" alt="Memory 4: Kashmir to Kanyakumari" class="spread-img" />
+              <div class="tape-corner top-right"></div>
+            </div>
+            <span class="spread-caption">Memory IV</span>
+          </div>
+          <span class="page-footer-num left-num">7</span>
+        </div>
+
+        <!-- Right: Quote 4 -->
+        <div class="page page-right memory-quote-page" data-density="soft">
+          <div class="page-paper-edge-right"></div>
+          <div class="story-wrapper">
+            <div class="quote-symbol">“</div>
+            <div class="quote-content">
+              <p class="quote-paragraph">
+                You're Kashmir. I'm Kanyakumari.<br />
+                Practically opposite ends of the country.
+              </p>
+              <p class="quote-paragraph highlight-thought">
+                But somehow, we found a heart in the middle, right?
+              </p>
+            </div>
+            <div class="quote-ornament">✦ ── ❦ ── ✦</div>
+          </div>
+          <span class="page-footer-num right-num">8</span>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             SPREAD 5: MEMORY 5 (Page 9 Left / Page 10 Right)
+             ═══════════════════════════════════════════════ -->
+        <!-- Left: Illustration 5 -->
+        <div class="page page-left memory-illustration-page" data-density="soft">
+          <div class="page-paper-edge-left"></div>
+          <div class="illustration-frame">
+            <div class="art-mount">
+              <img src="img/5.jpg" alt="Memory 5: Tacos, waffles, biryani, tangdi kabab, mojito and dosa" class="spread-img" />
+              <div class="tape-corner top-right"></div>
+            </div>
+            <span class="spread-caption">Memory V</span>
+          </div>
+          <span class="page-footer-num left-num">9</span>
+        </div>
+
+        <!-- Right: Quote 5 -->
+        <div class="page page-right memory-quote-page" data-density="soft">
+          <div class="page-paper-edge-right"></div>
+          <div class="story-wrapper">
+            <div class="quote-symbol">“</div>
+            <div class="quote-content">
+              <p class="quote-paragraph">
+                “My tacos, Your KitKat waffles.<br />
+                Your mutton biriyani, my tangdi kabab.<br />
+                You with your virgin piña colada, me with my virgin mojito<br />
+                and ofcourse our Happy Meal - DOSA 😂
+              </p>
+              <p class="quote-paragraph highlight-thought">
+                Honestly, our food compatibility deserves its own love story.”
+              </p>
+            </div>
+            <div class="quote-ornament">✦ ── ❦ ── ✦</div>
+          </div>
+          <span class="page-footer-num right-num">10</span>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             SPREAD 6: MEMORY 6 (Page 11 Left / Page 12 Right)
+             ═══════════════════════════════════════════════ -->
+        <!-- Left: Illustration 6 -->
+        <div class="page page-left memory-illustration-page" data-density="soft">
+          <div class="page-paper-edge-left"></div>
+          <div class="illustration-frame">
+            <div class="art-mount">
+              <img src="img/6.jpg" alt="Memory 6: Under the blossoming tree" class="spread-img" />
+              <div class="tape-corner top-right"></div>
+            </div>
+            <span class="spread-caption">Memory VI</span>
+          </div>
+          <span class="page-footer-num left-num">11</span>
+        </div>
+
+        <!-- Right: Quote 6 -->
+        <div class="page page-right memory-quote-page" data-density="soft">
+          <div class="page-paper-edge-right"></div>
+          <div class="story-wrapper">
+            <div class="quote-symbol">“</div>
+            <div class="quote-content">
+              <p class="quote-paragraph">
+                “You once wished to meet the love of your life beneath a tree, with blossoms falling around you. I don't know when that moment will come.
+              </p>
+              <p class="quote-paragraph highlight-thought">
+                But if I get to stand beside you athu nadakumbothu, Ill look at you more than the flowers.”
+              </p>
+            </div>
+            <div class="quote-ornament">✦ ── ❦ ── ✦</div>
+          </div>
+          <span class="page-footer-num right-num">12</span>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             SPREAD 7: MEMORY 7 (Page 13 Left / Page 14 Right)
+             ═══════════════════════════════════════════════ -->
+        <!-- Left: Illustration 7 -->
+        <div class="page page-left memory-illustration-page" data-density="soft">
+          <div class="page-paper-edge-left"></div>
+          <div class="illustration-frame">
+            <div class="art-mount">
+              <img src="img/7.jpg" alt="Memory 7: Cheering you up with silly wordplay" class="spread-img" />
+              <div class="tape-corner top-right"></div>
+            </div>
+            <span class="spread-caption">Memory VII</span>
+          </div>
+          <span class="page-footer-num left-num">13</span>
+        </div>
+
+        <!-- Right: Quote 7 -->
+        <div class="page page-right memory-quote-page" data-density="soft">
+          <div class="page-paper-edge-right"></div>
+          <div class="story-wrapper">
+            <div class="quote-symbol">“</div>
+            <div class="quote-content">
+              <p class="quote-paragraph">
+                “Someone made you feel bad for being you.<br />
+                So I gave you the most unnecessarily confusing wordplay (mean) in human history.
+              </p>
+              <p class="quote-paragraph highlight-thought">
+                Did it make you smile? That's what mattered to me.”
+              </p>
+            </div>
+            <div class="quote-ornament">✦ ── ❦ ── ✦</div>
+          </div>
+          <span class="page-footer-num right-num">14</span>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             SPREAD 8: MEMORY 8 (Page 15 Left / Page 16 Right)
+             ═══════════════════════════════════════════════ -->
+        <!-- Left: Illustration 8 -->
+        <div class="page page-left memory-illustration-page" data-density="soft">
+          <div class="page-paper-edge-left"></div>
+          <div class="illustration-frame">
+            <div class="art-mount">
+              <img src="img/8.jpg" alt="Memory 8: The little handmade pot" class="spread-img" />
+              <div class="tape-corner top-right"></div>
+            </div>
+            <span class="spread-caption">Memory VIII</span>
+          </div>
+          <span class="page-footer-num left-num">15</span>
+        </div>
+
+        <!-- Right: Quote 8 -->
+        <div class="page page-right memory-quote-page" data-density="soft">
+          <div class="page-paper-edge-right"></div>
+          <div class="story-wrapper">
+            <div class="quote-symbol">“</div>
+            <div class="quote-content">
+              <p class="quote-paragraph">
+                “You made a little pot just for me.<br />
+                I don't know what colour it'll be yet, but I already love the thought behind it.
+              </p>
+              <p class="quote-paragraph highlight-thought">
+                Some things become special simply because they're made by you.”
+              </p>
+            </div>
+            <div class="quote-ornament">✦ ── ❦ ── ✦</div>
+          </div>
+          <span class="page-footer-num right-num">16</span>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             SPREAD 9: MEMORY 9 (Page 17 Left / Page 18 Right)
+             ═══════════════════════════════════════════════ -->
+        <!-- Left: Illustration 9 -->
+        <div class="page page-left memory-illustration-page" data-density="soft">
+          <div class="page-paper-edge-left"></div>
+          <div class="illustration-frame">
+            <div class="art-mount">
+              <img src="img/9.jpg" alt="Memory 9: AI hugs and Tiramisu" class="spread-img" />
+              <div class="tape-corner top-right"></div>
+            </div>
+            <span class="spread-caption">Memory IX</span>
+          </div>
+          <span class="page-footer-num left-num">17</span>
+        </div>
+
+        <!-- Right: Quote 9 -->
+        <div class="page page-right memory-quote-page" data-density="soft">
+          <div class="page-paper-edge-right"></div>
+          <div class="story-wrapper">
+            <div class="quote-symbol">“</div>
+            <div class="quote-content">
+              <p class="quote-paragraph">
+                “You made an AI hug of us before we could have all our hugs for real.” that made my day anaiku.... also we have our own language -&gt; <span class="accent-word">Tira'mis'u.</span>
+              </p>
+              <p class="quote-paragraph highlight-thought">
+                A tiny way of saying, 'i miss you, I wish you were here right now.'”
+              </p>
+            </div>
+            <div class="quote-ornament">✦ ── ❦ ── ✦</div>
+          </div>
+          <span class="page-footer-num right-num">18</span>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             SPREAD 10: MEMORY 10 (Page 19 Left / Page 20 Right)
+             ═══════════════════════════════════════════════ -->
+        <!-- Left: Illustration 10 -->
+        <div class="page page-left memory-illustration-page" data-density="soft">
+          <div class="page-paper-edge-left"></div>
+          <div class="illustration-frame">
+            <div class="art-mount">
+              <img src="img/10.jpg" alt="Memory 10: Science boy & Commerce girl" class="spread-img" />
+              <div class="tape-corner top-right"></div>
+            </div>
+            <span class="spread-caption">Memory X</span>
+          </div>
+          <span class="page-footer-num left-num">19</span>
+        </div>
+
+        <!-- Right: Quote 10 -->
+        <div class="page page-right memory-quote-page" data-density="soft">
+          <div class="page-paper-edge-right"></div>
+          <div class="story-wrapper">
+            <div class="quote-symbol">“</div>
+            <div class="quote-content">
+              <p class="quote-paragraph">
+                “Science boy. Commerce girl.<br />
+                Ambivert boy. Extrovert girl.<br />
+                Different worlds, and a few more things still to learn about each other.
+              </p>
+              <p class="quote-paragraph highlight-thought">
+                i hope We still keep choosing to understand each other.”
+              </p>
+            </div>
+            <div class="quote-ornament">✦ ── ❦ ── ✦</div>
+          </div>
+          <span class="page-footer-num right-num">20</span>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             SPREAD 11 (FINAL SPREAD): SUNSET & BOO'S LETTER
+             (Page 21 Left: Sunset Artwork / Page 22 Right: Letter)
+             ═══════════════════════════════════════════════ -->
+        <!-- Left: Sunset Illustration -->
+        <div class="page page-left memory-illustration-page finale-art-page" data-density="soft">
+          <div class="page-paper-edge-left"></div>
+          <div class="illustration-frame finale-frame">
+            <div class="art-mount finale-mount">
+              <img src="img/last-page.jpg" alt="Final page: Walking together towards the sunset" class="spread-img finale-img" />
+              <div class="tape-corner top-right"></div>
+            </div>
+            <span class="spread-caption">The Road Ahead</span>
+          </div>
+          <span class="page-footer-num left-num">21</span>
+        </div>
+
+        <!-- Right: Boo's Personal Letter -->
+        <div class="page page-right finale-letter-page" data-density="soft">
+          <div class="page-paper-edge-right"></div>
+          <div class="letter-scrollable">
+            <header class="letter-top">
+              <div class="wax-seal-badge">B ♡ S</div>
+              <span class="letter-pretitle">A LETTER FOR SREE</span>
+            </header>
+
+            <h2 class="letter-greeting">sree,</h2>
+
+            <div class="letter-text-body">
+              <p>One month down, and you're already such a lovely part of my everyday life.</p>
+              <p>Thank you for the songs, the silly jokes, and the little things that make us, us.</p>
+              <p class="letter-highlight">Happy one month, my love.</p>
+            </div>
+
+            <div class="letter-signoff">
+              <p class="signoff-signature">— Your Boo ♡</p>
+            </div>
+
+            <button id="read-again-btn" class="read-again-ribbon" title="Return to cover and read again">
+              <span>Close Book &amp; Read Again ↻</span>
+            </button>
+          </div>
+          <span class="page-footer-num right-num">22</span>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             PAGE 23: INSIDE BACK COVER (Keepsake Colophon)
+             ═══════════════════════════════════════════════ -->
+        <div class="page page-left colophon-page" data-density="hard">
+          <div class="page-paper-edge-left"></div>
+          <div class="colophon-inner">
+            <div class="colophon-ornament">⚜ ❦ ⚜</div>
+            <h3 class="colophon-title">OUR FIRST CHAPTER</h3>
+            <p class="colophon-text">Volume I: One Month of Love, Laughter &amp; Forever</p>
+            <div class="colophon-line"></div>
+            <p class="colophon-names">Handcrafted for Sree by Boo</p>
+            <p class="colophon-date">October 2026</p>
+            <p class="colophon-quote">“To many more chapters together.”</p>
+          </div>
+          <span class="page-footer-num left-num"></span>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             PAGE 24: HARDCOVER BACK
+             ═══════════════════════════════════════════════ -->
+        <div class="page page-cover page-cover-back" data-density="hard">
+          <div class="cover-inner back-cover-inner">
+            <div class="back-cover-emblem">
+              <span class="back-emblem-heart">❦</span>
+              <p class="back-emblem-text">OUR FIRST CHAPTER</p>
+            </div>
+          </div>
+          <div class="cover-spine-edge"></div>
+        </div>
+
+      </div><!-- /.flip-book -->
+    </div><!-- /.book-scaler -->
+  </main>
+
+  <!-- Local StPageFlip Library -->
+  <script src="page-flip.browser.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

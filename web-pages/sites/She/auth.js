@@ -45,7 +45,8 @@
   // Admin role automatically has wildcard ('*') access to all pages.
   const SELECTIVE_ALLOWED_PAGES = [
     'floral.html',
-    'feel-better.html'
+    'feel-better.html',
+    '1-month-book'
   ];
 
   let enteredPin = '';
@@ -56,6 +57,9 @@
   function getCurrentPage() {
     const path = window.location.pathname || '';
     const normalized = path.replace(/\\/g, '/');
+    if (normalized.includes('/1-month-book')) {
+      return '1-month-book';
+    }
     const filename = normalized.substring(normalized.lastIndexOf('/') + 1).toLowerCase();
     if (!filename || filename === 'she' || filename === '') {
       return 'index.html';
@@ -404,6 +408,9 @@
             PIN 1006 has access to:
           </div>
           <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+            <a href="1-month-book/index.html" class="she-quick-link" style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.5rem 0.9rem; background: rgba(212, 175, 55, 0.22); border: 1px solid rgba(212, 175, 55, 0.45); border-radius: 9999px; color: #F4D58D; text-decoration: none; font-size: 0.78rem; font-weight: 600; transition: all 0.2s ease;">
+              <span>📖 Open 1-Month Keepsake Book</span>
+            </a>
             <a href="floral.html" class="she-quick-link" style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.5rem 0.9rem; background: rgba(233, 154, 178, 0.2); border: 1px solid rgba(233, 154, 178, 0.4); border-radius: 9999px; color: #F8C8DC; text-decoration: none; font-size: 0.78rem; font-weight: 600; transition: all 0.2s ease;">
               <span>🌸 Open Floral Surprise</span>
             </a>
