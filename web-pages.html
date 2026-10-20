@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Ugesh Ragavan — Web Pages Hub. Explore dedicated web applications, celebration universes, and special digital portals.">
+  <meta name="author" content="Ugesh Ragavan">
+  <title>Ugesh Ragavan // Web Pages 🌐</title>
+  <link rel="shortcut icon" href="images/fav.png" type="image/vnd.microsoft.icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=Fira+Code:wght@500;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       LARGE APP ICON LAUNCHPAD DESIGN SYSTEM
+       ═══════════════════════════════════════════════════════════ */
+    :root {
+      --bg: #090c15;
+      --border: rgba(255, 255, 255, 0.1);
+      --border-glow: rgba(0, 210, 255, 0.4);
+      --accent-cyan: #00d2ff;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --font-main: 'Plus Jakarta Sans', sans-serif;
+      --font-display: 'Outfit', sans-serif;
+      --font-mono: 'Fira Code', monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: dark;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px 60px;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Background Effects */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-glow-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(130px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.35;
+    }
+
+    .orb-1 {
+      width: 500px;
+      height: 500px;
+      top: -120px;
+      left: 10%;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.4), transparent);
+    }
+
+    .orb-2 {
+      width: 550px;
+      height: 550px;
+      bottom: -150px;
+      right: 10%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.35), transparent);
+    }
+
+    /* Page Container */
+    .portal-container {
+      width: 100%;
+      max-width: 860px;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+    }
+
+    /* Top Navigation Bar */
+    .top-navbar {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 22px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .nav-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      transition: all 0.25s ease;
+    }
+
+    .nav-back-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      transform: translateX(-3px);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-brand-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--accent-cyan);
+    }
+
+    .nav-brand-text {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .nav-brand-text span {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Hero Header */
+    .portal-hero {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding-top: 10px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 5px 16px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+      border: 1px solid rgba(236, 72, 153, 0.35);
+      color: #f472b6;
+      box-shadow: 0 0 20px rgba(236, 72, 153, 0.2);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: #ffffff;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #f472b6 0%, #c084fc 50%, #00d2ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 2vw, 1.05rem);
+      color: var(--text-muted);
+      max-width: 500px;
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       LARGE APP ICONS GRID (LAUNCHPAD STYLE)
+       ═══════════════════════════════════════════════════════════ */
+    .app-icons-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 32px 24px;
+      justify-items: center;
+      padding: 20px 0 10px;
+    }
+
+    /* Large Icon Card */
+    .app-icon-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text);
+      cursor: pointer;
+      position: relative;
+      width: 100%;
+      max-width: 200px;
+      padding: 16px 12px;
+      border-radius: 24px;
+      transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      background: transparent;
+    }
+
+    .app-icon-card:hover {
+      background: rgba(255, 255, 255, 0.04);
+      transform: translateY(-8px);
+    }
+
+    /* Large Squircle Icon */
+    .app-icon-tile {
+      width: 120px;
+      height: 120px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      margin-bottom: 16px;
+    }
+
+    .app-icon-card:hover .app-icon-tile {
+      transform: scale(1.08);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Specular Reflection on Icon */
+    .app-icon-tile::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border-radius: 30px 30px 100px 100px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .icon-emoji {
+      font-size: 3.8rem;
+      line-height: 1;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .app-icon-card:hover .icon-emoji {
+      transform: scale(1.12);
+    }
+
+    /* Theme 1: SHE Hub */
+    .theme-she .app-icon-tile {
+      background: linear-gradient(145deg, #b85d38 0%, #e28458 50%, #7a4052 100%);
+      box-shadow: 0 16px 36px rgba(184, 93, 56, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .theme-she:hover .app-icon-tile {
+      box-shadow: 0 22px 50px rgba(236, 72, 153, 0.55), 0 0 35px rgba(226, 132, 88, 0.4);
+    }
+
+    /* Theme 2: Yasakka 30th Birthday Universe */
+    .theme-yassaka .app-icon-tile {
+      background: linear-gradient(145deg, #6b21a8 0%, #8b5cf6 50%, #d4af37 100%);
+      box-shadow: 0 16px 36px rgba(107, 33, 168, 0.45), inset 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .theme-yassaka:hover .app-icon-tile {
+      box-shadow: 0 22px 50px rgba(139, 92, 246, 0.55), 0 0 35px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Theme 3: Herbalife / D'Sun Stall */
+    .theme-herbalife .app-icon-tile {
+      background: linear-gradient(145deg, #065f46 0%, #10b981 50%, #06b6d4 100%);
+      box-shadow: 0 16px 36px rgba(16, 185, 129, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .theme-herbalife:hover .app-icon-tile {
+      box-shadow: 0 22px 50px rgba(16, 185, 129, 0.55), 0 0 35px rgba(6, 182, 212, 0.4);
+    }
+
+    /* Theme 4: Arun & Subha Wedding */
+    .theme-wedding .app-icon-tile {
+      background: linear-gradient(145deg, #5c121d 0%, #831828 50%, #c9a050 100%);
+      box-shadow: 0 16px 36px rgba(92, 18, 29, 0.45), inset 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .theme-wedding:hover .app-icon-tile {
+      box-shadow: 0 22px 50px rgba(122, 25, 38, 0.55), 0 0 35px rgba(201, 160, 80, 0.4);
+    }
+
+    /* App Typography */
+    .app-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+      transition: color 0.25s ease;
+    }
+
+    .app-icon-card:hover .app-name {
+      color: var(--accent-cyan);
+    }
+
+    .app-tag {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .app-launch-hint {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      margin-top: 6px;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: all 0.25s ease;
+    }
+
+    .app-icon-card:hover .app-launch-hint {
+      opacity: 1;
+      transform: translateY(0);
+      color: var(--accent-cyan);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding-top: 20px;
+      color: var(--text-dim);
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    footer a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .app-icons-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 16px;
+      }
+
+      .app-icon-tile {
+        width: 105px;
+        height: 105px;
+        border-radius: 26px;
+      }
+
+      .icon-emoji {
+        font-size: 3.2rem;
+      }
+
+      .app-name {
+        font-size: 1.02rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Ambient Effects -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="bg-grid"></div>
+  <div class="bg-glow-orb orb-1"></div>
+  <div class="bg-glow-orb orb-2"></div>
+
+  <main class="portal-container">
+
+    <!-- Top Navigation -->
+    <nav class="top-navbar">
+      <a href="index.html" class="nav-back-btn" title="Return to Main Portfolio Gateway">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        <span>Portfolio Home</span>
+      </a>
+
+      <div class="nav-brand">
+        <img src="images/fav_icon.jpg" alt="Ugesh Ragavan" class="nav-brand-avatar"
+          onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80'">
+        <div class="nav-brand-text">
+          Ugesh Ragavan <span>// Web Pages</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="portal-hero">
+      <div class="hero-badge">
+        <span>🌐</span>
+        <span>Dedicated Web Apps</span>
+      </div>
+
+      <h1 class="hero-title">
+        Web <span class="gradient-text">Pages</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Tap any app icon to launch the dedicated web space
+      </p>
+    </header>
+
+    <!-- Large App Icons Launchpad -->
+    <section class="app-icons-grid">
+
+      <!-- 1. SHE HUB -->
+      <a href="web-pages/sites/She/index.html" class="app-icon-card theme-she" title="Open SHE Hub">
+        <div class="app-icon-tile">
+          <span class="icon-emoji">💖</span>
+        </div>
+        <h2 class="app-name">SHE</h2>
+        <span class="app-tag">Dedicated Hub</span>
+        <span class="app-launch-hint">Open Site ↗</span>
+      </a>
+
+      <!-- 2. YASAKKA 30TH BIRTHDAY UNIVERSE -->
+      <a href="web-pages/sites/yassaka_bday/dist/index.html" class="app-icon-card theme-yassaka" title="Open Yasakka's 30th Birthday Universe">
+        <div class="app-icon-tile">
+          <span class="icon-emoji">🎂</span>
+        </div>
+        <h2 class="app-name">Yasakka 30th</h2>
+        <span class="app-tag">Birthday Universe</span>
+        <span class="app-launch-hint">Open Site ↗</span>
+      </a>
+
+      <!-- 3. D'SUN STALL (HERBALIFE) -->
+      <a href="web-pages/sites/Herbalife/dist/index.html" class="app-icon-card theme-herbalife" title="Open D'Sun Stall Store">
+        <div class="app-icon-tile">
+          <span class="icon-emoji">🌿</span>
+        </div>
+        <h2 class="app-name">D'Sun Stall</h2>
+        <span class="app-tag">Nutrition Store</span>
+        <span class="app-launch-hint">Open Site ↗</span>
+      </a>
+
+      <!-- 4. ARUN & SUBHA WEDDING INVITATION -->
+      <a href="web-pages/sites/arun anna wed-inv/index.html" class="app-icon-card theme-wedding" title="Open Wedding Invitation">
+        <div class="app-icon-tile">
+          <span class="icon-emoji">💍</span>
+        </div>
+        <h2 class="app-name">Wedding Invite</h2>
+        <span class="app-tag">Arun & Subha</span>
+        <span class="app-launch-hint">Open Site ↗</span>
+      </a>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>© 2026 Ugesh Ragavan. Built with HTML, CSS & JavaScript.</div>
+      <div>
+        <a href="index.html">← Back to Main Portfolio Gateway</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Ambient Particles Animation -->
+  <script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = Array.from({ length: 35 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      radius: Math.random() * 2 + 1,
+      alpha: Math.random() * 0.4 + 0.15
+    }));
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(139, 92, 246, ${p.alpha})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+
+</html>

@@ -871,6 +871,142 @@
       color: #fff;
       border-style: solid;
     }
+
+    /* ═══════════════════════════════════════════════════════════
+       WEB PAGES HUB FEATURED CARD
+       ═══════════════════════════════════════════════════════════ */
+    .webpages-hub-card {
+      width: 100%;
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.12) 0%, rgba(139, 92, 246, 0.14) 50%, rgba(6, 182, 212, 0.12) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 18px;
+      padding: 18px 22px;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      margin-bottom: 24px;
+    }
+
+    .webpages-hub-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(248, 200, 220, 0.5);
+      box-shadow: 0 18px 40px rgba(236, 72, 153, 0.2), 0 0 25px rgba(139, 92, 246, 0.2);
+    }
+
+    .webpages-hub-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .webpages-hub-icons {
+      display: flex;
+      align-items: center;
+      margin-right: 4px;
+    }
+
+    .hub-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      border: 2px solid rgba(15, 23, 42, 0.9);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      margin-left: -12px;
+      transition: transform 0.3s ease;
+    }
+
+    .hub-avatar:first-child {
+      margin-left: 0;
+    }
+
+    .webpages-hub-card:hover .hub-avatar {
+      transform: translateY(-3px) scale(1.08);
+    }
+
+    .hub-avatar.pink {
+      background: linear-gradient(135deg, #b85d38, #e99ab2);
+    }
+
+    .hub-avatar.amber {
+      background: linear-gradient(135deg, #7c3aed, #d4af37);
+    }
+
+    .hub-avatar.emerald {
+      background: linear-gradient(135deg, #059669, #10b981);
+    }
+
+    .webpages-hub-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: left;
+    }
+
+    .webpages-hub-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .webpages-hub-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #f8fafc;
+      padding: 2px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .webpages-hub-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .webpages-hub-desc strong {
+      color: #f8fafc;
+    }
+
+    .webpages-hub-arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .webpages-hub-card:hover .webpages-hub-arrow {
+      background: var(--accent-cyan);
+      color: #090c15;
+      transform: translateX(4px);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+    }
   </style>
 </head>
 
@@ -1014,33 +1150,52 @@
       </a>
     </div>
 
-    <!-- 3. INTERACTIVE ARCADE & WEB APPS -->
-    <div class="section-title">🚀 Arcade Lab & Live Sites</div>
+    <!-- 3. DEDICATED WEB PAGES & APPS -->
+    <div class="section-title">🌐 Web Pages & Dedicated Sites</div>
+
+    <a href="web-pages.html" class="webpages-hub-card" title="Explore Web Pages Hub">
+      <div class="webpages-hub-left">
+        <div class="webpages-hub-icons">
+          <span class="hub-avatar pink" title="SHE Hub">💖</span>
+          <span class="hub-avatar amber" title="Yasakka's 30th Birthday Universe">🎂</span>
+          <span class="hub-avatar emerald" title="Live Web Experiences">✨</span>
+        </div>
+        <div class="webpages-hub-text">
+          <div class="webpages-hub-title">
+            <span>Web Pages Hub</span>
+            <span class="webpages-hub-badge">Dedicated Sites</span>
+          </div>
+          <div class="webpages-hub-desc">
+            Explore dedicated web spaces — <strong>SHE</strong> Hub & <strong>Yasakka's 30th</strong> Universe
+          </div>
+        </div>
+      </div>
+      <div class="webpages-hub-arrow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </div>
+    </a>
+
+    <!-- 4. INTERACTIVE ARCADE LAB -->
+    <div class="section-title">🕹️ Arcade Lab</div>
 
     <div class="games-grid">
-      <a href="sites/Herbalife/dist/index.html" class="game-mini-card" title="D'Sun stall">
-        <div class="game-mini-icon">🌿</div>
-        <div class="game-mini-name">D'Sun stall</div>
-      </a>
-      <a href="sites/She/index.html" class="game-mini-card" title="SHE — Special Hub for Her Dedicated Websites" style="border-color: rgba(248, 200, 220, 0.5); background: linear-gradient(135deg, rgba(184, 93, 56, 0.25) 0%, rgba(122, 64, 82, 0.35) 100%);">
-        <div class="game-mini-icon">💖</div>
-        <div class="game-mini-name" style="color: #F8C8DC; font-weight: 800;">SHE</div>
-      </a>
-      <a href="sites/yassaka_bday/dist/index.html" class="game-mini-card" title="Yasakka's 30th Birthday Universe — Interactive Journey" style="border-color: rgba(251, 191, 36, 0.5); background: linear-gradient(135deg, rgba(217, 119, 6, 0.25) 0%, rgba(180, 83, 9, 0.35) 100%);">
-        <div class="game-mini-icon">🎂</div>
-        <div class="game-mini-name" style="color: #FDE68A; font-weight: 800;">Yasakka 30th</div>
-      </a>
-      <a href="game/lion/lion.html" class="game-mini-card">
+      <a href="game/lion/lion.html" class="game-mini-card" title="Chill Lion">
         <div class="game-mini-icon">🦁</div>
         <div class="game-mini-name">Chill Lion</div>
       </a>
-      <a href="game/Cube/cube.html" class="game-mini-card">
+      <a href="game/Cube/cube.html" class="game-mini-card" title="The Cube">
         <div class="game-mini-icon">🧊</div>
         <div class="game-mini-name">The Cube</div>
       </a>
-      <a href="game/ninja/ninja.html" class="game-mini-card">
+      <a href="game/ninja/ninja.html" class="game-mini-card" title="Stick Ninja">
         <div class="game-mini-icon">🥷</div>
         <div class="game-mini-name">Stick Ninja</div>
+      </a>
+      <a href="web-pages/sites/Herbalife/dist/index.html" class="game-mini-card" title="D'Sun stall">
+        <div class="game-mini-icon">🌿</div>
+        <div class="game-mini-name">D'Sun stall</div>
       </a>
     </div>
 
