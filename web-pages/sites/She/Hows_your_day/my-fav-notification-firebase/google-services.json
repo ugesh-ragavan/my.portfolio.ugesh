@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "26772390545",
+    "project_id": "my-fav-notification",
+    "storage_bucket": "my-fav-notification.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26772390545:android:888283cf2542bd9128f530",
+        "android_client_info": {
+          "package_name": "love.sree"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtWwJ67YvRLT8FTMjMuuXCYxvhr5v_dsA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,33 @@
+<div class="ocean" id="ocean">
+  <!-- Waves for realism -->
+  <div class="wave wave1"></div>
+  <div class="wave wave2"></div>
+  <div class="wave wave3"></div>
+
+  <!-- Bubbles for atmosphere -->
+  <div class="bubbles">
+    <span class="bubble"></span>
+    <span class="bubble"></span>
+    <span class="bubble"></span>
+    <span class="bubble"></span>
+    <span class="bubble"></span>
+  </div>
+
+  <!-- Our fish -->
+  <div class="fish" id="fish1">🐟</div>
+  <div class="fish" id="fish2">🐠</div>
+  <div class="fish" id="fish3">🐡</div>
+  <div class="fish" id="fish4">🐬</div>
+  <div class="fish" id="fish4">🐙</div>
+  <div class="fish" id="fish4">🪼</div>
+  <div class="fish" id="fish4">🦑</div>
+
+  <!-- Feeder cursor (follows the mouse) -->
+  <div class="feeder" id="feeder">🪣</div>
+</div>
+
+<div class="controls">
+  <p>🍞 Click anywhere in the ocean to drop food!</p>
+  <p>Fish Fed: <span id="score">0</span> times</p>
+  <p class="hint">Watch the fish swim to the food!</p>
+</div>

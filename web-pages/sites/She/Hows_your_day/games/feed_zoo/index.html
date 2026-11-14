@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feed the Zoo 🐟 - For Sree</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #1a1a2e;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .back-nav {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 1000;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* The ocean container */
+    .ocean {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      background: linear-gradient(to bottom,
+          #0077be 0%,
+          #005a8c 30%,
+          #004070 60%,
+          #002a50 100%);
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      cursor: none;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Animated waves at the top */
+    .wave {
+      position: absolute;
+      width: 200%;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      top: -30px;
+      left: -50%;
+    }
+
+    .wave1 {
+      animation: wave 4s linear infinite;
+    }
+
+    .wave2 {
+      top: -20px;
+      animation: wave 6s linear infinite reverse;
+      opacity: 0.6;
+    }
+
+    .wave3 {
+      top: -10px;
+      animation: wave 5s linear infinite;
+      opacity: 0.4;
+    }
+
+    @keyframes wave {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(50%);
+      }
+    }
+
+    /* Rising bubbles */
+    .bubbles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -20px;
+      width: 10px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      animation: rise 4s infinite ease-in;
+      opacity: 0.5;
+    }
+
+    .bubble:nth-child(1) {
+      left: 10%;
+      animation-duration: 4s;
+      animation-delay: 0s;
+    }
+
+    .bubble:nth-child(2) {
+      left: 30%;
+      animation-duration: 5s;
+      animation-delay: 1s;
+    }
+
+    .bubble:nth-child(3) {
+      left: 50%;
+      animation-duration: 4.5s;
+      animation-delay: 0.5s;
+    }
+
+    .bubble:nth-child(4) {
+      left: 70%;
+      animation-duration: 5.5s;
+      animation-delay: 1.5s;
+    }
+
+    .bubble:nth-child(5) {
+      left: 90%;
+      animation-duration: 4s;
+      animation-delay: 2s;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-450px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Fish styling */
+    .fish {
+      position: absolute;
+      font-size: 45px;
+      transition: transform 0.1s ease;
+      z-index: 10;
+      filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
+    }
+
+    /* Idle wiggle */
+    .fish.idle {
+      animation: idle-swim 2s ease-in-out infinite;
+    }
+
+    @keyframes idle-swim {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      25% {
+        transform: translateY(-5px) rotate(2deg);
+      }
+      75% {
+        transform: translateY(5px) rotate(-2deg);
+      }
+    }
+
+    /* Food pellet */
+    .food {
+      position: absolute;
+      font-size: 18px;
+      z-index: 5;
+      filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));
+      pointer-events: none;
+    }
+
+    /* Splash effect when food drops */
+    .splash {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.35);
+      animation: splash 0.5s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes splash {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+
+    /* Eating effect */
+    .eat-effect {
+      position: absolute;
+      font-size: 20px;
+      animation: eat 0.5s ease-out forwards;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    @keyframes eat {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.5) translateY(-20px);
+        opacity: 0;
+      }
+    }
+
+    /* Feeder cursor */
+    .feeder {
+      position: absolute;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      font-size: 28px;
+      z-index: 40;
+      opacity: 0.95;
+      transition: transform 0.06s linear;
+    }
+
+    /* Controls styling */
+    .controls {
+      text-align: center;
+      padding: 25px;
+      color: #ffffff;
+      max-width: 800px;
+    }
+
+    .controls p {
+      margin: 8px 0;
+      font-size: 18px;
+    }
+
+    .controls .hint {
+      font-size: 14px;
+      color: #88b;
+      font-style: italic;
+    }
+
+    #score {
+      font-weight: bold;
+      color: #00bfff;
+      font-size: 28px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="back-nav">
+    <a href="../../index.html#mini-games" class="back-btn">← Back to Hey Sree 🌸</a>
+  </nav>
+
+  <div class="ocean" id="ocean">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+
+    <div class="bubbles">
+      <span class="bubble"></span>
+      <span class="bubble"></span>
+      <span class="bubble"></span>
+      <span class="bubble"></span>
+      <span class="bubble"></span>
+    </div>
+
+    <div class="fish" id="fish1">🐟</div>
+    <div class="fish" id="fish2">🐠</div>
+    <div class="fish" id="fish3">🐡</div>
+    <div class="fish" id="fish4">🐬</div>
+    <div class="fish" id="fish5">🐙</div>
+    <div class="fish" id="fish6">🪼</div>
+    <div class="fish" id="fish7">🦑</div>
+
+    <div class="feeder" id="feeder">🪣</div>
+  </div>
+
+  <div class="controls">
+    <p>🍞 Click anywhere in the ocean to drop food!</p>
+    <p>Fish Fed: <span id="score">0</span> times</p>
+    <p class="hint">Watch the cute sea buddies swim over to eat!</p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const ocean = document.getElementById('ocean');
+      const scoreDisplay = document.getElementById('score');
+      const feeder = document.getElementById('feeder');
+
+      let score = 0;
+      const fishList = [];
+      const foods = [];
+
+      function getOceanSize() {
+        return {
+          width: ocean.clientWidth,
+          height: ocean.clientHeight
+        };
+      }
+
+      class Fish {
+        constructor(element) {
+          this.element = element;
+          const size = getOceanSize();
+          this.x = Math.random() * (size.width - 80) + 40;
+          this.y = Math.random() * (size.height - 120) + 60;
+          this.speed = 0.6 + Math.random() * 1.2;
+          this.isEating = false;
+          this.direction = 1;
+          this.idleTime = 0;
+          this.idleTarget = { x: this.x, y: this.y };
+
+          this.updatePosition();
+          this.element.classList.add('idle');
+        }
+
+        updatePosition() {
+          this.element.style.left = `${this.x}px`;
+          this.element.style.top = `${this.y}px`;
+          this.element.style.transform = `scaleX(${this.direction})`;
+        }
+
+        findClosestFood() {
+          if (foods.length === 0) return null;
+          let closest = null;
+          let closestDist = Infinity;
+          for (const f of foods) {
+            if (f.eaten) continue;
+            const dx = f.x - this.x;
+            const dy = f.y - this.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < closestDist) {
+              closestDist = dist;
+              closest = f;
+            }
+          }
+          return closest;
+        }
+
+        moveToward(targetX, targetY, speed) {
+          const dx = targetX - this.x;
+          const dy = targetY - this.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist > 4) {
+            this.x += (dx / dist) * speed;
+            this.y += (dy / dist) * speed;
+            this.direction = dx >= 0 ? 1 : -1;
+            return false;
+          }
+          return true;
+        }
+
+        idleSwim() {
+          this.idleTime++;
+          if (
+            this.idleTime > 120 ||
+            this.moveToward(this.idleTarget.x, this.idleTarget.y, this.speed * 0.4)
+          ) {
+            this.idleTime = 0;
+            const size = getOceanSize();
+            this.idleTarget = {
+              x: Math.random() * (size.width - 80) + 40,
+              y: Math.random() * (size.height - 120) + 60
+            };
+          }
+        }
+
+        update() {
+          if (this.isEating) return;
+
+          const closestFood = this.findClosestFood();
+          if (closestFood) {
+            this.element.classList.remove('idle');
+            const arrived = this.moveToward(closestFood.x, closestFood.y, this.speed * 2);
+            if (arrived && !closestFood.eaten) {
+              this.eatFood(closestFood);
+            }
+          } else {
+            this.element.classList.add('idle');
+            this.idleSwim();
+          }
+
+          const size = getOceanSize();
+          this.x = Math.max(20, Math.min(size.width - 50, this.x));
+          this.y = Math.max(30, Math.min(size.height - 40, this.y));
+
+          this.updatePosition();
+        }
+
+        eatFood(food) {
+          food.eaten = true;
+          this.isEating = true;
+
+          const eatEffect = document.createElement('div');
+          eatEffect.className = 'eat-effect';
+          eatEffect.textContent = '😋';
+          eatEffect.style.left = `${food.x}px`;
+          eatEffect.style.top = `${food.y}px`;
+          ocean.appendChild(eatEffect);
+
+          if (food.element && food.element.remove) food.element.remove();
+
+          score++;
+          scoreDisplay.textContent = score;
+
+          setTimeout(() => {
+            eatEffect.remove();
+            this.isEating = false;
+            const idx = foods.indexOf(food);
+            if (idx > -1) foods.splice(idx, 1);
+          }, 500);
+        }
+      }
+
+      class Food {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.sinkSpeed = 0.4 + Math.random() * 0.4;
+          this.wobble = 0;
+          this.eaten = false;
+
+          this.element = document.createElement('div');
+          this.element.className = 'food';
+          this.element.textContent = '🍞';
+          this.element.style.left = `${this.x}px`;
+          this.element.style.top = `${this.y}px`;
+          ocean.appendChild(this.element);
+
+          const splash = document.createElement('div');
+          splash.className = 'splash';
+          splash.style.left = `${this.x - 15}px`;
+          splash.style.top = `${this.y - 15}px`;
+          ocean.appendChild(splash);
+          setTimeout(() => splash.remove(), 500);
+        }
+
+        update() {
+          if (this.eaten) return;
+          this.y += this.sinkSpeed;
+          this.wobble += 0.12;
+          const wobbleX = Math.sin(this.wobble) * 0.6;
+          this.x += wobbleX;
+
+          if (this.element) {
+            this.element.style.left = `${this.x}px`;
+            this.element.style.top = `${this.y}px`;
+          }
+
+          const size = getOceanSize();
+          if (this.y > size.height - 20) {
+            this.eaten = true;
+            if (this.element) this.element.style.opacity = '0.3';
+            setTimeout(() => {
+              if (this.element) this.element.remove();
+              const idx = foods.indexOf(this);
+              if (idx > -1) foods.splice(idx, 1);
+            }, 800);
+          }
+        }
+      }
+
+      document.querySelectorAll('.fish').forEach(el => {
+        fishList.push(new Fish(el));
+      });
+
+      ocean.addEventListener('click', (e) => {
+        const rect = ocean.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        if (y > 20) {
+          foods.push(new Food(x, y));
+        }
+      });
+
+      ocean.addEventListener('mousemove', (e) => {
+        const rect = ocean.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        feeder.style.left = `${x}px`;
+        feeder.style.top = `${y}px`;
+      });
+
+      ocean.addEventListener('mouseenter', () => feeder.style.display = 'block');
+      ocean.addEventListener('mouseleave', () => feeder.style.display = 'none');
+
+      function gameLoop() {
+        fishList.forEach(f => f.update());
+        foods.forEach(f => f.update());
+        requestAnimationFrame(gameLoop);
+      }
+
+      gameLoop();
+    });
+  </script>
+</body>
+</html>

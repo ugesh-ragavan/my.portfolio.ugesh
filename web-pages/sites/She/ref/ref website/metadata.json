@@ -1,0 +1,8 @@
+{
+  "name": "For Sree — Cozy Pocket Corner",
+  "description": "A warm, gentle interactive sanctuary made just for Sree with mood check-ins, relaxing mini-games, and a blooming lily garden.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

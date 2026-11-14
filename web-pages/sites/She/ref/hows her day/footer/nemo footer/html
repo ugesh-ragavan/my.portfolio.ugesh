@@ -1,0 +1,38 @@
+.aquarium
+  .seaweed.seaweed--one
+  .seaweed.seaweed--two
+  .seaweed.seaweed--three
+  .fish.animated
+    .segment.segment-1
+      .segment.segment-2
+        .segment.segment-3
+          .segment.segment-4
+            .segment.segment-5
+              .segment.segment-6
+                .segment.segment-7
+                  .segment.segment-8
+                    .segment.segment-9
+                      .segment.segment-10
+                        .segment.segment-11
+                          .segment.segment-12
+                            .segment.segment-13
+                              .segment.segment-14
+                                .segment.segment-15
+                                  .segment.segment-16
+                                    .segment.segment-17
+                                      .segment.segment-18
+                                        .segment.segment-19
+                                          .segment.segment-20
+                                            .segment.segment-21
+                                              .segment.segment-22
+                                                .segment.segment-23
+                                                  .segment.segment-24
+                                                    .segment.segment-25
+                                                      .segment.segment-26
+
+//- - var n = 0
+//- .aquarium
+//-   .fish
+//-     while n < 26
+//-       - n++
+//-       .segment(class='segment-' + n)

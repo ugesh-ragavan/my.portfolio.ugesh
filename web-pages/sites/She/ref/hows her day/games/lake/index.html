@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Grant Jenkins" />
+  <meta
+    name="description"
+    content="A 3D THREE.js rowing boat floating across animated water with a rowing person, moving oars, lily pads, flowers and a subtle wake."
+  />
+
+  <title>3D Rowing Boat</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="./style.css" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <canvas id="scene"></canvas>
+
+  <div class="hud">
+    <div class="eyebrow">THREE.js</div>
+    <h1>3D Rowing Boat</h1>
+    <p>Drag to rotate · wheel to zoom</p>
+  </div>
+
+  <button id="fullscreenButton" class="fullscreen-button" type="button" aria-label="View full screen" title="View full screen">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/>
+    </svg>
+  </button>
+
+  <script type="module" src="./script.js"></script>
+</body>
+</html>

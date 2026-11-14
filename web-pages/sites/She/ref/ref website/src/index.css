@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: #FDF8F5;
+    color: #3F2E2E;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+@keyframes gentle-sway {
+  0%, 100% {
+    transform: rotate(-2.2deg);
+  }
+  50% {
+    transform: rotate(2.4deg);
+  }
+}
+
+@keyframes bouncy-sway {
+  0%, 100% {
+    transform: rotate(-4deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(4deg) translateY(-4px);
+  }
+}
+
+@keyframes float-up-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.85);
+  }
+  20% {
+    opacity: 0.95;
+    transform: translateY(-4px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-64px) scale(0.92);
+  }
+}
+
+@keyframes firefly-drift {
+  0%, 100% {
+    opacity: 0.25;
+    transform: translate(0px, 0px) scale(0.85);
+  }
+  35% {
+    opacity: 0.95;
+    transform: translate(12px, -16px) scale(1.15);
+  }
+  70% {
+    opacity: 0.6;
+    transform: translate(-10px, -28px) scale(0.95);
+  }
+}
+
+@keyframes petal-drift {
+  0% {
+    opacity: 0;
+    transform: translate(0px, -12px) rotate(0deg);
+  }
+  15% {
+    opacity: 0.85;
+  }
+  85% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(36px, 95px) rotate(140deg);
+  }
+}
+
+@keyframes water-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.7);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(34px) scale(0.95);
+  }
+}
+
+@keyframes heart-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.7) rotate(-8deg);
+  }
+  25% {
+    opacity: 0.95;
+    transform: translateY(-10px) scale(1.05) rotate(6deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-76px) scale(0.85) rotate(-6deg);
+  }
+}
+
+.animate-gentle-sway {
+  animation: gentle-sway 5.5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.animate-bouncy-sway {
+  animation: bouncy-sway 2.8s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.animate-float-up {
+  animation: float-up-fade 2.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-firefly {
+  animation: firefly-drift 6s ease-in-out infinite;
+}
+
+.animate-petal-drift {
+  animation: petal-drift 7.5s linear infinite;
+}
+
+.animate-water-drop {
+  animation: water-drop 0.55s ease-in infinite;
+}
+
+.animate-heart-rise {
+  animation: heart-rise 3.6s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gentle-sway,
+  .animate-bouncy-sway,
+  .animate-firefly,
+  .animate-petal-drift,
+  .animate-water-drop,
+  .animate-heart-rise {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,35 @@
+const thumb = document.getElementById("thumbnail");
+setTimeout(function() {
+thumb.remove();
+}, 3000)
+
+document.addEventListener("keydown", function () {
+if (event.key === "O" || event.key === "o") {
+let newWindow = window.open("about:blank", "_blank");
+
+newWindow.document.write(`
+<iframe src="https://codepen.io/The-Coder24/full/qEWWRjb" title="Escape Road - Little Timmy (F for Fullscreen)">
+  Your browser does not support iframes.
+</iframe>
+<style>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+  }
+</style>
+`);
+}
+});

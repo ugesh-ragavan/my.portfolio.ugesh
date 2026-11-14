@@ -1,0 +1,251 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #1a1a2e;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* The ocean container */
+.ocean {
+  width: 100%;
+  max-width: 800px;
+  height: 450px;
+  background: linear-gradient(to bottom,
+      #0077be 0%,
+      #005a8c 30%,
+      #004070 60%,
+      #002a50 100%);
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  cursor: none;
+  /* hide default cursor inside ocean */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Animated waves at the top */
+.wave {
+  position: absolute;
+  width: 200%;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  top: -30px;
+  left: -50%;
+}
+
+.wave1 {
+  animation: wave 4s linear infinite;
+}
+
+.wave2 {
+  top: -20px;
+  animation: wave 6s linear infinite reverse;
+  opacity: 0.6;
+}
+
+.wave3 {
+  top: -10px;
+  animation: wave 5s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+/* Rising bubbles */
+.bubbles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -20px;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: rise 4s infinite ease-in;
+  opacity: 0.5;
+}
+
+.bubble:nth-child(1) {
+  left: 10%;
+  animation-duration: 4s;
+  animation-delay: 0s;
+}
+
+.bubble:nth-child(2) {
+  left: 30%;
+  animation-duration: 5s;
+  animation-delay: 1s;
+}
+
+.bubble:nth-child(3) {
+  left: 50%;
+  animation-duration: 4.5s;
+  animation-delay: 0.5s;
+}
+
+.bubble:nth-child(4) {
+  left: 70%;
+  animation-duration: 5.5s;
+  animation-delay: 1.5s;
+}
+
+.bubble:nth-child(5) {
+  left: 90%;
+  animation-duration: 4s;
+  animation-delay: 2s;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(-450px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Fish styling */
+.fish {
+  position: absolute;
+  font-size: 45px;
+  transition: transform 0.1s ease;
+  z-index: 10;
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+/* Idle wiggle */
+.fish.idle {
+  animation: idle-swim 2s ease-in-out infinite;
+}
+
+@keyframes idle-swim {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+
+  75% {
+    transform: translateY(5px) rotate(-2deg);
+  }
+}
+
+/* Food pellet */
+.food {
+  position: absolute;
+  font-size: 18px;
+  z-index: 5;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));
+  pointer-events: none;
+}
+
+/* Splash effect when food drops */
+.splash {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  animation: splash 0.5s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes splash {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Eating effect */
+.eat-effect {
+  position: absolute;
+  font-size: 20px;
+  animation: eat 0.5s ease-out forwards;
+  pointer-events: none;
+  z-index: 20;
+}
+
+@keyframes eat {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.5) translateY(-20px);
+    opacity: 0;
+  }
+}
+
+/* Feeder cursor */
+.feeder {
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  z-index: 40;
+  opacity: 0.95;
+  transition: transform 0.06s linear;
+}
+
+/* Controls styling */
+.controls {
+  text-align: center;
+  padding: 25px;
+  color: #ffffff;
+  max-width: 800px;
+}
+
+.controls p {
+  margin: 8px 0;
+  font-size: 18px;
+}
+
+.controls .hint {
+  font-size: 14px;
+  color: #88b;
+  font-style: italic;
+}
+
+#score {
+  font-weight: bold;
+  color: #00bfff;
+  font-size: 28px;
+}
