@@ -5,55 +5,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSS Backrooms 🔦 - For Sree</title>
+  <!-- PIN Authentication Guard -->
+  <script src="../../auth.js"></script>
   <link rel="stylesheet" href="./style.css">
   <style>
-    .backrooms-nav {
-      .backrooms-back-link {
-        position: fixed;
-        top: 14px;
-        left: 14px;
-        z-index: 999999;
-      }
-
-      .backrooms-nav a {
-        z-index: 9999999;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 7px 15px;
-        padding: 8px 16px;
-        border-radius: 999px;
-        background: rgba(0, 0, 0, 0.7);
-        background: rgba(20, 18, 12, 0.88);
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border: 1px solid rgba(255, 230, 150, 0.4);
-        color: #fff;
-        text-decoration: none;
-        font-family: sans-serif;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        font-size: 13px;
-        font-weight: 600;
-        transition: all 0.2s;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
-        transition: all 0.2s ease;
-        pointer-events: auto !important;
-      }
-
-      .backrooms-nav a:hover {
-        background: rgba(232, 121, 160, 0.85);
-
-        .backrooms-back-link:hover {
-          background: rgba(232, 121, 160, 0.95);
-          transform: translateY(-1px);
-        }
+    .backrooms-back-link {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 9999999;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(20, 18, 12, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 230, 150, 0.4);
+      color: #fff;
+      text-decoration: none;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+      transition: all 0.2s ease;
+      pointer-events: auto !important;
+    }
+    .backrooms-back-link:hover {
+      background: rgba(232, 121, 160, 0.95);
+      transform: translateY(-1px);
+    }
   </style>
 </head>
 
 <body>
-  <div class="backrooms-nav">
-    <a href="../../index.html#mini-games">← Back to Hey Sree 🌸</a>
-  </div>
   <a href="../../index.html#mini-games" class="backrooms-back-link">← Back to Hey Sree 🌸</a>
   <div>
     <div>

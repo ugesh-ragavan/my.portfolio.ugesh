@@ -43,22 +43,41 @@
 
   // Selective Role Authorized Pages Whitelist
   // Admin role automatically has wildcard ('*') access to all pages.
+  // Selective role (PIN 1006) unlocks Sree's dedicated pages + gateway.
   const SELECTIVE_ALLOWED_PAGES = [
+    'index.html',
     'floral.html',
     'feel-better.html',
-    '1-month-book'
+    '1-month-book',
+    'hows_your_day'
   ];
 
   let enteredPin = '';
   let lockoutTimer = null;
   let isChecking = false;
 
+  // Compute relative root to SHE directory based on nesting depth
+  function getRelativeRoot() {
+    const path = window.location.pathname || '';
+    const normalized = path.replace(/\\/g, '/').toLowerCase();
+    if (normalized.includes('/games/')) {
+      return '../../';
+    }
+    if (normalized.includes('/hows_your_day') || normalized.includes('/1-month-book')) {
+      return '../';
+    }
+    return './';
+  }
+
   // Resolve canonical page filename from current URL
   function getCurrentPage() {
     const path = window.location.pathname || '';
-    const normalized = path.replace(/\\/g, '/');
+    const normalized = path.replace(/\\/g, '/').toLowerCase();
     if (normalized.includes('/1-month-book')) {
       return '1-month-book';
+    }
+    if (normalized.includes('/hows_your_day') || normalized.includes('/hows-your-day')) {
+      return 'hows_your_day';
     }
     const filename = normalized.substring(normalized.lastIndexOf('/') + 1).toLowerCase();
     if (!filename || filename === 'she' || filename === '') {
@@ -157,7 +176,7 @@
 
     const roleBadge = currentRole === 'admin'
       ? '<span style="font-size: 0.65rem; background: rgba(226, 132, 88, 0.35); border: 1px solid rgba(226, 132, 88, 0.55); padding: 1px 6px; border-radius: 9999px; color: #F4D58D; font-weight: 700; text-transform: uppercase;">Admin</span>'
-      : '<span style="font-size: 0.65rem; background: rgba(233, 154, 178, 0.25); border: 1px solid rgba(233, 154, 178, 0.45); padding: 1px 6px; border-radius: 9999px; color: #F8C8DC; font-weight: 700; text-transform: uppercase;">Guest</span>';
+      : '<span style="font-size: 0.65rem; background: rgba(233, 154, 178, 0.25); border: 1px solid rgba(233, 154, 178, 0.45); padding: 1px 6px; border-radius: 9999px; color: #F8C8DC; font-weight: 700;">Sree ♡</span>';
 
     lockBtn.innerHTML = `
       <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 14px; height: 14px;">
@@ -173,7 +192,7 @@
       window.location.reload();
     });
 
-    const header = document.querySelector('header');
+    const header = document.querySelector('header .max-w-5xl') || document.querySelector('header > div') || document.querySelector('header');
     if (header) {
       header.appendChild(lockBtn);
     } else {
@@ -408,13 +427,16 @@
             PIN 1006 has access to:
           </div>
           <div style="display: flex; flex-direction: column; gap: 0.45rem;">
-            <a href="1-month-book/index.html" class="she-quick-link" style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.5rem 0.9rem; background: rgba(212, 175, 55, 0.22); border: 1px solid rgba(212, 175, 55, 0.45); border-radius: 9999px; color: #F4D58D; text-decoration: none; font-size: 0.78rem; font-weight: 600; transition: all 0.2s ease;">
+            <a href="${getRelativeRoot()}Hows_your_day/index.html" class="she-quick-link" style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.5rem 0.9rem; background: rgba(200, 90, 142, 0.25); border: 1px solid rgba(200, 90, 142, 0.5); border-radius: 9999px; color: #F8C8DC; text-decoration: none; font-size: 0.78rem; font-weight: 600; transition: all 0.2s ease;">
+              <span>☁️ Open How’s Your Day? & Games</span>
+            </a>
+            <a href="${getRelativeRoot()}1-month-book/index.html" class="she-quick-link" style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.5rem 0.9rem; background: rgba(212, 175, 55, 0.22); border: 1px solid rgba(212, 175, 55, 0.45); border-radius: 9999px; color: #F4D58D; text-decoration: none; font-size: 0.78rem; font-weight: 600; transition: all 0.2s ease;">
               <span>📖 Open 1-Month Keepsake Book</span>
             </a>
-            <a href="floral.html" class="she-quick-link" style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.5rem 0.9rem; background: rgba(233, 154, 178, 0.2); border: 1px solid rgba(233, 154, 178, 0.4); border-radius: 9999px; color: #F8C8DC; text-decoration: none; font-size: 0.78rem; font-weight: 600; transition: all 0.2s ease;">
+            <a href="${getRelativeRoot()}floral.html" class="she-quick-link" style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.5rem 0.9rem; background: rgba(233, 154, 178, 0.2); border: 1px solid rgba(233, 154, 178, 0.4); border-radius: 9999px; color: #F8C8DC; text-decoration: none; font-size: 0.78rem; font-weight: 600; transition: all 0.2s ease;">
               <span>🌸 Open Floral Surprise</span>
             </a>
-            <a href="feel-better.html" class="she-quick-link" style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.5rem 0.9rem; background: rgba(184, 93, 56, 0.22); border: 1px solid rgba(184, 93, 56, 0.45); border-radius: 9999px; color: #F4D58D; text-decoration: none; font-size: 0.78rem; font-weight: 600; transition: all 0.2s ease;">
+            <a href="${getRelativeRoot()}feel-better.html" class="she-quick-link" style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.5rem 0.9rem; background: rgba(184, 93, 56, 0.22); border: 1px solid rgba(184, 93, 56, 0.45); border-radius: 9999px; color: #F4D58D; text-decoration: none; font-size: 0.78rem; font-weight: 600; transition: all 0.2s ease;">
               <span>🤍 Open Feel Better Sanctuary</span>
             </a>
           </div>

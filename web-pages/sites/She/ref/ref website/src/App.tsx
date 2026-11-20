@@ -68,13 +68,22 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-[#FDF8F5] text-[#3F2E2E]">
       {/* Compact Sticky Top Bar */}
       <header className="sticky top-0 z-40 h-14 bg-[#FDF8F5]/90 backdrop-blur-md border-b border-[#EADCD5]/80">
-        <div className="max-w-5xl mx-auto h-full px-4 sm:px-6 flex items-center justify-between gap-8">
-          <a
-            href="#mood-checkin"
-            className="font-display text-lg font-medium tracking-tight text-[#3F2E2E] whitespace-nowrap shrink-0"
-          >
-            For Sree
-          </a>
+        <div className="max-w-5xl mx-auto h-full px-4 sm:px-6 flex items-center justify-between gap-4 sm:gap-8">
+          <div className="flex items-center gap-2.5">
+            <a
+              href="../index.html"
+              className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#F5ECE7] hover:bg-[#EDE0D9] border border-[#E2D2C9] text-xs font-semibold text-[#6D5454] transition-colors whitespace-nowrap"
+              title="Return to SHE Hub"
+            >
+              <span>← SHE Menu</span>
+            </a>
+            <a
+              href="#mood-checkin"
+              className="font-display text-lg font-medium tracking-tight text-[#3F2E2E] whitespace-nowrap shrink-0"
+            >
+              For Sree
+            </a>
+          </div>
 
           <nav
             aria-label="Page sections"
